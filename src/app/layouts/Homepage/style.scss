@@ -1,0 +1,27 @@
+[data-component="Layout_Homepage"] {
+    &.scrolling-disabled {
+        width: 100vw;
+        height: 100vw;
+        overflow: hidden;
+    }
+
+    h2 {
+        color: #f9004b;
+        font-size: 32px;
+        font-weight: 800;
+        margin-bottom: 20px;
+    }
+
+    &.page-introduction {
+        .about-me {
+            text-align: justify;
+
+            @media (max-width: 999px) {
+                padding: 5vw 5vw;
+            }
+            @media (min-width: 1000px) {
+                padding: 5vw 16vw;
+            }
+        }
+    }
+}

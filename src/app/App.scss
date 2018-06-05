@@ -1,0 +1,9 @@
+@import 'css-reset-and-normalize-sass/scss/flavored-reset-and-normalize';
+
+body {
+    background-color: $primary-background-color;
+
+    *:focus {
+        outline: none;
+    }
+}

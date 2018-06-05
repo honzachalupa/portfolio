@@ -1,0 +1,126 @@
+[data-component="Navigation"] {
+    width: 100%;
+    padding: 1vw 13.8vw;
+
+    .items {
+        display: flex;
+
+        .item {
+            background-color: transparent;
+            font-size: 18px;
+            font-weight: 800;
+            white-space: nowrap;
+            border: none;
+            border-top: 3px solid transparent;
+            border-bottom: 3px solid transparent;
+            padding: 10px 15px;
+            margin-right: 20px;
+            opacity: 0.6;
+            transition: opacity 250ms, border-color 250ms;
+
+            &:hover {
+                opacity: 1;
+                border-bottom-color: $accent-color;
+            }
+        }
+
+        .language-switcher {
+            margin-left: auto;
+        }
+    }
+
+    &.closed,
+    &.opened {
+        padding: 5vw;
+
+        .hamburger-button {
+            $height: 20px;
+
+            width: 30px;
+            height: $height;
+            cursor: pointer;
+            float: right;
+            position: relative;
+            z-index: 11;
+            box-sizing: unset;
+
+            .line {
+                width: 100%;
+                height: calc(#{$height} / 5);
+                background-color: $accent-color;
+                margin-bottom: calc(#{$height} / 5);
+                transition: transform 250ms, opacity 250ms;
+            }
+        }
+    }
+
+    &.closed {
+        .overlay,
+        .items {
+            display: none;
+        }
+    }
+
+    &.opened {
+        .overlay {
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+        }
+
+        .hamburger-button {
+            .line {
+                position: absolute;
+                top: 40%;
+
+                &.top {
+                    transform: rotateZ(-45deg);
+                }
+
+                &.middle {
+                    opacity: 0;
+                }
+
+                &.bottom {
+                    transform: rotateZ(45deg);
+                }
+            }
+        }
+
+        .items {
+            width: 270px;
+            height: 100vh;
+            background-color: transparentize(#f2f2f2, 0.2);
+            backdrop-filter: blur(20px);
+            padding: 10vh 0 0 0;
+            display: block;
+            position: absolute;
+            z-index: 10;
+            top: 0;
+            right: 0;
+
+            .item {
+                width: 100%;
+                text-align: right;
+                border-radius: 0;
+                padding: 12px 35px 12px 20px;
+                margin: 0;
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.05);
+                }
+            }
+
+            .language-switcher {
+                float: right;
+                margin-right: 20px;
+            }
+        }
+    }
+}

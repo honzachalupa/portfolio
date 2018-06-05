@@ -1,0 +1,16 @@
+[data-component="Button"] {
+    background-color: transparent;
+    color: $accent-color;
+    font-size: 14px;
+    text-transform: uppercase;
+    border-radius: 0;
+    border: 2px solid $accent-color;
+    padding: 12px 20px;
+    margin: 20px 0;
+    transition: border-width 250ms, padding 250ms;
+
+    &:hover {
+        border-width: 4px;
+        padding: 10px 18px;
+    }
+}
