@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { _getHtmlFromMarkdown } from 'helpers';
 import { AppContext } from 'App';
-import Layout from 'Layouts/Homepage';
+import Layout from 'Layouts/Main';
 import LazyText from 'Components/LazyText';
 
 class Page_AboutMe extends Component {
@@ -30,7 +30,7 @@ class Page_AboutMe extends Component {
         return (
             <section>
                 <Layout page={this.state.page}>
-                    <div className="basic-container">
+                    <div className="basic-text-container">
                         <h2>
                             <LazyText value={translations.aboutMe} />
                         </h2>

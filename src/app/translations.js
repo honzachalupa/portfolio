@@ -39,6 +39,10 @@ export const translations = {
         cs: 'Prohlédnout',
         en: 'View more'
     },
+    moreProjects: {
+        cs: 'Více projektů',
+        en: 'More projects'
+    },
     backToProjectsList: {
         cs: 'Všechny projekty',
         en: 'Projects list'

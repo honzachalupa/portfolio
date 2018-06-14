@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { AppContext } from 'App';
-import Layout from 'Layouts/Homepage';
+import Layout from 'Layouts/Main';
 import ProjectOverview from 'Components/ProjectOverview';
 
 class Page_ProjectDetail extends Component {

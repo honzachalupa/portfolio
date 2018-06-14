@@ -8,7 +8,7 @@ import Footer from 'Components/Footer';
 let resizeTimeout;
 // let scrollTimeout;
 
-class Layout_Homepage extends Component {
+class Layout_Main extends Component {
     constructor() {
         super();
 
@@ -93,7 +93,7 @@ class Layout_Homepage extends Component {
 const ContextWrapper = (props) => (
     <AppContext.Consumer>
         {({ isNavigationOpened }) => (
-            <Layout_Homepage {...props} isNavigationOpened={isNavigationOpened} />
+            <Layout_Main {...props} isNavigationOpened={isNavigationOpened} />
         )}
     </AppContext.Consumer>
 );

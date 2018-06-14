@@ -11,7 +11,7 @@ class Button extends Component {
     }
 
     render() {
-        const { label, onClick, path, url, icon, children: content, styleDisabled, className } = this.props;
+        const { label, onClick, path, url, icon, children: content, styleDisabled, className = '' } = this.props;
         let buttonContent;
 
         if (!onClick && !path && !url) {
@@ -33,19 +33,19 @@ class Button extends Component {
             );
         }
 
-        const styleDisabled_ClassName = (styleDisabled) ? 'style-disabled' : '';
+        const classNames = `${className} ${(styleDisabled) ? 'style-disabled' : ''}`;
 
         if (onClick) {
             return (
-                <button className={`${className} ${styleDisabled_ClassName}`} onClick={onClick}>{buttonContent}</button>
+                <button className={classNames} onClick={onClick}>{buttonContent}</button>
             );
         } else if (path) {
             return (
-                <button className={`${className} ${styleDisabled_ClassName}`} onClick={() => this.handleNavigation(path)}>{buttonContent}</button>
+                <button className={classNames} onClick={() => this.handleNavigation(path)}>{buttonContent}</button>
             );
         } else {
             return (
-                <a className={`${className} ${styleDisabled_ClassName}`} href={url}>{buttonContent}</a>
+                <a className={classNames} href={url}>{buttonContent}</a>
             );
         }
     }

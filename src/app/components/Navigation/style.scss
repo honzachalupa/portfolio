@@ -72,6 +72,7 @@
                 width: 100%;
                 height: calc(#{$height} / 5);
                 background-color: $accent-color;
+                box-shadow: 0 0 0 1px white;
                 margin-bottom: calc(#{$height} / 5);
                 transition: transform 250ms, opacity 250ms;
             }

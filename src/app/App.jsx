@@ -7,7 +7,7 @@ import config from 'app-config';
 import { getTranslatedTexts } from './translations';
 import projects from './projects';
 import './App.scss';
-import Page_Home from 'Pages/Home';
+import Page_Introduction from 'Pages/Introduction';
 import Page_Projects from 'Pages/Projects';
 import Page_ProjectDetail from 'Pages/Projects/Detail';
 import Page_Cooperation from 'Pages/Cooperation';
@@ -162,7 +162,7 @@ class App extends Component {
                         <Route component={Page_ProjectDetail} path="/projects/:projectId" exact />
                         <Route component={Page_Cooperation} path="/cooperation" exact />
                         <Route component={Page_AboutMe} path="/about-me" exact />
-                        <Route component={Page_Home} />
+                        <Route component={Page_Introduction} />
                     </Switch>
                 </Router>
             </AppContext.Provider>

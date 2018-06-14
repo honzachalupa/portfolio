@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Layout from 'Layouts/Homepage';
+import Layout from 'Layouts/Main';
 
 export default class Page_NotFound extends Component {
     constructor() {

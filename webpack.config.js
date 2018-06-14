@@ -1,5 +1,6 @@
 const path = require('path');
 const config = require('./src/app-config');
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
@@ -7,10 +8,11 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 const CleanPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-module.exports = (env, argv) => {
-    const isDevelopmentMode = argv.mode === 'development';
+module.exports = (/* env, argv */) => {
+    // const isDevelopmentMode = argv.mode === 'development';
 
-    const workbox = (!isDevelopmentMode && config.caching && config.caching.strategy) ? (
+    // const workbox = (!isDevelopmentMode && config.caching && config.caching.strategy) ? (
+    const workbox = (config.caching && config.caching.strategy) ? (
         new WorkboxPlugin.GenerateSW({
             swDest: 'sw.js',
             runtimeCaching: [{
@@ -36,6 +38,7 @@ module.exports = (env, argv) => {
         },
         plugins: [
             new CleanPlugin(['dist']),
+            new FaviconsWebpackPlugin(path.resolve(__dirname, 'src/images/icon.png')),
             new HtmlPlugin({
                 template: path.resolve(__dirname, 'src/index.html'),
                 filename: 'index.html',
