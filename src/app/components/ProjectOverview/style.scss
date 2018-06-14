@@ -8,7 +8,7 @@
     align-items: center;
 
     @media (max-width: 999px) {
-        padding: 5vw 5vw;
+        padding: 14vw 5vw;
         flex-direction: column !important;
 
         .image {
@@ -22,7 +22,7 @@
         }
     }
     @media (min-width: 1000px) {
-        padding: 5vw 16vw;
+        padding: 7vw 16vw;
 
         .image {
             width: 44%;
@@ -43,13 +43,13 @@
 
     .info {
         .name {
-            font-size: 40px;
+            font-size: 2.5rem;
             font-weight: 800;
             margin-bottom: 20px;
         }
 
         .description {
-            font-size: 14px;
+            font-size: 1rem;
             line-height: 180%;
         }
     }
@@ -79,8 +79,6 @@
     &:nth-of-type(even) {
         color: $secondary-foreground-color;
         flex-direction: row-reverse;
-        padding-top: 10vw;
-        padding-bottom: 10vw;
 
         .background {
             width: 120vw;
@@ -103,6 +101,12 @@
                 text-transform: uppercase;
                 white-space: nowrap;
                 transform: rotateZ(4deg);
+            }
+        }
+
+        @media (max-width: 999px) {
+            .image {
+                margin-top: 10vw;
             }
         }
 

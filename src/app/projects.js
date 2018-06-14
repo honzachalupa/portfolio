@@ -1,5 +1,5 @@
 export default [
-    {
+    /* {
         id: 'cmss-kalkulacka',
         name: 'Českomoravská stavební spořitelna - Kalkulačka',
         description: 'Project description was too boring to survive (the new one is in progress).',
@@ -33,7 +33,7 @@ export default [
             'PWA',
             'Gulp'
         ]
-    }, {
+    }, */{
         id: 'chytry-honza',
         name: 'Chytrý Honza',
         description: 'In cooperation with Finnology company I\'ve worked only on bug-fixes and core changes - nothing to be simply noticed by the user. Images below has only illustrative purpose.',

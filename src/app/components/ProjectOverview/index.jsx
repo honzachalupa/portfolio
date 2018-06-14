@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
+import { _getHtmlFromMarkdown } from 'helpers';
+import { AppContext } from 'App';
 import './style';
 import Button from 'Components/Button';
 import LazyText from 'Components/LazyText';
 
-export default class ProjectOverview extends Component {
-    handleNavigation() {
-        // this.props.browserHistory.push(url);
-    }
-
+class ProjectOverview extends Component {
     render() {
-        const { project } = this.props;
+        const { project, translations } = this.props;
 
         return (
             <article>
@@ -21,10 +19,20 @@ export default class ProjectOverview extends Component {
                     <h3 className="name">
                         <LazyText value={project.name} />
                     </h3>
-                    <p className="description" dangerouslySetInnerHTML={{ __html: project.descriptionShort }} />
-                    <Button value="View more" />
+                    <div className="description" dangerouslySetInnerHTML={{ __html: _getHtmlFromMarkdown(project.descriptionShort) }} />
+                    <Button label={translations.viewMore} path={`/projects/${project.id}`} />
                 </div>
             </article>
         );
     }
 }
+
+const ContextWrapper = (props) => (
+    <AppContext.Consumer>
+        {({ translations }) => (
+            <ProjectOverview {...props} translations={translations} />
+        )}
+    </AppContext.Consumer>
+);
+
+export default ContextWrapper;

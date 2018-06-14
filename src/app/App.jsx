@@ -8,7 +8,11 @@ import { getTranslatedTexts } from './translations';
 import projects from './projects';
 import './App.scss';
 import Page_Home from 'Pages/Home';
-import Page_NotFound from 'Pages/NotFound';
+import Page_Projects from 'Pages/Projects';
+import Page_ProjectDetail from 'Pages/Projects/Detail';
+import Page_Cooperation from 'Pages/Cooperation';
+import Page_AboutMe from 'Pages/AboutMe';
+// import Page_NotFound from 'Pages/NotFound';
 
 export const AppContext = React.createContext();
 
@@ -16,9 +20,12 @@ class App extends Component {
     constructor() {
         super();
 
+        this.onComponentDidMount = this.onComponentDidMount.bind(this);
         this.updateContext = this.updateContext.bind(this);
         this.updateContextProperty = this.updateContextProperty.bind(this);
+        this.navigate = this.navigate.bind(this);
         this.switchLanguage = this.switchLanguage.bind(this);
+        this.handleUrlChange = this.handleUrlChange.bind(this);
 
         const language = _readCookie('language') || 'cs';
         const translations = getTranslatedTexts(language);
@@ -28,14 +35,25 @@ class App extends Component {
             translations,
             projects,
             isNavigationOpened: false,
+            selectedNavigationItem: null,
+            _onComponentDidMount: this.onComponentDidMount,
             _updateContext: this.updateContext,
             _updateContextProperty: this.updateContextProperty,
+            _navigate: this.navigate,
             _switchLanguage: this.switchLanguage
         };
 
         if (config.caching && config.caching.strategy) {
             this.initServiceWorker();
         }
+    }
+
+    componentDidMount() {
+        window.addEventListener('popstate', this.handleUrlChange, false);
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener('popstate', this.handleUrlChange, false);
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -48,6 +66,12 @@ class App extends Component {
                 translations: getTranslatedTexts(language)
             });
         }
+    }
+
+    handleUrlChange() {
+        this.setState({
+            url: window.location.pathname
+        });
     }
 
     /**
@@ -63,6 +87,12 @@ class App extends Component {
                 });
             });
         }
+    }
+
+    onComponentDidMount(pageDefinition) {
+        const { id: pageId } = pageDefinition;
+
+        this.updateContextProperty('selectedNavigationItem', pageId);
     }
 
     /**
@@ -89,6 +119,25 @@ class App extends Component {
     }
 
     /**
+     * Performs navigation within the app.
+     *
+     * @param {any} path
+     * @param {boolean} replaceInsteadOfPush
+     * @memberof App
+     */
+    navigate(path, replaceInsteadOfPush) {
+        if (replaceInsteadOfPush) {
+            window.history.replaceState({}, '', path);
+        } else {
+            window.history.pushState({}, '', path);
+        }
+
+        this.setState({
+            url: path
+        });
+    }
+
+    /**
      * Toggles the app language.
      *
      * @memberof App
@@ -109,18 +158,11 @@ class App extends Component {
             <AppContext.Provider value={this.state}>
                 <Router history={browserHistory}>
                     <Switch>
-                        <Route
-                            exact
-                            path="/"
-                            render={() => (
-                                <Page_Home />
-                            )}
-                        />
-                        <Route
-                            render={() => (
-                                <Page_NotFound />
-                            )}
-                        />
+                        <Route component={Page_Projects} path="/projects" exact />
+                        <Route component={Page_ProjectDetail} path="/projects/:projectId" exact />
+                        <Route component={Page_Cooperation} path="/cooperation" exact />
+                        <Route component={Page_AboutMe} path="/about-me" exact />
+                        <Route component={Page_Home} />
                     </Switch>
                 </Router>
             </AppContext.Provider>

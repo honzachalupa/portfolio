@@ -1,26 +1,82 @@
 [data-component="Layout_Homepage"] {
-    &.scrolling-disabled {
-        width: 100vw;
-        height: 100vw;
-        overflow: hidden;
-    }
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    float: left;
 
     h2 {
         color: #f9004b;
-        font-size: 32px;
+        font-size: 2rem;
         font-weight: 800;
         margin-bottom: 20px;
     }
 
-    &.page-introduction {
-        .about-me {
-            text-align: justify;
+    .navigation-container {
+        backdrop-filter: blur(30px);
+        position: sticky;
+        top: 0;
+        z-index: 9;
+    }
 
-            @media (max-width: 999px) {
-                padding: 5vw 5vw;
+    [data-component="Footer"] {
+        margin-top: auto;
+    }
+
+    .basic-container {
+        @media (max-width: 999px) {
+            padding-top: 4vh;
+            padding-left: 5vw;
+            padding-right: 5vw;
+            padding-bottom: 2vh;
+        }
+        @media (min-width: 1000px) {
+            padding-top: 10vh;
+            padding-left: 16vw;
+            padding-right: 16vw;
+            padding-bottom: 8vh;
+        }
+    }
+
+    .paragraph {
+        line-height: 180%;
+        text-align: justify;
+    }
+
+    &.page-introduction {
+        /* .about-me {
+            &::before {
+                content: '';
+                width: 120vw;
+                height: 30%;
+                background-color: rgba(0, 0, 0, 0.1);
+                position: absolute;
+                top: 10%;
+                left: -10vw;
+                transform: rotateZ(-4deg);
             }
-            @media (min-width: 1000px) {
-                padding: 5vw 16vw;
+        } */
+
+        .latest-projects {
+            h2 {
+                position: relative;
+                margin-bottom: 20px;
+
+                @media (max-width: 999px) {
+                    padding-top: 10vw;
+                    padding-left: 5vw;
+                    padding-right: 5vw;
+                }
+                @media (min-width: 1000px) {
+                    padding-left: 16vw;
+                    padding-right: 16vw;
+                }
+            }
+
+            [data-component="ProjectOverview"] {
+                &:first-of-type {
+                    padding-top: 2vw;
+                }
             }
         }
     }

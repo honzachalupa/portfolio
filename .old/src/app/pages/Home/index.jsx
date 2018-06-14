@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppContext } from './../../App';
+import { AppContext } from 'App';
 import Layout from 'Layouts/Homepage';
 import ProjectOverview from 'Components/ProjectOverview';
 
@@ -36,10 +36,10 @@ class Page_Home extends Component {
     }
 }
 
-const ContextWrapper = () => (
+const ContextWrapper = (props) => (
     <AppContext.Consumer>
         {({ translations }) => (
-            <Page_Home translations={translations} />
+            <Page_Home {...props} translations={translations} />
         )}
     </AppContext.Consumer>
 );

@@ -1,5 +1,5 @@
 module.exports = {
-    name: 'Jan Chalupa | Portfolio',
+    name: 'Honza Chalupa portfolio',
     nameShort: 'Portfolio',
     description: 'Welcome, this is my portfolio...',
     accentColor: '#ea003b',

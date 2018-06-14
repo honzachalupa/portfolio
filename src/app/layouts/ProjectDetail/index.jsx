@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { AppContext } from 'App';
 import './style';
-import Navigation from 'Components/Navigation';
-import AppName from 'Components/AppName';
+import ArrowLeftIcon from 'Icons/arrow-left';
+import Button from 'Components/Button';
 import Footer from 'Components/Footer';
 
 let resizeTimeout;
 // let scrollTimeout;
 
-class Layout_Homepage extends Component {
+class Layout_ProjectDetail extends Component {
     constructor() {
         super();
 
@@ -70,17 +70,13 @@ class Layout_Homepage extends Component {
     } */
 
     render() {
-        const { page, children: content, isNavigationOpened } = this.props;
-        const { width: windowWidth } = this.state;
+        const { page, children: content, translations } = this.props;
 
         return (
-            <div className={`${isNavigationOpened ? 'scrolling-disabled' : ''} page-${page.id}`}>
-                <header className="navigation-container">
-                    <AppName className="mobile-only" />
-                    <Navigation windowWidth={windowWidth} />
-                </header>
-
+            <div className={`page-${page.id}`}>
                 <section className="content">
+                    <Button label={translations.backToProjectsList} path="/projects" icon={ArrowLeftIcon} />
+
                     {content}
                 </section>
 
@@ -92,8 +88,8 @@ class Layout_Homepage extends Component {
 
 const ContextWrapper = (props) => (
     <AppContext.Consumer>
-        {({ isNavigationOpened }) => (
-            <Layout_Homepage {...props} isNavigationOpened={isNavigationOpened} />
+        {({ translations }) => (
+            <Layout_ProjectDetail {...props} translations={translations} />
         )}
     </AppContext.Consumer>
 );

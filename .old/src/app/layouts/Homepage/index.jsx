@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { _getFormfactor } from 'helpers';
-import { AppContext } from './../../App';
+import { AppContext } from 'App';
 import './style';
 import Navigation from 'Components/Navigation';
 import LandingArea from 'Components/LandingArea';
@@ -74,8 +74,6 @@ class Layout_Homepage extends Component {
         const { width, height } = this.state;
         const navigationHeight = (_getFormfactor() === 'desktop') ? 100 : window.innerHeight / 15;
         const landingAreaHeight = height - navigationHeight;
-
-        console.log(_getFormfactor());
 
         return (
             <div className={`${isNavigationOpened ? 'scrolling-disabled' : ''} page-${page.id}`}>

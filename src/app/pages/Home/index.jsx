@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { AppContext } from './../../App';
+import { AppContext } from 'App';
 import Layout from 'Layouts/Homepage';
+import AppName from 'Components/AppName';
 import ProjectOverview from 'Components/ProjectOverview';
 
 class Page_Home extends Component {
@@ -17,32 +18,42 @@ class Page_Home extends Component {
         };
     }
 
+    componentDidMount() {
+        const { _onComponentDidMount } = this.props;
+
+        _onComponentDidMount(this.state.page);
+    }
+
     render() {
         const { translations, projects } = this.props;
-        const latestProject = projects[1];
-        const secondLatestProject = projects[2];
+        const latestProject = projects[0];
+        const secondLatestProject = projects[1];
 
         return (
             <section>
                 <Layout page={this.state.page}>
-                    <div className="about-me">
+                    <AppName className="desktop-only" />
+
+                    <div className="basic-container">
                         <h2>{translations.aboutMe}</h2>
-                        <p>{translations.aboutMeContent}</p>
+                        <p className="paragraph">{translations.aboutMeContent}</p>
                     </div>
-                    <ProjectOverview project={latestProject} />
-                    <ProjectOverview project={secondLatestProject} />
-                    <ProjectOverview project={projects[3]} />
-                    <ProjectOverview project={projects[4]} />
+
+                    <div className="latest-projects">
+                        <h2>{translations.latestProjects}</h2>
+                        <ProjectOverview project={latestProject} />
+                        <ProjectOverview project={secondLatestProject} />
+                    </div>
                 </Layout>
             </section>
         );
     }
 }
 
-const ContextWrapper = () => (
+const ContextWrapper = (props) => (
     <AppContext.Consumer>
-        {({ projects, translations }) => (
-            <Page_Home projects={projects} translations={translations} />
+        {({ projects, translations, _onComponentDidMount }) => (
+            <Page_Home {...props} projects={projects} translations={translations} _onComponentDidMount={_onComponentDidMount} />
         )}
     </AppContext.Consumer>
 );

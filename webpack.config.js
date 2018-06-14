@@ -7,8 +7,6 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 const CleanPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-console.log(getCssVariables());
-
 module.exports = (env, argv) => {
     const isDevelopmentMode = argv.mode === 'development';
 
@@ -33,7 +31,8 @@ module.exports = (env, argv) => {
         },
         output: {
             filename: 'js/bundle.js',
-            path: path.resolve(__dirname, 'dist')
+            path: path.resolve(__dirname, 'dist'),
+            publicPath: '/'
         },
         plugins: [
             new CleanPlugin(['dist']),
@@ -79,7 +78,7 @@ module.exports = (env, argv) => {
                                         }
                                     }]
                                 ],
-                                plugins: ['react-component-data-attribute']
+                                plugins: ['transform-object-rest-spread', 'react-component-data-attribute']
                             }
                         },
                         'eslint-loader'
@@ -134,6 +133,7 @@ module.exports = (env, argv) => {
                 Pages: path.resolve(__dirname, 'src/app/pages/'),
                 Images: path.resolve(__dirname, 'src/images/'),
                 Icons: path.resolve(__dirname, 'src/images/icons/'),
+                App: path.resolve(__dirname, 'src/app/App.jsx'),
                 helpers: path.resolve(__dirname, 'src/app/helpers.js'),
                 'app-config': path.resolve(__dirname, 'src/app-config.js')
             }

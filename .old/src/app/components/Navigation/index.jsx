@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppContext } from './../../App';
+import { AppContext } from 'App';
 import './style';
 import LanguageSwitcher from 'Components/Navigation/LanguageSwitcher';
 

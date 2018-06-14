@@ -1,0 +1,30 @@
+[data-component="Layout_ProjectDetail"] {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    float: left;
+
+    .app-name {
+        text-decoration: underline;
+        text-decoration-color: $accent-color;
+        font-weight: 100;
+
+        font-size: 1.25rem;
+        padding-top: 5vw;
+        padding-left: 5vw;
+        padding-right: 5vw;
+        position: absolute;
+    }
+
+    h2 {
+        color: #f9004b;
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 20px;
+    }
+
+    [data-component="Footer"] {
+        margin-top: auto;
+    }
+}

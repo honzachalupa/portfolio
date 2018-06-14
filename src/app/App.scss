@@ -1,9 +1,21 @@
 @import 'css-reset-and-normalize-sass/scss/flavored-reset-and-normalize';
 
-body {
-    background-color: $primary-background-color;
+html {
+    @media (max-width: 499px) {
+        font-size: 12px !important;
+    }
+    @media (min-width: 500px) AND (max-width: 999px) {
+        font-size: 14px !important;
+    }
+    @media (min-width: 1000px) {
+        font-size: 16px !important;
+    }
 
-    *:focus {
-        outline: none;
+    body {
+        background-color: $primary-background-color;
+
+        *:focus {
+            outline: none;
+        }
     }
 }

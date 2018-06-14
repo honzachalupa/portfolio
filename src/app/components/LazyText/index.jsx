@@ -1,40 +1,50 @@
-import React, { Component, Fragment } from 'react';
+import { Component } from 'react';
 
 export default class LazyText extends Component {
     constructor(props) {
         super(props);
 
-        const { value } = props;
-
         this.state = {
-            tempValue: '',
-            finalValue: value,
-            length: value.length
+            tempValue: 'X',
+            finalValue: props.value
         };
+
+        this.run();
     }
 
-    componentDidMount() {
-        const { finalValue, length } = this.state;
-        const timespan = 1000 / length;
-        let tempLength = 0;
+    componentWillReceiveProps(nextProps) {
+        const valueHasChanged = this.props.value !== nextProps.value;
+
+        if (valueHasChanged) {
+            this.setState({
+                tempValue: nextProps.value,
+                finalValue: nextProps.value
+            });
+        }
+    }
+
+    run() {
+        const { finalValue } = this.state;
+        const timespan = 600 / finalValue.length;
+        let tempLength = 1;
 
         const interval = setInterval(() => {
-            let tempValue = '';
+            let randomChars = '';
             const charSet = finalValue.replace(/\s-/, '');
 
             for (let i = 0; i < tempLength; i += 1) {
-                tempValue += charSet.charAt(Math.floor(Math.random() * charSet.length));
+                randomChars += charSet.charAt(Math.floor(Math.random() * charSet.length));
             }
 
-            if (tempValue.length === length) {
+            if (randomChars.length !== finalValue.length) {
+                this.setState({
+                    tempValue: randomChars
+                });
+            } else {
                 clearInterval(interval);
 
                 this.setState({
                     tempValue: finalValue
-                });
-            } else {
-                this.setState({
-                    tempValue
                 });
             }
 
@@ -43,12 +53,6 @@ export default class LazyText extends Component {
     }
 
     render() {
-        const { tempValue } = this.state;
-
-        return (
-            <Fragment>
-                {tempValue}
-            </Fragment>
-        );
+        return this.state.tempValue;
     }
 }

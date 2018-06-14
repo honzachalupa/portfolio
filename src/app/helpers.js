@@ -1,3 +1,5 @@
+import { Converter } from 'showdown';
+
 /**
  * Returns true if the value is considered as a Number. Returns false if not.
  *
@@ -113,5 +115,9 @@ export function _getUsedBrowser() {
 }
 
 export function _getFormfactor() {
-    return (window.innerWidth > 800) ? 'desktop' : 'mobile';
+    return (window.innerWidth >= 1000) ? 'desktop' : 'mobile';
+}
+
+export function _getHtmlFromMarkdown(markdown) {
+    return new Converter().makeHtml(markdown);
 }

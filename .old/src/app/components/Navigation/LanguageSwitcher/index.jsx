@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AppContext } from './../../../App';
+import { AppContext } from './.App';
 import './style';
 import FlagUsIcon from 'Icons/flag-us';
 import FlagCzIcon from 'Icons/flag-cz';
@@ -22,10 +22,10 @@ class LanguageSwitcher extends Component {
     }
 }
 
-const ContextWrapper = () => (
+const ContextWrapper = (props) => (
     <AppContext.Consumer>
         {({ translations, language, _switchLanguage }) => (
-            <LanguageSwitcher translations={translations} language={language} _switchLanguage={_switchLanguage} />
+            <LanguageSwitcher {...props} translations={translations} language={language} _switchLanguage={_switchLanguage} />
         )}
     </AppContext.Consumer>
 );
