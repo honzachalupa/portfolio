@@ -34,6 +34,7 @@ class App extends Component {
             language,
             translations,
             projects,
+            searchData: null,
             isNavigationOpened: false,
             selectedNavigationItem: null,
             _onComponentDidMount: this.onComponentDidMount,

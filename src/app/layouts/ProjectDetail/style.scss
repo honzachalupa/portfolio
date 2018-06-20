@@ -5,19 +5,7 @@
     flex-direction: column;
     float: left;
 
-    .app-name {
-        text-decoration: underline;
-        text-decoration-color: $accent-color;
-        font-weight: 100;
-
-        font-size: 1.25rem;
-        padding-top: 5vw;
-        padding-left: 5vw;
-        padding-right: 5vw;
-        position: absolute;
-    }
-
-    h2 {
+    h1 {
         color: #f9004b;
         font-size: 2rem;
         font-weight: 800;
@@ -26,5 +14,92 @@
 
     [data-component="Footer"] {
         margin-top: auto;
+    }
+
+    &.page-project-detail {
+        @media (max-width: 999px) {
+            padding-top: 4vh;
+            padding-left: 5vw;
+            padding-right: 5vw;
+            padding-bottom: 2vh;
+        }
+        @media (min-width: 1000px) {
+            padding-top: 4vh;
+            padding-left: 16vw;
+            padding-right: 16vw;
+            padding-bottom: 8vh;
+        }
+
+        .name {
+            white-space: nowrap;
+        }
+
+        .gallery {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            float: left;
+
+            .image {
+                box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+                height: 0;
+                background-size: cover;
+                background-position: center;
+                float: left;
+            }
+
+            @media (max-width: 999px) {
+                flex-direction: column;
+
+                .image {
+                    flex-basis: 100%;
+                    padding-top: 70%;
+                    margin-bottom: 20px;
+
+                    &.portrait {
+                        padding-top: 170%;
+                    }
+                }
+            }
+            @media (min-width: 1000px) {
+                .image {
+                    flex-basis: calc((100% / 3) - 10px);
+                    padding-top: 35%;
+
+                    &.portrait {
+                        padding-top: 60%;
+                    }
+                }
+
+                &[data-count="1"] {
+                    .image {
+                        flex-basis: 100%;
+                        padding-top: 70%;
+
+                        &.portrait {
+                            padding-top: 70%;
+                        }
+                    }
+                }
+
+                &[data-count="2"] {
+                    .image {
+                        flex-basis: calc(50% - 10px);
+                        padding-top: 50%;
+
+                        &.portrait {
+                            padding-top: 70%;
+                        }
+                    }
+                }
+            }
+        }
+
+        .description {
+            text-align: justify;
+            line-height: 150%;
+            margin-top: 30px;
+            float: left;
+        }
     }
 }

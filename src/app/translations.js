@@ -47,6 +47,14 @@ export const translations = {
         cs: 'Všechny projekty',
         en: 'Projects list'
     },
+    personal: {
+        cs: 'Osobní',
+        en: 'Personal'
+    },
+    inCooperation: {
+        cs: 'Ve spolupráci',
+        en: 'In cooperation'
+    },
     allRightsReserved: {
         cs: 'Všechna práva vyhrazena.',
         en: 'All rights reserved.'
@@ -54,6 +62,22 @@ export const translations = {
     allRightsReservedName: {
         cs: 'Jan Chalupa',
         en: 'Jan "Honza" Chalupa'
+    },
+    webApps: {
+        cs: 'Webové aplikace',
+        en: 'Web apps'
+    },
+    nativeApps: {
+        cs: 'Nativní aplikace',
+        en: 'Native apps'
+    },
+    allApps: {
+        cs: 'Všechny aplikace',
+        en: 'All apps'
+    },
+    filteredBy: {
+        cs: 'Filtrováno podle',
+        en: 'Filtered by'
     }
 };
 

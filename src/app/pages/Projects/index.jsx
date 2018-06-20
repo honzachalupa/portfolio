@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { AppContext } from 'App';
 import Layout from 'Layouts/Main';
-import ProjectOverview from 'Components/ProjectOverview';
+import ProjectsGrid from 'Components/ProjectsGrid';
 
 class Page_ProjectDetail extends Component {
     constructor(props) {
@@ -22,26 +22,33 @@ class Page_ProjectDetail extends Component {
     }
 
     render() {
-        const { projects } = this.props;
+        const { searchData } = this.props;
 
-        return (
-            <section>
-                <Layout page={this.state.page}>
-                    {
-                        projects.map(project => (
-                            <ProjectOverview key={project.id} project={project} />
-                        ))
-                    }
-                </Layout>
-            </section>
-        );
+        if (searchData) {
+            return (
+                <section>
+                    <Layout page={this.state.page}>
+                        <ProjectsGrid {...searchData} />
+                    </Layout>
+                </section>
+            );
+        } else {
+            return (
+                <section>
+                    <Layout page={this.state.page}>
+                        <ProjectsGrid filterBy="type" query="web-app" />
+                        <ProjectsGrid filterBy="type" query="native-app" />
+                    </Layout>
+                </section>
+            );
+        }
     }
 }
 
 const ContextWrapper = (props) => (
     <AppContext.Consumer>
-        {({ projects, translations, _onComponentDidMount }) => (
-            <Page_ProjectDetail {...props} projects={projects} translations={translations} _onComponentDidMount={_onComponentDidMount} />
+        {({ searchData, translations, _onComponentDidMount }) => (
+            <Page_ProjectDetail {...props} searchData={searchData} translations={translations} _onComponentDidMount={_onComponentDidMount} />
         )}
     </AppContext.Consumer>
 );

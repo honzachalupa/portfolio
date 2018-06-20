@@ -27,8 +27,6 @@ class Page_Introduction extends Component {
 
     render() {
         const { translations, projects } = this.props;
-        const latestProject = projects[0];
-        const secondLatestProject = projects[1];
 
         return (
             <section>
@@ -42,8 +40,10 @@ class Page_Introduction extends Component {
 
                     <div className="latest-projects">
                         <h2>{translations.latestProjects}</h2>
-                        <ProjectOverview project={latestProject} />
-                        <ProjectOverview project={secondLatestProject} />
+                        <ProjectOverview project={projects[0]} />
+                        <ProjectOverview project={projects[1]} />
+                        <ProjectOverview project={projects[2]} />
+                        <ProjectOverview project={projects[3]} />
 
                         <div className="basic-button-container">
                             <Button label={translations.moreProjects} path="/projects" />

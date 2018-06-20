@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { _getHtmlFromMarkdown } from 'helpers';
 import { AppContext } from 'App';
 import Layout from 'Layouts/ProjectDetail';
-import ProjectOverview from 'Components/ProjectOverview';
+import LazyText from 'Components/LazyText';
 
 class Page_ProjectDetail extends Component {
     constructor(props) {
@@ -29,10 +30,32 @@ class Page_ProjectDetail extends Component {
     }
 
     render() {
+        const { project } = this.state;
+
+        const galleryBlock = (
+            <div className="gallery" data-count={project.gallery.length}>
+                {
+                    project.gallery.map(image => {
+                        const url = image.url || image;
+
+                        return (
+                            <div key={url} className={`image ${image.aspectRatio || ''}`} style={{ backgroundImage: `url(${url})` }} />
+                        );
+                    })
+                }
+            </div>
+        );
+
         return (
             <section>
                 <Layout page={this.state.page}>
-                    <ProjectOverview project={this.state.project} />
+                    <h1 className="name">
+                        <LazyText value={project.name} />
+                    </h1>
+
+                    {galleryBlock}
+
+                    <div className="description" dangerouslySetInnerHTML={{ __html: _getHtmlFromMarkdown(project.description) }} />
                 </Layout>
             </section>
         );

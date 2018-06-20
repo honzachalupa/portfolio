@@ -19,7 +19,7 @@
         z-index: 9;
 
         @media (max-width: 999px) {
-            background: linear-gradient(rgba(0, 0, 0, 0.4), transparent, transparent);
+            background: linear-gradient(rgba(0, 0, 0, 0.4) 0%, transparent env(safe-area-inset-top));
             padding-top: env(safe-area-inset-top);
         }
     }

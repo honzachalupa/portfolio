@@ -20,6 +20,8 @@ class Navigation extends Component {
     static getDerivedStateFromProps(nextProps) {
         const { translations, isNavigationOpened, selectedNavigationItem } = nextProps;
 
+        // To-do: Consider second level navigation for projects
+
         return {
             isNavigationOpened,
             navigationItems: [{
@@ -29,7 +31,16 @@ class Navigation extends Component {
             }, {
                 id: 'projects',
                 label: translations.projects,
-                path: '/projects'
+                path: '/projects'/* ,
+                subItems: [{
+                    id: 'personal',
+                    label: translations.personal,
+                    path: '/projects?filter=personal'
+                }, {
+                    id: 'in-cooperation',
+                    label: translations.inCooperation,
+                    path: '/projects?filter=in-cooperation'
+                }] */
             }, {
                 id: 'photography',
                 label: translations.photography,
@@ -75,18 +86,47 @@ class Navigation extends Component {
             <nav className="items">
                 {
                     navigationItems.map(item => {
-                        const selectedClassName = (item.id === selectedNavigationItem) ? 'is-selected' : '';
+                        const hasSubItems = !!item.subItems;
+                        const classNames = `item ${(item.id === selectedNavigationItem) ? 'is-selected' : ''} ${(hasSubItems) ? 'has-subitems' : ''}`;
+
+                        let subItemsBlock;
+
+                        if (hasSubItems) {
+                            subItemsBlock = (
+                                <div className="sub-items">
+                                    {
+                                        item.subItems.map(subItem => {
+                                            if (subItem.url) {
+                                                return (
+                                                    <a key={subItem.id} className="sub-item" href={subItem.url} target="_blank" rel="noopener noreferrer">
+                                                        <span className="label">{subItem.label}</span>
+                                                    </a>
+                                                );
+                                            } else {
+                                                return (
+                                                    <button key={subItem.id} className="sub-item" onClick={() => this.handleNavigation(subItem.path)}>
+                                                        <span className="label">{subItem.label}</span>
+                                                    </button>
+                                                );
+                                            }
+                                        })
+                                    }
+                                </div>
+                            );
+                        }
 
                         if (item.url) {
                             return (
-                                <a key={item.id} className={`item ${selectedClassName}`} href={item.url} target="_blank" rel="noopener noreferrer">
-                                    {item.label}
+                                <a key={item.id} className={classNames} href={item.url} target="_blank" rel="noopener noreferrer">
+                                    <span className="label">{item.label}</span>
+                                    {subItemsBlock}
                                 </a>
                             );
                         } else {
                             return (
-                                <button key={item.id} className={`item ${selectedClassName}`} onClick={() => this.handleNavigation(item.path)}>
-                                    {item.label}
+                                <button key={item.id} className={classNames} onClick={() => this.handleNavigation(item.path)}>
+                                    <span className="label">{item.label}</span>
+                                    {subItemsBlock}
                                 </button>
                             );
                         }

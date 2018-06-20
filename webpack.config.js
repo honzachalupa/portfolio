@@ -1,6 +1,5 @@
 const path = require('path');
 const config = require('./src/app-config');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
@@ -38,13 +37,13 @@ module.exports = (/* env, argv */) => {
         },
         plugins: [
             new CleanPlugin(['dist']),
-            new FaviconsWebpackPlugin(path.resolve(__dirname, 'src/images/icon.png')),
             new HtmlPlugin({
                 template: path.resolve(__dirname, 'src/index.html'),
                 filename: 'index.html',
-                inject: 'body',
+                inject: true,
                 properties: {
-                    title: config.name
+                    title: config.name,
+                    accentColor: config.accentColor
                 }
             }),
             new StyleLintPlugin(),
@@ -57,8 +56,19 @@ module.exports = (/* env, argv */) => {
                 name: config.name,
                 short_name: config.nameShort,
                 description: config.description,
+                icons: [
+                    {
+                        src: path.resolve('src/images/favicon/android-chrome-192x192.png'),
+                        sizes: [192],
+                        destination: 'images/favicon'
+                    },
+                    {
+                        src: path.resolve('src/images/favicon/android-chrome-512x512.png'),
+                        sizes: [512],
+                        destination: 'images/favicon'
+                    }
+                ],
                 background_color: config.accentColor,
-                fingerprints: false,
                 ios: {
                     'apple-mobile-web-app-status-bar-style': 'black-translucent'
                 }
