@@ -5,11 +5,19 @@
     flex-direction: column;
     float: left;
 
-    h2 {
+    h2,
+    h3 {
         color: #f9004b;
-        font-size: 2rem;
         font-weight: 800;
         margin-bottom: 20px;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    h3 {
+        font-size: 1.5rem;
     }
 
     .navigation-container {
@@ -90,6 +98,12 @@
                     padding-top: 2vw;
                 }
             }
+        }
+    }
+
+    &.page-about-me {
+        .contacts {
+            margin-top: 5vw;
         }
     }
 }

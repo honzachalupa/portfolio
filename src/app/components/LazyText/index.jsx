@@ -25,7 +25,8 @@ export default class LazyText extends Component {
 
     run() {
         const { finalValue } = this.state;
-        const timespan = 600 / finalValue.length;
+        const { time } = this.props;
+        const timespan = (time || 600) / finalValue.length;
         let tempLength = 1;
 
         const interval = setInterval(() => {

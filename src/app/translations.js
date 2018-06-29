@@ -28,8 +28,20 @@ export const translations = {
         en: 'About Me'
     },
     aboutMeContent: {
-        cs: 'Jsem Front-End Developer z Prahy. Jsem Front-End Developer z Prahy. Jsem Front-End Developer z Prahy. Jsem Front-End Developer z Prahy. Jsem Front-End Developer z Prahy. Jsem Front-End Developer z Prahy.',
-        en: 'I\'m 24 years old Front-End Developer based in Prague, Czech Republic. Since most of designs were provided by the client, my goal was to make some under-the-hood features and learn all of the static HTML markup to move. Since most of designs were provided by the client, my goal was to make some under-the-hood features and learn all of the static HTML markup to move.'
+        cs: 'Jsem Front-End Developer z Prahy. V posledních letech se zaměřuji primárně na React JS. Díky mnoha projektům, na kterých jsem se podílel, mám však přesah také do Back-End Developmentu. To však není to, čemu bych se chtěl primárně věnovat.',
+        en: 'I\'m 25 years old Front-End Developer based in Prague, Czech Republic. For the past few years I\'m mainly focusing on React JS. Still, thank to all those project I participate on, I have also some experience in Back-End Development. Nevertheless my main focus is the Front-End.'
+    },
+    letsChat: {
+        cs: 'Prohoďme pár slov...',
+        en: 'Let\'s chat...'
+    },
+    sendMeAnEmail: {
+        cs: 'Napište mi',
+        en: 'Send me an e-mail'
+    },
+    callMe: {
+        cs: 'Zavolejte mi',
+        en: 'Call me'
     },
     latestProjects: {
         cs: 'Nejnovější projekty',
@@ -39,13 +51,17 @@ export const translations = {
         cs: 'Prohlédnout',
         en: 'View more'
     },
+    showMore: {
+        cs: 'Zobrazit více',
+        en: 'View more'
+    },
     moreProjects: {
         cs: 'Více projektů',
         en: 'More projects'
     },
     backToProjectsList: {
         cs: 'Všechny projekty',
-        en: 'Projects list'
+        en: 'All projects'
     },
     personal: {
         cs: 'Osobní',

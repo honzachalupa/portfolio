@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { AppContext } from 'App';
 import './style';
-import ArrowLeftIcon from 'Icons/arrow-left';
 import Button from 'Components/Button';
 import Footer from 'Components/Footer';
 
@@ -75,7 +74,7 @@ class Layout_ProjectDetail extends Component {
         return (
             <div className={`page-${page.id}`}>
                 <section className="content">
-                    <Button label={translations.backToProjectsList} path="/projects" icon={ArrowLeftIcon} />
+                    <Button label={translations.backToProjectsList} path="/projects" />
 
                     {content}
                 </section>

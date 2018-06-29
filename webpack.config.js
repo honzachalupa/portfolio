@@ -41,10 +41,7 @@ module.exports = (/* env, argv */) => {
                 template: path.resolve(__dirname, 'src/index.html'),
                 filename: 'index.html',
                 inject: true,
-                properties: {
-                    title: config.name,
-                    accentColor: config.accentColor
-                }
+                properties: config
             }),
             new StyleLintPlugin(),
             new CopyWebpackPlugin([
@@ -68,7 +65,9 @@ module.exports = (/* env, argv */) => {
                         destination: 'images/favicon'
                     }
                 ],
-                background_color: config.accentColor,
+                theme_color: config.accentColor,
+                background_color: 'white',
+                start_url: 'index.html?pwa=true',
                 ios: {
                     'apple-mobile-web-app-status-bar-style': 'black-translucent'
                 }
@@ -149,6 +148,11 @@ module.exports = (/* env, argv */) => {
                 App: path.resolve(__dirname, 'src/app/App.jsx'),
                 helpers: path.resolve(__dirname, 'src/app/helpers.js'),
                 'app-config': path.resolve(__dirname, 'src/app-config.js')
+            }
+        },
+        optimization: {
+            splitChunks: {
+                chunks: 'all'
             }
         }
     };

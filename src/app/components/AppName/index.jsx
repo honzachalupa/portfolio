@@ -5,8 +5,11 @@ import Button from 'Components/Button';
 
 export default class AppName extends Component {
     render() {
+        const { mobileOnly } = this.props;
+        const className = (mobileOnly) ? 'mobile-only' : 'desktop-only';
+
         return (
-            <div {...this.props}>
+            <div className={className}>
                 <Button path="/" styleDisabled>
                     <h1>{config.name}</h1>
                 </Button>

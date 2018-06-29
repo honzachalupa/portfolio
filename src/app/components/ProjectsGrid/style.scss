@@ -22,9 +22,12 @@
         }
 
         .item {
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             margin: 20px 0;
             float: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
 
             .clickable {
                 background-color: transparent;
@@ -43,12 +46,14 @@
                 .name {
                     font-size: 1.4rem;
                     padding: 15px;
+                    margin: 0;
                 }
 
                 .description {
+                    font-size: 0.85rem;
                     font-weight: 100;
-                    line-height: 150%;
-                    padding: 5px 15px;
+                    line-height: 180%;
+                    padding: 0 15px;
 
                     * {
                         color: inherit;

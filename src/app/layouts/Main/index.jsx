@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import config from 'app-config';
 import { AppContext } from 'App';
 import './style';
 import Navigation from 'Components/Navigation';
@@ -16,12 +17,6 @@ class Layout_Main extends Component {
         // this.scrollThrottler = this.scrollThrottler.bind(this);
         this.updateDimensions = this.updateDimensions.bind(this);
         // this.updateScrolledDistance = this.updateScrolledDistance.bind(this);
-
-        this.state = {
-            width: window.innerWidth,
-            height: window.innerHeight,
-            scrolledDistance: 0
-        };
     }
 
     componentDidMount() {
@@ -57,7 +52,9 @@ class Layout_Main extends Component {
     } */
 
     updateDimensions() {
-        this.setState({
+        const { _updateContextProperty } = this.props;
+
+        _updateContextProperty('windowDimensions', {
             width: window.innerWidth,
             height: window.innerHeight
         });
@@ -70,14 +67,20 @@ class Layout_Main extends Component {
     } */
 
     render() {
-        const { page, children: content, isNavigationOpened } = this.props;
-        const { width: windowWidth } = this.state;
+        const { page, children: content, isNavigationOpened, isPWA } = this.props;
+
+        // alert(`isPWA: ${isPWA}`);
+        const messengerBlock = (!isPWA) ? (
+            <div className="fb-customerchat" attribution="setup_tool" page_id={config.facebookAppId} theme_color={config.accentColor} />
+        ) : null;
 
         return (
             <div className={`${isNavigationOpened ? 'scrolling-disabled' : ''} page-${page.id}`}>
+                {messengerBlock}
+
                 <header className="navigation-container">
-                    <AppName className="mobile-only" />
-                    <Navigation windowWidth={windowWidth} />
+                    <AppName mobileOnly />
+                    <Navigation />
                 </header>
 
                 <section className="content">
@@ -92,8 +95,8 @@ class Layout_Main extends Component {
 
 const ContextWrapper = (props) => (
     <AppContext.Consumer>
-        {({ isNavigationOpened }) => (
-            <Layout_Main {...props} isNavigationOpened={isNavigationOpened} />
+        {({ isNavigationOpened, isPWA, _updateContextProperty }) => (
+            <Layout_Main {...props} isNavigationOpened={isNavigationOpened} isPWA={isPWA} _updateContextProperty={_updateContextProperty} />
         )}
     </AppContext.Consumer>
 );

@@ -30,12 +30,12 @@ class Page_Cooperation extends Component {
         return (
             <section>
                 <Layout page={this.state.page}>
-                    <div className="basic-text-container">
+                    <article className="basic-text-container">
                         <h2>
                             <LazyText value={translations.cooperation} />
                         </h2>
                         <p className="paragraph" dangerouslySetInnerHTML={{ __html: _getHtmlFromMarkdown(translations.cooperationContent) }} />
-                    </div>
+                    </article>
                 </Layout>
             </section>
         );

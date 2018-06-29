@@ -2,6 +2,7 @@ import 'babel-polyfill';
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter as Router, Route, Switch, browserHistory } from 'react-router-dom';
+import GoogleAnalytics from 'react-ga';
 import { _writeCookie, _readCookie } from './helpers';
 import config from 'app-config';
 import { getTranslatedTexts } from './translations';
@@ -21,22 +22,31 @@ class App extends Component {
         super();
 
         this.onComponentDidMount = this.onComponentDidMount.bind(this);
+        this.updateOnlineStatus = this.updateOnlineStatus.bind(this);
         this.updateContext = this.updateContext.bind(this);
         this.updateContextProperty = this.updateContextProperty.bind(this);
         this.navigate = this.navigate.bind(this);
         this.switchLanguage = this.switchLanguage.bind(this);
-        this.handleUrlChange = this.handleUrlChange.bind(this);
 
         const language = _readCookie('language') || 'cs';
         const translations = getTranslatedTexts(language);
 
+        const url = new URL(window.location.href);
+        const isPWA = url.searchParams.get('pwa') || false;
+
         this.state = {
             language,
             translations,
-            projects,
+            projects: this.prepareProjects(projects),
             searchData: null,
             isNavigationOpened: false,
+            isOnline: true,
+            isPWA,
             selectedNavigationItem: null,
+            windowDimensions: {
+                width: null,
+                height: null
+            },
             _onComponentDidMount: this.onComponentDidMount,
             _updateContext: this.updateContext,
             _updateContextProperty: this.updateContextProperty,
@@ -49,12 +59,18 @@ class App extends Component {
         }
     }
 
-    componentDidMount() {
-        window.addEventListener('popstate', this.handleUrlChange, false);
+    componentWillMount() {
+        GoogleAnalytics.initialize('UA-47064928-3');
     }
 
-    componentWillUnmount() {
-        window.removeEventListener('popstate', this.handleUrlChange, false);
+    componentDidMount() {
+        window.addEventListener('online', this.updateOnlineStatus);
+        window.addEventListener('offline', this.updateOnlineStatus);
+    }
+
+    componentWillUnount() {
+        window.removeEventListener('online', this.updateOnlineStatus);
+        window.removeEventListener('offline', this.updateOnlineStatus);
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -67,12 +83,6 @@ class App extends Component {
                 translations: getTranslatedTexts(language)
             });
         }
-    }
-
-    handleUrlChange() {
-        this.setState({
-            url: window.location.pathname
-        });
     }
 
     /**
@@ -91,9 +101,17 @@ class App extends Component {
     }
 
     onComponentDidMount(pageDefinition) {
-        const { id: pageId } = pageDefinition;
+        const { id, label } = pageDefinition;
 
-        this.updateContextProperty('selectedNavigationItem', pageId);
+        document.title = `${config.name} | ${label}`;
+
+        this.updateContextProperty('selectedNavigationItem', id);
+
+        GoogleAnalytics.pageview(window.location.pathname);
+    }
+
+    updateOnlineStatus() {
+        this.updateContextProperty('isOnline', navigator.onLine);
     }
 
     /**
@@ -117,6 +135,15 @@ class App extends Component {
         this.setState({
             [key]: value
         });
+    }
+
+    prepareProjects(projects) {
+        const filtered = projects.filter(project => project.isHidden === false || project.isHidden === undefined || project.isHidden === null);
+        const ordered = filtered.sort((a, b) => {
+            return new Date(b.addedDate) - new Date(a.addedDate);
+        });
+
+        return ordered;
     }
 
     /**

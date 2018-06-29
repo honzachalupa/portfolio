@@ -33,12 +33,13 @@ class Page_Introduction extends Component {
                 <Layout page={this.state.page}>
                     <AppName className="desktop-only" />
 
-                    <div className="basic-text-container">
+                    <article className="basic-text-container">
                         <h2>{translations.aboutMe}</h2>
                         <p className="paragraph">{translations.aboutMeContent}</p>
-                    </div>
+                        <Button label={translations.showMore} path="/about-me" />
+                    </article>
 
-                    <div className="latest-projects">
+                    <article className="latest-projects">
                         <h2>{translations.latestProjects}</h2>
                         <ProjectOverview project={projects[0]} />
                         <ProjectOverview project={projects[1]} />
@@ -48,7 +49,7 @@ class Page_Introduction extends Component {
                         <div className="basic-button-container">
                             <Button label={translations.moreProjects} path="/projects" />
                         </div>
-                    </div>
+                    </article>
                 </Layout>
             </section>
         );

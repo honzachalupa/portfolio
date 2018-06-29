@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { _getHtmlFromMarkdown } from 'helpers';
+import GoogleAnalytics from 'react-ga';
 import { AppContext } from 'App';
 import './style';
 import Button from 'Components/Button';
@@ -57,6 +58,11 @@ class ProjectsGrid extends Component {
             headline = translations.allApps;
 
             filteredProjects = projects;
+        } else {
+            GoogleAnalytics.event({
+                category: 'Projects',
+                action: 'Project filtered'
+            });
         }
 
         const resetFilterButtonBlock = (!standarizedFilter) ? (
@@ -64,12 +70,12 @@ class ProjectsGrid extends Component {
         ) : null;
 
         return (
-            <div>
+            <article>
                 {resetFilterButtonBlock}
                 <h2>
                     <LazyText value={headline} />
                 </h2>
-                <section className="items">
+                <div className="items">
                     {
                         filteredProjects.map(project => {
                             const tagsBlock = project.tags.map(tag => (
@@ -77,19 +83,19 @@ class ProjectsGrid extends Component {
                             ));
 
                             return (
-                                <article key={project.id} className="item">
+                                <div key={project.id} className="item">
                                     <Button key={project.id} className="clickable" path={`/projects/${project.id}`} styleDisabled>
                                         <div className="image" style={{ backgroundImage: `url(${project.previewImage.url || project.previewImage})` }} />
                                         <h3 className="name">{project.name}</h3>
                                         <div className="description" dangerouslySetInnerHTML={{ __html: _getHtmlFromMarkdown(project.descriptionShort) }} />
                                     </Button>
                                     <div className="tags">{tagsBlock}</div>
-                                </article>
+                                </div>
                             );
                         })
                     }
-                </section>
-            </div>
+                </div>
+            </article>
         );
     }
 }
