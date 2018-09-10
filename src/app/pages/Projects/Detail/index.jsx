@@ -4,6 +4,14 @@ import { AppContext } from 'App';
 import Layout from 'Layouts/ProjectDetail';
 import LazyText from 'Components/LazyText';
 
+export default (props) => (
+    <AppContext.Consumer>
+        {({ projects, translations, _onComponentDidMount }) => (
+            <Page_ProjectDetail {...props.match.params} projects={projects} translations={translations} _onComponentDidMount={_onComponentDidMount} />
+        )}
+    </AppContext.Consumer>
+);
+
 class Page_ProjectDetail extends Component {
     constructor(props) {
         super(props);
@@ -61,13 +69,3 @@ class Page_ProjectDetail extends Component {
         );
     }
 }
-
-const ContextWrapper = (props) => (
-    <AppContext.Consumer>
-        {({ projects, translations, _onComponentDidMount }) => (
-            <Page_ProjectDetail {...props.match.params} projects={projects} translations={translations} _onComponentDidMount={_onComponentDidMount} />
-        )}
-    </AppContext.Consumer>
-);
-
-export default ContextWrapper;

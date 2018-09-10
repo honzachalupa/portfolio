@@ -6,9 +6,16 @@ import Navigation from 'Components/Navigation';
 import AppName from 'Components/AppName';
 import Footer from 'Components/Footer';
 
+export default (props) => (
+    <AppContext.Consumer>
+        {({ isNavigationOpened, isPWA, _updateContext }) => (
+            <Layout_Main {...props} isNavigationOpened={isNavigationOpened} isPWA={isPWA} _updateContext={_updateContext} />
+        )}
+    </AppContext.Consumer>
+);
+
 let resizeTimeout;
 // let scrollTimeout;
-
 class Layout_Main extends Component {
     constructor() {
         super();
@@ -52,9 +59,9 @@ class Layout_Main extends Component {
     } */
 
     updateDimensions() {
-        const { _updateContextProperty } = this.props;
+        const { _updateContext } = this.props;
 
-        _updateContextProperty('windowDimensions', {
+        _updateContext('windowDimensions', {
             width: window.innerWidth,
             height: window.innerHeight
         });
@@ -92,13 +99,3 @@ class Layout_Main extends Component {
         );
     }
 }
-
-const ContextWrapper = (props) => (
-    <AppContext.Consumer>
-        {({ isNavigationOpened, isPWA, _updateContextProperty }) => (
-            <Layout_Main {...props} isNavigationOpened={isNavigationOpened} isPWA={isPWA} _updateContextProperty={_updateContextProperty} />
-        )}
-    </AppContext.Consumer>
-);
-
-export default ContextWrapper;

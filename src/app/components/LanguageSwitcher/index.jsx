@@ -4,6 +4,14 @@ import './style';
 import FlagUsIcon from 'Icons/flag-us';
 import FlagCzIcon from 'Icons/flag-cz';
 
+export default (props) => (
+    <AppContext.Consumer>
+        {({ translations, language, _switchLanguage }) => (
+            <LanguageSwitcher {...props} translations={translations} language={language} _switchLanguage={_switchLanguage} />
+        )}
+    </AppContext.Consumer>
+);
+
 class LanguageSwitcher extends Component {
     render() {
         const { translations, language, _switchLanguage } = this.props;
@@ -21,13 +29,3 @@ class LanguageSwitcher extends Component {
         );
     }
 }
-
-const ContextWrapper = (props) => (
-    <AppContext.Consumer>
-        {({ translations, language, _switchLanguage }) => (
-            <LanguageSwitcher {...props} translations={translations} language={language} _switchLanguage={_switchLanguage} />
-        )}
-    </AppContext.Consumer>
-);
-
-export default ContextWrapper;

@@ -2,6 +2,14 @@ import React, { Component } from 'react';
 import { AppContext } from 'App';
 import './style';
 
+export default (props) => (
+    <AppContext.Consumer>
+        {({ translations }) => (
+            <Footer {...props} translations={translations} />
+        )}
+    </AppContext.Consumer>
+);
+
 class Footer extends Component {
     render() {
         const { translations } = this.props;
@@ -16,13 +24,3 @@ class Footer extends Component {
         );
     }
 }
-
-const ContextWrapper = (props) => (
-    <AppContext.Consumer>
-        {({ translations }) => (
-            <Footer {...props} translations={translations} />
-        )}
-    </AppContext.Consumer>
-);
-
-export default ContextWrapper;

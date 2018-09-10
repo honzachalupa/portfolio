@@ -24,7 +24,6 @@ class App extends Component {
         this.onComponentDidMount = this.onComponentDidMount.bind(this);
         this.updateOnlineStatus = this.updateOnlineStatus.bind(this);
         this.updateContext = this.updateContext.bind(this);
-        this.updateContextProperty = this.updateContextProperty.bind(this);
         this.navigate = this.navigate.bind(this);
         this.switchLanguage = this.switchLanguage.bind(this);
 
@@ -49,7 +48,6 @@ class App extends Component {
             },
             _onComponentDidMount: this.onComponentDidMount,
             _updateContext: this.updateContext,
-            _updateContextProperty: this.updateContextProperty,
             _navigate: this.navigate,
             _switchLanguage: this.switchLanguage
         };
@@ -105,23 +103,13 @@ class App extends Component {
 
         document.title = `${config.name} | ${label}`;
 
-        this.updateContextProperty('selectedNavigationItem', id);
+        this.updateContext('selectedNavigationItem', id);
 
         GoogleAnalytics.pageview(window.location.pathname);
     }
 
     updateOnlineStatus() {
-        this.updateContextProperty('isOnline', navigator.onLine);
-    }
-
-    /**
-     * Performs an update of the global (App-level) context. Old state will be replaced with the new one.
-     *
-     * @param {any} context
-     * @memberof App
-     */
-    updateContext(context) {
-        this.setState(context);
+        this.updateContext('isOnline', navigator.onLine);
     }
 
     /**
@@ -131,7 +119,7 @@ class App extends Component {
      * @param {any} value
      * @memberof App
      */
-    updateContextProperty(key, value) {
+    updateContext(key, value) {
         this.setState({
             [key]: value
         });

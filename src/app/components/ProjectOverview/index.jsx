@@ -5,6 +5,14 @@ import './style';
 import Button from 'Components/Button';
 import LazyText from 'Components/LazyText';
 
+export default (props) => (
+    <AppContext.Consumer>
+        {({ translations }) => (
+            <ProjectOverview {...props} translations={translations} />
+        )}
+    </AppContext.Consumer>
+);
+
 class ProjectOverview extends Component {
     render() {
         const { project, translations } = this.props;
@@ -26,13 +34,3 @@ class ProjectOverview extends Component {
         );
     }
 }
-
-const ContextWrapper = (props) => (
-    <AppContext.Consumer>
-        {({ translations }) => (
-            <ProjectOverview {...props} translations={translations} />
-        )}
-    </AppContext.Consumer>
-);
-
-export default ContextWrapper;

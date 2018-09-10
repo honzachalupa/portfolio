@@ -5,6 +5,14 @@ import Layout from 'Layouts/Main';
 import LazyText from 'Components/LazyText';
 import Button from 'Components/Button';
 
+export default (props) => (
+    <AppContext.Consumer>
+        {({ projects, translations, _onComponentDidMount }) => (
+            <Page_AboutMe {...props} projects={projects} translations={translations} _onComponentDidMount={_onComponentDidMount} />
+        )}
+    </AppContext.Consumer>
+);
+
 class Page_AboutMe extends Component {
     constructor(props) {
         super(props);
@@ -49,13 +57,3 @@ class Page_AboutMe extends Component {
         );
     }
 }
-
-const ContextWrapper = (props) => (
-    <AppContext.Consumer>
-        {({ projects, translations, _onComponentDidMount }) => (
-            <Page_AboutMe {...props} projects={projects} translations={translations} _onComponentDidMount={_onComponentDidMount} />
-        )}
-    </AppContext.Consumer>
-);
-
-export default ContextWrapper;

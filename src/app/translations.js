@@ -94,6 +94,10 @@ export const translations = {
     filteredBy: {
         cs: 'Filtrováno podle',
         en: 'Filtered by'
+    },
+    resetFilter: {
+        cs: 'Resetovat filtr',
+        en: 'Reset filter'
     }
 };
 

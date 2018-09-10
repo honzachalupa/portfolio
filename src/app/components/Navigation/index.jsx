@@ -5,6 +5,14 @@ import { AppContext } from 'App';
 import './style';
 import LanguageSwitcher from 'Components/LanguageSwitcher';
 
+export default withRouter((props) => (
+    <AppContext.Consumer>
+        {({ translations, isNavigationOpened, selectedNavigationItem, _updateContext }) => (
+            <Navigation {...props} translations={translations} isNavigationOpened={isNavigationOpened} selectedNavigationItem={selectedNavigationItem} _updateContext={_updateContext} />
+        )}
+    </AppContext.Consumer>
+));
+
 class Navigation extends Component {
     constructor(props) {
         super(props);
@@ -44,7 +52,7 @@ class Navigation extends Component {
             }, {
                 id: 'photography',
                 label: translations.photography,
-                url: 'http://www.instagram.com/honzachalupa/'
+                url: 'http://www.instagram.com/honzachalupa_photography/'
             }, {
                 id: 'cooperation',
                 label: translations.cooperation,
@@ -59,9 +67,9 @@ class Navigation extends Component {
     }
 
     toggleNavigationState() {
-        const { _updateContextProperty } = this.props;
+        const { _updateContext } = this.props;
 
-        _updateContextProperty('isNavigationOpened', !this.state.isNavigationOpened);
+        _updateContext('isNavigationOpened', !this.state.isNavigationOpened);
     }
 
     handleNavigation(url) {
@@ -150,13 +158,3 @@ class Navigation extends Component {
         );
     }
 }
-
-const ContextWrapper = (props) => (
-    <AppContext.Consumer>
-        {({ translations, isNavigationOpened, selectedNavigationItem, _updateContextProperty }) => (
-            <Navigation {...props} translations={translations} isNavigationOpened={isNavigationOpened} selectedNavigationItem={selectedNavigationItem} _updateContextProperty={_updateContextProperty} />
-        )}
-    </AppContext.Consumer>
-);
-
-export default withRouter(ContextWrapper);

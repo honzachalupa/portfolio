@@ -6,6 +6,14 @@ import './style';
 import Button from 'Components/Button';
 import LazyText from 'Components/LazyText';
 
+export default (props) => (
+    <AppContext.Consumer>
+        {({ projects, translations, _updateContext }) => (
+            <ProjectsGrid {...props} projects={projects} translations={translations} _updateContext={_updateContext} />
+        )}
+    </AppContext.Consumer>
+);
+
 class ProjectsGrid extends Component {
     constructor() {
         super();
@@ -14,18 +22,18 @@ class ProjectsGrid extends Component {
     }
 
     setSearchData(filterBy, query) {
-        const { _updateContextProperty } = this.props;
+        const { _updateContext } = this.props;
 
-        _updateContextProperty('searchData', {
+        _updateContext('searchData', {
             filterBy,
             query
         });
     }
 
     resetFilter() {
-        const { _updateContextProperty } = this.props;
+        const { _updateContext } = this.props;
 
-        _updateContextProperty('searchData', null);
+        _updateContext('searchData', null);
     }
 
     render() {
@@ -66,7 +74,7 @@ class ProjectsGrid extends Component {
         }
 
         const resetFilterButtonBlock = (!standarizedFilter) ? (
-            <Button label="Reset filter" onClick={this.resetFilter} />
+            <Button label={translations.resetFilter} onClick={this.resetFilter} />
         ) : null;
 
         return (
@@ -99,13 +107,3 @@ class ProjectsGrid extends Component {
         );
     }
 }
-
-const ContextWrapper = (props) => (
-    <AppContext.Consumer>
-        {({ projects, translations, _updateContextProperty }) => (
-            <ProjectsGrid {...props} projects={projects} translations={translations} _updateContextProperty={_updateContextProperty} />
-        )}
-    </AppContext.Consumer>
-);
-
-export default ContextWrapper;

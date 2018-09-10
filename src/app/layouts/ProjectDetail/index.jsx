@@ -4,9 +4,16 @@ import './style';
 import Button from 'Components/Button';
 import Footer from 'Components/Footer';
 
+export default (props) => (
+    <AppContext.Consumer>
+        {({ translations }) => (
+            <Layout_ProjectDetail {...props} translations={translations} />
+        )}
+    </AppContext.Consumer>
+);
+
 let resizeTimeout;
 // let scrollTimeout;
-
 class Layout_ProjectDetail extends Component {
     constructor() {
         super();
@@ -84,13 +91,3 @@ class Layout_ProjectDetail extends Component {
         );
     }
 }
-
-const ContextWrapper = (props) => (
-    <AppContext.Consumer>
-        {({ translations }) => (
-            <Layout_ProjectDetail {...props} translations={translations} />
-        )}
-    </AppContext.Consumer>
-);
-
-export default ContextWrapper;

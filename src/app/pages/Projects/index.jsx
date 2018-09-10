@@ -3,6 +3,14 @@ import { AppContext } from 'App';
 import Layout from 'Layouts/Main';
 import ProjectsGrid from 'Components/ProjectsGrid';
 
+export default (props) => (
+    <AppContext.Consumer>
+        {({ searchData, translations, _onComponentDidMount }) => (
+            <Page_ProjectDetail {...props} searchData={searchData} translations={translations} _onComponentDidMount={_onComponentDidMount} />
+        )}
+    </AppContext.Consumer>
+);
+
 class Page_ProjectDetail extends Component {
     constructor(props) {
         super(props);
@@ -44,13 +52,3 @@ class Page_ProjectDetail extends Component {
         }
     }
 }
-
-const ContextWrapper = (props) => (
-    <AppContext.Consumer>
-        {({ searchData, translations, _onComponentDidMount }) => (
-            <Page_ProjectDetail {...props} searchData={searchData} translations={translations} _onComponentDidMount={_onComponentDidMount} />
-        )}
-    </AppContext.Consumer>
-);
-
-export default ContextWrapper;

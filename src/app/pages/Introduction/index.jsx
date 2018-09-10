@@ -5,6 +5,14 @@ import AppName from 'Components/AppName';
 import Button from 'Components/Button';
 import ProjectOverview from 'Components/ProjectOverview';
 
+export default (props) => (
+    <AppContext.Consumer>
+        {({ projects, translations, _onComponentDidMount }) => (
+            <Page_Introduction {...props} projects={projects} translations={translations} _onComponentDidMount={_onComponentDidMount} />
+        )}
+    </AppContext.Consumer>
+);
+
 class Page_Introduction extends Component {
     constructor(props) {
         super(props);
@@ -55,13 +63,3 @@ class Page_Introduction extends Component {
         );
     }
 }
-
-const ContextWrapper = (props) => (
-    <AppContext.Consumer>
-        {({ projects, translations, _onComponentDidMount }) => (
-            <Page_Introduction {...props} projects={projects} translations={translations} _onComponentDidMount={_onComponentDidMount} />
-        )}
-    </AppContext.Consumer>
-);
-
-export default ContextWrapper;
