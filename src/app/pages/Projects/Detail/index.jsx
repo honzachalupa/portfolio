@@ -61,9 +61,9 @@ class Page_ProjectDetail extends Component {
                         <LazyText value={project.name} />
                     </h1>
 
-                    {galleryBlock}
-
                     <div className="description" dangerouslySetInnerHTML={{ __html: _getHtmlFromMarkdown(project.description) }} />
+
+                    {galleryBlock}
                 </Layout>
             </section>
         );

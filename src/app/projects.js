@@ -1,23 +1,23 @@
 export default [
     {
         id: 'cmss-kalkulacka',
-        name: 'Českomoravská stavební spořitelna - Kalkulačka',
+        name: 'ČMSS Kalkulačka',
         description: 'Project description was too boring to survive (the new one is in progress).',
         descriptionShort: 'Project description was too boring to survive (the new one is in progress).',
         previewImage: '/images/screenshots/cmss-kalkulacka.jpg',
         gallery: [
             {
                 url: '/images/screenshots/cmss-kalkulacka-01.jpg',
-                description: 'Saving screen'
+                description: 'Spoření',
+                aspectRatio: 'portrait'
             }, {
                 url: '/images/screenshots/cmss-kalkulacka-02.jpg',
-                description: 'Loan screen'
+                description: 'Spoření',
+                aspectRatio: 'portrait'
             }, {
                 url: '/images/screenshots/cmss-kalkulacka-03.jpg',
-                description: 'Insurance screen'
-            }, {
-                url: '/images/screenshots/cmss-kalkulacka-04.jpg',
-                description: 'Solvency screen'
+                description: 'Bonita',
+                aspectRatio: 'portrait'
             }
         ],
         type: 'web-app',
@@ -26,14 +26,14 @@ export default [
             logo: 'http://www.honzachalupa.cz/gfx/svg/company-logo-softec.svg',
             url: 'https://www.softec.cz/'
         },
-        addedDate: '2018-05-04',
+        addedDate: '2018-09-01',
         tags: [
             'Softec',
+            'Českomoravská stavební spořitelna',
             'React',
-            'PWA',
+            'Progressive Web App',
             'Webpack'
-        ],
-        isHidden: true
+        ]
     }, {
         id: 'chytry-honza',
         name: 'Chytrý Honza',

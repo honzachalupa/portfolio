@@ -104,6 +104,11 @@
     &.page-about-me {
         .contacts {
             margin-top: 5vw;
+
+            [data-component="Button"] {
+                margin-right: 20px;
+                float: left;
+            }
         }
     }
 }
