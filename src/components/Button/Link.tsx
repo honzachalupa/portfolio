@@ -1,27 +1,28 @@
 import cx from "classnames";
-import { ButtonHTMLAttributes } from "react";
+import Link from "next/link";
+import { LinkHTMLAttributes } from "react";
 
 interface IProps {
     label: string;
-    type?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
+    href: string;
+    target?: LinkHTMLAttributes<HTMLLinkElement>["type"];
     className?: string;
-    onClick?: () => void;
 }
 
-export const Button: React.FC<IProps> = ({
+export const LinkButton: React.FC<IProps> = ({
     label,
-    type,
+    href,
+    target,
     className,
-    onClick,
 }) => (
-    <button
-        type={type || "button"}
+    <Link
+        href={href}
+        target={target}
         className={cx(
             "float-left my-5 mx-2 rounded-md border border-emerald-500 px-7 py-4 text-emerald-500 hover:opacity-80",
             className
         )}
-        onClick={onClick}
     >
         {label}
-    </button>
+    </Link>
 );

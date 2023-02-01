@@ -1,19 +1,49 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
-import { ReactNode, useContext } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { config } from "../../../config";
 import { TidioChat } from "../../components/TidioChat";
-import { Context } from "../../utils/context";
 
 interface IProps {
     headline?: string;
     children: ReactNode;
 }
 
-export const LayoutPrimary: React.FC<IProps> = ({ headline, children }) => {
-    const { user } = useContext(Context);
+const useScrollPosition = () => {
+    const [scrollPosition, setScrollPosition] = useState<{
+        distance: number;
+        progress: number;
+    }>({
+        distance: 0,
+        progress: 0,
+    });
 
-    const router = useRouter();
+    useEffect(() => {
+        const updatePosition = () => {
+            setScrollPosition({
+                distance: window.pageYOffset,
+                progress: Math.round(
+                    (100 /
+                        (document.body.scrollHeight -
+                            document.documentElement.clientHeight)) *
+                        window.pageYOffset
+                ),
+            });
+        };
+
+        window.addEventListener("scroll", updatePosition);
+
+        updatePosition();
+
+        return () => window.removeEventListener("scroll", updatePosition);
+    }, []);
+
+    return scrollPosition;
+};
+
+export const LayoutPrimary: React.FC<IProps> = ({ headline, children }) => {
+    const { progress } = useScrollPosition();
+
+    const scrollProgress = Math.round(progress * 10) / 10;
 
     const title = [headline, config.appName].filter(Boolean).join(" | ");
 
@@ -28,7 +58,12 @@ export const LayoutPrimary: React.FC<IProps> = ({ headline, children }) => {
                 />
             </Head>
 
-            {children}
+            <div
+                className="fixed left-0 top-0 h-screen w-screen bg-purple-900"
+                style={{ opacity: scrollProgress / 100 }}
+            />
+
+            <div className="z-1 relative">{children}</div>
 
             <TidioChat />
         </div>

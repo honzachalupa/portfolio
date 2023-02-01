@@ -1,4 +1,5 @@
-import { Button, ButtonsContainer } from "../Button";
+import { ButtonsContainer } from "../Button";
+import { LinkButton } from "../Button/Link";
 
 export const GetInTouchBlock: React.FC = () => (
     <section className="py-36 text-center">
@@ -13,7 +14,7 @@ export const GetInTouchBlock: React.FC = () => (
         </p>
 
         <ButtonsContainer className="mt-16">
-            <Button label="Say Hello" href="mailto:janchalupa@outlook.cz" />
+            <LinkButton label="Say Hello" href="mailto:janchalupa@outlook.cz" />
         </ButtonsContainer>
     </section>
 );

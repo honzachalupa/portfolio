@@ -1,4 +1,4 @@
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 
 interface IGitHubRepository {
     id: string;
@@ -12,27 +12,33 @@ interface IGitHubRepository {
 }
 
 export const GitHubRepositoriesList: React.FC = () => {
-    const { data } = useQuery<IGitHubRepository[]>("repositories", async () => {
-        const data = await fetch(
-            "https://api.github.com/users/honzachalupa/repos",
-            {
-                method: "GET",
-                headers: {
-                    Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
-                },
-            }
-        ).then((response) => response.json());
+    const { data } = useQuery<IGitHubRepository[]>(
+        ["repositories"],
+        async () => {
+            const data = await fetch(
+                "https://api.github.com/users/honzachalupa/repos",
+                {
+                    method: "GET",
+                    headers: {
+                        Authorization: `Bearer ${process.env.NEXT_PUBLIC_GITHUB_TOKEN}`,
+                    },
+                }
+            ).then((response) => response.json());
 
-        return (
-            data
-                ?.sort(
-                    (a: { updated_at: string }, b: { updated_at: string }) =>
-                        new Date(b.updated_at).getTime() -
-                        new Date(a.updated_at).getTime()
-                )
-                .slice(0, 4) || []
-        );
-    });
+            return (
+                data
+                    ?.sort(
+                        (
+                            a: { updated_at: string },
+                            b: { updated_at: string }
+                        ) =>
+                            new Date(b.updated_at).getTime() -
+                            new Date(a.updated_at).getTime()
+                    )
+                    .slice(0, 4) || []
+            );
+        }
+    );
 
     return (
         <div className=" flex flex-wrap gap-[16px]">

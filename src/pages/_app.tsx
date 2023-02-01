@@ -1,5 +1,5 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { AppProps } from "next/app";
-import { QueryClient, QueryClientProvider } from "react-query";
 import { useSupabaseAuth } from "../hooks/useSupabaseAuth";
 import "../styles/globals.css";
 import { Context, IContext } from "../utils/context";

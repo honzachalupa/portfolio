@@ -11,27 +11,48 @@ export interface Database {
     Tables: {
       projects: {
         Row: {
+          description: string
           id: string
-          name: string | null
+          imageUrl: string
+          name: string
+          topics: string[]
+          url: string
         }
         Insert: {
+          description: string
           id: string
-          name?: string | null
+          imageUrl: string
+          name: string
+          topics: string[]
+          url: string
         }
         Update: {
+          description?: string
           id?: string
-          name?: string | null
+          imageUrl?: string
+          name?: string
+          topics?: string[]
+          url?: string
         }
       }
       users: {
         Row: {
-          id: number
+          emailAddress: string | null
+          firstName: string | null
+          id: string
+          lastName: string | null
         }
         Insert: {
-          id?: number
+          emailAddress?: string | null
+          firstName?: string | null
+          id: string
+          lastName?: string | null
         }
         Update: {
-          id?: number
+          emailAddress?: string | null
+          firstName?: string | null
+          id?: string
+          lastName?: string | null
         }
       }
     }

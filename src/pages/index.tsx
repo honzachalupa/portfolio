@@ -8,16 +8,6 @@ import { Hero } from "../components/Hero";
 import { LayoutPrimary as Layout } from "../layouts/Primary";
 
 export default function Index() {
-    /* const { data } = useQuery("data", SampleActions.search);
-
-    const addSampleRecord = () => {
-        SampleActions.create({
-            key: `key-${getRandomInRange(10000, 99999)}`,
-            value: "Sample value.",
-            createdDate: new Date().toString(),
-        });
-    }; */
-
     return (
         <Layout>
             <h1 className="hidden">{config.appName}</h1>

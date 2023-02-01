@@ -53,9 +53,10 @@ export const AboutMeBlock: React.FC = () => (
             </div>
 
             <Image
-                src=""
-                className="min-w-[40%] border border-slate-400"
+                src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/default/profile.jpg`}
+                className="!relative min-w-[40%] mix-blend-luminosity transition-all hover:mix-blend-normal"
                 alt="Photo of myself"
+                fill
             />
         </div>
     </section>
