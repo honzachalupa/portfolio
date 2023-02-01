@@ -16,7 +16,7 @@ export interface Database {
           imageUrl: string
           name: string
           topics: string[]
-          url: string
+          url: string | null
         }
         Insert: {
           description: string
@@ -24,7 +24,7 @@ export interface Database {
           imageUrl: string
           name: string
           topics: string[]
-          url: string
+          url?: string | null
         }
         Update: {
           description?: string
@@ -32,7 +32,7 @@ export interface Database {
           imageUrl?: string
           name?: string
           topics?: string[]
-          url?: string
+          url?: string | null
         }
       }
       users: {

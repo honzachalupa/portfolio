@@ -48,11 +48,14 @@ export const GitHubRepositoriesList: React.FC = () => {
                     href={html_url}
                     className="basis-[calc(50%-8px)] rounded-sm bg-white bg-opacity-5 p-5 transition-all hover:bg-opacity-10"
                 >
-                    <p className="text-white">{full_name}</p>
+                    <h4 className="text-rose-600">{full_name}</h4>
                     <p className="my-2">{description}</p>
-                    <ul>
+                    <ul className="mt-5">
                         {topics.map((topic) => (
-                            <li key={topic} className="mr-5 inline">
+                            <li
+                                key={topic}
+                                className="mr-5 inline font-mono text-sm text-white"
+                            >
                                 {topic}
                             </li>
                         ))}

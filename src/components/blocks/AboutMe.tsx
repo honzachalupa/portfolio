@@ -7,30 +7,32 @@ export const AboutMeBlock: React.FC = () => (
             About me
         </h2>
 
-        <div className="flex">
+        <div className="group flex">
             <div className="pr-10">
                 <p className="pb-5 text-lg">
-                    Hello! My name is Brittany and I enjoy creating things that
-                    live on the internet. My interest in web development started
-                    back in 2012 when I decided to try editing custom Tumblr
-                    themes — turns out hacking together a custom reblog button
-                    taught me a lot about HTML & CSS!
+                    Hey there! I&apos;m Jan and I&apos;m a React Developer who
+                    loves to create top-notch web apps that people love to use.
                 </p>
-
                 <p className="pb-5 text-lg">
-                    Fast-forward to today, and I&apos;ve had the privilege of
-                    working at an advertising agency, a start-up, a huge
-                    corporation, and a student-led design studio. My main focus
-                    these days is building accessible, inclusive products and
-                    digital experiences at Upstatement for a variety of clients.
+                    With several years of experience, I&apos;ve mastered the art
+                    of developing user-friendly and scalable web apps using
+                    React. My goal is to turn your vision into reality and
+                    create apps that meet the needs of both businesses and
+                    users. I pride myself in delivering high-quality work on
+                    time and within budget.
                 </p>
-
                 <p className="pb-5 text-lg">
-                    I also recently launched a course that covers everything you
-                    need to build a web app with the Spotify API using Node &
-                    React.
+                    I&apos;m a great communicator and I thrive in a team
+                    environment. Working with others to come up with creative
+                    solutions to problems is what I live for. And when I&apos;m
+                    not coding, I&apos;m always seeking to expand my knowledge
+                    and stay up-to-date with the latest tech and industry
+                    trends.
                 </p>
-
+                <p className="pb-5 text-lg">
+                    Thanks for checking out my website. I can&apos;t wait to
+                    bring my skills to your next React project!
+                </p>
                 <p className="pb-5 text-lg">
                     Here are a few technologies I&apos;ve been working with
                     recently:
@@ -54,7 +56,7 @@ export const AboutMeBlock: React.FC = () => (
 
             <Image
                 src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/default/profile.jpg`}
-                className="!relative min-w-[40%] mix-blend-luminosity transition-all hover:mix-blend-normal"
+                className="!relative min-w-[40%] rounded-md opacity-60 transition-all group-hover:opacity-100"
                 alt="Photo of myself"
                 fill
             />

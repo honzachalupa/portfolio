@@ -2,6 +2,7 @@ import Head from "next/head";
 import { ReactNode, useEffect, useState } from "react";
 import { config } from "../../../config";
 import { TidioChat } from "../../components/TidioChat";
+import { Footer } from "./components/Footer";
 
 interface IProps {
     headline?: string;
@@ -48,7 +49,7 @@ export const LayoutPrimary: React.FC<IProps> = ({ headline, children }) => {
     const title = [headline, config.appName].filter(Boolean).join(" | ");
 
     return (
-        <div className="px-[150px]">
+        <div className="px-[150px] tracking-wider">
             <Head>
                 <title>{title}</title>
 
@@ -59,11 +60,13 @@ export const LayoutPrimary: React.FC<IProps> = ({ headline, children }) => {
             </Head>
 
             <div
-                className="fixed left-0 top-0 h-screen w-screen bg-purple-900"
+                className="fixed left-0 top-0 h-screen w-screen bg-[#0a192f]"
                 style={{ opacity: scrollProgress / 100 }}
             />
 
             <div className="z-1 relative">{children}</div>
+
+            <Footer />
 
             <TidioChat />
         </div>

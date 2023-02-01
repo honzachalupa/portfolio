@@ -17,7 +17,7 @@ export const Button: React.FC<IProps> = ({
     <button
         type={type || "button"}
         className={cx(
-            "float-left my-5 mx-2 rounded-md border border-emerald-500 px-7 py-4 text-emerald-500 hover:opacity-80",
+            "float-left my-5 mx-2 rounded-md border border-rose-600 px-7 py-4 font-mono text-rose-600 hover:opacity-80",
             className
         )}
         onClick={onClick}
