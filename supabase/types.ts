@@ -23,6 +23,17 @@ export interface Database {
           name?: string | null
         }
       }
+      users: {
+        Row: {
+          id: number
+        }
+        Insert: {
+          id?: number
+        }
+        Update: {
+          id?: number
+        }
+      }
     }
     Views: {
       [_ in never]: never

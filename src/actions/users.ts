@@ -1,4 +1,4 @@
-import { Database } from "../supabase/types";
+import { Database } from "../../supabase/types";
 import { supabase } from "../utils/supabase";
 
 const create = async (
