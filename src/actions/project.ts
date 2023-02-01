@@ -1,10 +1,10 @@
-import { Database } from "../supabase/types";
+import { Database } from "../../supabase/types";
 import { supabase } from "../utils/supabase";
 
 const create = async (
-    payload: Database["public"]["Tables"]["sample"]["Insert"]
+    payload: Database["public"]["Tables"]["projects"]["Insert"]
 ) => {
-    const { error } = await supabase.from("sample").insert([payload]);
+    const { error } = await supabase.from("projects").insert([payload]);
 
     if (error) {
         throw new Error(error.message);
@@ -12,7 +12,7 @@ const create = async (
 };
 
 const search = async () => {
-    const { data, error } = await supabase.from("sample").select();
+    const { data, error } = await supabase.from("projects").select();
 
     if (error) {
         throw new Error(error.message);
@@ -25,7 +25,7 @@ const search = async () => {
     return data;
 };
 
-export const SampleActions = {
+export const ProjectActions = {
     create,
     search,
 };

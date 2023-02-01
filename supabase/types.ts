@@ -9,38 +9,18 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
-      sample: {
+      projects: {
         Row: {
-          createdDate: string | null
-          key: string
-          value: string
+          id: string
+          name: string | null
         }
         Insert: {
-          createdDate?: string | null
-          key: string
-          value: string
+          id: string
+          name?: string | null
         }
         Update: {
-          createdDate?: string | null
-          key?: string
-          value?: string
-        }
-      }
-      users: {
-        Row: {
-          firstName: string | null
-          id: string
-          lastName: string | null
-        }
-        Insert: {
-          firstName?: string | null
-          id: string
-          lastName?: string | null
-        }
-        Update: {
-          firstName?: string | null
           id?: string
-          lastName?: string | null
+          name?: string | null
         }
       }
     }

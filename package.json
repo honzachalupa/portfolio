@@ -3,11 +3,11 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "next dev",
-        "build": "next build",
+        "dev": "yarn generate-types && next dev",
+        "build": "yarn generate-types && next build",
         "start": "next start",
         "lint": "next lint",
-        "generate-types": "npx supabase gen types typescript --project-id qmltgaacbmruliktliyd --schema public > supabase/types.ts",
+        "generate-types": "npx supabase gen types typescript --project-id tnoaoskjsqzxockjstot --schema public > supabase/types.ts",
         "generate-types:local": "supabase gen types typescript --local > supabase/types.ts",
         "update:libs": "yarn upgrade --pattern @honzachalupa --latest"
     },
