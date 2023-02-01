@@ -1,4 +1,5 @@
-import { Button, ButtonsContainer } from "../Button";
+import { ButtonsContainer } from "../Button";
+import { LinkButton } from "../Button/Link";
 import { GitHubRepositoriesList } from "../GitHubRepositoriesList";
 
 export const OtherProjectsBlock: React.FC = () => (
@@ -10,7 +11,10 @@ export const OtherProjectsBlock: React.FC = () => (
         <GitHubRepositoriesList />
 
         <ButtonsContainer className="mt-16">
-            <Button label="Show more" href="https://github.com/honzachalupa" />
+            <LinkButton
+                label="Show more"
+                href="https://github.com/honzachalupa"
+            />
         </ButtonsContainer>
     </section>
 );
