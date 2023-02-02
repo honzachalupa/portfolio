@@ -15,6 +15,7 @@ export interface Database {
           id: string
           imageUrl: string
           name: string
+          slogan: string | null
           topics: string[]
           url: string | null
         }
@@ -23,6 +24,7 @@ export interface Database {
           id: string
           imageUrl: string
           name: string
+          slogan?: string | null
           topics: string[]
           url?: string | null
         }
@@ -31,6 +33,7 @@ export interface Database {
           id?: string
           imageUrl?: string
           name?: string
+          slogan?: string | null
           topics?: string[]
           url?: string | null
         }

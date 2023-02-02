@@ -1,8 +1,8 @@
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import { useQuery } from "@tanstack/react-query";
 import cx from "classnames";
 import Image from "next/image";
 import { ProjectActions } from "../../actions/project";
-import { LinkButton } from "../Button/Link";
 
 export const SomeThingsIveBuiltBlock: React.FC = () => {
     const { data: projects } = useQuery(["projects"], () =>
@@ -10,13 +10,16 @@ export const SomeThingsIveBuiltBlock: React.FC = () => {
     );
 
     return (
-        <section className="-mb-20 py-36">
+        <section className="mx-auto -mb-20 max-w-[60vw] py-36">
             <h2 className="pb-10 text-4xl font-medium text-white opacity-70">
                 Some things I&apos;ve built
             </h2>
 
             {(projects ? [...projects, ...projects] : []).map(
-                ({ id, name, description, topics, url, imageUrl }, i) => {
+                (
+                    { id, name, slogan, description, topics, url, imageUrl },
+                    i
+                ) => {
                     const isOdd = i % 2 === 0;
 
                     return (
@@ -40,15 +43,26 @@ export const SomeThingsIveBuiltBlock: React.FC = () => {
                                                 }
                                             )}
                                         >
-                                            Featured Project
+                                            {slogan || "Featured Project"}
                                         </p>
+
                                         <h3
                                             className={cx(
                                                 "mb-5 text-3xl text-white",
                                                 { "text-right": isOdd }
                                             )}
                                         >
-                                            {name}
+                                            <a
+                                                title="Visit"
+                                                href={url || ""}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                className={cx({
+                                                    "pointer-events-none": !url,
+                                                })}
+                                            >
+                                                {name}
+                                            </a>
                                         </h3>
 
                                         <div
@@ -75,6 +89,20 @@ export const SomeThingsIveBuiltBlock: React.FC = () => {
                                             ))}
                                         </p>
                                     </div>
+
+                                    {url && (
+                                        <a
+                                            title="Visit"
+                                            href={url}
+                                            target="_blank"
+                                            rel="noreferrer"
+                                            className={cx("mt-5", {
+                                                "float-right": isOdd,
+                                            })}
+                                        >
+                                            <ArrowTopRightOnSquareIcon className="w-8 text-rose-600" />
+                                        </a>
+                                    )}
                                 </div>
 
                                 <Image
@@ -84,14 +112,6 @@ export const SomeThingsIveBuiltBlock: React.FC = () => {
                                     className="!relative !h-[300px] basis-1/2 rounded-md object-cover object-top opacity-60 transition-all group-hover:opacity-100"
                                 />
                             </div>
-
-                            {url && (
-                                <LinkButton
-                                    label="Visit"
-                                    href={url}
-                                    target="_blank"
-                                />
-                            )}
                         </article>
                     );
                 }

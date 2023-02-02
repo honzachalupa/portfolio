@@ -1,3 +1,4 @@
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import { useQuery } from "@tanstack/react-query";
 
 interface IGitHubRepository {
@@ -48,8 +49,14 @@ export const GitHubRepositoriesList: React.FC = () => {
                     href={html_url}
                     className="basis-[calc(50%-8px)] rounded-sm bg-white bg-opacity-5 p-5 transition-all hover:bg-opacity-10"
                 >
-                    <h4 className="text-rose-600">{full_name}</h4>
+                    <div className="flex justify-between">
+                        <h4 className="text-rose-600">{full_name}</h4>
+
+                        <ArrowTopRightOnSquareIcon className="w-6 text-rose-600" />
+                    </div>
+
                     <p className="my-2">{description}</p>
+
                     <ul className="mt-5">
                         {topics.map((topic) => (
                             <li

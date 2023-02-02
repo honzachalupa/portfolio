@@ -2,7 +2,7 @@ import Image from "next/image";
 import { ListItemWithIcon } from "../List";
 
 export const AboutMeBlock: React.FC = () => (
-    <section className="py-36">
+    <section className="mx-auto max-w-[60vw] py-36">
         <h2 className="pb-10 text-4xl font-medium text-white opacity-70">
             About me
         </h2>

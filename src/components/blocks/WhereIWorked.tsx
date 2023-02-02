@@ -118,7 +118,7 @@ export const WhereIWorkedBlock: React.FC = () => {
     );
 
     return (
-        <section className="py-36">
+        <section className="mx-auto max-w-[60vw] py-36">
             <h2 className="pb-10 text-4xl font-medium text-white opacity-70">
                 Where I&apos;ve worked
             </h2>
@@ -129,7 +129,7 @@ export const WhereIWorkedBlock: React.FC = () => {
                         <button
                             key={id}
                             className={cx(
-                                "w-full whitespace-nowrap py-2 text-left font-mono text-sm",
+                                "w-full whitespace-nowrap py-2 text-left font-mono text-sm hover:text-white",
                                 {
                                     "text-rose-600": id === selectedItemId,
                                 }

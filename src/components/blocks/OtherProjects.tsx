@@ -3,7 +3,7 @@ import { LinkButton } from "../Button/Link";
 import { GitHubRepositoriesList } from "../GitHubRepositoriesList";
 
 export const OtherProjectsBlock: React.FC = () => (
-    <section className="py-36">
+    <section className="mx-auto max-w-[60vw] py-36">
         <h2 className="pb-10 text-center text-4xl font-medium text-white opacity-70">
             Other noteworthy projects
         </h2>
