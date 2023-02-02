@@ -35,3 +35,7 @@ next-env.d.ts
 # SEO
 /public/robots.txt
 /public/sitemap*.xml
+
+# PWA
+/public/sw.js*
+/public/workbox-*
