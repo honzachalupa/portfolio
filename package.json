@@ -9,7 +9,8 @@
         "lint": "next lint",
         "generate-types": "npx supabase gen types typescript --project-id tnoaoskjsqzxockjstot --schema public > supabase/types.ts",
         "generate-types:local": "supabase gen types typescript --local > supabase/types.ts",
-        "update:libs": "yarn upgrade --pattern @honzachalupa --latest"
+        "update:libs": "yarn upgrade --pattern @honzachalupa --latest",
+        "postbuild": "next-sitemap --config sitemap.config.js"
     },
     "dependencies": {
         "@headlessui/react": "^1.7.7",
@@ -22,6 +23,7 @@
         "lodash": "^4.17.21",
         "moment": "^2.29.4",
         "next": "13.1.1",
+        "next-sitemap": "^3.1.49",
         "react": "18.2.0",
         "react-dom": "18.2.0",
         "react-hook-form": "^7.43.0",

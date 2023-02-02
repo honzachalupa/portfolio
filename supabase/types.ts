@@ -9,6 +9,38 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
+      jobs: {
+        Row: {
+          clientName: string
+          clientUrl: string
+          dateFrom: string
+          dateTo: string | null
+          id: string
+          jobDescription: string[]
+          jobTitle: string
+          projectNames: string[] | null
+        }
+        Insert: {
+          clientName: string
+          clientUrl: string
+          dateFrom: string
+          dateTo?: string | null
+          id: string
+          jobDescription: string[]
+          jobTitle: string
+          projectNames?: string[] | null
+        }
+        Update: {
+          clientName?: string
+          clientUrl?: string
+          dateFrom?: string
+          dateTo?: string | null
+          id?: string
+          jobDescription?: string[]
+          jobTitle?: string
+          projectNames?: string[] | null
+        }
+      }
       projects: {
         Row: {
           description: string
