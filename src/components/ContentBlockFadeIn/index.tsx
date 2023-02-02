@@ -5,7 +5,7 @@ import { ReactNode, useEffect, useRef, useState } from "react";
 const useVisibility = <Element extends HTMLDivElement>(
     offset = 0,
     throttleMilliseconds = 200
-): [Boolean, React.RefObject<Element>] => {
+): [boolean, React.RefObject<Element>] => {
     const [isInView, setIsInView] = useState<boolean>(false);
 
     const elementRef = useRef<Element>(null);

@@ -3,13 +3,12 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "yarn generate-types && next dev",
-        "build": "yarn generate-types && next build",
+        "dev": "yarn lint && yarn generate-types && next dev",
+        "build": "yarn lint && yarn generate-types && next build",
         "start": "next start",
         "lint": "next lint",
         "generate-types": "npx supabase gen types typescript --project-id tnoaoskjsqzxockjstot --schema public > supabase/types.ts",
         "generate-types:local": "supabase gen types typescript --local > supabase/types.ts",
-        "update:libs": "yarn upgrade --pattern @honzachalupa --latest",
         "postbuild": "next-sitemap --config sitemap.config.js"
     },
     "dependencies": {
@@ -31,14 +30,17 @@
         "styled-components": "^5.3.6"
     },
     "devDependencies": {
+        "@commitlint/config-conventional": "^17.4.2",
         "@types/lodash": "^4.14.191",
         "@types/node": "18.11.18",
         "@types/react": "18.0.26",
         "@types/react-dom": "18.0.10",
         "@types/styled-components": "^5.1.26",
         "autoprefixer": "^10.4.13",
+        "commitlint": "^17.4.2",
         "eslint": "8.31.0",
         "eslint-config-next": "13.1.1",
+        "husky": "^8.0.3",
         "iconv-lite": "^0.6.3",
         "next-pwa": "^5.6.0",
         "postcss": "^8.4.21",

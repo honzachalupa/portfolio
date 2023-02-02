@@ -25,13 +25,17 @@ export const Table = <T,>({ columns, items }: IProps<T>) => {
             <tbody>
                 {items?.map((item, i) => (
                     <tr key={i} className={trClassName}>
-                        {columns.map(({ id, renderer }) => (
-                            <td key={id}>
-                                {/*
-                                // @ts-ignore */}
-                                {renderer ? renderer(item) : item[id]}
-                            </td>
-                        ))}
+                        {columns.map(({ id, renderer }) => {
+                            const itemAny = item as {
+                                [key: string]: string;
+                            };
+
+                            return (
+                                <td key={id}>
+                                    {renderer ? renderer(item) : itemAny[id]}
+                                </td>
+                            );
+                        })}
                     </tr>
                 ))}
             </tbody>

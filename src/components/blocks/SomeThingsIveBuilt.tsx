@@ -14,7 +14,7 @@ export const SomeThingsIveBuiltBlock: React.FC<IProps> = ({ data }) => (
             Some things I&apos;ve built
         </h2>
 
-        {(data ? [...data, ...data] : []).map(
+        {data?.map(
             ({ id, name, slogan, description, topics, url, imageUrl }, i) => {
                 const isOdd = i % 2 === 0;
 
