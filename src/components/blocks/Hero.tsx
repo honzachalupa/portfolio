@@ -2,15 +2,15 @@ import { SectionContainer } from "../../layouts/Primary";
 
 export const HeroBlock: React.FC = () => (
     <SectionContainer wider className="flex h-screen flex-col justify-center">
-        <p className="mb-7 font-mono text-rose-600 sm:text-lg">
+        <p className="mb-7 font-mono text-rose-600 md:text-lg">
             Hi, my name is
         </p>
 
-        <p className="text-5xl font-semibold text-white opacity-70 sm:text-7xl">
+        <p className="text-5xl font-semibold text-white opacity-70 md:text-7xl">
             Jan Chalupa.
         </p>
 
-        <p className="text-3xl font-semibold text-white opacity-40 sm:text-7xl">
+        <p className="text-3xl font-semibold text-white opacity-40 md:text-7xl">
             I build things for the web.
         </p>
 

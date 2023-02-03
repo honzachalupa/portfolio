@@ -9,9 +9,29 @@ interface IProps {
     data: Database["public"]["Tables"]["projects"]["Row"][];
 }
 
+const ProjectImage: React.FC<{
+    src: IProps["data"][0]["imageUrl"];
+    alt: IProps["data"][0]["name"];
+    className?: string;
+}> = ({ src, alt, className }) => (
+    <div
+        className={cx(
+            "aspect-video basis-1/2 overflow-hidden rounded-md",
+            className
+        )}
+    >
+        <Image
+            src={src}
+            alt={alt}
+            fill
+            className="!relative !h-full !w-full object-cover object-top"
+        />
+    </div>
+);
+
 export const SomeThingsIveBuiltBlock: React.FC<IProps> = ({ data }) => (
     <SectionContainer>
-        <h2 className="pb-10 text-4xl font-medium text-white opacity-70">
+        <h2 className="pb-10 text-center text-4xl font-medium text-white opacity-70 md:text-left">
             Some things I&apos;ve built
         </h2>
 
@@ -22,13 +42,16 @@ export const SomeThingsIveBuiltBlock: React.FC<IProps> = ({ data }) => (
                 return (
                     <AnimationFadeIn key={id} className="mb-40 last:mb-0">
                         <div
-                            className={cx("group flex w-full", {
-                                "flex-row-reverse": isOdd,
-                            })}
+                            className={cx(
+                                "flex w-full flex-col-reverse md:flex-row",
+                                {
+                                    "md:flex-row-reverse": isOdd,
+                                }
+                            )}
                         >
                             <div className="z-10 basis-1/2">
                                 <div
-                                    className={cx("w-[110%]", {
+                                    className={cx("w-full md:w-[110%]", {
                                         "float-right": isOdd,
                                     })}
                                 >
@@ -45,8 +68,10 @@ export const SomeThingsIveBuiltBlock: React.FC<IProps> = ({ data }) => (
 
                                     <h3
                                         className={cx(
-                                            "mb-5 text-3xl text-white",
-                                            { "text-right": isOdd }
+                                            "mb-5 flex justify-start text-3xl text-white",
+                                            {
+                                                "flex-row-reverse": isOdd,
+                                            }
                                         )}
                                     >
                                         <a
@@ -60,7 +85,31 @@ export const SomeThingsIveBuiltBlock: React.FC<IProps> = ({ data }) => (
                                         >
                                             {name}
                                         </a>
+
+                                        {url && (
+                                            <a
+                                                title="Visit"
+                                                href={url}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                className={cx(
+                                                    "relative top-2",
+                                                    {
+                                                        "mr-3": isOdd,
+                                                        "ml-3": !isOdd,
+                                                    }
+                                                )}
+                                            >
+                                                <ArrowTopRightOnSquareIcon className="w-6 text-rose-600" />
+                                            </a>
+                                        )}
                                     </h3>
+
+                                    <ProjectImage
+                                        src={imageUrl}
+                                        alt={name}
+                                        className="mb-5 md:hidden"
+                                    />
 
                                     <div
                                         className={cx(
@@ -86,27 +135,12 @@ export const SomeThingsIveBuiltBlock: React.FC<IProps> = ({ data }) => (
                                         ))}
                                     </p>
                                 </div>
-
-                                {url && (
-                                    <a
-                                        title="Visit"
-                                        href={url}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        className={cx("mt-5", {
-                                            "float-right": isOdd,
-                                        })}
-                                    >
-                                        <ArrowTopRightOnSquareIcon className="w-8 text-rose-600" />
-                                    </a>
-                                )}
                             </div>
 
-                            <Image
+                            <ProjectImage
                                 src={imageUrl}
                                 alt={name}
-                                fill
-                                className="!relative !h-[300px] basis-1/2 rounded-md object-cover object-top opacity-60 transition-all group-hover:opacity-100"
+                                className="hidden transition-all md:block"
                             />
                         </div>
                     </AnimationFadeIn>

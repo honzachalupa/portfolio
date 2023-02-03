@@ -18,7 +18,7 @@ export const AnimationFadeIn: React.FC<IProps> = ({
     return (
         <div
             ref={elementRef}
-            className={cx(className, "transition delay-100 duration-500", {
+            className={cx(className, "delay-50 transition duration-500", {
                 "translate-y-0 opacity-100": isInView,
                 "translate-y-10 opacity-0": !isInView,
                 "border border-red-800": debug,

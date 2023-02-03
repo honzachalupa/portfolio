@@ -24,10 +24,10 @@ export const Footer: React.FC = () => {
 
     return (
         <footer className="relative mb-20 text-center text-sm">
-            <div className="left-5 bottom-5 z-10 mb-5 flex justify-center gap-5 sm:fixed sm:mb-0 sm:flex-col">
+            <div className="left-5 bottom-5 z-10 mb-5 flex justify-center gap-5 md:fixed md:mb-0 md:flex-col">
                 {socialLinks.map(({ name, url, icon: Icon }) => (
                     <a key={name} href={url} title={`Visit my ${name}`}>
-                        <Icon className="w-8 text-rose-600 transition-all hover:opacity-80 sm:w-10" />
+                        <Icon className="w-8 text-rose-600 transition-all hover:opacity-80 md:w-10" />
                     </a>
                 ))}
             </div>

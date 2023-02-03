@@ -7,7 +7,7 @@ interface IProps {
 }
 
 export const ViewMobile: React.FC<IProps> = ({ data }) => (
-    <div className="hide-scrollbar -mx-5 snap-x snap-mandatory overflow-x-scroll sm:hidden">
+    <div className="hide-scrollbar -mx-5 snap-x snap-mandatory overflow-x-scroll md:hidden">
         <div className={`flex w-[${data.length * 90}vw] float-left`}>
             {data.map(
                 ({

@@ -30,7 +30,7 @@ export const OtherProjectsBlock: React.FC<IProps> = ({ data }) => (
                 ({ id, name, html_url, description, topics, archived }) => (
                     <AnimationFadeIn
                         key={id}
-                        className="my-5 w-full lg:w-[calc(50%-12px)]"
+                        className="my-5 w-full md:w-[calc(50%-12px)]"
                     >
                         <div>
                             <a
@@ -51,7 +51,7 @@ export const OtherProjectsBlock: React.FC<IProps> = ({ data }) => (
                                 <ArrowTopRightOnSquareIcon className="ml-auto w-6 text-rose-600" />
                             </a>
 
-                            <p className="my-2 rounded-md bg-[#112240] p-5 text-sm leading-7 shadow-custom transition-all sm:text-base">
+                            <p className="my-2 rounded-md bg-[#112240] p-5 text-sm leading-7 shadow-custom transition-all md:text-base">
                                 {description}
                             </p>
 
@@ -60,7 +60,7 @@ export const OtherProjectsBlock: React.FC<IProps> = ({ data }) => (
                                     {topics.map((topic) => (
                                         <li
                                             key={topic}
-                                            className="mr-5 inline-block font-mono text-xs text-white sm:text-sm"
+                                            className="mr-5 inline-block font-mono text-xs text-white md:text-sm"
                                         >
                                             {topic}
                                         </li>

@@ -17,7 +17,7 @@ export const ViewDesktop: React.FC<IProps> = ({ data }) => {
     );
 
     return (
-        <div className="hidden sm:flex">
+        <div className="hidden md:flex">
             <div className="mr-10 basis-0">
                 {data.map(({ id, clientName }) => (
                     <button

@@ -12,12 +12,12 @@ export const AboutMeBlock: React.FC = () => (
 
             <div className="group flex">
                 <div>
-                    <p className="pb-5 sm:text-lg">
+                    <p className="pb-5 md:text-lg">
                         Hey there! I&apos;m Jan and I&apos;m a React Developer
                         who loves to create top-notch web apps that people love
                         to use.
                     </p>
-                    <p className="pb-5 sm:text-lg">
+                    <p className="pb-5 md:text-lg">
                         With several years of experience, I&apos;ve mastered the
                         art of developing user-friendly and scalable web apps
                         using React. My goal is to turn your vision into reality
@@ -25,7 +25,7 @@ export const AboutMeBlock: React.FC = () => (
                         and users. I pride myself in delivering high-quality
                         work on time and within budget.
                     </p>
-                    <p className="pb-5 sm:text-lg">
+                    <p className="pb-5 md:text-lg">
                         I&apos;m a great communicator and I thrive in a team
                         environment. Working with others to come up with
                         creative solutions to problems is what I live for. And
@@ -33,11 +33,11 @@ export const AboutMeBlock: React.FC = () => (
                         expand my knowledge and stay up-to-date with the latest
                         tech and industry trends.
                     </p>
-                    <p className="pb-5 sm:text-lg">
+                    <p className="pb-5 md:text-lg">
                         Thanks for checking out my website. I can&apos;t wait to
                         bring my skills to your next React project!
                     </p>
-                    <p className="pb-5 sm:text-lg">
+                    <p className="pb-5 md:text-lg">
                         Here are a few technologies I&apos;ve been working with
                         recently:
                     </p>
@@ -60,7 +60,7 @@ export const AboutMeBlock: React.FC = () => (
 
                 <Image
                     src={`${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/default/profile.jpg`}
-                    className="!relative hidden min-w-[40%] rounded-md pl-10 opacity-60 transition-all group-hover:opacity-100 sm:inline"
+                    className="!relative hidden min-w-[40%] rounded-md pl-10 opacity-60 transition-all group-hover:opacity-100 md:inline"
                     alt="Photo of myself"
                     fill
                 />
