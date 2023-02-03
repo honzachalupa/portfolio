@@ -1,8 +1,8 @@
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import { SectionContainer } from "../../layouts/Primary";
+import { AnimationFadeIn } from "../AnimationFadeIn";
 import { ButtonsContainer } from "../Button";
 import { LinkButton } from "../Button/Link";
-import { ContentBlockFadeIn } from "../ContentBlockFadeIn";
 
 export interface IGitHubRepository {
     id: string;
@@ -28,7 +28,7 @@ export const OtherProjectsBlock: React.FC<IProps> = ({ data }) => (
         <div className="flex flex-wrap gap-[16px]">
             {data?.map(
                 ({ id, name, html_url, description, topics, archived }) => (
-                    <ContentBlockFadeIn
+                    <AnimationFadeIn
                         key={id}
                         className="w-full rounded-sm bg-[#112240] p-5 leading-7 shadow-custom transition-all hover:bg-opacity-60 lg:w-[calc(50%-8px)]"
                     >
@@ -62,7 +62,7 @@ export const OtherProjectsBlock: React.FC<IProps> = ({ data }) => (
                                 ))}
                             </ul>
                         </a>
-                    </ContentBlockFadeIn>
+                    </AnimationFadeIn>
                 )
             )}
         </div>

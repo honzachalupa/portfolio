@@ -1,10 +1,10 @@
 import { SectionContainer } from "../../layouts/Primary";
+import { AnimationFadeIn } from "../AnimationFadeIn";
 import { ButtonsContainer } from "../Button";
 import { LinkButton } from "../Button/Link";
-import { ContentBlockFadeIn } from "../ContentBlockFadeIn";
 
 export const GetInTouchBlock: React.FC = () => (
-    <ContentBlockFadeIn>
+    <AnimationFadeIn>
         <SectionContainer className="text-center">
             <h2 className="pb-10 text-4xl font-medium text-white opacity-70">
                 Get in touch
@@ -25,5 +25,5 @@ export const GetInTouchBlock: React.FC = () => (
                 />
             </ButtonsContainer>
         </SectionContainer>
-    </ContentBlockFadeIn>
+    </AnimationFadeIn>
 );

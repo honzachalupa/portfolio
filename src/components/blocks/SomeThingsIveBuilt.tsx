@@ -3,7 +3,7 @@ import cx from "classnames";
 import Image from "next/image";
 import { Database } from "../../../supabase/types";
 import { SectionContainer } from "../../layouts/Primary";
-import { ContentBlockFadeIn } from "../ContentBlockFadeIn";
+import { AnimationFadeIn } from "../AnimationFadeIn";
 
 interface IProps {
     data: Database["public"]["Tables"]["projects"]["Row"][];
@@ -20,7 +20,7 @@ export const SomeThingsIveBuiltBlock: React.FC<IProps> = ({ data }) => (
                 const isOdd = i % 2 === 0;
 
                 return (
-                    <ContentBlockFadeIn key={id} className="mb-40 last:mb-0">
+                    <AnimationFadeIn key={id} className="mb-40 last:mb-0">
                         <div
                             className={cx("group flex w-full", {
                                 "flex-row-reverse": isOdd,
@@ -109,7 +109,7 @@ export const SomeThingsIveBuiltBlock: React.FC<IProps> = ({ data }) => (
                                 className="!relative !h-[300px] basis-1/2 rounded-md object-cover object-top opacity-60 transition-all group-hover:opacity-100"
                             />
                         </div>
-                    </ContentBlockFadeIn>
+                    </AnimationFadeIn>
                 );
             }
         )}

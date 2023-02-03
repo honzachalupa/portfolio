@@ -1,10 +1,10 @@
 import Image from "next/image";
 import { SectionContainer } from "../../layouts/Primary";
-import { ContentBlockFadeIn } from "../ContentBlockFadeIn";
+import { AnimationFadeIn } from "../AnimationFadeIn";
 import { ListItemWithIcon } from "../List";
 
 export const AboutMeBlock: React.FC = () => (
-    <ContentBlockFadeIn>
+    <AnimationFadeIn>
         <SectionContainer>
             <h2 className="pb-10 text-4xl font-medium text-white opacity-70">
                 About me
@@ -66,5 +66,5 @@ export const AboutMeBlock: React.FC = () => (
                 />
             </div>
         </SectionContainer>
-    </ContentBlockFadeIn>
+    </AnimationFadeIn>
 );
