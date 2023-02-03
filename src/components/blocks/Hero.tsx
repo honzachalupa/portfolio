@@ -40,7 +40,6 @@ export const HeroBlock: React.FC = () => {
                     "absolute bottom-5 left-[calc(50%-25px)] w-[50px] text-rose-600 transition-all duration-1000",
                     {
                         "-translate-y-10 opacity-0": distance > 500,
-                        "translate-y-0 opacity-100": distance <= 500,
                     }
                 )}
             />
