@@ -34,33 +34,49 @@ export const ViewDesktop: React.FC<IProps> = ({ data }) => {
                     </button>
                 ))}
             </div>
+
             {selectedItem && (
                 <article>
-                    <header>
-                        <h3 className="text-xl font-semibold text-white">
-                            {selectedItem.jobTitle} @{" "}
-                            <a
-                                href={selectedItem.clientUrl}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="text-rose-600"
-                            >
-                                {selectedItem.clientName}
-                            </a>
-                        </h3>
+                    <header className="flex flex-row justify-between">
+                        <div>
+                            <h3 className="text-xl font-semibold text-white">
+                                {selectedItem.jobTitle} @{" "}
+                                <a
+                                    href={selectedItem.clientUrl}
+                                    target="_blank"
+                                    rel="noreferrer"
+                                    className="text-rose-600"
+                                >
+                                    {selectedItem.clientName}
+                                </a>
+                            </h3>
 
-                        <p className="mt-2 font-mono text-sm">
-                            {moment(selectedItem.dateFrom).format("MMMM YYYY")}{" "}
-                            -{" "}
-                            {selectedItem.dateTo
-                                ? moment(selectedItem.dateTo).format(
-                                      "MMMM YYYY"
-                                  )
-                                : "Present"}
-                        </p>
+                            <p className="mt-2 font-mono text-sm">
+                                {moment(selectedItem.dateFrom).format(
+                                    "MMMM YYYY"
+                                )}{" "}
+                                -{" "}
+                                {selectedItem.dateTo
+                                    ? moment(selectedItem.dateTo).format(
+                                          "MMMM YYYY"
+                                      )
+                                    : "Present"}
+                            </p>
+                        </div>
+
+                        {selectedItem.iconSvg && (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img
+                                src={`data:image/svg+xml,${encodeURIComponent(
+                                    selectedItem.iconSvg
+                                )}`}
+                                alt={`${selectedItem.clientName} icon`}
+                                className="h-8"
+                            />
+                        )}
                     </header>
 
-                    <div className="mt-5 rounded-md bg-[#112240] px-7 py-5 leading-7 shadow-custom">
+                    <div className="mt-5 rounded-md bg-[#112240] px-7 py-5 shadow-custom">
                         <ul>
                             {selectedItem.jobDescription?.map((item) => (
                                 <li key={item}>{item}</li>

@@ -68,7 +68,7 @@ export const SomeThingsIveBuiltBlock: React.FC<IProps> = ({ data }) => (
 
                                     <h3
                                         className={cx(
-                                            "mb-5 flex justify-start text-3xl text-white",
+                                            "mb-5 flex text-3xl text-white",
                                             {
                                                 "flex-row-reverse": isOdd,
                                             }
@@ -113,7 +113,7 @@ export const SomeThingsIveBuiltBlock: React.FC<IProps> = ({ data }) => (
 
                                     <div
                                         className={cx(
-                                            "rounded-md bg-[#112240] px-7 py-5 leading-7 shadow-custom",
+                                            "rounded-md bg-[#112240] px-7 py-5 shadow-custom",
                                             { "text-right": isOdd }
                                         )}
                                     >

@@ -15,6 +15,7 @@ export interface Database {
           clientUrl: string
           dateFrom: string
           dateTo: string | null
+          iconSvg: string | null
           id: string
           jobDescription: string[]
           jobTitle: string
@@ -25,6 +26,7 @@ export interface Database {
           clientUrl: string
           dateFrom: string
           dateTo?: string | null
+          iconSvg?: string | null
           id: string
           jobDescription: string[]
           jobTitle: string
@@ -35,6 +37,7 @@ export interface Database {
           clientUrl?: string
           dateFrom?: string
           dateTo?: string | null
+          iconSvg?: string | null
           id?: string
           jobDescription?: string[]
           jobTitle?: string

@@ -51,7 +51,7 @@ export const OtherProjectsBlock: React.FC<IProps> = ({ data }) => (
                                 <ArrowTopRightOnSquareIcon className="ml-auto w-6 text-rose-600" />
                             </a>
 
-                            <p className="my-2 rounded-md bg-[#112240] p-5 text-sm leading-7 shadow-custom transition-all md:text-base">
+                            <p className="my-2 rounded-md bg-[#112240] p-5 text-sm shadow-custom transition-all md:text-base">
                                 {description}
                             </p>
 

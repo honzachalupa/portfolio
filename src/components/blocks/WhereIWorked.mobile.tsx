@@ -17,6 +17,7 @@ export const ViewMobile: React.FC<IProps> = ({ data }) => (
                     jobTitle,
                     jobDescription,
                     projectNames,
+                    iconSvg,
                     dateFrom,
                     dateTo,
                 }) => (
@@ -25,6 +26,17 @@ export const ViewMobile: React.FC<IProps> = ({ data }) => (
                         className="w-[90vw] snap-start pl-5 last:pr-5"
                     >
                         <header>
+                            {iconSvg && (
+                                // eslint-disable-next-line @next/next/no-img-element
+                                <img
+                                    src={`data:image/svg+xml,${encodeURIComponent(
+                                        iconSvg
+                                    )}`}
+                                    alt={`${clientName} icon`}
+                                    className="mb-3 h-8"
+                                />
+                            )}
+
                             <h3 className="text-xl font-semibold text-white">
                                 {jobTitle} @{" "}
                                 <a
@@ -45,7 +57,7 @@ export const ViewMobile: React.FC<IProps> = ({ data }) => (
                             </p>
                         </header>
 
-                        <div className="mt-5 rounded-md bg-[#112240] px-7 py-5 leading-7 shadow-custom">
+                        <div className="mt-5 rounded-md bg-[#112240] px-7 py-5 shadow-custom">
                             <ul>
                                 {jobDescription?.map((item) => (
                                     <li key={item}>{item}</li>
