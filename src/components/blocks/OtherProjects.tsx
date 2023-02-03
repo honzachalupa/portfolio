@@ -11,7 +11,7 @@ export interface IGitHubRepository {
     description: string;
     html_url: string;
     topics: string[];
-    updated_at: string;
+    pushed_at: string;
     archived: boolean;
 }
 
