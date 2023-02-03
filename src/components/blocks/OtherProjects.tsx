@@ -10,7 +10,7 @@ export interface IGitHubRepository {
     full_name: string;
     description: string;
     html_url: string;
-    topics: string[];
+    topics?: string[];
     pushed_at: string;
     archived: boolean;
 }
@@ -25,15 +25,19 @@ export const OtherProjectsBlock: React.FC<IProps> = ({ data }) => (
             Other noteworthy projects
         </h2>
 
-        <div className="flex flex-wrap gap-[16px]">
+        <div className="flex flex-wrap gap-[24px]">
             {data?.map(
                 ({ id, name, html_url, description, topics, archived }) => (
                     <AnimationFadeIn
                         key={id}
-                        className="w-full rounded-sm bg-[#112240] p-5 leading-7 shadow-custom transition-all hover:bg-opacity-60 lg:w-[calc(50%-8px)]"
+                        className="my-5 w-full lg:w-[calc(50%-12px)]"
                     >
-                        <a href={html_url} title="View code">
-                            <div className="flex">
+                        <div>
+                            <a
+                                href={html_url}
+                                title="View code"
+                                className="flex"
+                            >
                                 <h4 className="text-rose-600">{name}</h4>
 
                                 {archived && (
@@ -45,23 +49,25 @@ export const OtherProjectsBlock: React.FC<IProps> = ({ data }) => (
                                 )}
 
                                 <ArrowTopRightOnSquareIcon className="ml-auto w-6 text-rose-600" />
-                            </div>
+                            </a>
 
-                            <p className="my-2 text-sm sm:text-base">
+                            <p className="my-2 rounded-md bg-[#112240] p-5 text-sm leading-7 shadow-custom transition-all sm:text-base">
                                 {description}
                             </p>
 
-                            <ul className="mt-5">
-                                {topics.map((topic) => (
-                                    <li
-                                        key={topic}
-                                        className="mr-5 inline-block font-mono text-xs text-white sm:text-sm"
-                                    >
-                                        {topic}
-                                    </li>
-                                ))}
-                            </ul>
-                        </a>
+                            {topics && (
+                                <ul className="mt-2 text-right">
+                                    {topics.map((topic) => (
+                                        <li
+                                            key={topic}
+                                            className="mr-5 inline-block font-mono text-xs text-white sm:text-sm"
+                                        >
+                                            {topic}
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
+                        </div>
                     </AnimationFadeIn>
                 )
             )}
