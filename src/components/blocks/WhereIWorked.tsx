@@ -2,6 +2,7 @@ import cx from "classnames";
 import moment from "moment";
 import { useMemo, useState } from "react";
 import { Database } from "../../../supabase/types";
+import { SectionContainer } from "../../layouts/Primary";
 import { ContentBlockFadeIn } from "../ContentBlockFadeIn";
 import { ListItemWithIcon } from "../List";
 
@@ -19,7 +20,7 @@ export const WhereIWorkedBlock: React.FC<IProps> = ({ data }) => {
 
     return (
         <ContentBlockFadeIn>
-            <section className="mx-auto max-w-[60vw] py-36">
+            <SectionContainer>
                 <h2 className="pb-10 text-4xl font-medium text-white opacity-70">
                     Where I&apos;ve worked
                 </h2>
@@ -97,7 +98,7 @@ export const WhereIWorkedBlock: React.FC<IProps> = ({ data }) => {
                         </article>
                     )}
                 </div>
-            </section>
+            </SectionContainer>
         </ContentBlockFadeIn>
     );
 };

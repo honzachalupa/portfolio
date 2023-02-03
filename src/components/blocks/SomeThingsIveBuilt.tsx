@@ -2,6 +2,7 @@ import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import cx from "classnames";
 import Image from "next/image";
 import { Database } from "../../../supabase/types";
+import { SectionContainer } from "../../layouts/Primary";
 import { ContentBlockFadeIn } from "../ContentBlockFadeIn";
 
 interface IProps {
@@ -9,7 +10,7 @@ interface IProps {
 }
 
 export const SomeThingsIveBuiltBlock: React.FC<IProps> = ({ data }) => (
-    <section className="mx-auto -mb-40 max-w-[60vw] py-36">
+    <SectionContainer>
         <h2 className="pb-10 text-4xl font-medium text-white opacity-70">
             Some things I&apos;ve built
         </h2>
@@ -19,7 +20,7 @@ export const SomeThingsIveBuiltBlock: React.FC<IProps> = ({ data }) => (
                 const isOdd = i % 2 === 0;
 
                 return (
-                    <ContentBlockFadeIn key={id} className="mb-40">
+                    <ContentBlockFadeIn key={id} className="mb-40 last:mb-0">
                         <div
                             className={cx("group flex w-full", {
                                 "flex-row-reverse": isOdd,
@@ -112,5 +113,5 @@ export const SomeThingsIveBuiltBlock: React.FC<IProps> = ({ data }) => (
                 );
             }
         )}
-    </section>
+    </SectionContainer>
 );

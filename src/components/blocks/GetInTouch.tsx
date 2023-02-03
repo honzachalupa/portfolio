@@ -1,10 +1,11 @@
+import { SectionContainer } from "../../layouts/Primary";
 import { ButtonsContainer } from "../Button";
 import { LinkButton } from "../Button/Link";
 import { ContentBlockFadeIn } from "../ContentBlockFadeIn";
 
 export const GetInTouchBlock: React.FC = () => (
     <ContentBlockFadeIn>
-        <section className="mx-auto max-w-[60vw] py-36 text-center">
+        <SectionContainer className="text-center">
             <h2 className="pb-10 text-4xl font-medium text-white opacity-70">
                 Get in touch
             </h2>
@@ -23,6 +24,6 @@ export const GetInTouchBlock: React.FC = () => (
                     href="mailto:janchalupa@outlook.cz"
                 />
             </ButtonsContainer>
-        </section>
+        </SectionContainer>
     </ContentBlockFadeIn>
 );

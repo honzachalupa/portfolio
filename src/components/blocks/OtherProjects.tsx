@@ -1,17 +1,18 @@
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
+import { SectionContainer } from "../../layouts/Primary";
 import { ButtonsContainer } from "../Button";
 import { LinkButton } from "../Button/Link";
 import { ContentBlockFadeIn } from "../ContentBlockFadeIn";
 
 export interface IGitHubRepository {
     id: string;
+    name: string;
     full_name: string;
     description: string;
     html_url: string;
     topics: string[];
     updated_at: string;
     archived: boolean;
-    disabled: boolean;
 }
 
 interface IProps {
@@ -19,39 +20,51 @@ interface IProps {
 }
 
 export const OtherProjectsBlock: React.FC<IProps> = ({ data }) => (
-    <section className="mx-auto max-w-[60vw] py-36">
+    <SectionContainer>
         <h2 className="pb-10 text-center text-4xl font-medium text-white opacity-70">
             Other noteworthy projects
         </h2>
 
         <div className="flex flex-wrap gap-[16px]">
-            {data?.map(({ id, full_name, html_url, description, topics }) => (
-                <ContentBlockFadeIn
-                    key={id}
-                    className="w-full rounded-sm bg-white bg-opacity-5 p-5 transition-all hover:bg-opacity-10 lg:w-[calc(50%-8px)]"
-                >
-                    <a href={html_url} title="View code">
-                        <div className="flex justify-between">
-                            <h4 className="text-rose-600">{full_name}</h4>
+            {data?.map(
+                ({ id, name, html_url, description, topics, archived }) => (
+                    <ContentBlockFadeIn
+                        key={id}
+                        className="w-full rounded-sm bg-[#112240] p-5 leading-7 shadow-custom transition-all hover:bg-opacity-60 lg:w-[calc(50%-8px)]"
+                    >
+                        <a href={html_url} title="View code">
+                            <div className="flex">
+                                <h4 className="text-rose-600">{name}</h4>
 
-                            <ArrowTopRightOnSquareIcon className="w-6 text-rose-600" />
-                        </div>
+                                {archived && (
+                                    <p className="ml-4 rounded-full border border-orange-400 px-2">
+                                        <span className="relative bottom-0.5 text-xs text-orange-400">
+                                            Archived
+                                        </span>
+                                    </p>
+                                )}
 
-                        <p className="my-2">{description}</p>
+                                <ArrowTopRightOnSquareIcon className="ml-auto w-6 text-rose-600" />
+                            </div>
 
-                        <ul className="mt-5">
-                            {topics.map((topic) => (
-                                <li
-                                    key={topic}
-                                    className="mr-5 inline font-mono text-sm text-white"
-                                >
-                                    {topic}
-                                </li>
-                            ))}
-                        </ul>
-                    </a>
-                </ContentBlockFadeIn>
-            ))}
+                            <p className="my-2 text-sm sm:text-base">
+                                {description}
+                            </p>
+
+                            <ul className="mt-5">
+                                {topics.map((topic) => (
+                                    <li
+                                        key={topic}
+                                        className="mr-5 inline-block font-mono text-xs text-white sm:text-sm"
+                                    >
+                                        {topic}
+                                    </li>
+                                ))}
+                            </ul>
+                        </a>
+                    </ContentBlockFadeIn>
+                )
+            )}
         </div>
 
         <ButtonsContainer className="mt-16">
@@ -61,5 +74,5 @@ export const OtherProjectsBlock: React.FC<IProps> = ({ data }) => (
                 target="_blank"
             />
         </ButtonsContainer>
-    </section>
+    </SectionContainer>
 );

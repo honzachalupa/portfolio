@@ -4,13 +4,13 @@ import { JobActions } from "../actions/job";
 import { ProjectActions } from "../actions/project";
 import { AboutMeBlock } from "../components/blocks/AboutMe";
 import { GetInTouchBlock } from "../components/blocks/GetInTouch";
+import { HeroBlock } from "../components/blocks/Hero";
 import {
     IGitHubRepository,
     OtherProjectsBlock,
 } from "../components/blocks/OtherProjects";
 import { SomeThingsIveBuiltBlock } from "../components/blocks/SomeThingsIveBuilt";
 import { WhereIWorkedBlock } from "../components/blocks/WhereIWorked";
-import { Hero } from "../components/Hero";
 import { LayoutPrimary as Layout } from "../layouts/Primary";
 
 export default function Index({
@@ -22,7 +22,7 @@ export default function Index({
         <Layout>
             <h1 className="hidden">{config.appName}</h1>
 
-            <Hero />
+            <HeroBlock />
             <AboutMeBlock />
             <WhereIWorkedBlock data={jobs} />
             <SomeThingsIveBuiltBlock data={projects} />
