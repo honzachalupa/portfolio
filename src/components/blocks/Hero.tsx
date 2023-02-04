@@ -24,7 +24,7 @@ export const HeroBlock: React.FC = () => {
             </p>
 
             <p className="mt-7 font-light text-white opacity-40">
-                I&apos;am a React Developer with a passion for delivering
+                I&apos;am a Full-Stack Engineer with a passion for delivering
                 quality
                 <br />
                 solutions and exploring new ways of solving problems.
