@@ -13,14 +13,14 @@ export const AnimationFadeIn: React.FC<IProps> = ({
     children,
     debug,
 }) => {
-    const [isInView, elementRef] = useElementVisibility({ debug });
+    const [{ isVisible }, elementRef] = useElementVisibility({ debug });
 
     return (
         <div
             ref={elementRef}
-            className={cx(className, "delay-50 transition duration-500", {
-                "translate-y-0 opacity-100": isInView,
-                "translate-y-10 opacity-0": !isInView,
+            className={cx(className, "transition delay-200 duration-500", {
+                "translate-y-0 opacity-100": isVisible,
+                "translate-y-10 opacity-0": !isVisible,
                 "border border-red-800": debug,
             })}
         >

@@ -1,49 +1,49 @@
-import throttle from "lodash/throttle";
 import { useEffect, useRef, useState } from "react";
+
+interface IState {
+    isVisible: boolean;
+    intersectionRatio: number;
+}
 
 export const useElementVisibility = <Element extends HTMLDivElement>({
     debug,
 }: {
     debug?: boolean;
-}): [boolean, React.RefObject<Element>] => {
-    const [isInView, setIsInView] = useState<boolean>(false);
+}): [IState, React.RefObject<Element>] => {
+    const [visibilityData, setVisibilityData] = useState<IState>({
+        isVisible: false,
+        intersectionRatio: 0,
+    });
 
     const elementRef = useRef<Element>(null);
 
-    const offset = 50;
-    const throttleMilliseconds = 200;
-
-    const onScroll = throttle(() => {
-        if (!elementRef.current) {
-            setIsInView(false);
-
-            return;
-        }
-
-        const { top, bottom } = elementRef.current.getBoundingClientRect();
-
-        const isTopEdgeInView =
-            top + offset >= 0 && top - offset <= window.innerHeight;
-        const isBottomEdgeInView =
-            bottom + offset >= 0 && bottom - offset <= window.innerHeight;
-
-        if (debug) {
-            console.log("useVisibility", {
-                top: isTopEdgeInView,
-                bottom: isBottomEdgeInView,
-            });
-        }
-
-        setIsInView(isTopEdgeInView || isBottomEdgeInView);
-    }, throttleMilliseconds);
-
     useEffect(() => {
-        document.addEventListener("scroll", onScroll, true);
+        let observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    setVisibilityData({
+                        isVisible: entry.intersectionRatio > 0,
+                        intersectionRatio: entry.intersectionRatio,
+                    });
+                });
+            },
+            {
+                rootMargin: "-10px",
+            }
+        );
+
+        observer.observe(elementRef.current!);
 
         return () => {
-            document.removeEventListener("scroll", onScroll, true);
+            observer.disconnect();
         };
-    });
+    }, []);
 
-    return [isInView, elementRef];
+    useEffect(() => {
+        if (debug) {
+            console.log(visibilityData);
+        }
+    }, [debug, visibilityData]);
+
+    return [visibilityData, elementRef];
 };
