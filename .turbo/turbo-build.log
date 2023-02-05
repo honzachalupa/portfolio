@@ -1,0 +1,79 @@
+yarn run v1.22.19
+$ yarn lint && yarn generate-types && next build
+$ next lint
+info  - Loaded env from /Users/janchalupa/Projects/portfolio/.env
+✔ No ESLint warnings or errors
+$ npx supabase gen types typescript --project-id tnoaoskjsqzxockjstot --schema public > supabase/types.ts
+info  - Loaded env from /Users/janchalupa/Projects/portfolio/.env
+info  - Linting and checking validity of types...
+info  - Creating an optimized production build...
+> [PWA] Compile client (static)
+> [PWA] Auto register service worker with: /Users/janchalupa/Projects/portfolio/node_modules/next-pwa/register.js
+> [PWA] Service worker: /Users/janchalupa/Projects/portfolio/public/sw.js
+> [PWA]   url: /sw.js
+> [PWA]   scope: /
+> [PWA] Compile server
+> [PWA] Compile server
+warn  - Compiled with warnings
+
+./node_modules/@logtail/node/dist/es6/context.js
+Critical dependency: require function is used in a way in which dependencies cannot be statically extracted
+
+Import trace for requested module:
+./node_modules/@logtail/node/dist/es6/context.js
+./node_modules/@logtail/node/dist/es6/node.js
+./node_modules/@logtail/node/dist/es6/index.js
+./node_modules/@logtail/js/dist/es6/index.js
+./node_modules/@honzachalupa/utils/index.esm.js
+./src/components/admin/ProjectsList.tsx
+
+info  - Collecting page data...
+info  - Generating static pages (0/5)
+info  - Generating static pages (1/5)
+info  - Generating static pages (2/5)
+info  - Generating static pages (3/5)
+info  - Generating static pages (5/5)
+info  - Finalizing page optimization...
+
+Route (pages)                              Size     First Load JS
+┌ λ /                                      7.3 kB          156 kB
+├   /_app                                  0 B             110 kB
+├ ○ /404                                   181 B           110 kB
+├ ○ /administration                        32.1 kB         181 kB
+├ ○ /sign-in                               2.07 kB         147 kB
+└ ○ /sign-out                              1.78 kB         147 kB
++ First Load JS shared by all              114 kB
+  ├ chunks/framework-114634acb84f8baa.js   45.4 kB
+  ├ chunks/main-8e65c6fcee628a80.js        29.3 kB
+  ├ chunks/pages/_app-1f0fff948c5a275c.js  34.6 kB
+  ├ chunks/webpack-dbca7c9a1026ae6e.js     1.05 kB
+  └ css/fc35a8395057a39d.css               3.62 kB
+
+λ  (Server)  server-side renders at runtime (uses getInitialProps or getServerSideProps)
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+
+$ next-sitemap --config sitemap.config.js
+Loaded env from /Users/janchalupa/Projects/portfolio/.env
+✨ [next-sitemap] Loading next-sitemap config: file:///Users/janchalupa/Projects/portfolio/sitemap.config.js
+✅ [next-sitemap] Generation completed
+┌───────────────┬────────┐
+│    (index)    │ Values │
+├───────────────┼────────┤
+│ indexSitemaps │   1    │
+│   sitemaps    │   1    │
+└───────────────┴────────┘
+-----------------------------------------------------
+ SITEMAP INDICES 
+-----------------------------------------------------
+
+   ○ https://janchalupa.dev/sitemap.xml
+
+
+-----------------------------------------------------
+ SITEMAPS 
+-----------------------------------------------------
+
+   ○ https://janchalupa.dev/sitemap-0.xml
+
+
+Done in 13.36s.
