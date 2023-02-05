@@ -15,7 +15,7 @@ export default function Administration() {
     }, [router, user, isLoading]);
 
     return user ? (
-        <Layout>
+        <Layout headline="Administration">
             <ProjectsList />
         </Layout>
     ) : null;

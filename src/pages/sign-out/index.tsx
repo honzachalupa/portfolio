@@ -19,7 +19,7 @@ export default function SignOut() {
     }, [router, user, isLoading]);
 
     return (
-        <Layout headline="Authentication">
+        <Layout headline="Sign Out">
             <ButtonsContainer>
                 <Button label="Sign Out" onClick={handleSignOut} />
             </ButtonsContainer>

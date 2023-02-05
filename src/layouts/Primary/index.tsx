@@ -1,10 +1,10 @@
-import Head from "next/head";
 import { ReactNode } from "react";
 import { config } from "../../../config";
 import { TidioChat } from "../../components/TidioChat";
 import { ColorOverlay } from "./components/ColorOverlay";
 import { SectionContainer } from "./components/Container";
 import { Footer } from "./components/Footer";
+import { Head } from "./components/Head";
 
 interface IProps {
     headline?: string;
@@ -15,29 +15,17 @@ export const LayoutPrimary: React.FC<IProps> = ({ headline, children }) => {
     const title = [headline, config.appName].filter(Boolean).join(" | ");
 
     return (
-        <div className="overflow-hidden tracking-wider">
-            <Head>
-                <title>{title}</title>
+        <>
+            <Head title={title} />
 
-                <meta
-                    name="viewport"
-                    content="width=device-width, initial-scale=1"
-                />
+            <div className="overflow-hidden tracking-wider">
+                {children}
 
-                <meta name="mobile-web-app-capable" content="yes" />
-                <meta name="apple-mobile-web-app-capable" content="yes" />
-                <meta
-                    name="apple-mobile-web-app-status-bar-style"
-                    content="black-translucent"
-                />
-            </Head>
-
-            {children}
-
-            <Footer />
-            <ColorOverlay />
-            <TidioChat />
-        </div>
+                <Footer />
+                <ColorOverlay />
+                <TidioChat />
+            </div>
+        </>
     );
 };
 

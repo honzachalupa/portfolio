@@ -29,7 +29,7 @@ export default function SignIn() {
     };
 
     return (
-        <Layout headline="Authentication">
+        <Layout headline="Sign In">
             <div className="my-2">
                 <label
                     htmlFor="email"
