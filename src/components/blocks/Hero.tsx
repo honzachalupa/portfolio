@@ -19,11 +19,11 @@ export const HeroBlock: React.FC = () => {
                 Jan Chalupa.
             </p>
 
-            <p className="text-3xl font-semibold text-white opacity-40 md:text-7xl">
+            <p className="text-3xl font-semibold text-gray-400 opacity-30 md:text-7xl">
                 I build things for the web.
             </p>
 
-            <p className="mt-7 font-light text-white opacity-40">
+            <p className="mt-7 text-lg font-light text-white opacity-40">
                 I&apos;am a Full-Stack Engineer with a passion for delivering
                 quality
                 <br />

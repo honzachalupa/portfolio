@@ -78,7 +78,9 @@ export const ViewDesktop: React.FC<IProps> = ({ jobs }) => {
                     <div className="mt-5 rounded-md bg-[#112240] px-7 py-5 shadow-custom">
                         <ul>
                             {selectedItem.jobDescription?.map((item) => (
-                                <li key={item}>{item}</li>
+                                <li key={item} className="pb-3">
+                                    {item}
+                                </li>
                             ))}
                         </ul>
 

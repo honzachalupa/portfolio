@@ -90,26 +90,6 @@ export interface Database {
           url?: string | null
         }
       }
-      users: {
-        Row: {
-          emailAddress: string | null
-          firstName: string | null
-          id: string
-          lastName: string | null
-        }
-        Insert: {
-          emailAddress?: string | null
-          firstName?: string | null
-          id: string
-          lastName?: string | null
-        }
-        Update: {
-          emailAddress?: string | null
-          firstName?: string | null
-          id?: string
-          lastName?: string | null
-        }
-      }
     }
     Views: {
       [_ in never]: never
