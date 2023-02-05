@@ -5,11 +5,7 @@ import { LinkButton } from "../Button/Link";
 
 export const GetInTouchBlock: React.FC = () => (
     <AnimationFadeIn>
-        <SectionContainer className="text-center">
-            <h2 className="pb-10 text-4xl font-medium text-white opacity-70">
-                Get in touch
-            </h2>
-
+        <SectionContainer headline="Get In Touch" className="text-center">
             <p>
                 Although I&apos;m not currently looking for any new
                 opportunities, my inbox is always open.

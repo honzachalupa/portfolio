@@ -1,25 +1,25 @@
 import cx from "classnames";
 import moment from "moment";
 import { useMemo, useState } from "react";
-import { Database } from "../../../supabase/types";
+import { TJob } from "../../actions/job";
 import { ListItemWithIcon } from "../List";
 
 interface IProps {
-    data: Database["public"]["Tables"]["jobs"]["Row"][];
+    jobs: TJob[];
 }
 
-export const ViewDesktop: React.FC<IProps> = ({ data }) => {
+export const ViewDesktop: React.FC<IProps> = ({ jobs }) => {
     const [selectedItemId, setSelectedItemId] = useState<string>("edhance");
 
     const selectedItem = useMemo(
-        () => data.find(({ id }) => id === selectedItemId) || data[0],
-        [data, selectedItemId]
+        () => jobs.find(({ id }) => id === selectedItemId) || jobs[0],
+        [jobs, selectedItemId]
     );
 
     return (
         <div className="hidden md:flex">
             <div className="mr-10 basis-0">
-                {data.map(({ id, clientName }) => (
+                {jobs.map(({ id, client }) => (
                     <button
                         key={id}
                         className={cx(
@@ -30,7 +30,7 @@ export const ViewDesktop: React.FC<IProps> = ({ data }) => {
                         )}
                         onClick={() => setSelectedItemId(id)}
                     >
-                        {clientName}
+                        {client.name}
                     </button>
                 ))}
             </div>
@@ -42,12 +42,12 @@ export const ViewDesktop: React.FC<IProps> = ({ data }) => {
                             <h3 className="text-xl font-semibold text-white">
                                 {selectedItem.jobTitle} @{" "}
                                 <a
-                                    href={selectedItem.clientUrl}
+                                    href={selectedItem.client.url}
                                     target="_blank"
                                     rel="noreferrer"
                                     className="text-rose-600"
                                 >
-                                    {selectedItem.clientName}
+                                    {selectedItem.client.name}
                                 </a>
                             </h3>
 
@@ -64,14 +64,13 @@ export const ViewDesktop: React.FC<IProps> = ({ data }) => {
                             </p>
                         </div>
 
-                        {selectedItem.iconSvg && (
-                            // eslint-disable-next-line @next/next/no-img-element
+                        {selectedItem.client.logo && (
                             <img
                                 src={`data:image/svg+xml,${encodeURIComponent(
-                                    selectedItem.iconSvg
+                                    selectedItem.client.logo
                                 )}`}
-                                alt={`${selectedItem.clientName} icon`}
-                                className="h-8"
+                                alt={`${selectedItem.client.name} icon`}
+                                className="w-32 object-contain"
                             />
                         )}
                     </header>

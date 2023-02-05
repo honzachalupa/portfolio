@@ -12,7 +12,9 @@ const create = async (
 };
 
 const search = async () => {
-    const { data, error } = await supabase.from("projects").select();
+    const { data, error } = await supabase
+        .from("projects")
+        .select("*, client:clients(*)");
 
     if (error) {
         throw new Error(error.message);
@@ -22,10 +24,14 @@ const search = async () => {
         throw new Error("Record not found");
     }
 
-    return data;
+    return data as TProject[];
 };
 
 export const ProjectActions = {
     create,
     search,
+};
+
+export type TProject = Database["public"]["Tables"]["projects"]["Row"] & {
+    client?: Database["public"]["Tables"]["clients"]["Row"];
 };

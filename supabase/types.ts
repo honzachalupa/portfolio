@@ -9,35 +9,49 @@ export type Json =
 export interface Database {
   public: {
     Tables: {
+      clients: {
+        Row: {
+          id: string
+          logo: string | null
+          name: string
+          url: string
+        }
+        Insert: {
+          id: string
+          logo?: string | null
+          name: string
+          url: string
+        }
+        Update: {
+          id?: string
+          logo?: string | null
+          name?: string
+          url?: string
+        }
+      }
       jobs: {
         Row: {
-          clientName: string
-          clientUrl: string
+          clientId: string
           dateFrom: string
           dateTo: string | null
-          iconSvg: string | null
           id: string
           jobDescription: string[]
           jobTitle: string
           projectNames: string[] | null
         }
         Insert: {
-          clientName: string
-          clientUrl: string
+          clientId: string
           dateFrom: string
           dateTo?: string | null
-          iconSvg?: string | null
           id: string
           jobDescription: string[]
           jobTitle: string
           projectNames?: string[] | null
         }
         Update: {
-          clientName?: string
-          clientUrl?: string
+          clientId?: string
           dateFrom?: string
           dateTo?: string | null
-          iconSvg?: string | null
           id?: string
           jobDescription?: string[]
           jobTitle?: string
@@ -46,6 +60,7 @@ export interface Database {
       }
       projects: {
         Row: {
+          clientId: string | null
           description: string
           id: string
           imageUrl: string
@@ -55,6 +70,7 @@ export interface Database {
           url: string | null
         }
         Insert: {
+          clientId?: string | null
           description: string
           id: string
           imageUrl: string
@@ -64,6 +80,7 @@ export interface Database {
           url?: string | null
         }
         Update: {
+          clientId?: string | null
           description?: string
           id?: string
           imageUrl?: string

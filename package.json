@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "yarn lint && yarn generate-types && next dev",
+        "dev": "next lint && yarn generate-types && next dev",
         "build": "yarn lint && yarn generate-types && next build",
         "start": "next start",
         "lint": "next lint",
@@ -12,18 +12,15 @@
         "postbuild": "next-sitemap --config sitemap.config.js"
     },
     "dependencies": {
-        "@headlessui/react": "^1.7.7",
         "@heroicons/react": "^2.0.14",
         "@honzachalupa/utils": "^1.45.5",
         "@styled-icons/boxicons-logos": "^10.47.0",
         "@supabase/supabase-js": "^2.4.0",
         "@tanstack/react-query": "^4.24.4",
         "classnames": "^2.3.2",
-        "flowbite": "^1.6.2",
         "lodash": "^4.17.21",
         "moment": "^2.29.4",
         "next": "13.1.1",
-        "next-sitemap": "^3.1.49",
         "nextjs-google-analytics": "^2.3.0",
         "react": "18.2.0",
         "react-dom": "18.2.0",
@@ -45,10 +42,12 @@
         "husky": "^8.0.3",
         "iconv-lite": "^0.6.3",
         "next-pwa": "^5.6.0",
+        "next-sitemap": "^3.1.49",
         "postcss": "^8.4.21",
         "prettier": "^2.8.3",
         "prettier-plugin-tailwindcss": "^0.2.1",
         "tailwindcss": "^3.2.4",
+        "turbo": "^1.7.3",
         "typescript": "4.9.4"
     }
 }

@@ -41,7 +41,7 @@ export const useElementVisibility = <Element extends HTMLDivElement>({
 
     useEffect(() => {
         if (debug) {
-            console.log(visibilityData);
+            console.info(visibilityData);
         }
     }, [debug, visibilityData]);
 

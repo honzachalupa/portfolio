@@ -1,23 +1,21 @@
 import moment from "moment";
-import { Database } from "../../../supabase/types";
+import { TJob } from "../../actions/job";
 import { ListItemWithIcon } from "../List";
 
 interface IProps {
-    data: Database["public"]["Tables"]["jobs"]["Row"][];
+    jobs: TJob[];
 }
 
-export const ViewMobile: React.FC<IProps> = ({ data }) => (
+export const ViewMobile: React.FC<IProps> = ({ jobs }) => (
     <div className="hide-scrollbar -mx-5 snap-x snap-mandatory overflow-x-scroll md:hidden">
-        <div className={`flex w-[${data.length * 90}vw] float-left`}>
-            {data.map(
+        <div className={`flex w-[${jobs.length * 90}vw] float-left`}>
+            {jobs.map(
                 ({
                     id,
-                    clientName,
-                    clientUrl,
                     jobTitle,
                     jobDescription,
                     projectNames,
-                    iconSvg,
+                    client,
                     dateFrom,
                     dateTo,
                 }) => (
@@ -26,26 +24,25 @@ export const ViewMobile: React.FC<IProps> = ({ data }) => (
                         className="w-[90vw] snap-start pl-5 last:pr-5"
                     >
                         <header>
-                            {iconSvg && (
-                                // eslint-disable-next-line @next/next/no-img-element
+                            {client.logo && (
                                 <img
                                     src={`data:image/svg+xml,${encodeURIComponent(
-                                        iconSvg
+                                        client.logo
                                     )}`}
-                                    alt={`${clientName} icon`}
-                                    className="mb-3 h-8"
+                                    alt={`${client.name} icon`}
+                                    className="mb-3 w-32 object-contain"
                                 />
                             )}
 
                             <h3 className="text-xl font-semibold text-white">
                                 {jobTitle} @{" "}
                                 <a
-                                    href={clientUrl}
+                                    href={client.url}
                                     target="_blank"
                                     rel="noreferrer"
                                     className="text-rose-600"
                                 >
-                                    {clientName}
+                                    {client.name}
                                 </a>
                             </h3>
 

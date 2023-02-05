@@ -1,22 +1,18 @@
-import { Database } from "../../../supabase/types";
+import { TJob } from "../../actions/job";
 import { SectionContainer } from "../../layouts/Primary";
 import { AnimationFadeIn } from "../AnimationFadeIn";
 import { ViewDesktop } from "./WhereIWorked.desktop";
 import { ViewMobile } from "./WhereIWorked.mobile";
 
 interface IProps {
-    data: Database["public"]["Tables"]["jobs"]["Row"][];
+    jobs: TJob[];
 }
 
-export const WhereIWorkedBlock: React.FC<IProps> = ({ data }) => (
+export const WhereIWorkedBlock: React.FC<IProps> = ({ jobs }) => (
     <AnimationFadeIn>
-        <SectionContainer>
-            <h2 className="pb-10 text-4xl font-medium text-white opacity-70">
-                Where I&apos;ve worked
-            </h2>
-
-            <ViewDesktop data={data} />
-            <ViewMobile data={data} />
+        <SectionContainer headline="Where I've Worked">
+            <ViewDesktop jobs={jobs} />
+            <ViewMobile jobs={jobs} />
         </SectionContainer>
     </AnimationFadeIn>
 );

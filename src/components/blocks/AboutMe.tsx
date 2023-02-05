@@ -5,11 +5,7 @@ import { ListItemWithIcon } from "../List";
 
 export const AboutMeBlock: React.FC = () => (
     <AnimationFadeIn>
-        <SectionContainer>
-            <h2 className="pb-10 text-4xl font-medium text-white opacity-70">
-                About me
-            </h2>
-
+        <SectionContainer headline="About Me">
             <div className="group flex">
                 <div>
                     <p className="pb-5 md:text-lg">

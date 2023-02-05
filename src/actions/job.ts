@@ -14,7 +14,7 @@ const create = async (
 const search = async () => {
     const { data, error } = await supabase
         .from("jobs")
-        .select()
+        .select("*, client:clients(*)")
         .order("dateFrom", { ascending: false });
 
     if (error) {
@@ -25,10 +25,14 @@ const search = async () => {
         throw new Error("Record not found");
     }
 
-    return data;
+    return data as TJob[];
 };
 
 export const JobActions = {
     create,
     search,
+};
+
+export type TJob = Database["public"]["Tables"]["jobs"]["Row"] & {
+    client: Database["public"]["Tables"]["clients"]["Row"];
 };

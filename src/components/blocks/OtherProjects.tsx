@@ -1,46 +1,33 @@
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
+import { IGitHubRepository } from "../../actions/github";
 import { SectionContainer } from "../../layouts/Primary";
 import { AnimationFadeIn } from "../AnimationFadeIn";
+import { BlockHeadline } from "../BlockHeadline";
 import { ButtonsContainer } from "../Button";
 import { LinkButton } from "../Button/Link";
 
-export interface IGitHubRepository {
-    id: string;
-    name: string;
-    full_name: string;
-    description: string;
-    html_url: string;
-    topics?: string[];
-    pushed_at: string;
-    archived: boolean;
-}
-
 interface IProps {
-    data: IGitHubRepository[];
+    repositories: IGitHubRepository[];
 }
 
-export const OtherProjectsBlock: React.FC<IProps> = ({ data }) => (
+export const OtherProjectsBlock: React.FC<IProps> = ({ repositories }) => (
     <SectionContainer>
-        <h2 className="pb-10 text-center text-4xl font-medium text-white opacity-70">
-            Other noteworthy projects
-        </h2>
+        <BlockHeadline className="text-center">
+            Other Noteworthy Projects
+        </BlockHeadline>
 
         <div className="flex flex-wrap gap-[24px]">
-            {data?.map(
-                ({ id, name, html_url, description, topics, archived }) => (
+            {repositories?.map(
+                ({ id, name, url, description, topics, isArchived }) => (
                     <AnimationFadeIn
                         key={id}
                         className="my-5 w-full md:w-[calc(50%-12px)]"
                     >
                         <div>
-                            <a
-                                href={html_url}
-                                title="View code"
-                                className="flex"
-                            >
+                            <a href={url} title="View code" className="flex">
                                 <h4 className="text-rose-600">{name}</h4>
 
-                                {archived && (
+                                {isArchived && (
                                     <p className="ml-4 rounded-full border border-orange-400 px-2">
                                         <span className="relative bottom-0.5 text-xs text-orange-400">
                                             Archived

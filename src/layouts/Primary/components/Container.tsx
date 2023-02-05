@@ -1,11 +1,13 @@
 import cx from "classnames";
 import { ReactNode } from "react";
+import { BlockHeadline } from "../../../components/BlockHeadline";
 
 export const SectionContainer: React.FC<{
+    headline?: string;
     wider?: boolean;
     className?: string;
     children: ReactNode;
-}> = ({ wider, className, children }) => (
+}> = ({ headline, wider, className, children }) => (
     <section
         className={cx(
             "mx-auto w-screen py-16 px-5 md:py-36",
@@ -16,6 +18,8 @@ export const SectionContainer: React.FC<{
             className
         )}
     >
+        {headline && <BlockHeadline>{headline}</BlockHeadline>}
+
         {children}
     </section>
 );
