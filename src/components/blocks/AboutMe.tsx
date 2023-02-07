@@ -10,7 +10,7 @@ export const AboutMeBlock: React.FC = () => (
                 <div>
                     <p className="pb-5 md:text-lg">
                         Hey there! I&apos;m Jan and I&apos;m a Full-Stack
-                        Engineer who loves to create top-notch web apps that
+                        Developer who loves to create top-notch web apps that
                         people love to use.
                     </p>
                     <p className="pb-5 md:text-lg">

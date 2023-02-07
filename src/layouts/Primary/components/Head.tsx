@@ -22,7 +22,7 @@ export const Head: React.FC<IProps> = ({ title }) => (
 
         <NextSeo
             title={title}
-            description="I'am a Full-Stack Engineer with a passion for delivering quality solutions and exploring new ways of solving problems. Proficient in React.js, Next.js and Node.js, with past experience with .NET development. Constantly seeking new challenges in software development."
+            description="I'am a Full-Stack Developer with a passion for delivering quality solutions and exploring new ways of solving problems. Proficient in React.js, Next.js and Node.js, with past experience with .NET development. Constantly seeking new challenges in software development."
         />
     </>
 );
