@@ -1,6 +1,6 @@
 import cx from "classnames";
 import { ReactNode } from "react";
-import { useElementVisibility } from "../../hooks/useElementVisibility";
+import { useElementVisibility } from "../hooks/useElementVisibility";
 
 interface IProps {
     className?: string;

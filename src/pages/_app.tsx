@@ -1,3 +1,4 @@
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import type { AppProps } from "next/app";
 import { GoogleAnalytics } from "nextjs-google-analytics";
@@ -5,10 +6,15 @@ import { useSupabaseAuth } from "../hooks/useSupabaseAuth";
 import "../styles/globals.css";
 import { Context, IContext } from "../utils/context";
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps, router }: AppProps) {
     const { user } = useSupabaseAuth();
 
     const queryClient = new QueryClient();
+
+    const apolloClient = new ApolloClient({
+        uri: process.env.HYGRAPH_CONTENT_API_URL,
+        cache: new InMemoryCache(),
+    });
 
     const context: IContext = {
         user,
@@ -19,9 +25,11 @@ export default function App({ Component, pageProps }: AppProps) {
             <GoogleAnalytics />
 
             <Context.Provider value={context}>
-                <QueryClientProvider client={queryClient}>
-                    <Component {...pageProps} />
-                </QueryClientProvider>
+                <ApolloProvider client={apolloClient}>
+                    <QueryClientProvider client={queryClient}>
+                        <Component {...pageProps} slug={router.asPath} />
+                    </QueryClientProvider>
+                </ApolloProvider>
             </Context.Provider>
         </>
     );

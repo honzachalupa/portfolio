@@ -1,11 +1,11 @@
 import cx from "classnames";
 import moment from "moment";
 import { useMemo, useState } from "react";
-import { TJob } from "../../actions/job";
-import { ListItemWithIcon } from "../List";
+import { IJob } from "../../../types/hygraph";
+import { MarkdownRenderer } from "../../MarkdownRenderer";
 
 interface IProps {
-    jobs: TJob[];
+    jobs: IJob[];
 }
 
 export const ViewDesktop: React.FC<IProps> = ({ jobs }) => {
@@ -30,7 +30,7 @@ export const ViewDesktop: React.FC<IProps> = ({ jobs }) => {
                         )}
                         onClick={() => setSelectedItemId(id)}
                     >
-                        {client.name}
+                        {client!.name}
                     </button>
                 ))}
             </div>
@@ -40,14 +40,14 @@ export const ViewDesktop: React.FC<IProps> = ({ jobs }) => {
                     <header className="flex flex-row justify-between">
                         <div>
                             <h3 className="text-xl font-semibold text-white">
-                                {selectedItem.jobTitle} @{" "}
+                                {selectedItem.title} @{" "}
                                 <a
-                                    href={selectedItem.client.url}
+                                    href={selectedItem.client!.url}
                                     target="_blank"
                                     rel="noreferrer"
                                     className="text-rose-600"
                                 >
-                                    {selectedItem.client.name}
+                                    {selectedItem.client!.name}
                                 </a>
                             </h3>
 
@@ -64,19 +64,21 @@ export const ViewDesktop: React.FC<IProps> = ({ jobs }) => {
                             </p>
                         </div>
 
-                        {selectedItem.client.logo && (
+                        {selectedItem.client!.logo && (
                             <img
-                                src={`data:image/svg+xml,${encodeURIComponent(
-                                    selectedItem.client.logo
-                                )}`}
-                                alt={`${selectedItem.client.name} icon`}
+                                src={selectedItem.client!.logo.url}
+                                alt={`${selectedItem.client!.name} logo`}
                                 className="w-32 object-contain"
                             />
                         )}
                     </header>
 
                     <div className="mt-5 rounded-md bg-[#112240] px-7 py-5 shadow-custom">
-                        <ul>
+                        <MarkdownRenderer>
+                            {selectedItem.description.markdown}
+                        </MarkdownRenderer>
+
+                        {/* <ul>
                             {selectedItem.jobDescription?.map((item) => (
                                 <li key={item} className="pb-3">
                                     {item}
@@ -97,7 +99,7 @@ export const ViewDesktop: React.FC<IProps> = ({ jobs }) => {
                                     {item}
                                 </ListItemWithIcon>
                             ))}
-                        </ul>
+                        </ul> */}
                     </div>
                 </article>
             )}

@@ -1,9 +1,7 @@
 import moment from "moment";
-import { TJob } from "../../actions/job";
-import { ListItemWithIcon } from "../List";
 
 interface IProps {
-    jobs: TJob[];
+    jobs: any[];
 }
 
 export const ViewMobile: React.FC<IProps> = ({ jobs }) => (
@@ -55,8 +53,8 @@ export const ViewMobile: React.FC<IProps> = ({ jobs }) => (
                         </header>
 
                         <div className="mt-5 rounded-md bg-[#112240] px-7 py-5 shadow-custom">
-                            <ul>
-                                {jobDescription?.map((item) => (
+                            {/* <ul>
+                                {jobDescription?.map((item: any) => (
                                     <li key={item} className="pb-3">
                                         {item}
                                     </li>
@@ -70,12 +68,12 @@ export const ViewMobile: React.FC<IProps> = ({ jobs }) => (
                             )}
 
                             <ul>
-                                {projectNames?.map((item) => (
+                                {projectNames?.map((item: any) => (
                                     <ListItemWithIcon key={item}>
                                         {item}
                                     </ListItemWithIcon>
                                 ))}
-                            </ul>
+                            </ul> */}
                         </div>
                     </article>
                 )

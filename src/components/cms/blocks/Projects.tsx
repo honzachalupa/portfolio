@@ -1,17 +1,13 @@
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import cx from "classnames";
 import Image from "next/image";
-import { TProject } from "../../actions/project";
-import { SectionContainer } from "../../layouts/Primary";
-import { AnimationFadeIn } from "../AnimationFadeIn";
-
-interface IProps {
-    projects: TProject[];
-}
+import { IBlock_Projects } from "../../../types/hygraph";
+import { AnimationFadeIn } from "../../AnimationFadeIn";
+import { SectionContainer } from "../layouts/Primary";
 
 const ProjectImage: React.FC<{
-    src: IProps["projects"][0]["imageUrl"];
-    alt: IProps["projects"][0]["name"];
+    src: string;
+    alt: string;
     className?: string;
 }> = ({ src, alt, className }) => (
     <div
@@ -29,20 +25,11 @@ const ProjectImage: React.FC<{
     </div>
 );
 
-export const SomeThingsIveBuiltBlock: React.FC<IProps> = ({ projects }) => (
+export const Block_Projects: React.FC<IBlock_Projects> = ({ projects }) => (
     <SectionContainer headline="Some Things I've Built">
         {projects?.map(
             (
-                {
-                    id,
-                    name,
-                    slogan,
-                    description,
-                    topics,
-                    url,
-                    imageUrl,
-                    client,
-                },
+                { id, name, slogan, description, topics, url, image, client },
                 i
             ) => {
                 const isOdd = i % 2 === 0;
@@ -111,7 +98,7 @@ export const SomeThingsIveBuiltBlock: React.FC<IProps> = ({ projects }) => (
                                     </h3>
 
                                     <ProjectImage
-                                        src={imageUrl}
+                                        src={image.url}
                                         alt={name}
                                         className="rounded-b-none md:hidden"
                                     />
@@ -129,7 +116,7 @@ export const SomeThingsIveBuiltBlock: React.FC<IProps> = ({ projects }) => (
                                                 "md:text-right": isOdd,
                                             })}
                                         >
-                                            {description}
+                                            {description.markdown}
                                         </p>
 
                                         {client?.logo && (
@@ -137,9 +124,7 @@ export const SomeThingsIveBuiltBlock: React.FC<IProps> = ({ projects }) => (
                                                 <span>Made for</span>
 
                                                 <img
-                                                    src={`data:image/svg+xml,${encodeURIComponent(
-                                                        client.logo
-                                                    )}`}
+                                                    src={client.logo.url}
                                                     alt={`${client.name} icon`}
                                                     className="ml-2 w-32 object-contain"
                                                 />
@@ -152,7 +137,7 @@ export const SomeThingsIveBuiltBlock: React.FC<IProps> = ({ projects }) => (
                                             "md:text-right": isOdd,
                                         })}
                                     >
-                                        {topics.slice(0, 4).map((topic) => (
+                                        {topics.map((topic: string) => (
                                             <span
                                                 key={topic}
                                                 className="mx-2 font-mono text-sm"
@@ -165,7 +150,7 @@ export const SomeThingsIveBuiltBlock: React.FC<IProps> = ({ projects }) => (
                             </div>
 
                             <ProjectImage
-                                src={imageUrl}
+                                src={image.url}
                                 alt={name}
                                 className="hidden transition-all md:block"
                             />

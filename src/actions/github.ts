@@ -50,7 +50,6 @@ const search = (): Promise<IGitHubRepository[]> =>
                         new Date(b.pushed_at).getTime() -
                         new Date(a.pushed_at).getTime()
                 )
-                .slice(0, 4)
                 .map((original) => ({
                     id: original.id,
                     name: original.name,
