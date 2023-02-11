@@ -3,7 +3,7 @@ import { Page } from "../../types/cms";
 import { apollo } from "../../utils/apollo";
 
 export const getAll = async () => {
-    const { data } = await apollo.query<{ pages: Page[] }>({
+    const response = await apollo.query<{ pages: Page[] }>({
         query: gql`
             query PageIds {
                 pages {
@@ -15,7 +15,9 @@ export const getAll = async () => {
         `,
     });
 
-    return data.pages;
+    console.log(666, response);
+
+    return response.data.pages;
 };
 
 export const findBySlug = async (slug: string) => {
