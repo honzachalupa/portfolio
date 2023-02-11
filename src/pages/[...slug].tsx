@@ -2,7 +2,7 @@ import { GetStaticPaths, InferGetServerSidePropsType } from "next";
 import { CMSActions } from "../actions/cms";
 import { ContentRenderer } from "../components/ContentRenderer";
 
-export default function Index({
+export default function Slug({
     page,
 }: InferGetServerSidePropsType<typeof getStaticPaths>) {
     return page ? <ContentRenderer page={page} /> : null;
@@ -11,11 +11,13 @@ export default function Index({
 export const getStaticPaths: GetStaticPaths = async () => {
     const pages = await CMSActions.getAll();
 
-    const paths = pages.map(({ slug }) => ({
-        params: {
-            slug: slug.replace("/", "").split("/").filter(Boolean),
-        },
-    }));
+    const paths = pages
+        .filter(({ slug }) => slug !== "/")
+        .map(({ slug }) => ({
+            params: {
+                slug: slug.replace("/", "").split("/"),
+            },
+        }));
 
     return {
         paths,
@@ -27,7 +29,7 @@ export const getStaticProps = async ({ params }: any) => {
     const formatSlug = (slug: string | string[] | undefined) =>
         slug ? "/" + (typeof slug === "object" ? slug.join("/") : slug) : null;
 
-    const slug = formatSlug(params.slug) || "/";
+    const slug = formatSlug(params.slug);
 
     if (slug) {
         const page = await CMSActions.findBySlug(slug);

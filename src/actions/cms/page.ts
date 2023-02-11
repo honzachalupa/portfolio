@@ -15,7 +15,7 @@ export const getAll = async () => {
         `,
     });
 
-    return data?.pages || [];
+    return data.pages;
 };
 
 export const findBySlug = async (slug: string) => {
