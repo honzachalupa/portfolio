@@ -16,5 +16,5 @@
         "incremental": true
     },
     "include": ["next-env.d.ts", "src/**/*.ts", "src/**/*.tsx"],
-    "exclude": ["node_modules"]
+    "exclude": ["node_modules", "src/utils/codegen/**/*.ts"]
 }

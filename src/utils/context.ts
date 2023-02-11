@@ -1,11 +1,7 @@
 import { createContext } from "react";
 
-export interface IContext {
-    user: any;
-}
+export interface IContext {}
 
-export const initialContext: IContext = {
-    user: null,
-};
+export const initialContext: IContext = {};
 
 export const Context = createContext<IContext>(initialContext);
