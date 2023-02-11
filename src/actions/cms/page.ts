@@ -15,8 +15,6 @@ export const getAll = async () => {
         `,
     });
 
-    console.log(666, response);
-
     return response?.data?.pages || [];
 };
 
@@ -106,5 +104,5 @@ export const findBySlug = async (slug: string) => {
         `,
     });
 
-    return data.pages[0];
+    return data?.pages?.[0] || {};
 };
