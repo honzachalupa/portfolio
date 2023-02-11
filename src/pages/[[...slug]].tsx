@@ -1,7 +1,7 @@
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { ContentRenderer } from "../components/ContentRenderer";
 import { GET_PAGE, GET_PAGES } from "../queries/page";
-import { apolloClient } from "../utils/apollo";
+import { apollo } from "../utils/apollo";
 import { Page } from "../utils/codegen/graphql";
 
 export default function Index({
@@ -14,17 +14,19 @@ const getSlug = (query: any) =>
     (typeof query.slug === "object" ? query.slug.join("/") : query.slug) || "/";
 
 const getPageId = async (slug: string) => {
-    const response = await apolloClient.query<{ pages: Page[] }>({
+    console.log(1, { slug });
+
+    const response = await apollo.query<{ pages: Page[] }>({
         query: GET_PAGES,
     });
 
-    console.log(666, JSON.stringify(response));
+    console.log(2, JSON.stringify(response));
 
     return response.data.pages.find((page) => page.slug === slug)!;
 };
 
 const getPageById = async (id: string) => {
-    const { data } = await apolloClient.query<{ page: Page }>({
+    const { data } = await apollo.query<{ page: Page }>({
         query: GET_PAGE,
         variables: {
             id,
