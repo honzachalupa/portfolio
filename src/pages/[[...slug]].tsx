@@ -1,4 +1,8 @@
-import { GetServerSideProps, InferGetServerSidePropsType } from "next";
+import {
+    GetServerSideProps,
+    GetStaticPaths,
+    InferGetServerSidePropsType,
+} from "next";
 import { ContentRenderer } from "../components/ContentRenderer";
 import { GET_PAGE, GET_PAGES } from "../queries/page";
 import { apollo } from "../utils/apollo";
@@ -13,14 +17,24 @@ export default function Index({
 const getSlug = (query: any) =>
     (typeof query.slug === "object" ? query.slug.join("/") : query.slug) || "/";
 
+const getPages = async () => {
+    const response = await apollo.query<{ pages: Page[] }>({
+        query: GET_PAGES,
+    });
+
+    console.log(1, JSON.stringify(response));
+
+    return response.data.pages;
+};
+
 const getPageId = async (slug: string) => {
-    console.log(1, { slug });
+    console.log(2, { slug });
 
     const response = await apollo.query<{ pages: Page[] }>({
         query: GET_PAGES,
     });
 
-    console.log(2, JSON.stringify(response));
+    console.log(3, JSON.stringify(response));
 
     return response.data.pages.find((page) => page.slug === slug)!;
 };
@@ -34,6 +48,16 @@ const getPageById = async (id: string) => {
     });
 
     return data.page;
+};
+
+export const getStaticPaths: GetStaticPaths = async () => {
+    const pages = await getPages();
+    const paths = pages.map(({ slug }) => slug);
+
+    return {
+        paths,
+        fallback: false,
+    };
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
