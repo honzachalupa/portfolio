@@ -14,11 +14,13 @@ const getSlug = (query: any) =>
     (typeof query.slug === "object" ? query.slug.join("/") : query.slug) || "/";
 
 const getPageId = async (slug: string) => {
-    const { data } = await apolloClient.query<{ pages: Page[] }>({
+    const response = await apolloClient.query<{ pages: Page[] }>({
         query: GET_PAGES,
     });
 
-    return data.pages.find((page) => page.slug === slug)!;
+    console.log(666, JSON.stringify(response));
+
+    return response.data.pages.find((page) => page.slug === slug)!;
 };
 
 const getPageById = async (id: string) => {
