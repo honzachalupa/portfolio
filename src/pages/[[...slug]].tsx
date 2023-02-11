@@ -1,58 +1,21 @@
-import {
-    GetServerSideProps,
-    GetStaticPaths,
-    InferGetServerSidePropsType,
-} from "next";
+import { GetStaticPaths, InferGetServerSidePropsType } from "next";
+import { CMSActions } from "../actions/cms";
 import { ContentRenderer } from "../components/ContentRenderer";
-import { GET_PAGE, GET_PAGES } from "../queries/page";
-import { apollo } from "../utils/apollo";
-import { Page } from "../utils/codegen/graphql";
 
 export default function Index({
     page,
-}: InferGetServerSidePropsType<typeof getServerSideProps>) {
-    return <ContentRenderer page={page} />;
+}: InferGetServerSidePropsType<typeof getStaticPaths>) {
+    return page ? <ContentRenderer page={page} /> : null;
 }
 
-const getSlug = (query: any) =>
-    (typeof query.slug === "object" ? query.slug.join("/") : query.slug) || "/";
-
-const getPages = async () => {
-    const response = await apollo.query<{ pages: Page[] }>({
-        query: GET_PAGES,
-    });
-
-    console.log(1, JSON.stringify(response));
-
-    return response.data.pages;
-};
-
-const getPageId = async (slug: string) => {
-    console.log(2, { slug });
-
-    const response = await apollo.query<{ pages: Page[] }>({
-        query: GET_PAGES,
-    });
-
-    console.log(3, JSON.stringify(response));
-
-    return response.data.pages.find((page) => page.slug === slug)!;
-};
-
-const getPageById = async (id: string) => {
-    const { data } = await apollo.query<{ page: Page }>({
-        query: GET_PAGE,
-        variables: {
-            id,
-        },
-    });
-
-    return data.page;
-};
-
 export const getStaticPaths: GetStaticPaths = async () => {
-    const pages = await getPages();
-    const paths = pages.map(({ slug }) => slug);
+    const pages = await CMSActions.getAll();
+
+    const paths = pages.map(({ slug }) => ({
+        params: {
+            slug: slug.replace("/", "").split("/").filter(Boolean),
+        },
+    }));
 
     return {
         paths,
@@ -60,15 +23,27 @@ export const getStaticPaths: GetStaticPaths = async () => {
     };
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-    const slug = getSlug(context.query);
+export const getStaticProps = async ({ params }: any) => {
+    const formatSlug = (slug: string | string[] | undefined) =>
+        slug ? "/" + (typeof slug === "object" ? slug.join("/") : slug) : null;
 
-    const { id: pageId } = await getPageId(slug);
-    const page = await getPageById(pageId);
+    const slug = formatSlug(params.slug) || "/";
+
+    if (slug) {
+        const page = await CMSActions.findBySlug(slug);
+
+        return {
+            props: {
+                page,
+            },
+            revalidate: 1,
+        };
+    }
 
     return {
         props: {
-            page,
+            page: null,
         },
+        revalidate: 1,
     };
 };

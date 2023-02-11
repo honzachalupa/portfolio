@@ -4,7 +4,7 @@ import {
     GitHubRepositoryActions,
     IGitHubRepository,
 } from "../../../actions/github";
-import { IBlock_Repositories } from "../../../types/hygraph";
+import { IBlock_Repositories } from "../../../types/cms";
 import { AnimationFadeIn } from "../../AnimationFadeIn";
 import { BlockHeadline } from "../../BlockHeadline";
 import { ButtonsContainer } from "../../Button";

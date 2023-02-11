@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
 import { config } from "../../../../config";
-import { Maybe } from "../../../types/hygraph";
+import { Maybe } from "../../../types/cms";
 import { TidioChat } from "../../TidioChat";
 import { ColorOverlay } from "./components/ColorOverlay";
 import { SectionContainer } from "./components/Container";

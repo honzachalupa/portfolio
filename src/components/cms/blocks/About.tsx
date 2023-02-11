@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { IBlock_About } from "../../../types/hygraph";
+import { IBlock_About } from "../../../types/cms";
 import { AnimationFadeIn } from "../../AnimationFadeIn";
 import { ListItemWithIcon } from "../../ListItemWithIcon";
 import { MarkdownRenderer } from "../../MarkdownRenderer";

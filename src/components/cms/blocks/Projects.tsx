@@ -1,7 +1,7 @@
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import cx from "classnames";
 import Image from "next/image";
-import { IBlock_Projects } from "../../../types/hygraph";
+import { IBlock_Projects } from "../../../types/cms";
 import { AnimationFadeIn } from "../../AnimationFadeIn";
 import { SectionContainer } from "../layouts/Primary";
 

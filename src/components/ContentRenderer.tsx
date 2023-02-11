@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { ILayoutContent, Page } from "../types/hygraph";
+import { ILayoutContent, Page } from "../types/cms";
 import { Block_About } from "./cms/blocks/About";
 import { Hero } from "./cms/blocks/Hero";
 import { Block_Jobs } from "./cms/blocks/Jobs";

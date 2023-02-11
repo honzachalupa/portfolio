@@ -1,7 +1,7 @@
 import cx from "classnames";
 import moment from "moment";
 import { useMemo, useState } from "react";
-import { IJob } from "../../../types/hygraph";
+import { IJob } from "../../../types/cms";
 import { MarkdownRenderer } from "../../MarkdownRenderer";
 
 interface IProps {

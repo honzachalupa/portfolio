@@ -1,7 +1,7 @@
 import { ChevronDoubleDownIcon } from "@heroicons/react/24/outline";
 import cx from "classnames";
 import { useScrollPosition } from "../../../hooks/useScrollPosition";
-import { IHero } from "../../../types/hygraph";
+import { IHero } from "../../../types/cms";
 import { MarkdownRenderer } from "../../MarkdownRenderer";
 import { SectionContainer } from "../layouts/Primary";
 

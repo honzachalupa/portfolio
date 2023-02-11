@@ -1,4 +1,4 @@
-import { IBlock_Jobs } from "../../../types/hygraph";
+import { IBlock_Jobs } from "../../../types/cms";
 import { AnimationFadeIn } from "../../AnimationFadeIn";
 import { SectionContainer } from "../layouts/Primary";
 import { ViewDesktop } from "./Jobs.desktop";
