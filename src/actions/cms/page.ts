@@ -30,11 +30,35 @@ export const findBySlug = async (slug: string) => {
                     title
                     layout {
                         content {
+                            ... on SEO {
+                                description
+                                keywords
+                            }
+                            ... on Navigation {
+                                indexTitleFallback
+                                pages {
+                                    title
+                                    slug
+                                }
+                            }
                             ... on Hero {
                                 content {
                                     text
                                     markdown
                                 }
+                            }
+                            ... on Footer {
+                                yearFrom
+                                socialNetworks {
+                                    name
+                                    url
+                                    icon {
+                                        url
+                                        width
+                                        mimeType
+                                    }
+                                }
+                                text
                             }
                             ... on Block_About {
                                 image {
@@ -100,23 +124,6 @@ export const findBySlug = async (slug: string) => {
                             ... on Block_Repositories {
                                 headline
                                 limit
-                            }
-                            ... on Footer {
-                                yearFrom
-                                socialNetworks {
-                                    name
-                                    url
-                                    icon {
-                                        url
-                                        width
-                                        mimeType
-                                    }
-                                }
-                                text
-                            }
-                            ... on SEO {
-                                description
-                                keywords
                             }
                         }
                     }

@@ -4539,7 +4539,7 @@ export type LocationInput = {
   longitude: Scalars['Float'];
 };
 
-export type MainLayoutcontentUnion = Block_About | Block_Jobs | Block_Projects | Block_Repositories | Footer | Hero | Seo;
+export type MainLayoutcontentUnion = Block_About | Block_Jobs | Block_Projects | Block_Repositories | Footer | Hero | Navigation | Seo;
 
 export type MainLayoutcontentUnionConnectInput = {
   Block_About?: InputMaybe<Block_AboutConnectInput>;
@@ -4548,6 +4548,7 @@ export type MainLayoutcontentUnionConnectInput = {
   Block_Repositories?: InputMaybe<Block_RepositoriesConnectInput>;
   Footer?: InputMaybe<FooterConnectInput>;
   Hero?: InputMaybe<HeroConnectInput>;
+  Navigation?: InputMaybe<NavigationConnectInput>;
   SEO?: InputMaybe<SeoConnectInput>;
 };
 
@@ -4558,6 +4559,7 @@ export type MainLayoutcontentUnionCreateInput = {
   Block_Repositories?: InputMaybe<Block_RepositoriesCreateInput>;
   Footer?: InputMaybe<FooterCreateInput>;
   Hero?: InputMaybe<HeroCreateInput>;
+  Navigation?: InputMaybe<NavigationCreateInput>;
   SEO?: InputMaybe<SeoCreateInput>;
 };
 
@@ -4578,6 +4580,7 @@ export type MainLayoutcontentUnionCreateWithPositionInput = {
   Block_Repositories?: InputMaybe<Block_RepositoriesCreateWithPositionInput>;
   Footer?: InputMaybe<FooterCreateWithPositionInput>;
   Hero?: InputMaybe<HeroCreateWithPositionInput>;
+  Navigation?: InputMaybe<NavigationCreateWithPositionInput>;
   SEO?: InputMaybe<SeoCreateWithPositionInput>;
 };
 
@@ -4588,6 +4591,7 @@ export type MainLayoutcontentUnionUpdateInput = {
   Block_Repositories?: InputMaybe<Block_RepositoriesUpdateInput>;
   Footer?: InputMaybe<FooterUpdateInput>;
   Hero?: InputMaybe<HeroUpdateInput>;
+  Navigation?: InputMaybe<NavigationUpdateInput>;
   SEO?: InputMaybe<SeoUpdateInput>;
 };
 
@@ -4609,6 +4613,7 @@ export type MainLayoutcontentUnionUpdateManyWithNestedWhereInput = {
   Block_Repositories?: InputMaybe<Block_RepositoriesUpdateManyWithNestedWhereInput>;
   Footer?: InputMaybe<FooterUpdateManyWithNestedWhereInput>;
   Hero?: InputMaybe<HeroUpdateManyWithNestedWhereInput>;
+  Navigation?: InputMaybe<NavigationUpdateManyWithNestedWhereInput>;
   SEO?: InputMaybe<SeoUpdateManyWithNestedWhereInput>;
 };
 
@@ -4630,6 +4635,7 @@ export type MainLayoutcontentUnionUpdateWithNestedWhereUniqueAndPositionInput = 
   Block_Repositories?: InputMaybe<Block_RepositoriesUpdateWithNestedWhereUniqueAndPositionInput>;
   Footer?: InputMaybe<FooterUpdateWithNestedWhereUniqueAndPositionInput>;
   Hero?: InputMaybe<HeroUpdateWithNestedWhereUniqueAndPositionInput>;
+  Navigation?: InputMaybe<NavigationUpdateWithNestedWhereUniqueAndPositionInput>;
   SEO?: InputMaybe<SeoUpdateWithNestedWhereUniqueAndPositionInput>;
 };
 
@@ -4640,6 +4646,7 @@ export type MainLayoutcontentUnionUpdateWithNestedWhereUniqueInput = {
   Block_Repositories?: InputMaybe<Block_RepositoriesUpdateWithNestedWhereUniqueInput>;
   Footer?: InputMaybe<FooterUpdateWithNestedWhereUniqueInput>;
   Hero?: InputMaybe<HeroUpdateWithNestedWhereUniqueInput>;
+  Navigation?: InputMaybe<NavigationUpdateWithNestedWhereUniqueInput>;
   SEO?: InputMaybe<SeoUpdateWithNestedWhereUniqueInput>;
 };
 
@@ -4650,6 +4657,7 @@ export type MainLayoutcontentUnionUpsertWithNestedWhereUniqueAndPositionInput = 
   Block_Repositories?: InputMaybe<Block_RepositoriesUpsertWithNestedWhereUniqueAndPositionInput>;
   Footer?: InputMaybe<FooterUpsertWithNestedWhereUniqueAndPositionInput>;
   Hero?: InputMaybe<HeroUpsertWithNestedWhereUniqueAndPositionInput>;
+  Navigation?: InputMaybe<NavigationUpsertWithNestedWhereUniqueAndPositionInput>;
   SEO?: InputMaybe<SeoUpsertWithNestedWhereUniqueAndPositionInput>;
 };
 
@@ -4660,6 +4668,7 @@ export type MainLayoutcontentUnionUpsertWithNestedWhereUniqueInput = {
   Block_Repositories?: InputMaybe<Block_RepositoriesUpsertWithNestedWhereUniqueInput>;
   Footer?: InputMaybe<FooterUpsertWithNestedWhereUniqueInput>;
   Hero?: InputMaybe<HeroUpsertWithNestedWhereUniqueInput>;
+  Navigation?: InputMaybe<NavigationUpsertWithNestedWhereUniqueInput>;
   SEO?: InputMaybe<SeoUpsertWithNestedWhereUniqueInput>;
 };
 
@@ -4670,6 +4679,7 @@ export type MainLayoutcontentUnionWhereInput = {
   Block_Repositories?: InputMaybe<Block_RepositoriesWhereInput>;
   Footer?: InputMaybe<FooterWhereInput>;
   Hero?: InputMaybe<HeroWhereInput>;
+  Navigation?: InputMaybe<NavigationWhereInput>;
   SEO?: InputMaybe<SeoWhereInput>;
 };
 
@@ -4680,6 +4690,7 @@ export type MainLayoutcontentUnionWhereUniqueInput = {
   Block_Repositories?: InputMaybe<Block_RepositoriesWhereUniqueInput>;
   Footer?: InputMaybe<FooterWhereUniqueInput>;
   Hero?: InputMaybe<HeroWhereUniqueInput>;
+  Navigation?: InputMaybe<NavigationWhereUniqueInput>;
   SEO?: InputMaybe<SeoWhereUniqueInput>;
 };
 
@@ -5771,6 +5782,404 @@ export type MutationUpsertSocialNetworkArgs = {
   where: SocialNetworkWhereUniqueInput;
 };
 
+export type Navigation = {
+  __typename?: 'Navigation';
+  /** The unique identifier */
+  id: Scalars['ID'];
+  indexTitleFallback?: Maybe<Scalars['String']>;
+  /** System Locale field */
+  locale: Locale;
+  /** Get the other localizations for this document */
+  localizations: Array<Navigation>;
+  pages: Array<Page>;
+  /** System stage field */
+  stage: Stage;
+};
+
+
+export type NavigationLocalizationsArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  locales?: Array<Locale>;
+};
+
+
+export type NavigationPagesArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']>;
+  last?: InputMaybe<Scalars['Int']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<PageOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<PageWhereInput>;
+};
+
+export type NavigationConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: NavigationWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type NavigationConnection = {
+  __typename?: 'NavigationConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<NavigationEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type NavigationCreateInput = {
+  /** indexTitleFallback input for default locale (en) */
+  indexTitleFallback?: InputMaybe<Scalars['String']>;
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: InputMaybe<NavigationCreateLocalizationsInput>;
+  pages?: InputMaybe<PageCreateManyInlineInput>;
+};
+
+export type NavigationCreateLocalizationDataInput = {
+  indexTitleFallback?: InputMaybe<Scalars['String']>;
+};
+
+export type NavigationCreateLocalizationInput = {
+  /** Localization input */
+  data: NavigationCreateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type NavigationCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: InputMaybe<Array<NavigationCreateLocalizationInput>>;
+};
+
+export type NavigationCreateManyInlineInput = {
+  /** Create and connect multiple existing Navigation documents */
+  create?: InputMaybe<Array<NavigationCreateInput>>;
+};
+
+export type NavigationCreateOneInlineInput = {
+  /** Create and connect one Navigation document */
+  create?: InputMaybe<NavigationCreateInput>;
+};
+
+export type NavigationCreateWithPositionInput = {
+  /** Document to create */
+  data: NavigationCreateInput;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+};
+
+/** An edge in a connection. */
+export type NavigationEdge = {
+  __typename?: 'NavigationEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: Navigation;
+};
+
+/** Identifies documents */
+export type NavigationManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<NavigationWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<NavigationWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<NavigationWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  pages_every?: InputMaybe<PageWhereInput>;
+  pages_none?: InputMaybe<PageWhereInput>;
+  pages_some?: InputMaybe<PageWhereInput>;
+};
+
+export enum NavigationOrderByInput {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  IndexTitleFallbackAsc = 'indexTitleFallback_ASC',
+  IndexTitleFallbackDesc = 'indexTitleFallback_DESC'
+}
+
+export type NavigationParent = Layout_Primary;
+
+export type NavigationParentConnectInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryConnectInput>;
+};
+
+export type NavigationParentCreateInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryCreateInput>;
+};
+
+export type NavigationParentCreateManyInlineInput = {
+  /** Create and connect multiple existing NavigationParent documents */
+  create?: InputMaybe<Array<NavigationParentCreateInput>>;
+};
+
+export type NavigationParentCreateOneInlineInput = {
+  /** Create and connect one NavigationParent document */
+  create?: InputMaybe<NavigationParentCreateInput>;
+};
+
+export type NavigationParentCreateWithPositionInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryCreateWithPositionInput>;
+};
+
+export type NavigationParentUpdateInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateInput>;
+};
+
+export type NavigationParentUpdateManyInlineInput = {
+  /** Create and connect multiple NavigationParent component instances */
+  create?: InputMaybe<Array<NavigationParentCreateWithPositionInput>>;
+  /** Delete multiple NavigationParent documents */
+  delete?: InputMaybe<Array<NavigationParentWhereUniqueInput>>;
+  /** Update multiple NavigationParent component instances */
+  update?: InputMaybe<Array<NavigationParentUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple NavigationParent component instances */
+  upsert?: InputMaybe<Array<NavigationParentUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type NavigationParentUpdateManyWithNestedWhereInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateManyWithNestedWhereInput>;
+};
+
+export type NavigationParentUpdateOneInlineInput = {
+  /** Create and connect one NavigationParent document */
+  create?: InputMaybe<NavigationParentCreateInput>;
+  /** Delete currently connected NavigationParent document */
+  delete?: InputMaybe<Scalars['Boolean']>;
+  /** Update single NavigationParent document */
+  update?: InputMaybe<NavigationParentUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single NavigationParent document */
+  upsert?: InputMaybe<NavigationParentUpsertWithNestedWhereUniqueInput>;
+};
+
+export type NavigationParentUpdateWithNestedWhereUniqueAndPositionInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type NavigationParentUpdateWithNestedWhereUniqueInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueInput>;
+};
+
+export type NavigationParentUpsertWithNestedWhereUniqueAndPositionInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type NavigationParentUpsertWithNestedWhereUniqueInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueInput>;
+};
+
+export type NavigationParentWhereInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryWhereInput>;
+};
+
+export type NavigationParentWhereUniqueInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryWhereUniqueInput>;
+};
+
+export type NavigationUpdateInput = {
+  /** indexTitleFallback input for default locale (en) */
+  indexTitleFallback?: InputMaybe<Scalars['String']>;
+  /** Manage document localizations */
+  localizations?: InputMaybe<NavigationUpdateLocalizationsInput>;
+  pages?: InputMaybe<PageUpdateManyInlineInput>;
+};
+
+export type NavigationUpdateLocalizationDataInput = {
+  indexTitleFallback?: InputMaybe<Scalars['String']>;
+};
+
+export type NavigationUpdateLocalizationInput = {
+  data: NavigationUpdateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type NavigationUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: InputMaybe<Array<NavigationCreateLocalizationInput>>;
+  /** Localizations to delete */
+  delete?: InputMaybe<Array<Locale>>;
+  /** Localizations to update */
+  update?: InputMaybe<Array<NavigationUpdateLocalizationInput>>;
+  upsert?: InputMaybe<Array<NavigationUpsertLocalizationInput>>;
+};
+
+export type NavigationUpdateManyInlineInput = {
+  /** Create and connect multiple Navigation component instances */
+  create?: InputMaybe<Array<NavigationCreateWithPositionInput>>;
+  /** Delete multiple Navigation documents */
+  delete?: InputMaybe<Array<NavigationWhereUniqueInput>>;
+  /** Update multiple Navigation component instances */
+  update?: InputMaybe<Array<NavigationUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple Navigation component instances */
+  upsert?: InputMaybe<Array<NavigationUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type NavigationUpdateManyInput = {
+  /** indexTitleFallback input for default locale (en) */
+  indexTitleFallback?: InputMaybe<Scalars['String']>;
+  /** Optional updates to localizations */
+  localizations?: InputMaybe<NavigationUpdateManyLocalizationsInput>;
+};
+
+export type NavigationUpdateManyLocalizationDataInput = {
+  indexTitleFallback?: InputMaybe<Scalars['String']>;
+};
+
+export type NavigationUpdateManyLocalizationInput = {
+  data: NavigationUpdateManyLocalizationDataInput;
+  locale: Locale;
+};
+
+export type NavigationUpdateManyLocalizationsInput = {
+  /** Localizations to update */
+  update?: InputMaybe<Array<NavigationUpdateManyLocalizationInput>>;
+};
+
+export type NavigationUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: NavigationUpdateManyInput;
+  /** Document search */
+  where: NavigationWhereInput;
+};
+
+export type NavigationUpdateOneInlineInput = {
+  /** Create and connect one Navigation document */
+  create?: InputMaybe<NavigationCreateInput>;
+  /** Delete currently connected Navigation document */
+  delete?: InputMaybe<Scalars['Boolean']>;
+  /** Update single Navigation document */
+  update?: InputMaybe<NavigationUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Navigation document */
+  upsert?: InputMaybe<NavigationUpsertWithNestedWhereUniqueInput>;
+};
+
+export type NavigationUpdateWithNestedWhereUniqueAndPositionInput = {
+  /** Document to update */
+  data?: InputMaybe<NavigationUpdateInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: NavigationWhereUniqueInput;
+};
+
+export type NavigationUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: NavigationUpdateInput;
+  /** Unique document search */
+  where: NavigationWhereUniqueInput;
+};
+
+export type NavigationUpsertInput = {
+  /** Create document if it didn't exist */
+  create: NavigationCreateInput;
+  /** Update document if it exists */
+  update: NavigationUpdateInput;
+};
+
+export type NavigationUpsertLocalizationInput = {
+  create: NavigationCreateLocalizationDataInput;
+  locale: Locale;
+  update: NavigationUpdateLocalizationDataInput;
+};
+
+export type NavigationUpsertWithNestedWhereUniqueAndPositionInput = {
+  /** Document to upsert */
+  data?: InputMaybe<NavigationUpsertInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: NavigationWhereUniqueInput;
+};
+
+export type NavigationUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: NavigationUpsertInput;
+  /** Unique document search */
+  where: NavigationWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type NavigationWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<NavigationWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<NavigationWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<NavigationWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  indexTitleFallback?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  indexTitleFallback_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  indexTitleFallback_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  indexTitleFallback_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  indexTitleFallback_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  indexTitleFallback_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  indexTitleFallback_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  indexTitleFallback_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  indexTitleFallback_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  indexTitleFallback_starts_with?: InputMaybe<Scalars['String']>;
+  pages_every?: InputMaybe<PageWhereInput>;
+  pages_none?: InputMaybe<PageWhereInput>;
+  pages_some?: InputMaybe<PageWhereInput>;
+};
+
+/** References Navigation record uniquely */
+export type NavigationWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']>;
+};
+
 /** An object with an ID */
 export type Node = {
   /** The id of the object. */
@@ -5901,6 +6310,7 @@ export type PageConnection = {
 };
 
 export type PageCreateInput = {
+  cle1ru7u13t4y01uf2npoa8jk?: InputMaybe<NavigationCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   layout: Layout_PrimaryCreateOneInlineInput;
   /** Inline mutations for managing document localizations excluding the default locale */
@@ -6070,6 +6480,7 @@ export enum PageOrderByInput {
 }
 
 export type PageUpdateInput = {
+  cle1ru7u13t4y01uf2npoa8jk?: InputMaybe<NavigationUpdateManyInlineInput>;
   layout?: InputMaybe<Layout_PrimaryUpdateOneInlineInput>;
   /** Manage document localizations */
   localizations?: InputMaybe<PageUpdateLocalizationsInput>;

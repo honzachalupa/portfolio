@@ -9,6 +9,7 @@ export type {
     Layout_Primary as ILayout,
     MainLayoutcontentUnion as ILayoutContentItem,
     Maybe,
+    Navigation as INavigation,
     Page,
     Project as IProject,
     Seo as ISEO,

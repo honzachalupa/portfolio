@@ -7,6 +7,7 @@ import { Block_Projects } from "./cms/blocks/Projects";
 import { Block_Repositories } from "./cms/blocks/Repositories";
 import { Footer } from "./cms/Footer";
 import { Layout_Primary } from "./cms/layouts/Primary";
+import { Navigation } from "./cms/Navigation";
 import { SEO } from "./cms/SEO";
 
 interface IProps {
@@ -17,6 +18,9 @@ export const ContentRenderer: React.FC<IProps> = ({ page }) => {
     const renderComponent = (props: ILayoutContentItem) => {
         const { __typename } = props;
 
+        if (__typename === "Navigation") {
+            return <Navigation {...props} />;
+        }
         if (__typename === "Hero") {
             return <Hero {...props} />;
         }
