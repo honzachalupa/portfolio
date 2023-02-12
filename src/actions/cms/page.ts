@@ -32,6 +32,7 @@ export const findBySlug = async (slug: string) => {
                         content {
                             ... on Hero {
                                 content {
+                                    text
                                     markdown
                                 }
                             }
@@ -43,6 +44,7 @@ export const findBySlug = async (slug: string) => {
                                 }
                                 headline
                                 content {
+                                    text
                                     markdown
                                 }
                             }
@@ -54,6 +56,7 @@ export const findBySlug = async (slug: string) => {
                                     dateTo
                                     dateFrom
                                     description {
+                                        text
                                         markdown
                                     }
                                     client {
@@ -74,6 +77,7 @@ export const findBySlug = async (slug: string) => {
                                     name
                                     slogan
                                     description {
+                                        text
                                         markdown
                                     }
                                     topics

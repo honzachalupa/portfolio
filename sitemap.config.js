@@ -1,6 +1,7 @@
+const config = require("./config.js");
+
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-    siteUrl: process.env.SITE_URL || "https://janchalupa.dev/",
+    siteUrl: config.url,
     generateRobotsTxt: true,
-    exclude: ["/sign-in", "/sign-out", "/administration"],
 };

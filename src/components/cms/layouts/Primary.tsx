@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { config } from "../../../../config";
+import config from "../../../../config";
 import { Maybe } from "../../../types/cms";
 import { TidioChat } from "../../TidioChat";
 import { ColorOverlay } from "./components/ColorOverlay";
@@ -12,7 +12,7 @@ interface IProps {
 }
 
 export const Layout_Primary: React.FC<IProps> = ({ title, children }) => {
-    title = [title, config.appName].filter(Boolean).join(" | ");
+    title = [title, config.name].filter(Boolean).join(" | ");
 
     return (
         <>
