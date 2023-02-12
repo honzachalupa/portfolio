@@ -1,30 +1,24 @@
-import { Github as GitHubIcon } from "@styled-icons/boxicons-logos/Github";
-import { Instagram as InstagramIcon } from "@styled-icons/boxicons-logos/Instagram";
-import { Linkedin as LinkedInIcon } from "@styled-icons/boxicons-logos/Linkedin";
 import cx from "classnames";
 import moment from "moment";
+import { useMemo } from "react";
+import { ReactSVG } from "react-svg";
 import { useScrollPosition } from "../../../../hooks/useScrollPosition";
+import { IFooter } from "../../../../types/cms";
 
-export const Footer: React.FC = () => {
+export const Footer: React.FC<IFooter> = ({
+    yearFrom,
+    socialNetworks,
+    text,
+}) => {
     const { distance } = useScrollPosition();
 
-    const socialLinks = [
-        {
-            name: "GitHub",
-            url: "https://github.com/honzachalupa",
-            icon: GitHubIcon,
-        },
-        {
-            name: "LinkedIn",
-            url: "https://www.linkedin.com/in/janchalupa93/",
-            icon: LinkedInIcon,
-        },
-        {
-            name: "Instagram",
-            url: "https://instagram.com/honza_chalupa",
-            icon: InstagramIcon,
-        },
-    ];
+    const years = useMemo(
+        () =>
+            [yearFrom ? moment(yearFrom).year() : null, moment().year()]
+                .filter(Boolean)
+                .join(" - "),
+        [yearFrom]
+    );
 
     return (
         <footer className="relative mb-20 text-center text-sm">
@@ -36,18 +30,21 @@ export const Footer: React.FC = () => {
                     }
                 )}
             >
-                {socialLinks.map(({ name, url, icon: Icon }) => (
-                    <a key={name} href={url} title={`Visit my ${name}`}>
-                        <Icon className="w-8 text-rose-600 transition-all hover:opacity-80 md:w-10" />
+                {socialNetworks.map(({ name, url, icon }) => (
+                    <a key={name} href={url} title={name}>
+                        <ReactSVG
+                            src={icon.url}
+                            className="w-8 text-rose-600 transition-all hover:opacity-80 md:w-10"
+                        />
                     </a>
                 ))}
             </div>
 
             <p className="mb-2 text-white opacity-75">
-                Copyright © 2008 - {moment().year()} Jan Chalupa
+                Copyright © {years} Jan Chalupa
             </p>
 
-            <p className="text-white opacity-30">All rights reserved.</p>
+            {text && <p className="text-white opacity-30">{text}</p>}
         </footer>
     );
 };

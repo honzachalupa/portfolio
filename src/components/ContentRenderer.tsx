@@ -1,10 +1,11 @@
 import { Fragment } from "react";
-import { ILayoutContent, Page } from "../types/cms";
+import { ILayoutContentItem, Page } from "../types/cms";
 import { Block_About } from "./cms/blocks/About";
 import { Hero } from "./cms/blocks/Hero";
 import { Block_Jobs } from "./cms/blocks/Jobs";
 import { Block_Projects } from "./cms/blocks/Projects";
 import { Block_Repositories } from "./cms/blocks/Repositories";
+import { Footer } from "./cms/layouts/components/Footer";
 import { Layout_Primary } from "./cms/layouts/Primary";
 
 interface IProps {
@@ -12,11 +13,14 @@ interface IProps {
 }
 
 export const ContentRenderer: React.FC<IProps> = ({ page }) => {
-    const renderComponent = (props: ILayoutContent) => {
+    const renderComponent = (props: ILayoutContentItem) => {
         const { __typename } = props;
 
         if (__typename === "Hero") {
             return <Hero {...props} />;
+        }
+        if (__typename === "Footer") {
+            return <Footer {...props} />;
         }
         if (__typename === "Block_About") {
             return <Block_About {...props} />;

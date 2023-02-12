@@ -97,6 +97,19 @@ export const findBySlug = async (slug: string) => {
                                 headline
                                 limit
                             }
+                            ... on Footer {
+                                yearFrom
+                                socialNetworks {
+                                    name
+                                    url
+                                    icon {
+                                        url
+                                        width
+                                        mimeType
+                                    }
+                                }
+                                text
+                            }
                         }
                     }
                 }

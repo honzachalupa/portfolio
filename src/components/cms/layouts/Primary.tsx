@@ -4,7 +4,6 @@ import { Maybe } from "../../../types/cms";
 import { TidioChat } from "../../TidioChat";
 import { ColorOverlay } from "./components/ColorOverlay";
 import { SectionContainer } from "./components/Container";
-import { Footer } from "./components/Footer";
 import { Head } from "./components/Head";
 
 interface IProps {
@@ -12,8 +11,8 @@ interface IProps {
     children: ReactNode;
 }
 
-export const Layout_Primary: React.FC<IProps> = ({ children, ...props }) => {
-    const title = [props.title, config.appName].filter(Boolean).join(" | ");
+export const Layout_Primary: React.FC<IProps> = ({ title, children }) => {
+    title = [title, config.appName].filter(Boolean).join(" | ");
 
     return (
         <>
@@ -22,7 +21,6 @@ export const Layout_Primary: React.FC<IProps> = ({ children, ...props }) => {
             <div className="overflow-hidden tracking-wider">
                 {children}
 
-                <Footer />
                 <ColorOverlay />
                 <TidioChat />
             </div>
