@@ -13,6 +13,7 @@ export const SEO: React.FC<IProps> = ({ title, description, keywords }) => {
         <NextSeo
             title={title}
             description={description}
+            themeColor="#0a192f"
             additionalMetaTags={[
                 {
                     property: "viewport",
