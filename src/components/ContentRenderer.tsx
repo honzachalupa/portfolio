@@ -5,8 +5,9 @@ import { Hero } from "./cms/blocks/Hero";
 import { Block_Jobs } from "./cms/blocks/Jobs";
 import { Block_Projects } from "./cms/blocks/Projects";
 import { Block_Repositories } from "./cms/blocks/Repositories";
-import { Footer } from "./cms/layouts/components/Footer";
+import { Footer } from "./cms/Footer";
 import { Layout_Primary } from "./cms/layouts/Primary";
+import { SEO } from "./cms/SEO";
 
 interface IProps {
     page: Page;
@@ -21,6 +22,9 @@ export const ContentRenderer: React.FC<IProps> = ({ page }) => {
         }
         if (__typename === "Footer") {
             return <Footer {...props} />;
+        }
+        if (__typename === "SEO") {
+            return <SEO title={page.title} {...props} />;
         }
         if (__typename === "Block_About") {
             return <Block_About {...props} />;

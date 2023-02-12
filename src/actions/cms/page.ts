@@ -114,6 +114,10 @@ export const findBySlug = async (slug: string) => {
                                 }
                                 text
                             }
+                            ... on SEO {
+                                description
+                                keywords
+                            }
                         }
                     }
                 }

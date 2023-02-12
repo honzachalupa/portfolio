@@ -25,7 +25,6 @@
         "nextjs-google-analytics": "^2.3.0",
         "react": "18.2.0",
         "react-dom": "18.2.0",
-        "react-google-structured-data": "^3.0.0",
         "react-hook-form": "^7.43.0",
         "react-markdown": "^8.0.5",
         "react-svg": "^16.1.1",

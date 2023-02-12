@@ -1,11 +1,10 @@
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import cx from "classnames";
+import { SoftwareAppJsonLd } from "next-seo";
 import Image from "next/image";
 import { IBlock_Projects } from "../../../types/cms";
 import { AnimationFadeIn } from "../../AnimationFadeIn";
 import { SectionContainer } from "../layouts/Primary";
-// @ts-ignore
-import StructuredData from "react-google-structured-data";
 
 const ProjectImage: React.FC<{
     src: string;
@@ -30,26 +29,24 @@ const ProjectImage: React.FC<{
 export const Block_Projects: React.FC<IBlock_Projects> = ({ projects }) => (
     <>
         {projects.map(({ id, name, description, image, url, client }) => (
-            <StructuredData
+            <SoftwareAppJsonLd
                 key={id}
-                type="Product"
-                data={{
-                    name,
-                    url,
-                    image: image.url,
-                    description: description.text,
-                    brand: client
+                name={name}
+                url={url}
+                image={image.url}
+                description={description.text}
+                price="0"
+                priceCurrency="CZK"
+                operatingSystem="WEB"
+                applicationCategory="WebApplication"
+                brand={
+                    client
                         ? {
                               "@type": "Brand",
                               name: client.name,
                           }
-                        : undefined,
-                    offers: {
-                        "@type": "Offer",
-                        price: 0,
-                        priceCurrency: "CZK",
-                    },
-                }}
+                        : undefined
+                }
             />
         ))}
 

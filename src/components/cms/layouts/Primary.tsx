@@ -4,7 +4,6 @@ import { Maybe } from "../../../types/cms";
 import { TidioChat } from "../../TidioChat";
 import { ColorOverlay } from "./components/ColorOverlay";
 import { SectionContainer } from "./components/Container";
-import { Head } from "./components/Head";
 
 interface IProps {
     title?: Maybe<string> | undefined;
@@ -15,16 +14,12 @@ export const Layout_Primary: React.FC<IProps> = ({ title, children }) => {
     title = [title, config.name].filter(Boolean).join(" | ");
 
     return (
-        <>
-            <Head title={title} />
+        <div className="overflow-hidden tracking-wider">
+            {children}
 
-            <div className="overflow-hidden tracking-wider">
-                {children}
-
-                <ColorOverlay />
-                <TidioChat />
-            </div>
-        </>
+            <ColorOverlay />
+            <TidioChat />
+        </div>
     );
 };
 

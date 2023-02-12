@@ -2262,173 +2262,6 @@ export type Block_RepositoriesWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
-export type Block_SocialNetworks = {
-  __typename?: 'Block_SocialNetworks';
-  /** The unique identifier */
-  id: Scalars['ID'];
-  /** System stage field */
-  stage: Stage;
-};
-
-/** A connection to a list of items. */
-export type Block_SocialNetworksConnection = {
-  __typename?: 'Block_SocialNetworksConnection';
-  aggregate: Aggregate;
-  /** A list of edges. */
-  edges: Array<Block_SocialNetworksEdge>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-};
-
-export type Block_SocialNetworksCreateInput = {
-  /** No fields in create input */
-  _?: InputMaybe<Scalars['String']>;
-};
-
-export type Block_SocialNetworksCreateWithPositionInput = {
-  /** Document to create */
-  data: Block_SocialNetworksCreateInput;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-};
-
-/** An edge in a connection. */
-export type Block_SocialNetworksEdge = {
-  __typename?: 'Block_SocialNetworksEdge';
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String'];
-  /** The item at the end of the edge. */
-  node: Block_SocialNetworks;
-};
-
-/** Identifies documents */
-export type Block_SocialNetworksManyWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<Block_SocialNetworksWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<Block_SocialNetworksWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<Block_SocialNetworksWhereInput>>;
-  /** Contains search across all appropriate fields. */
-  _search?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['ID']>;
-  /** All values containing the given string. */
-  id_contains?: InputMaybe<Scalars['ID']>;
-  /** All values ending with the given string. */
-  id_ends_with?: InputMaybe<Scalars['ID']>;
-  /** All values that are contained in given list. */
-  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  /** All values that are not equal to given value. */
-  id_not?: InputMaybe<Scalars['ID']>;
-  /** All values not containing the given string. */
-  id_not_contains?: InputMaybe<Scalars['ID']>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: InputMaybe<Scalars['ID']>;
-  /** All values that are not contained in given list. */
-  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: InputMaybe<Scalars['ID']>;
-  /** All values starting with the given string. */
-  id_starts_with?: InputMaybe<Scalars['ID']>;
-};
-
-export enum Block_SocialNetworksOrderByInput {
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC'
-}
-
-export type Block_SocialNetworksUpdateInput = {
-  /** No fields in update input */
-  _?: InputMaybe<Scalars['String']>;
-};
-
-export type Block_SocialNetworksUpdateManyInput = {
-  /** No fields in updateMany data input */
-  _?: InputMaybe<Scalars['String']>;
-};
-
-export type Block_SocialNetworksUpdateManyWithNestedWhereInput = {
-  /** Update many input */
-  data: Block_SocialNetworksUpdateManyInput;
-  /** Document search */
-  where: Block_SocialNetworksWhereInput;
-};
-
-export type Block_SocialNetworksUpdateWithNestedWhereUniqueAndPositionInput = {
-  /** Document to update */
-  data?: InputMaybe<Block_SocialNetworksUpdateInput>;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Unique component instance search */
-  where: Block_SocialNetworksWhereUniqueInput;
-};
-
-export type Block_SocialNetworksUpdateWithNestedWhereUniqueInput = {
-  /** Document to update */
-  data: Block_SocialNetworksUpdateInput;
-  /** Unique document search */
-  where: Block_SocialNetworksWhereUniqueInput;
-};
-
-export type Block_SocialNetworksUpsertInput = {
-  /** Create document if it didn't exist */
-  create: Block_SocialNetworksCreateInput;
-  /** Update document if it exists */
-  update: Block_SocialNetworksUpdateInput;
-};
-
-export type Block_SocialNetworksUpsertWithNestedWhereUniqueAndPositionInput = {
-  /** Document to upsert */
-  data?: InputMaybe<Block_SocialNetworksUpsertInput>;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Unique component instance search */
-  where: Block_SocialNetworksWhereUniqueInput;
-};
-
-export type Block_SocialNetworksUpsertWithNestedWhereUniqueInput = {
-  /** Upsert data */
-  data: Block_SocialNetworksUpsertInput;
-  /** Unique document search */
-  where: Block_SocialNetworksWhereUniqueInput;
-};
-
-/** Identifies documents */
-export type Block_SocialNetworksWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<Block_SocialNetworksWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<Block_SocialNetworksWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<Block_SocialNetworksWhereInput>>;
-  /** Contains search across all appropriate fields. */
-  _search?: InputMaybe<Scalars['String']>;
-  id?: InputMaybe<Scalars['ID']>;
-  /** All values containing the given string. */
-  id_contains?: InputMaybe<Scalars['ID']>;
-  /** All values ending with the given string. */
-  id_ends_with?: InputMaybe<Scalars['ID']>;
-  /** All values that are contained in given list. */
-  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  /** All values that are not equal to given value. */
-  id_not?: InputMaybe<Scalars['ID']>;
-  /** All values not containing the given string. */
-  id_not_contains?: InputMaybe<Scalars['ID']>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: InputMaybe<Scalars['ID']>;
-  /** All values that are not contained in given list. */
-  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: InputMaybe<Scalars['ID']>;
-  /** All values starting with the given string. */
-  id_starts_with?: InputMaybe<Scalars['ID']>;
-};
-
-/** References Block_SocialNetworks record uniquely */
-export type Block_SocialNetworksWhereUniqueInput = {
-  id?: InputMaybe<Scalars['ID']>;
-};
-
 export type Client = Node & {
   __typename?: 'Client';
   /** The time the document was created */
@@ -4706,7 +4539,7 @@ export type LocationInput = {
   longitude: Scalars['Float'];
 };
 
-export type MainLayoutcontentUnion = Block_About | Block_Jobs | Block_Projects | Block_Repositories | Footer | Hero;
+export type MainLayoutcontentUnion = Block_About | Block_Jobs | Block_Projects | Block_Repositories | Footer | Hero | Seo;
 
 export type MainLayoutcontentUnionConnectInput = {
   Block_About?: InputMaybe<Block_AboutConnectInput>;
@@ -4715,6 +4548,7 @@ export type MainLayoutcontentUnionConnectInput = {
   Block_Repositories?: InputMaybe<Block_RepositoriesConnectInput>;
   Footer?: InputMaybe<FooterConnectInput>;
   Hero?: InputMaybe<HeroConnectInput>;
+  SEO?: InputMaybe<SeoConnectInput>;
 };
 
 export type MainLayoutcontentUnionCreateInput = {
@@ -4724,6 +4558,7 @@ export type MainLayoutcontentUnionCreateInput = {
   Block_Repositories?: InputMaybe<Block_RepositoriesCreateInput>;
   Footer?: InputMaybe<FooterCreateInput>;
   Hero?: InputMaybe<HeroCreateInput>;
+  SEO?: InputMaybe<SeoCreateInput>;
 };
 
 export type MainLayoutcontentUnionCreateManyInlineInput = {
@@ -4743,6 +4578,7 @@ export type MainLayoutcontentUnionCreateWithPositionInput = {
   Block_Repositories?: InputMaybe<Block_RepositoriesCreateWithPositionInput>;
   Footer?: InputMaybe<FooterCreateWithPositionInput>;
   Hero?: InputMaybe<HeroCreateWithPositionInput>;
+  SEO?: InputMaybe<SeoCreateWithPositionInput>;
 };
 
 export type MainLayoutcontentUnionUpdateInput = {
@@ -4752,6 +4588,7 @@ export type MainLayoutcontentUnionUpdateInput = {
   Block_Repositories?: InputMaybe<Block_RepositoriesUpdateInput>;
   Footer?: InputMaybe<FooterUpdateInput>;
   Hero?: InputMaybe<HeroUpdateInput>;
+  SEO?: InputMaybe<SeoUpdateInput>;
 };
 
 export type MainLayoutcontentUnionUpdateManyInlineInput = {
@@ -4772,6 +4609,7 @@ export type MainLayoutcontentUnionUpdateManyWithNestedWhereInput = {
   Block_Repositories?: InputMaybe<Block_RepositoriesUpdateManyWithNestedWhereInput>;
   Footer?: InputMaybe<FooterUpdateManyWithNestedWhereInput>;
   Hero?: InputMaybe<HeroUpdateManyWithNestedWhereInput>;
+  SEO?: InputMaybe<SeoUpdateManyWithNestedWhereInput>;
 };
 
 export type MainLayoutcontentUnionUpdateOneInlineInput = {
@@ -4792,6 +4630,7 @@ export type MainLayoutcontentUnionUpdateWithNestedWhereUniqueAndPositionInput = 
   Block_Repositories?: InputMaybe<Block_RepositoriesUpdateWithNestedWhereUniqueAndPositionInput>;
   Footer?: InputMaybe<FooterUpdateWithNestedWhereUniqueAndPositionInput>;
   Hero?: InputMaybe<HeroUpdateWithNestedWhereUniqueAndPositionInput>;
+  SEO?: InputMaybe<SeoUpdateWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type MainLayoutcontentUnionUpdateWithNestedWhereUniqueInput = {
@@ -4801,6 +4640,7 @@ export type MainLayoutcontentUnionUpdateWithNestedWhereUniqueInput = {
   Block_Repositories?: InputMaybe<Block_RepositoriesUpdateWithNestedWhereUniqueInput>;
   Footer?: InputMaybe<FooterUpdateWithNestedWhereUniqueInput>;
   Hero?: InputMaybe<HeroUpdateWithNestedWhereUniqueInput>;
+  SEO?: InputMaybe<SeoUpdateWithNestedWhereUniqueInput>;
 };
 
 export type MainLayoutcontentUnionUpsertWithNestedWhereUniqueAndPositionInput = {
@@ -4810,6 +4650,7 @@ export type MainLayoutcontentUnionUpsertWithNestedWhereUniqueAndPositionInput = 
   Block_Repositories?: InputMaybe<Block_RepositoriesUpsertWithNestedWhereUniqueAndPositionInput>;
   Footer?: InputMaybe<FooterUpsertWithNestedWhereUniqueAndPositionInput>;
   Hero?: InputMaybe<HeroUpsertWithNestedWhereUniqueAndPositionInput>;
+  SEO?: InputMaybe<SeoUpsertWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type MainLayoutcontentUnionUpsertWithNestedWhereUniqueInput = {
@@ -4819,6 +4660,7 @@ export type MainLayoutcontentUnionUpsertWithNestedWhereUniqueInput = {
   Block_Repositories?: InputMaybe<Block_RepositoriesUpsertWithNestedWhereUniqueInput>;
   Footer?: InputMaybe<FooterUpsertWithNestedWhereUniqueInput>;
   Hero?: InputMaybe<HeroUpsertWithNestedWhereUniqueInput>;
+  SEO?: InputMaybe<SeoUpsertWithNestedWhereUniqueInput>;
 };
 
 export type MainLayoutcontentUnionWhereInput = {
@@ -4828,6 +4670,7 @@ export type MainLayoutcontentUnionWhereInput = {
   Block_Repositories?: InputMaybe<Block_RepositoriesWhereInput>;
   Footer?: InputMaybe<FooterWhereInput>;
   Hero?: InputMaybe<HeroWhereInput>;
+  SEO?: InputMaybe<SeoWhereInput>;
 };
 
 export type MainLayoutcontentUnionWhereUniqueInput = {
@@ -4837,6 +4680,7 @@ export type MainLayoutcontentUnionWhereUniqueInput = {
   Block_Repositories?: InputMaybe<Block_RepositoriesWhereUniqueInput>;
   Footer?: InputMaybe<FooterWhereUniqueInput>;
   Hero?: InputMaybe<HeroWhereUniqueInput>;
+  SEO?: InputMaybe<SeoWhereUniqueInput>;
 };
 
 export type Mutation = {
@@ -7549,6 +7393,426 @@ export type RichText = {
   raw: Scalars['RichTextAST'];
   /** Returns plain-text contents of RichText */
   text: Scalars['String'];
+};
+
+export type Seo = {
+  __typename?: 'SEO';
+  description: Scalars['String'];
+  /** The unique identifier */
+  id: Scalars['ID'];
+  keywords: Scalars['String'];
+  /** System Locale field */
+  locale: Locale;
+  /** Get the other localizations for this document */
+  localizations: Array<Seo>;
+  /** System stage field */
+  stage: Stage;
+};
+
+
+export type SeoLocalizationsArgs = {
+  includeCurrent?: Scalars['Boolean'];
+  locales?: Array<Locale>;
+};
+
+export type SeoConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: SeoWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type SeoConnection = {
+  __typename?: 'SEOConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<SeoEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type SeoCreateInput = {
+  /** description input for default locale (en) */
+  description: Scalars['String'];
+  keywords: Scalars['String'];
+  /** Inline mutations for managing document localizations excluding the default locale */
+  localizations?: InputMaybe<SeoCreateLocalizationsInput>;
+};
+
+export type SeoCreateLocalizationDataInput = {
+  description: Scalars['String'];
+};
+
+export type SeoCreateLocalizationInput = {
+  /** Localization input */
+  data: SeoCreateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type SeoCreateLocalizationsInput = {
+  /** Create localizations for the newly-created document */
+  create?: InputMaybe<Array<SeoCreateLocalizationInput>>;
+};
+
+export type SeoCreateManyInlineInput = {
+  /** Create and connect multiple existing SEO documents */
+  create?: InputMaybe<Array<SeoCreateInput>>;
+};
+
+export type SeoCreateOneInlineInput = {
+  /** Create and connect one SEO document */
+  create?: InputMaybe<SeoCreateInput>;
+};
+
+export type SeoCreateWithPositionInput = {
+  /** Document to create */
+  data: SeoCreateInput;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+};
+
+/** An edge in a connection. */
+export type SeoEdge = {
+  __typename?: 'SEOEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String'];
+  /** The item at the end of the edge. */
+  node: Seo;
+};
+
+/** Identifies documents */
+export type SeoManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<SeoWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<SeoWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<SeoWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  keywords?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  keywords_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  keywords_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  keywords_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  keywords_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  keywords_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  keywords_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  keywords_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  keywords_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  keywords_starts_with?: InputMaybe<Scalars['String']>;
+};
+
+export enum SeoOrderByInput {
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  KeywordsAsc = 'keywords_ASC',
+  KeywordsDesc = 'keywords_DESC'
+}
+
+export type SeoParent = Layout_Primary;
+
+export type SeoParentConnectInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryConnectInput>;
+};
+
+export type SeoParentCreateInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryCreateInput>;
+};
+
+export type SeoParentCreateManyInlineInput = {
+  /** Create and connect multiple existing SEOParent documents */
+  create?: InputMaybe<Array<SeoParentCreateInput>>;
+};
+
+export type SeoParentCreateOneInlineInput = {
+  /** Create and connect one SEOParent document */
+  create?: InputMaybe<SeoParentCreateInput>;
+};
+
+export type SeoParentCreateWithPositionInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryCreateWithPositionInput>;
+};
+
+export type SeoParentUpdateInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateInput>;
+};
+
+export type SeoParentUpdateManyInlineInput = {
+  /** Create and connect multiple SEOParent component instances */
+  create?: InputMaybe<Array<SeoParentCreateWithPositionInput>>;
+  /** Delete multiple SEOParent documents */
+  delete?: InputMaybe<Array<SeoParentWhereUniqueInput>>;
+  /** Update multiple SEOParent component instances */
+  update?: InputMaybe<Array<SeoParentUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple SEOParent component instances */
+  upsert?: InputMaybe<Array<SeoParentUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type SeoParentUpdateManyWithNestedWhereInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateManyWithNestedWhereInput>;
+};
+
+export type SeoParentUpdateOneInlineInput = {
+  /** Create and connect one SEOParent document */
+  create?: InputMaybe<SeoParentCreateInput>;
+  /** Delete currently connected SEOParent document */
+  delete?: InputMaybe<Scalars['Boolean']>;
+  /** Update single SEOParent document */
+  update?: InputMaybe<SeoParentUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single SEOParent document */
+  upsert?: InputMaybe<SeoParentUpsertWithNestedWhereUniqueInput>;
+};
+
+export type SeoParentUpdateWithNestedWhereUniqueAndPositionInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type SeoParentUpdateWithNestedWhereUniqueInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueInput>;
+};
+
+export type SeoParentUpsertWithNestedWhereUniqueAndPositionInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type SeoParentUpsertWithNestedWhereUniqueInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueInput>;
+};
+
+export type SeoParentWhereInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryWhereInput>;
+};
+
+export type SeoParentWhereUniqueInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryWhereUniqueInput>;
+};
+
+export type SeoUpdateInput = {
+  /** description input for default locale (en) */
+  description?: InputMaybe<Scalars['String']>;
+  keywords?: InputMaybe<Scalars['String']>;
+  /** Manage document localizations */
+  localizations?: InputMaybe<SeoUpdateLocalizationsInput>;
+};
+
+export type SeoUpdateLocalizationDataInput = {
+  description?: InputMaybe<Scalars['String']>;
+};
+
+export type SeoUpdateLocalizationInput = {
+  data: SeoUpdateLocalizationDataInput;
+  locale: Locale;
+};
+
+export type SeoUpdateLocalizationsInput = {
+  /** Localizations to create */
+  create?: InputMaybe<Array<SeoCreateLocalizationInput>>;
+  /** Localizations to delete */
+  delete?: InputMaybe<Array<Locale>>;
+  /** Localizations to update */
+  update?: InputMaybe<Array<SeoUpdateLocalizationInput>>;
+  upsert?: InputMaybe<Array<SeoUpsertLocalizationInput>>;
+};
+
+export type SeoUpdateManyInlineInput = {
+  /** Create and connect multiple SEO component instances */
+  create?: InputMaybe<Array<SeoCreateWithPositionInput>>;
+  /** Delete multiple SEO documents */
+  delete?: InputMaybe<Array<SeoWhereUniqueInput>>;
+  /** Update multiple SEO component instances */
+  update?: InputMaybe<Array<SeoUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple SEO component instances */
+  upsert?: InputMaybe<Array<SeoUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type SeoUpdateManyInput = {
+  /** description input for default locale (en) */
+  description?: InputMaybe<Scalars['String']>;
+  keywords?: InputMaybe<Scalars['String']>;
+  /** Optional updates to localizations */
+  localizations?: InputMaybe<SeoUpdateManyLocalizationsInput>;
+};
+
+export type SeoUpdateManyLocalizationDataInput = {
+  description?: InputMaybe<Scalars['String']>;
+};
+
+export type SeoUpdateManyLocalizationInput = {
+  data: SeoUpdateManyLocalizationDataInput;
+  locale: Locale;
+};
+
+export type SeoUpdateManyLocalizationsInput = {
+  /** Localizations to update */
+  update?: InputMaybe<Array<SeoUpdateManyLocalizationInput>>;
+};
+
+export type SeoUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: SeoUpdateManyInput;
+  /** Document search */
+  where: SeoWhereInput;
+};
+
+export type SeoUpdateOneInlineInput = {
+  /** Create and connect one SEO document */
+  create?: InputMaybe<SeoCreateInput>;
+  /** Delete currently connected SEO document */
+  delete?: InputMaybe<Scalars['Boolean']>;
+  /** Update single SEO document */
+  update?: InputMaybe<SeoUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single SEO document */
+  upsert?: InputMaybe<SeoUpsertWithNestedWhereUniqueInput>;
+};
+
+export type SeoUpdateWithNestedWhereUniqueAndPositionInput = {
+  /** Document to update */
+  data?: InputMaybe<SeoUpdateInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: SeoWhereUniqueInput;
+};
+
+export type SeoUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: SeoUpdateInput;
+  /** Unique document search */
+  where: SeoWhereUniqueInput;
+};
+
+export type SeoUpsertInput = {
+  /** Create document if it didn't exist */
+  create: SeoCreateInput;
+  /** Update document if it exists */
+  update: SeoUpdateInput;
+};
+
+export type SeoUpsertLocalizationInput = {
+  create: SeoCreateLocalizationDataInput;
+  locale: Locale;
+  update: SeoUpdateLocalizationDataInput;
+};
+
+export type SeoUpsertWithNestedWhereUniqueAndPositionInput = {
+  /** Document to upsert */
+  data?: InputMaybe<SeoUpsertInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: SeoWhereUniqueInput;
+};
+
+export type SeoUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: SeoUpsertInput;
+  /** Unique document search */
+  where: SeoWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type SeoWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<SeoWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<SeoWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<SeoWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  description_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  description_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  description_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  description_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  description_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  description_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  description_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  description_starts_with?: InputMaybe<Scalars['String']>;
+  id?: InputMaybe<Scalars['ID']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values that are not equal to given value. */
+  id_not?: InputMaybe<Scalars['ID']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']>;
+  keywords?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  keywords_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  keywords_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  keywords_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  keywords_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  keywords_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  keywords_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  keywords_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  keywords_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  keywords_starts_with?: InputMaybe<Scalars['String']>;
+};
+
+/** References SEO record uniquely */
+export type SeoWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']>;
 };
 
 /** Scheduled Operation system model */
