@@ -30,10 +30,9 @@ export const Navigation: React.FC<INavigation> = ({
                     </Link>
                 ))}
 
-                {isLanguageSelectorVisible &&
-                localization.locales.length > 1 ? (
+                {isLanguageSelectorVisible && (
                     <div className="ml-auto">
-                        {localization.locales.map((locale) => (
+                        {localization.locales?.map((locale) => (
                             <Link
                                 key={locale}
                                 href="/"
@@ -48,7 +47,7 @@ export const Navigation: React.FC<INavigation> = ({
                             </Link>
                         ))}
                     </div>
-                ) : null}
+                )}
             </SectionContainer>
         </div>
     );
