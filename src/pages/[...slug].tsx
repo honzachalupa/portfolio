@@ -1,42 +1,56 @@
-import { GetStaticPaths, InferGetServerSidePropsType } from "next";
-import { CMSActions } from "../actions/cms";
+import { GetStaticPaths, GetStaticProps } from "next";
+import { CMSLocalesActions, CMSPagesActions } from "../actions/cms";
 import { ContentRenderer } from "../components/ContentRenderer";
+import { Page } from "../types/cms";
+import { Context, ILocalization } from "../utils/context";
+import { formatSlug, getPagesParams } from "../utils/slug";
 
-export default function Slug({
+const Slug = ({
     page,
-}: InferGetServerSidePropsType<typeof getStaticPaths>) {
-    return page ? <ContentRenderer page={page} /> : null;
-}
+    localization,
+    cmsLocales,
+}: {
+    page: Page;
+    localization: ILocalization;
+    cmsLocales: string[];
+}) => (
+    <Context.Provider value={{ localization }}>
+        {page ? <ContentRenderer page={page} cmsLocales={cmsLocales} /> : null}
+    </Context.Provider>
+);
 
 export const getStaticPaths: GetStaticPaths = async () => {
-    const pages = await CMSActions.getAll();
-
-    const paths = pages
-        .filter(({ slug }) => slug !== "/")
-        .map(({ slug }) => ({
-            params: {
-                slug: slug.replace("/", "").split("/"),
-            },
-        }));
+    const pages = await CMSPagesActions.getAll();
 
     return {
-        paths,
+        paths: getPagesParams(pages),
         fallback: false,
     };
 };
 
-export const getStaticProps = async ({ params }: any) => {
-    const formatSlug = (slug: string | string[] | undefined) =>
-        slug ? "/" + (typeof slug === "object" ? slug.join("/") : slug) : null;
+export const getStaticProps: GetStaticProps = async ({
+    params,
+    locale,
+    locales,
+    defaultLocale,
+}) => {
+    const localization = {
+        locale: locale!,
+        locales: locales!,
+        defaultLocale: defaultLocale!,
+    };
 
-    const slug = formatSlug(params.slug);
+    const slug = formatSlug(params!.slug);
 
     if (slug) {
-        const page = await CMSActions.findBySlug(slug);
+        const page = await CMSPagesActions.findBySlug(slug, localization);
+        const cmsLocales = await CMSLocalesActions.getAll();
 
         return {
             props: {
                 page,
+                localization,
+                cmsLocales,
             },
             revalidate: 1,
         };
@@ -45,7 +59,10 @@ export const getStaticProps = async ({ params }: any) => {
     return {
         props: {
             page: null,
+            localization,
         },
         revalidate: 1,
     };
 };
+
+export default Slug;

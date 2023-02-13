@@ -1,6 +1,2 @@
-import { findBySlug, getAll } from "./page";
-
-export const CMSActions = {
-    getAll,
-    findBySlug,
-};
+export { CMSLocalesActions } from "./locales";
+export { CMSPagesActions } from "./pages";

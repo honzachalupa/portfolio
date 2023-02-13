@@ -772,10 +772,6 @@ export type Block_About = {
   /** The unique identifier */
   id: Scalars['ID'];
   image?: Maybe<Asset>;
-  /** System Locale field */
-  locale: Locale;
-  /** Get the other localizations for this document */
-  localizations: Array<Block_About>;
   /** System stage field */
   stage: Stage;
 };
@@ -784,12 +780,6 @@ export type Block_About = {
 export type Block_AboutImageArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
-};
-
-
-export type Block_AboutLocalizationsArgs = {
-  includeCurrent?: Scalars['Boolean'];
-  locales?: Array<Locale>;
 };
 
 export type Block_AboutConnectInput = {
@@ -810,29 +800,9 @@ export type Block_AboutConnection = {
 };
 
 export type Block_AboutCreateInput = {
-  /** content input for default locale (en) */
   content: Scalars['RichTextAST'];
-  /** headline input for default locale (en) */
   headline: Scalars['String'];
   image?: InputMaybe<AssetCreateOneInlineInput>;
-  /** Inline mutations for managing document localizations excluding the default locale */
-  localizations?: InputMaybe<Block_AboutCreateLocalizationsInput>;
-};
-
-export type Block_AboutCreateLocalizationDataInput = {
-  content: Scalars['RichTextAST'];
-  headline: Scalars['String'];
-};
-
-export type Block_AboutCreateLocalizationInput = {
-  /** Localization input */
-  data: Block_AboutCreateLocalizationDataInput;
-  locale: Locale;
-};
-
-export type Block_AboutCreateLocalizationsInput = {
-  /** Create localizations for the newly-created document */
-  create?: InputMaybe<Array<Block_AboutCreateLocalizationInput>>;
 };
 
 export type Block_AboutCreateManyInlineInput = {
@@ -871,6 +841,25 @@ export type Block_AboutManyWhereInput = {
   OR?: InputMaybe<Array<Block_AboutWhereInput>>;
   /** Contains search across all appropriate fields. */
   _search?: InputMaybe<Scalars['String']>;
+  headline?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  headline_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  headline_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  headline_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  headline_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  headline_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  headline_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  headline_starts_with?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -979,33 +968,9 @@ export type Block_AboutParentWhereUniqueInput = {
 };
 
 export type Block_AboutUpdateInput = {
-  /** content input for default locale (en) */
   content?: InputMaybe<Scalars['RichTextAST']>;
-  /** headline input for default locale (en) */
   headline?: InputMaybe<Scalars['String']>;
   image?: InputMaybe<AssetUpdateOneInlineInput>;
-  /** Manage document localizations */
-  localizations?: InputMaybe<Block_AboutUpdateLocalizationsInput>;
-};
-
-export type Block_AboutUpdateLocalizationDataInput = {
-  content?: InputMaybe<Scalars['RichTextAST']>;
-  headline?: InputMaybe<Scalars['String']>;
-};
-
-export type Block_AboutUpdateLocalizationInput = {
-  data: Block_AboutUpdateLocalizationDataInput;
-  locale: Locale;
-};
-
-export type Block_AboutUpdateLocalizationsInput = {
-  /** Localizations to create */
-  create?: InputMaybe<Array<Block_AboutCreateLocalizationInput>>;
-  /** Localizations to delete */
-  delete?: InputMaybe<Array<Locale>>;
-  /** Localizations to update */
-  update?: InputMaybe<Array<Block_AboutUpdateLocalizationInput>>;
-  upsert?: InputMaybe<Array<Block_AboutUpsertLocalizationInput>>;
 };
 
 export type Block_AboutUpdateManyInlineInput = {
@@ -1020,27 +985,8 @@ export type Block_AboutUpdateManyInlineInput = {
 };
 
 export type Block_AboutUpdateManyInput = {
-  /** content input for default locale (en) */
-  content?: InputMaybe<Scalars['RichTextAST']>;
-  /** headline input for default locale (en) */
-  headline?: InputMaybe<Scalars['String']>;
-  /** Optional updates to localizations */
-  localizations?: InputMaybe<Block_AboutUpdateManyLocalizationsInput>;
-};
-
-export type Block_AboutUpdateManyLocalizationDataInput = {
   content?: InputMaybe<Scalars['RichTextAST']>;
   headline?: InputMaybe<Scalars['String']>;
-};
-
-export type Block_AboutUpdateManyLocalizationInput = {
-  data: Block_AboutUpdateManyLocalizationDataInput;
-  locale: Locale;
-};
-
-export type Block_AboutUpdateManyLocalizationsInput = {
-  /** Localizations to update */
-  update?: InputMaybe<Array<Block_AboutUpdateManyLocalizationInput>>;
 };
 
 export type Block_AboutUpdateManyWithNestedWhereInput = {
@@ -1082,12 +1028,6 @@ export type Block_AboutUpsertInput = {
   create: Block_AboutCreateInput;
   /** Update document if it exists */
   update: Block_AboutUpdateInput;
-};
-
-export type Block_AboutUpsertLocalizationInput = {
-  create: Block_AboutCreateLocalizationDataInput;
-  locale: Locale;
-  update: Block_AboutUpdateLocalizationDataInput;
 };
 
 export type Block_AboutUpsertWithNestedWhereUniqueAndPositionInput = {
@@ -1168,10 +1108,6 @@ export type Block_Jobs = {
   /** The unique identifier */
   id: Scalars['ID'];
   jobs: Array<Job>;
-  /** System Locale field */
-  locale: Locale;
-  /** Get the other localizations for this document */
-  localizations: Array<Block_Jobs>;
   /** System stage field */
   stage: Stage;
 };
@@ -1187,12 +1123,6 @@ export type Block_JobsJobsArgs = {
   orderBy?: InputMaybe<JobOrderByInput>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<JobWhereInput>;
-};
-
-
-export type Block_JobsLocalizationsArgs = {
-  includeCurrent?: Scalars['Boolean'];
-  locales?: Array<Locale>;
 };
 
 export type Block_JobsConnectInput = {
@@ -1213,26 +1143,8 @@ export type Block_JobsConnection = {
 };
 
 export type Block_JobsCreateInput = {
-  /** headline input for default locale (en) */
   headline: Scalars['String'];
   jobs?: InputMaybe<JobCreateManyInlineInput>;
-  /** Inline mutations for managing document localizations excluding the default locale */
-  localizations?: InputMaybe<Block_JobsCreateLocalizationsInput>;
-};
-
-export type Block_JobsCreateLocalizationDataInput = {
-  headline: Scalars['String'];
-};
-
-export type Block_JobsCreateLocalizationInput = {
-  /** Localization input */
-  data: Block_JobsCreateLocalizationDataInput;
-  locale: Locale;
-};
-
-export type Block_JobsCreateLocalizationsInput = {
-  /** Create localizations for the newly-created document */
-  create?: InputMaybe<Array<Block_JobsCreateLocalizationInput>>;
 };
 
 export type Block_JobsCreateManyInlineInput = {
@@ -1271,6 +1183,25 @@ export type Block_JobsManyWhereInput = {
   OR?: InputMaybe<Array<Block_JobsWhereInput>>;
   /** Contains search across all appropriate fields. */
   _search?: InputMaybe<Scalars['String']>;
+  headline?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  headline_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  headline_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  headline_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  headline_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  headline_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  headline_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  headline_starts_with?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -1381,30 +1312,8 @@ export type Block_JobsParentWhereUniqueInput = {
 };
 
 export type Block_JobsUpdateInput = {
-  /** headline input for default locale (en) */
   headline?: InputMaybe<Scalars['String']>;
   jobs?: InputMaybe<JobUpdateManyInlineInput>;
-  /** Manage document localizations */
-  localizations?: InputMaybe<Block_JobsUpdateLocalizationsInput>;
-};
-
-export type Block_JobsUpdateLocalizationDataInput = {
-  headline?: InputMaybe<Scalars['String']>;
-};
-
-export type Block_JobsUpdateLocalizationInput = {
-  data: Block_JobsUpdateLocalizationDataInput;
-  locale: Locale;
-};
-
-export type Block_JobsUpdateLocalizationsInput = {
-  /** Localizations to create */
-  create?: InputMaybe<Array<Block_JobsCreateLocalizationInput>>;
-  /** Localizations to delete */
-  delete?: InputMaybe<Array<Locale>>;
-  /** Localizations to update */
-  update?: InputMaybe<Array<Block_JobsUpdateLocalizationInput>>;
-  upsert?: InputMaybe<Array<Block_JobsUpsertLocalizationInput>>;
 };
 
 export type Block_JobsUpdateManyInlineInput = {
@@ -1419,24 +1328,7 @@ export type Block_JobsUpdateManyInlineInput = {
 };
 
 export type Block_JobsUpdateManyInput = {
-  /** headline input for default locale (en) */
   headline?: InputMaybe<Scalars['String']>;
-  /** Optional updates to localizations */
-  localizations?: InputMaybe<Block_JobsUpdateManyLocalizationsInput>;
-};
-
-export type Block_JobsUpdateManyLocalizationDataInput = {
-  headline?: InputMaybe<Scalars['String']>;
-};
-
-export type Block_JobsUpdateManyLocalizationInput = {
-  data: Block_JobsUpdateManyLocalizationDataInput;
-  locale: Locale;
-};
-
-export type Block_JobsUpdateManyLocalizationsInput = {
-  /** Localizations to update */
-  update?: InputMaybe<Array<Block_JobsUpdateManyLocalizationInput>>;
 };
 
 export type Block_JobsUpdateManyWithNestedWhereInput = {
@@ -1478,12 +1370,6 @@ export type Block_JobsUpsertInput = {
   create: Block_JobsCreateInput;
   /** Update document if it exists */
   update: Block_JobsUpdateInput;
-};
-
-export type Block_JobsUpsertLocalizationInput = {
-  create: Block_JobsCreateLocalizationDataInput;
-  locale: Locale;
-  update: Block_JobsUpdateLocalizationDataInput;
 };
 
 export type Block_JobsUpsertWithNestedWhereUniqueAndPositionInput = {
@@ -3225,18 +3111,8 @@ export type Hero = {
   content: RichText;
   /** The unique identifier */
   id: Scalars['ID'];
-  /** System Locale field */
-  locale: Locale;
-  /** Get the other localizations for this document */
-  localizations: Array<Hero>;
   /** System stage field */
   stage: Stage;
-};
-
-
-export type HeroLocalizationsArgs = {
-  includeCurrent?: Scalars['Boolean'];
-  locales?: Array<Locale>;
 };
 
 export type HeroConnectInput = {
@@ -3257,25 +3133,7 @@ export type HeroConnection = {
 };
 
 export type HeroCreateInput = {
-  /** content input for default locale (en) */
   content: Scalars['RichTextAST'];
-  /** Inline mutations for managing document localizations excluding the default locale */
-  localizations?: InputMaybe<HeroCreateLocalizationsInput>;
-};
-
-export type HeroCreateLocalizationDataInput = {
-  content: Scalars['RichTextAST'];
-};
-
-export type HeroCreateLocalizationInput = {
-  /** Localization input */
-  data: HeroCreateLocalizationDataInput;
-  locale: Locale;
-};
-
-export type HeroCreateLocalizationsInput = {
-  /** Create localizations for the newly-created document */
-  create?: InputMaybe<Array<HeroCreateLocalizationInput>>;
 };
 
 export type HeroCreateManyInlineInput = {
@@ -3419,29 +3277,7 @@ export type HeroParentWhereUniqueInput = {
 };
 
 export type HeroUpdateInput = {
-  /** content input for default locale (en) */
   content?: InputMaybe<Scalars['RichTextAST']>;
-  /** Manage document localizations */
-  localizations?: InputMaybe<HeroUpdateLocalizationsInput>;
-};
-
-export type HeroUpdateLocalizationDataInput = {
-  content?: InputMaybe<Scalars['RichTextAST']>;
-};
-
-export type HeroUpdateLocalizationInput = {
-  data: HeroUpdateLocalizationDataInput;
-  locale: Locale;
-};
-
-export type HeroUpdateLocalizationsInput = {
-  /** Localizations to create */
-  create?: InputMaybe<Array<HeroCreateLocalizationInput>>;
-  /** Localizations to delete */
-  delete?: InputMaybe<Array<Locale>>;
-  /** Localizations to update */
-  update?: InputMaybe<Array<HeroUpdateLocalizationInput>>;
-  upsert?: InputMaybe<Array<HeroUpsertLocalizationInput>>;
 };
 
 export type HeroUpdateManyInlineInput = {
@@ -3456,24 +3292,7 @@ export type HeroUpdateManyInlineInput = {
 };
 
 export type HeroUpdateManyInput = {
-  /** content input for default locale (en) */
   content?: InputMaybe<Scalars['RichTextAST']>;
-  /** Optional updates to localizations */
-  localizations?: InputMaybe<HeroUpdateManyLocalizationsInput>;
-};
-
-export type HeroUpdateManyLocalizationDataInput = {
-  content?: InputMaybe<Scalars['RichTextAST']>;
-};
-
-export type HeroUpdateManyLocalizationInput = {
-  data: HeroUpdateManyLocalizationDataInput;
-  locale: Locale;
-};
-
-export type HeroUpdateManyLocalizationsInput = {
-  /** Localizations to update */
-  update?: InputMaybe<Array<HeroUpdateManyLocalizationInput>>;
 };
 
 export type HeroUpdateManyWithNestedWhereInput = {
@@ -3515,12 +3334,6 @@ export type HeroUpsertInput = {
   create: HeroCreateInput;
   /** Update document if it exists */
   update: HeroUpdateInput;
-};
-
-export type HeroUpsertLocalizationInput = {
-  create: HeroCreateLocalizationDataInput;
-  locale: Locale;
-  update: HeroUpdateLocalizationDataInput;
 };
 
 export type HeroUpsertWithNestedWhereUniqueAndPositionInput = {
@@ -3623,10 +3436,6 @@ export type Job = Node & {
   history: Array<Version>;
   /** The unique identifier */
   id: Scalars['ID'];
-  /** System Locale field */
-  locale: Locale;
-  /** Get the other localizations for this document */
-  localizations: Array<Job>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** User that last published this document */
@@ -3645,11 +3454,6 @@ export type Job = Node & {
 export type JobClientArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
-};
-
-
-export type JobCreatedAtArgs = {
-  variation?: SystemDateTimeFieldVariation;
 };
 
 
@@ -3673,17 +3477,6 @@ export type JobHistoryArgs = {
 };
 
 
-export type JobLocalizationsArgs = {
-  includeCurrent?: Scalars['Boolean'];
-  locales?: Array<Locale>;
-};
-
-
-export type JobPublishedAtArgs = {
-  variation?: SystemDateTimeFieldVariation;
-};
-
-
 export type JobPublishedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
@@ -3699,11 +3492,6 @@ export type JobScheduledInArgs = {
   locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ScheduledOperationWhereInput>;
-};
-
-
-export type JobUpdatedAtArgs = {
-  variation?: SystemDateTimeFieldVariation;
 };
 
 
@@ -3735,29 +3523,9 @@ export type JobCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']>;
   dateFrom: Scalars['Date'];
   dateTo?: InputMaybe<Scalars['Date']>;
-  /** description input for default locale (en) */
   description: Scalars['RichTextAST'];
-  /** Inline mutations for managing document localizations excluding the default locale */
-  localizations?: InputMaybe<JobCreateLocalizationsInput>;
   title: Scalars['String'];
   updatedAt?: InputMaybe<Scalars['DateTime']>;
-};
-
-export type JobCreateLocalizationDataInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  description: Scalars['RichTextAST'];
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-};
-
-export type JobCreateLocalizationInput = {
-  /** Localization input */
-  data: JobCreateLocalizationDataInput;
-  locale: Locale;
-};
-
-export type JobCreateLocalizationsInput = {
-  /** Create localizations for the newly-created document */
-  create?: InputMaybe<Array<JobCreateLocalizationInput>>;
 };
 
 export type JobCreateManyInlineInput = {
@@ -3940,30 +3708,8 @@ export type JobUpdateInput = {
   client?: InputMaybe<ClientUpdateOneInlineInput>;
   dateFrom?: InputMaybe<Scalars['Date']>;
   dateTo?: InputMaybe<Scalars['Date']>;
-  /** description input for default locale (en) */
   description?: InputMaybe<Scalars['RichTextAST']>;
-  /** Manage document localizations */
-  localizations?: InputMaybe<JobUpdateLocalizationsInput>;
   title?: InputMaybe<Scalars['String']>;
-};
-
-export type JobUpdateLocalizationDataInput = {
-  description?: InputMaybe<Scalars['RichTextAST']>;
-};
-
-export type JobUpdateLocalizationInput = {
-  data: JobUpdateLocalizationDataInput;
-  locale: Locale;
-};
-
-export type JobUpdateLocalizationsInput = {
-  /** Localizations to create */
-  create?: InputMaybe<Array<JobCreateLocalizationInput>>;
-  /** Localizations to delete */
-  delete?: InputMaybe<Array<Locale>>;
-  /** Localizations to update */
-  update?: InputMaybe<Array<JobUpdateLocalizationInput>>;
-  upsert?: InputMaybe<Array<JobUpsertLocalizationInput>>;
 };
 
 export type JobUpdateManyInlineInput = {
@@ -3986,25 +3732,8 @@ export type JobUpdateManyInlineInput = {
 export type JobUpdateManyInput = {
   dateFrom?: InputMaybe<Scalars['Date']>;
   dateTo?: InputMaybe<Scalars['Date']>;
-  /** description input for default locale (en) */
   description?: InputMaybe<Scalars['RichTextAST']>;
-  /** Optional updates to localizations */
-  localizations?: InputMaybe<JobUpdateManyLocalizationsInput>;
   title?: InputMaybe<Scalars['String']>;
-};
-
-export type JobUpdateManyLocalizationDataInput = {
-  description?: InputMaybe<Scalars['RichTextAST']>;
-};
-
-export type JobUpdateManyLocalizationInput = {
-  data: JobUpdateManyLocalizationDataInput;
-  locale: Locale;
-};
-
-export type JobUpdateManyLocalizationsInput = {
-  /** Localizations to update */
-  update?: InputMaybe<Array<JobUpdateManyLocalizationInput>>;
 };
 
 export type JobUpdateManyWithNestedWhereInput = {
@@ -4041,12 +3770,6 @@ export type JobUpsertInput = {
   create: JobCreateInput;
   /** Update document if it exists */
   update: JobUpdateInput;
-};
-
-export type JobUpsertLocalizationInput = {
-  create: JobCreateLocalizationDataInput;
-  locale: Locale;
-  update: JobUpdateLocalizationDataInput;
 };
 
 export type JobUpsertWithNestedWhereUniqueInput = {
@@ -4514,7 +4237,6 @@ export type Layout_PrimaryWhereUniqueInput = {
 
 /** Locale system enumeration */
 export enum Locale {
-  Cs = 'cs',
   /** System locale */
   En = 'en'
 }
@@ -5155,11 +4877,8 @@ export type MutationPublishClientArgs = {
 
 
 export type MutationPublishJobArgs = {
-  locales?: InputMaybe<Array<Locale>>;
-  publishBase?: InputMaybe<Scalars['Boolean']>;
   to?: Array<Stage>;
   where: JobWhereUniqueInput;
-  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -5206,11 +4925,8 @@ export type MutationPublishManyClientsConnectionArgs = {
 
 
 export type MutationPublishManyJobsArgs = {
-  locales?: InputMaybe<Array<Locale>>;
-  publishBase?: InputMaybe<Scalars['Boolean']>;
   to?: Array<Stage>;
   where?: InputMaybe<JobManyWhereInput>;
-  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -5220,21 +4936,15 @@ export type MutationPublishManyJobsConnectionArgs = {
   first?: InputMaybe<Scalars['Int']>;
   from?: InputMaybe<Stage>;
   last?: InputMaybe<Scalars['Int']>;
-  locales?: InputMaybe<Array<Locale>>;
-  publishBase?: InputMaybe<Scalars['Boolean']>;
   skip?: InputMaybe<Scalars['Int']>;
   to?: Array<Stage>;
   where?: InputMaybe<JobManyWhereInput>;
-  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type MutationPublishManyPagesArgs = {
-  locales?: InputMaybe<Array<Locale>>;
-  publishBase?: InputMaybe<Scalars['Boolean']>;
   to?: Array<Stage>;
   where?: InputMaybe<PageManyWhereInput>;
-  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -5244,21 +4954,15 @@ export type MutationPublishManyPagesConnectionArgs = {
   first?: InputMaybe<Scalars['Int']>;
   from?: InputMaybe<Stage>;
   last?: InputMaybe<Scalars['Int']>;
-  locales?: InputMaybe<Array<Locale>>;
-  publishBase?: InputMaybe<Scalars['Boolean']>;
   skip?: InputMaybe<Scalars['Int']>;
   to?: Array<Stage>;
   where?: InputMaybe<PageManyWhereInput>;
-  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type MutationPublishManyProjectsArgs = {
-  locales?: InputMaybe<Array<Locale>>;
-  publishBase?: InputMaybe<Scalars['Boolean']>;
   to?: Array<Stage>;
   where?: InputMaybe<ProjectManyWhereInput>;
-  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -5268,12 +4972,9 @@ export type MutationPublishManyProjectsConnectionArgs = {
   first?: InputMaybe<Scalars['Int']>;
   from?: InputMaybe<Stage>;
   last?: InputMaybe<Scalars['Int']>;
-  locales?: InputMaybe<Array<Locale>>;
-  publishBase?: InputMaybe<Scalars['Boolean']>;
   skip?: InputMaybe<Scalars['Int']>;
   to?: Array<Stage>;
   where?: InputMaybe<ProjectManyWhereInput>;
-  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -5296,20 +4997,14 @@ export type MutationPublishManySocialNetworksConnectionArgs = {
 
 
 export type MutationPublishPageArgs = {
-  locales?: InputMaybe<Array<Locale>>;
-  publishBase?: InputMaybe<Scalars['Boolean']>;
   to?: Array<Stage>;
   where: PageWhereUniqueInput;
-  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type MutationPublishProjectArgs = {
-  locales?: InputMaybe<Array<Locale>>;
-  publishBase?: InputMaybe<Scalars['Boolean']>;
   to?: Array<Stage>;
   where: ProjectWhereUniqueInput;
-  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -5339,35 +5034,26 @@ export type MutationSchedulePublishClientArgs = {
 
 
 export type MutationSchedulePublishJobArgs = {
-  locales?: InputMaybe<Array<Locale>>;
-  publishBase?: InputMaybe<Scalars['Boolean']>;
   releaseAt?: InputMaybe<Scalars['DateTime']>;
   releaseId?: InputMaybe<Scalars['String']>;
   to?: Array<Stage>;
   where: JobWhereUniqueInput;
-  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type MutationSchedulePublishPageArgs = {
-  locales?: InputMaybe<Array<Locale>>;
-  publishBase?: InputMaybe<Scalars['Boolean']>;
   releaseAt?: InputMaybe<Scalars['DateTime']>;
   releaseId?: InputMaybe<Scalars['String']>;
   to?: Array<Stage>;
   where: PageWhereUniqueInput;
-  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
 export type MutationSchedulePublishProjectArgs = {
-  locales?: InputMaybe<Array<Locale>>;
-  publishBase?: InputMaybe<Scalars['Boolean']>;
   releaseAt?: InputMaybe<Scalars['DateTime']>;
   releaseId?: InputMaybe<Scalars['String']>;
   to?: Array<Stage>;
   where: ProjectWhereUniqueInput;
-  withDefaultLocale?: InputMaybe<Scalars['Boolean']>;
 };
 
 
@@ -5399,30 +5085,24 @@ export type MutationScheduleUnpublishClientArgs = {
 
 export type MutationScheduleUnpublishJobArgs = {
   from?: Array<Stage>;
-  locales?: InputMaybe<Array<Locale>>;
   releaseAt?: InputMaybe<Scalars['DateTime']>;
   releaseId?: InputMaybe<Scalars['String']>;
-  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where: JobWhereUniqueInput;
 };
 
 
 export type MutationScheduleUnpublishPageArgs = {
   from?: Array<Stage>;
-  locales?: InputMaybe<Array<Locale>>;
   releaseAt?: InputMaybe<Scalars['DateTime']>;
   releaseId?: InputMaybe<Scalars['String']>;
-  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where: PageWhereUniqueInput;
 };
 
 
 export type MutationScheduleUnpublishProjectArgs = {
   from?: Array<Stage>;
-  locales?: InputMaybe<Array<Locale>>;
   releaseAt?: InputMaybe<Scalars['DateTime']>;
   releaseId?: InputMaybe<Scalars['String']>;
-  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where: ProjectWhereUniqueInput;
 };
 
@@ -5451,8 +5131,6 @@ export type MutationUnpublishClientArgs = {
 
 export type MutationUnpublishJobArgs = {
   from?: Array<Stage>;
-  locales?: InputMaybe<Array<Locale>>;
-  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where: JobWhereUniqueInput;
 };
 
@@ -5499,8 +5177,6 @@ export type MutationUnpublishManyClientsConnectionArgs = {
 
 export type MutationUnpublishManyJobsArgs = {
   from?: Array<Stage>;
-  locales?: InputMaybe<Array<Locale>>;
-  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where?: InputMaybe<JobManyWhereInput>;
 };
 
@@ -5511,18 +5187,14 @@ export type MutationUnpublishManyJobsConnectionArgs = {
   first?: InputMaybe<Scalars['Int']>;
   from?: Array<Stage>;
   last?: InputMaybe<Scalars['Int']>;
-  locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']>;
   stage?: InputMaybe<Stage>;
-  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where?: InputMaybe<JobManyWhereInput>;
 };
 
 
 export type MutationUnpublishManyPagesArgs = {
   from?: Array<Stage>;
-  locales?: InputMaybe<Array<Locale>>;
-  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where?: InputMaybe<PageManyWhereInput>;
 };
 
@@ -5533,18 +5205,14 @@ export type MutationUnpublishManyPagesConnectionArgs = {
   first?: InputMaybe<Scalars['Int']>;
   from?: Array<Stage>;
   last?: InputMaybe<Scalars['Int']>;
-  locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']>;
   stage?: InputMaybe<Stage>;
-  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where?: InputMaybe<PageManyWhereInput>;
 };
 
 
 export type MutationUnpublishManyProjectsArgs = {
   from?: Array<Stage>;
-  locales?: InputMaybe<Array<Locale>>;
-  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where?: InputMaybe<ProjectManyWhereInput>;
 };
 
@@ -5555,10 +5223,8 @@ export type MutationUnpublishManyProjectsConnectionArgs = {
   first?: InputMaybe<Scalars['Int']>;
   from?: Array<Stage>;
   last?: InputMaybe<Scalars['Int']>;
-  locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']>;
   stage?: InputMaybe<Stage>;
-  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where?: InputMaybe<ProjectManyWhereInput>;
 };
 
@@ -5583,16 +5249,12 @@ export type MutationUnpublishManySocialNetworksConnectionArgs = {
 
 export type MutationUnpublishPageArgs = {
   from?: Array<Stage>;
-  locales?: InputMaybe<Array<Locale>>;
-  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where: PageWhereUniqueInput;
 };
 
 
 export type MutationUnpublishProjectArgs = {
   from?: Array<Stage>;
-  locales?: InputMaybe<Array<Locale>>;
-  unpublishBase?: InputMaybe<Scalars['Boolean']>;
   where: ProjectWhereUniqueInput;
 };
 
@@ -5787,19 +5449,10 @@ export type Navigation = {
   /** The unique identifier */
   id: Scalars['ID'];
   indexTitleFallback?: Maybe<Scalars['String']>;
-  /** System Locale field */
-  locale: Locale;
-  /** Get the other localizations for this document */
-  localizations: Array<Navigation>;
+  isLanguageSelectorVisible: Scalars['Boolean'];
   pages: Array<Page>;
   /** System stage field */
   stage: Stage;
-};
-
-
-export type NavigationLocalizationsArgs = {
-  includeCurrent?: Scalars['Boolean'];
-  locales?: Array<Locale>;
 };
 
 
@@ -5833,26 +5486,9 @@ export type NavigationConnection = {
 };
 
 export type NavigationCreateInput = {
-  /** indexTitleFallback input for default locale (en) */
   indexTitleFallback?: InputMaybe<Scalars['String']>;
-  /** Inline mutations for managing document localizations excluding the default locale */
-  localizations?: InputMaybe<NavigationCreateLocalizationsInput>;
+  isLanguageSelectorVisible: Scalars['Boolean'];
   pages?: InputMaybe<PageCreateManyInlineInput>;
-};
-
-export type NavigationCreateLocalizationDataInput = {
-  indexTitleFallback?: InputMaybe<Scalars['String']>;
-};
-
-export type NavigationCreateLocalizationInput = {
-  /** Localization input */
-  data: NavigationCreateLocalizationDataInput;
-  locale: Locale;
-};
-
-export type NavigationCreateLocalizationsInput = {
-  /** Create localizations for the newly-created document */
-  create?: InputMaybe<Array<NavigationCreateLocalizationInput>>;
 };
 
 export type NavigationCreateManyInlineInput = {
@@ -5910,6 +5546,28 @@ export type NavigationManyWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']>;
+  indexTitleFallback?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  indexTitleFallback_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  indexTitleFallback_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  indexTitleFallback_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  indexTitleFallback_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  indexTitleFallback_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  indexTitleFallback_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  indexTitleFallback_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  indexTitleFallback_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  indexTitleFallback_starts_with?: InputMaybe<Scalars['String']>;
+  isLanguageSelectorVisible?: InputMaybe<Scalars['Boolean']>;
+  /** All values that are not equal to given value. */
+  isLanguageSelectorVisible_not?: InputMaybe<Scalars['Boolean']>;
   pages_every?: InputMaybe<PageWhereInput>;
   pages_none?: InputMaybe<PageWhereInput>;
   pages_some?: InputMaybe<PageWhereInput>;
@@ -5919,7 +5577,9 @@ export enum NavigationOrderByInput {
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
   IndexTitleFallbackAsc = 'indexTitleFallback_ASC',
-  IndexTitleFallbackDesc = 'indexTitleFallback_DESC'
+  IndexTitleFallbackDesc = 'indexTitleFallback_DESC',
+  IsLanguageSelectorVisibleAsc = 'isLanguageSelectorVisible_ASC',
+  IsLanguageSelectorVisibleDesc = 'isLanguageSelectorVisible_DESC'
 }
 
 export type NavigationParent = Layout_Primary;
@@ -6001,30 +5661,9 @@ export type NavigationParentWhereUniqueInput = {
 };
 
 export type NavigationUpdateInput = {
-  /** indexTitleFallback input for default locale (en) */
   indexTitleFallback?: InputMaybe<Scalars['String']>;
-  /** Manage document localizations */
-  localizations?: InputMaybe<NavigationUpdateLocalizationsInput>;
+  isLanguageSelectorVisible?: InputMaybe<Scalars['Boolean']>;
   pages?: InputMaybe<PageUpdateManyInlineInput>;
-};
-
-export type NavigationUpdateLocalizationDataInput = {
-  indexTitleFallback?: InputMaybe<Scalars['String']>;
-};
-
-export type NavigationUpdateLocalizationInput = {
-  data: NavigationUpdateLocalizationDataInput;
-  locale: Locale;
-};
-
-export type NavigationUpdateLocalizationsInput = {
-  /** Localizations to create */
-  create?: InputMaybe<Array<NavigationCreateLocalizationInput>>;
-  /** Localizations to delete */
-  delete?: InputMaybe<Array<Locale>>;
-  /** Localizations to update */
-  update?: InputMaybe<Array<NavigationUpdateLocalizationInput>>;
-  upsert?: InputMaybe<Array<NavigationUpsertLocalizationInput>>;
 };
 
 export type NavigationUpdateManyInlineInput = {
@@ -6039,24 +5678,8 @@ export type NavigationUpdateManyInlineInput = {
 };
 
 export type NavigationUpdateManyInput = {
-  /** indexTitleFallback input for default locale (en) */
   indexTitleFallback?: InputMaybe<Scalars['String']>;
-  /** Optional updates to localizations */
-  localizations?: InputMaybe<NavigationUpdateManyLocalizationsInput>;
-};
-
-export type NavigationUpdateManyLocalizationDataInput = {
-  indexTitleFallback?: InputMaybe<Scalars['String']>;
-};
-
-export type NavigationUpdateManyLocalizationInput = {
-  data: NavigationUpdateManyLocalizationDataInput;
-  locale: Locale;
-};
-
-export type NavigationUpdateManyLocalizationsInput = {
-  /** Localizations to update */
-  update?: InputMaybe<Array<NavigationUpdateManyLocalizationInput>>;
+  isLanguageSelectorVisible?: InputMaybe<Scalars['Boolean']>;
 };
 
 export type NavigationUpdateManyWithNestedWhereInput = {
@@ -6098,12 +5721,6 @@ export type NavigationUpsertInput = {
   create: NavigationCreateInput;
   /** Update document if it exists */
   update: NavigationUpdateInput;
-};
-
-export type NavigationUpsertLocalizationInput = {
-  create: NavigationCreateLocalizationDataInput;
-  locale: Locale;
-  update: NavigationUpdateLocalizationDataInput;
 };
 
 export type NavigationUpsertWithNestedWhereUniqueAndPositionInput = {
@@ -6170,6 +5787,9 @@ export type NavigationWhereInput = {
   indexTitleFallback_not_starts_with?: InputMaybe<Scalars['String']>;
   /** All values starting with the given string. */
   indexTitleFallback_starts_with?: InputMaybe<Scalars['String']>;
+  isLanguageSelectorVisible?: InputMaybe<Scalars['Boolean']>;
+  /** All values that are not equal to given value. */
+  isLanguageSelectorVisible_not?: InputMaybe<Scalars['Boolean']>;
   pages_every?: InputMaybe<PageWhereInput>;
   pages_none?: InputMaybe<PageWhereInput>;
   pages_some?: InputMaybe<PageWhereInput>;
@@ -6201,10 +5821,6 @@ export type Page = Node & {
   /** The unique identifier */
   id: Scalars['ID'];
   layout: Layout_Primary;
-  /** System Locale field */
-  locale: Locale;
-  /** Get the other localizations for this document */
-  localizations: Array<Page>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** User that last published this document */
@@ -6219,11 +5835,6 @@ export type Page = Node & {
   updatedAt: Scalars['DateTime'];
   /** User that last updated this document */
   updatedBy?: Maybe<User>;
-};
-
-
-export type PageCreatedAtArgs = {
-  variation?: SystemDateTimeFieldVariation;
 };
 
 
@@ -6253,17 +5864,6 @@ export type PageLayoutArgs = {
 };
 
 
-export type PageLocalizationsArgs = {
-  includeCurrent?: Scalars['Boolean'];
-  locales?: Array<Locale>;
-};
-
-
-export type PagePublishedAtArgs = {
-  variation?: SystemDateTimeFieldVariation;
-};
-
-
 export type PagePublishedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
@@ -6279,11 +5879,6 @@ export type PageScheduledInArgs = {
   locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ScheduledOperationWhereInput>;
-};
-
-
-export type PageUpdatedAtArgs = {
-  variation?: SystemDateTimeFieldVariation;
 };
 
 
@@ -6313,31 +5908,9 @@ export type PageCreateInput = {
   cle1ru7u13t4y01uf2npoa8jk?: InputMaybe<NavigationCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
   layout: Layout_PrimaryCreateOneInlineInput;
-  /** Inline mutations for managing document localizations excluding the default locale */
-  localizations?: InputMaybe<PageCreateLocalizationsInput>;
-  /** slug input for default locale (en) */
-  slug: Scalars['String'];
-  /** title input for default locale (en) */
-  title?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-};
-
-export type PageCreateLocalizationDataInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
   slug: Scalars['String'];
   title?: InputMaybe<Scalars['String']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
-};
-
-export type PageCreateLocalizationInput = {
-  /** Localization input */
-  data: PageCreateLocalizationDataInput;
-  locale: Locale;
-};
-
-export type PageCreateLocalizationsInput = {
-  /** Create localizations for the newly-created document */
-  create?: InputMaybe<Array<PageCreateLocalizationInput>>;
 };
 
 export type PageCreateManyInlineInput = {
@@ -6446,6 +6019,44 @@ export type PageManyWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  slug?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  slug_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  slug_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  slug_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  slug_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  slug_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  slug_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  slug_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  slug_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  slug_starts_with?: InputMaybe<Scalars['String']>;
+  title?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  title_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  title_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  title_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  title_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  title_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  title_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  title_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  title_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  title_starts_with?: InputMaybe<Scalars['String']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -6482,32 +6093,8 @@ export enum PageOrderByInput {
 export type PageUpdateInput = {
   cle1ru7u13t4y01uf2npoa8jk?: InputMaybe<NavigationUpdateManyInlineInput>;
   layout?: InputMaybe<Layout_PrimaryUpdateOneInlineInput>;
-  /** Manage document localizations */
-  localizations?: InputMaybe<PageUpdateLocalizationsInput>;
-  /** slug input for default locale (en) */
-  slug?: InputMaybe<Scalars['String']>;
-  /** title input for default locale (en) */
-  title?: InputMaybe<Scalars['String']>;
-};
-
-export type PageUpdateLocalizationDataInput = {
   slug?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
-};
-
-export type PageUpdateLocalizationInput = {
-  data: PageUpdateLocalizationDataInput;
-  locale: Locale;
-};
-
-export type PageUpdateLocalizationsInput = {
-  /** Localizations to create */
-  create?: InputMaybe<Array<PageCreateLocalizationInput>>;
-  /** Localizations to delete */
-  delete?: InputMaybe<Array<Locale>>;
-  /** Localizations to update */
-  update?: InputMaybe<Array<PageUpdateLocalizationInput>>;
-  upsert?: InputMaybe<Array<PageUpsertLocalizationInput>>;
 };
 
 export type PageUpdateManyInlineInput = {
@@ -6528,27 +6115,8 @@ export type PageUpdateManyInlineInput = {
 };
 
 export type PageUpdateManyInput = {
-  /** Optional updates to localizations */
-  localizations?: InputMaybe<PageUpdateManyLocalizationsInput>;
-  /** slug input for default locale (en) */
-  slug?: InputMaybe<Scalars['String']>;
-  /** title input for default locale (en) */
-  title?: InputMaybe<Scalars['String']>;
-};
-
-export type PageUpdateManyLocalizationDataInput = {
   slug?: InputMaybe<Scalars['String']>;
   title?: InputMaybe<Scalars['String']>;
-};
-
-export type PageUpdateManyLocalizationInput = {
-  data: PageUpdateManyLocalizationDataInput;
-  locale: Locale;
-};
-
-export type PageUpdateManyLocalizationsInput = {
-  /** Localizations to update */
-  update?: InputMaybe<Array<PageUpdateManyLocalizationInput>>;
 };
 
 export type PageUpdateManyWithNestedWhereInput = {
@@ -6585,12 +6153,6 @@ export type PageUpsertInput = {
   create: PageCreateInput;
   /** Update document if it exists */
   update: PageUpdateInput;
-};
-
-export type PageUpsertLocalizationInput = {
-  create: PageCreateLocalizationDataInput;
-  locale: Locale;
-  update: PageUpdateLocalizationDataInput;
 };
 
 export type PageUpsertWithNestedWhereUniqueInput = {
@@ -6764,10 +6326,6 @@ export type Project = Node & {
   /** The unique identifier */
   id: Scalars['ID'];
   image: Asset;
-  /** System Locale field */
-  locale: Locale;
-  /** Get the other localizations for this document */
-  localizations: Array<Project>;
   name: Scalars['String'];
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
@@ -6789,11 +6347,6 @@ export type Project = Node & {
 export type ProjectClientArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
-};
-
-
-export type ProjectCreatedAtArgs = {
-  variation?: SystemDateTimeFieldVariation;
 };
 
 
@@ -6823,17 +6376,6 @@ export type ProjectImageArgs = {
 };
 
 
-export type ProjectLocalizationsArgs = {
-  includeCurrent?: Scalars['Boolean'];
-  locales?: Array<Locale>;
-};
-
-
-export type ProjectPublishedAtArgs = {
-  variation?: SystemDateTimeFieldVariation;
-};
-
-
 export type ProjectPublishedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']>;
   locales?: InputMaybe<Array<Locale>>;
@@ -6849,11 +6391,6 @@ export type ProjectScheduledInArgs = {
   locales?: InputMaybe<Array<Locale>>;
   skip?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<ScheduledOperationWhereInput>;
-};
-
-
-export type ProjectUpdatedAtArgs = {
-  variation?: SystemDateTimeFieldVariation;
 };
 
 
@@ -6883,37 +6420,13 @@ export type ProjectCreateInput = {
   cldyzbl1l1xpg01rr0navgb9u?: InputMaybe<Block_ProjectsCreateManyInlineInput>;
   client?: InputMaybe<ClientCreateOneInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']>;
-  /** description input for default locale (en) */
   description: Scalars['RichTextAST'];
   image: AssetCreateOneInlineInput;
-  /** Inline mutations for managing document localizations excluding the default locale */
-  localizations?: InputMaybe<ProjectCreateLocalizationsInput>;
-  /** name input for default locale (en) */
   name: Scalars['String'];
-  /** slogan input for default locale (en) */
   slogan?: InputMaybe<Scalars['String']>;
   topics: Scalars['Json'];
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   url?: InputMaybe<Scalars['String']>;
-};
-
-export type ProjectCreateLocalizationDataInput = {
-  createdAt?: InputMaybe<Scalars['DateTime']>;
-  description: Scalars['RichTextAST'];
-  name: Scalars['String'];
-  slogan?: InputMaybe<Scalars['String']>;
-  updatedAt?: InputMaybe<Scalars['DateTime']>;
-};
-
-export type ProjectCreateLocalizationInput = {
-  /** Localization input */
-  data: ProjectCreateLocalizationDataInput;
-  locale: Locale;
-};
-
-export type ProjectCreateLocalizationsInput = {
-  /** Create localizations for the newly-created document */
-  create?: InputMaybe<Array<ProjectCreateLocalizationInput>>;
 };
 
 export type ProjectCreateManyInlineInput = {
@@ -6989,6 +6502,25 @@ export type ProjectManyWhereInput = {
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']>;
   image?: InputMaybe<AssetWhereInput>;
+  name?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  name_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  name_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  name_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  name_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  name_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  name_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  name_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  name_starts_with?: InputMaybe<Scalars['String']>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -7008,6 +6540,25 @@ export type ProjectManyWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  slogan?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  slogan_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  slogan_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  slogan_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  slogan_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  slogan_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  slogan_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  slogan_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  slogan_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  slogan_starts_with?: InputMaybe<Scalars['String']>;
   updatedAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   updatedAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -7065,38 +6616,12 @@ export enum ProjectOrderByInput {
 export type ProjectUpdateInput = {
   cldyzbl1l1xpg01rr0navgb9u?: InputMaybe<Block_ProjectsUpdateManyInlineInput>;
   client?: InputMaybe<ClientUpdateOneInlineInput>;
-  /** description input for default locale (en) */
   description?: InputMaybe<Scalars['RichTextAST']>;
   image?: InputMaybe<AssetUpdateOneInlineInput>;
-  /** Manage document localizations */
-  localizations?: InputMaybe<ProjectUpdateLocalizationsInput>;
-  /** name input for default locale (en) */
   name?: InputMaybe<Scalars['String']>;
-  /** slogan input for default locale (en) */
   slogan?: InputMaybe<Scalars['String']>;
   topics?: InputMaybe<Scalars['Json']>;
   url?: InputMaybe<Scalars['String']>;
-};
-
-export type ProjectUpdateLocalizationDataInput = {
-  description?: InputMaybe<Scalars['RichTextAST']>;
-  name?: InputMaybe<Scalars['String']>;
-  slogan?: InputMaybe<Scalars['String']>;
-};
-
-export type ProjectUpdateLocalizationInput = {
-  data: ProjectUpdateLocalizationDataInput;
-  locale: Locale;
-};
-
-export type ProjectUpdateLocalizationsInput = {
-  /** Localizations to create */
-  create?: InputMaybe<Array<ProjectCreateLocalizationInput>>;
-  /** Localizations to delete */
-  delete?: InputMaybe<Array<Locale>>;
-  /** Localizations to update */
-  update?: InputMaybe<Array<ProjectUpdateLocalizationInput>>;
-  upsert?: InputMaybe<Array<ProjectUpsertLocalizationInput>>;
 };
 
 export type ProjectUpdateManyInlineInput = {
@@ -7117,32 +6642,11 @@ export type ProjectUpdateManyInlineInput = {
 };
 
 export type ProjectUpdateManyInput = {
-  /** description input for default locale (en) */
   description?: InputMaybe<Scalars['RichTextAST']>;
-  /** Optional updates to localizations */
-  localizations?: InputMaybe<ProjectUpdateManyLocalizationsInput>;
-  /** name input for default locale (en) */
   name?: InputMaybe<Scalars['String']>;
-  /** slogan input for default locale (en) */
   slogan?: InputMaybe<Scalars['String']>;
   topics?: InputMaybe<Scalars['Json']>;
   url?: InputMaybe<Scalars['String']>;
-};
-
-export type ProjectUpdateManyLocalizationDataInput = {
-  description?: InputMaybe<Scalars['RichTextAST']>;
-  name?: InputMaybe<Scalars['String']>;
-  slogan?: InputMaybe<Scalars['String']>;
-};
-
-export type ProjectUpdateManyLocalizationInput = {
-  data: ProjectUpdateManyLocalizationDataInput;
-  locale: Locale;
-};
-
-export type ProjectUpdateManyLocalizationsInput = {
-  /** Localizations to update */
-  update?: InputMaybe<Array<ProjectUpdateManyLocalizationInput>>;
 };
 
 export type ProjectUpdateManyWithNestedWhereInput = {
@@ -7179,12 +6683,6 @@ export type ProjectUpsertInput = {
   create: ProjectCreateInput;
   /** Update document if it exists */
   update: ProjectUpdateInput;
-};
-
-export type ProjectUpsertLocalizationInput = {
-  create: ProjectCreateLocalizationDataInput;
-  locale: Locale;
-  update: ProjectUpdateLocalizationDataInput;
 };
 
 export type ProjectUpsertWithNestedWhereUniqueInput = {
@@ -7812,18 +7310,8 @@ export type Seo = {
   /** The unique identifier */
   id: Scalars['ID'];
   keywords: Scalars['String'];
-  /** System Locale field */
-  locale: Locale;
-  /** Get the other localizations for this document */
-  localizations: Array<Seo>;
   /** System stage field */
   stage: Stage;
-};
-
-
-export type SeoLocalizationsArgs = {
-  includeCurrent?: Scalars['Boolean'];
-  locales?: Array<Locale>;
 };
 
 export type SeoConnectInput = {
@@ -7844,26 +7332,8 @@ export type SeoConnection = {
 };
 
 export type SeoCreateInput = {
-  /** description input for default locale (en) */
   description: Scalars['String'];
   keywords: Scalars['String'];
-  /** Inline mutations for managing document localizations excluding the default locale */
-  localizations?: InputMaybe<SeoCreateLocalizationsInput>;
-};
-
-export type SeoCreateLocalizationDataInput = {
-  description: Scalars['String'];
-};
-
-export type SeoCreateLocalizationInput = {
-  /** Localization input */
-  data: SeoCreateLocalizationDataInput;
-  locale: Locale;
-};
-
-export type SeoCreateLocalizationsInput = {
-  /** Create localizations for the newly-created document */
-  create?: InputMaybe<Array<SeoCreateLocalizationInput>>;
 };
 
 export type SeoCreateManyInlineInput = {
@@ -7902,6 +7372,25 @@ export type SeoManyWhereInput = {
   OR?: InputMaybe<Array<SeoWhereInput>>;
   /** Contains search across all appropriate fields. */
   _search?: InputMaybe<Scalars['String']>;
+  description?: InputMaybe<Scalars['String']>;
+  /** All values containing the given string. */
+  description_contains?: InputMaybe<Scalars['String']>;
+  /** All values ending with the given string. */
+  description_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are contained in given list. */
+  description_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values that are not equal to given value. */
+  description_not?: InputMaybe<Scalars['String']>;
+  /** All values not containing the given string. */
+  description_not_contains?: InputMaybe<Scalars['String']>;
+  /** All values not ending with the given string */
+  description_not_ends_with?: InputMaybe<Scalars['String']>;
+  /** All values that are not contained in given list. */
+  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  /** All values not starting with the given string. */
+  description_not_starts_with?: InputMaybe<Scalars['String']>;
+  /** All values starting with the given string. */
+  description_starts_with?: InputMaybe<Scalars['String']>;
   id?: InputMaybe<Scalars['ID']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']>;
@@ -8030,30 +7519,8 @@ export type SeoParentWhereUniqueInput = {
 };
 
 export type SeoUpdateInput = {
-  /** description input for default locale (en) */
   description?: InputMaybe<Scalars['String']>;
   keywords?: InputMaybe<Scalars['String']>;
-  /** Manage document localizations */
-  localizations?: InputMaybe<SeoUpdateLocalizationsInput>;
-};
-
-export type SeoUpdateLocalizationDataInput = {
-  description?: InputMaybe<Scalars['String']>;
-};
-
-export type SeoUpdateLocalizationInput = {
-  data: SeoUpdateLocalizationDataInput;
-  locale: Locale;
-};
-
-export type SeoUpdateLocalizationsInput = {
-  /** Localizations to create */
-  create?: InputMaybe<Array<SeoCreateLocalizationInput>>;
-  /** Localizations to delete */
-  delete?: InputMaybe<Array<Locale>>;
-  /** Localizations to update */
-  update?: InputMaybe<Array<SeoUpdateLocalizationInput>>;
-  upsert?: InputMaybe<Array<SeoUpsertLocalizationInput>>;
 };
 
 export type SeoUpdateManyInlineInput = {
@@ -8068,25 +7535,8 @@ export type SeoUpdateManyInlineInput = {
 };
 
 export type SeoUpdateManyInput = {
-  /** description input for default locale (en) */
   description?: InputMaybe<Scalars['String']>;
   keywords?: InputMaybe<Scalars['String']>;
-  /** Optional updates to localizations */
-  localizations?: InputMaybe<SeoUpdateManyLocalizationsInput>;
-};
-
-export type SeoUpdateManyLocalizationDataInput = {
-  description?: InputMaybe<Scalars['String']>;
-};
-
-export type SeoUpdateManyLocalizationInput = {
-  data: SeoUpdateManyLocalizationDataInput;
-  locale: Locale;
-};
-
-export type SeoUpdateManyLocalizationsInput = {
-  /** Localizations to update */
-  update?: InputMaybe<Array<SeoUpdateManyLocalizationInput>>;
 };
 
 export type SeoUpdateManyWithNestedWhereInput = {
@@ -8128,12 +7578,6 @@ export type SeoUpsertInput = {
   create: SeoCreateInput;
   /** Update document if it exists */
   update: SeoUpdateInput;
-};
-
-export type SeoUpsertLocalizationInput = {
-  create: SeoCreateLocalizationDataInput;
-  locale: Locale;
-  update: SeoUpdateLocalizationDataInput;
 };
 
 export type SeoUpsertWithNestedWhereUniqueAndPositionInput = {

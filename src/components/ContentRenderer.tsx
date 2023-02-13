@@ -1,5 +1,7 @@
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import { ILayoutContentItem, Page } from "../types/cms";
+import { Context } from "../utils/context";
+import { checkMatchingLocales } from "../utils/locales";
 import { Block_About } from "./cms/blocks/About";
 import { Hero } from "./cms/blocks/Hero";
 import { Block_Jobs } from "./cms/blocks/Jobs";
@@ -12,9 +14,14 @@ import { SEO } from "./cms/SEO";
 
 interface IProps {
     page: Page;
+    cmsLocales: string[];
 }
 
-export const ContentRenderer: React.FC<IProps> = ({ page }) => {
+export const ContentRenderer: React.FC<IProps> = ({ page, cmsLocales }) => {
+    const { localization } = useContext(Context);
+
+    checkMatchingLocales(localization.locales, cmsLocales);
+
     const renderComponent = (props: ILayoutContentItem) => {
         const { __typename } = props;
 
@@ -58,6 +65,8 @@ export const ContentRenderer: React.FC<IProps> = ({ page }) => {
         }
 
         console.error("Layout not found:", __typename);
+
+        return null;
     };
 
     return <div>{renderLayout(page)}</div>;

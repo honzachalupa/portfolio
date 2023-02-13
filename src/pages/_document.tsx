@@ -1,16 +1,17 @@
 import { Head, Html, Main, NextScript } from "next/document";
+import { localization } from "../../config";
 
-export default function Document() {
-    return (
-        <Html lang="en">
-            <Head>
-                <link rel="shortcut icon" href="icon/favicon.png" />
-                <link rel="manifest" href="manifest.json" />
-            </Head>
+const Document = () => (
+    <Html lang={localization.defaultLocale}>
+        <Head>
+            <link rel="shortcut icon" href="icon/favicon.png" />
+            <link rel="manifest" href="manifest.json" />
+        </Head>
 
-            <Main />
+        <Main />
 
-            <NextScript />
-        </Html>
-    );
-}
+        <NextScript />
+    </Html>
+);
+
+export default Document;

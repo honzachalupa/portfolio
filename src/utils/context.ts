@@ -1,7 +1,21 @@
 import { createContext } from "react";
 
-export interface IContext {}
+export interface ILocalization {
+    defaultLocale: string;
+    locale: string;
+    locales: string[];
+}
 
-export const initialContext: IContext = {};
+export interface IContext {
+    localization: ILocalization;
+}
+
+export const initialContext: IContext = {
+    localization: {
+        defaultLocale: "",
+        locale: "",
+        locales: [],
+    },
+};
 
 export const Context = createContext<IContext>(initialContext);

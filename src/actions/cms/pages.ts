@@ -1,11 +1,12 @@
 import { gql } from "@apollo/client";
 import { Page } from "../../types/cms";
 import { apollo } from "../../utils/apollo";
+import { ILocalization } from "../../utils/context";
 
 export const getAll = async () => {
     const { data } = await apollo.query<{ pages: Page[] }>({
         query: gql`
-            query PageIds {
+            query {
                 pages {
                     id
                     slug
@@ -18,14 +19,15 @@ export const getAll = async () => {
     return data.pages;
 };
 
-export const findBySlug = async (slug: string) => {
+export const findBySlug = async (slug: string, localization: ILocalization) => {
     const { data } = await apollo.query<{ pages: Page[] }>({
         variables: {
             slug,
+            locales: [localization.locale, localization.defaultLocale],
         },
         query: gql`
-            query PageBySlug($slug: String!) {
-                pages(where: { slug: $slug }) {
+            query ($slug: String!, $locales: [Locale!]!) {
+                pages(locales: $locales, where: { slug: $slug }) {
                     slug
                     title
                     layout {
@@ -40,6 +42,7 @@ export const findBySlug = async (slug: string) => {
                                     title
                                     slug
                                 }
+                                isLanguageSelectorVisible
                             }
                             ... on Hero {
                                 content {
@@ -132,5 +135,16 @@ export const findBySlug = async (slug: string) => {
         `,
     });
 
-    return data.pages[0];
+    if (!data.pages.length) {
+        throw new Error(
+            `Page for slug "${slug}" and locale "${localization.locale}" not found.`
+        );
+    }
+
+    return data.pages?.[0] || [];
+};
+
+export const CMSPagesActions = {
+    getAll,
+    findBySlug,
 };
