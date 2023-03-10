@@ -26,7 +26,10 @@ const ProjectImage: React.FC<{
     </div>
 );
 
-export const Block_Projects: React.FC<IBlock_Projects> = ({ projects }) => (
+export const Block_Projects: React.FC<IBlock_Projects> = ({
+    projects,
+    headline,
+}) => (
     <>
         {projects.map(({ id, name, description, image, url, client }) => (
             <SoftwareAppJsonLd
@@ -50,7 +53,7 @@ export const Block_Projects: React.FC<IBlock_Projects> = ({ projects }) => (
             />
         ))}
 
-        <SectionContainer headline="Some Things I've Built">
+        <SectionContainer headline={headline}>
             {projects?.map(
                 (
                     {

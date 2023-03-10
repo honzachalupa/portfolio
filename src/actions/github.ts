@@ -4,6 +4,7 @@ interface IGitHubRepositoryOriginal {
     full_name: string;
     description: string;
     html_url: string;
+    homepage?: string;
     topics?: string[];
     pushed_at: string;
     archived: boolean;
@@ -14,6 +15,7 @@ export interface IGitHubRepository {
     fullName: string;
     description: string;
     url: string;
+    websiteUrl?: string;
     topics?: string[];
     pushedAt: string;
     isArchived: boolean;
@@ -50,16 +52,21 @@ const search = (): Promise<IGitHubRepository[]> =>
                         new Date(b.pushed_at).getTime() -
                         new Date(a.pushed_at).getTime()
                 )
-                .map((original) => ({
-                    id: original.id,
-                    name: original.name,
-                    fullName: original.full_name,
-                    description: original.description,
-                    url: original.html_url,
-                    topics: original.topics,
-                    pushedAt: original.pushed_at,
-                    isArchived: original.archived,
-                }))
+                .map((original) => {
+                    const data: IGitHubRepository = {
+                        id: original.id,
+                        name: original.name,
+                        fullName: original.full_name,
+                        description: original.description,
+                        url: original.html_url,
+                        websiteUrl: original.homepage,
+                        topics: original.topics,
+                        pushedAt: original.pushed_at,
+                        isArchived: original.archived,
+                    };
+
+                    return data;
+                })
         );
 
 const getReadme = async (

@@ -103,11 +103,12 @@ export const findBySlug = async (slug: string, localization: ILocalization) => {
                                     id
                                     name
                                     slogan
+                                    url
+                                    topics
                                     description {
                                         text
                                         markdown
                                     }
-                                    topics
                                     image {
                                         url
                                         width

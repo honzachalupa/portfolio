@@ -1,4 +1,7 @@
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
+import {
+    ArrowTopRightOnSquareIcon,
+    CodeBracketIcon,
+} from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import {
     GitHubRepositoryActions,
@@ -34,18 +37,28 @@ export const Block_Repositories: React.FC<IBlock_Repositories> = ({
 
             <div className="flex flex-wrap gap-[24px]">
                 {repositories?.map(
-                    ({ id, name, url, description, topics, isArchived }) => (
+                    ({
+                        id,
+                        name,
+                        url,
+                        websiteUrl,
+                        description,
+                        topics,
+                        isArchived,
+                    }) => (
                         <AnimationFadeIn
                             key={id}
                             className="my-5 w-full md:w-[calc(50%-12px)]"
                         >
                             <div>
-                                <a
-                                    href={url}
-                                    title="View code"
-                                    className="flex"
-                                >
-                                    <h4 className="text-rose-600">{name}</h4>
+                                <div className="flex">
+                                    <a
+                                        href={url}
+                                        title="View code"
+                                        className="mr-auto text-rose-600"
+                                    >
+                                        <h4>{name}</h4>
+                                    </a>
 
                                     {isArchived && (
                                         <p className="ml-4 rounded-full border border-orange-400 px-2">
@@ -55,8 +68,16 @@ export const Block_Repositories: React.FC<IBlock_Repositories> = ({
                                         </p>
                                     )}
 
-                                    <ArrowTopRightOnSquareIcon className="ml-auto w-6 text-rose-600" />
-                                </a>
+                                    {websiteUrl && (
+                                        <a href={websiteUrl} title="Visit">
+                                            <ArrowTopRightOnSquareIcon className="ml-3 w-6 text-rose-600" />
+                                        </a>
+                                    )}
+
+                                    <a href={url} title="View code">
+                                        <CodeBracketIcon className="ml-3 w-6 text-rose-600" />
+                                    </a>
+                                </div>
 
                                 <p className="my-2 rounded-md bg-[#112240] p-5 text-sm shadow-custom transition-all md:text-base">
                                     {description}
