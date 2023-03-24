@@ -27,8 +27,8 @@ const ProjectImage: React.FC<{
 );
 
 export const Block_Projects: React.FC<IBlock_Projects> = ({
-    projects,
     headline,
+    projects,
 }) => (
     <>
         {projects.map(({ id, name, description, image, url, client }) => (

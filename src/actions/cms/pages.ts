@@ -129,6 +129,11 @@ export const findBySlug = async (slug: string, localization: ILocalization) => {
                                 headline
                                 limit
                             }
+                            ... on Block_Contact {
+                                headline
+                                phoneNumber
+                                emailAddress
+                            }
                         }
                     }
                 }

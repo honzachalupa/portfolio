@@ -3,6 +3,7 @@ export type {
     Block_Jobs as IBlock_Jobs,
     Block_Projects as IBlock_Projects,
     Block_Repositories as IBlock_Repositories,
+    Block_Contact as IBlock_Contact,
     Footer as IFooter,
     Hero as IHero,
     Job as IJob,

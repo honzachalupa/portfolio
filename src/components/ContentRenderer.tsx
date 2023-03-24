@@ -6,6 +6,7 @@ import { Block_About } from "./cms/blocks/About";
 import { Hero } from "./cms/blocks/Hero";
 import { Block_Jobs } from "./cms/blocks/Jobs";
 import { Block_Projects } from "./cms/blocks/Projects";
+import { Block_Contact } from "./cms/blocks/Contact";
 import { Block_Repositories } from "./cms/blocks/Repositories";
 import { Footer } from "./cms/Footer";
 import { Layout_Primary } from "./cms/layouts/Primary";
@@ -48,6 +49,9 @@ export const ContentRenderer: React.FC<IProps> = ({ page, cmsLocales }) => {
         }
         if (__typename === "Block_Repositories") {
             return <Block_Repositories {...props} />;
+        }
+        if (__typename === "Block_Contact") {
+            return <Block_Contact {...props} />;
         }
 
         console.error("Component not found:", __typename);

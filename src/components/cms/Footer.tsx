@@ -27,7 +27,7 @@ export const Footer: React.FC<IFooter> = ({
                 <WebPageJsonLd key={name} description={name} id={url} />
             ))}
 
-            <footer className="relative mb-20 text-center text-sm">
+            <footer className="relative my-20 text-center text-sm">
                 <div
                     className={cx(
                         "left-5 bottom-5 z-10 mb-5 flex justify-center gap-5 transition-all duration-1000 md:fixed md:mb-0 md:flex-col",

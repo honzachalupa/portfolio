@@ -32,9 +32,7 @@ export const Block_Repositories: React.FC<IBlock_Repositories> = ({
     }, []);
 
     return (
-        <SectionContainer>
-            <BlockHeadline className="text-center">{headline}</BlockHeadline>
-
+        <SectionContainer headline={headline} headlineAlignment="center">
             <div className="flex flex-wrap gap-[24px]">
                 {repositories?.map(
                     ({

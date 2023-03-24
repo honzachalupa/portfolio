@@ -1,14 +1,16 @@
 import cx from "classnames";
 import { ReactNode } from "react";
+import { Maybe } from "../../../../types/cms";
 import { BlockHeadline } from "../../../BlockHeadline";
 
 export const SectionContainer: React.FC<{
     as?: "div" | "nav";
-    headline?: string;
+    headline?: Maybe<string>;
+    headlineAlignment?: "center";
     wider?: boolean;
     className?: string;
     children: ReactNode;
-}> = ({ as, headline, wider, className, children }) => {
+}> = ({ as, headline, headlineAlignment, wider, className, children }) => {
     const Components = as || "section";
 
     return (
@@ -22,7 +24,15 @@ export const SectionContainer: React.FC<{
                 className
             )}
         >
-            {headline && <BlockHeadline>{headline}</BlockHeadline>}
+            {headline && (
+                <BlockHeadline
+                    className={cx({
+                        "text-center": headlineAlignment === "center",
+                    })}
+                >
+                    {headline}
+                </BlockHeadline>
+            )}
 
             {children}
         </Components>
