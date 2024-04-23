@@ -123,6 +123,7 @@ export const findBySlug = async (slug: string, localization: ILocalization) => {
                                             mimeType
                                         }
                                     }
+                                    platform
                                 }
                             }
                             ... on Block_Repositories {

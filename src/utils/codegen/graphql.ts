@@ -32,7 +32,7 @@ export type Aggregate = {
 };
 
 /** Asset system model */
-export type Asset = Node & {
+export type Asset = Entity & Node & {
   __typename?: 'Asset';
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
@@ -765,7 +765,7 @@ export type BatchPayload = {
   count: Scalars['Long'];
 };
 
-export type Block_About = {
+export type Block_About = Entity & {
   __typename?: 'Block_About';
   content: RichText;
   headline: Scalars['String'];
@@ -1102,10 +1102,10 @@ export type Block_AboutWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
-export type Block_Contact = {
+export type Block_Contact = Entity & {
   __typename?: 'Block_Contact';
   emailAddress?: Maybe<Scalars['String']>;
-  headline?: Maybe<Scalars['String']>;
+  headline: Scalars['String'];
   /** The unique identifier */
   id: Scalars['ID'];
   phoneNumber?: Maybe<Scalars['String']>;
@@ -1132,7 +1132,7 @@ export type Block_ContactConnection = {
 
 export type Block_ContactCreateInput = {
   emailAddress?: InputMaybe<Scalars['String']>;
-  headline?: InputMaybe<Scalars['String']>;
+  headline: Scalars['String'];
   phoneNumber?: InputMaybe<Scalars['String']>;
 };
 
@@ -1512,7 +1512,7 @@ export type Block_ContactWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
-export type Block_Jobs = {
+export type Block_Jobs = Entity & {
   __typename?: 'Block_Jobs';
   headline: Scalars['String'];
   /** The unique identifier */
@@ -1856,7 +1856,7 @@ export type Block_JobsWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
-export type Block_Projects = {
+export type Block_Projects = Entity & {
   __typename?: 'Block_Projects';
   headline: Scalars['String'];
   /** The unique identifier */
@@ -2200,7 +2200,7 @@ export type Block_ProjectsWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
-export type Block_Repositories = {
+export type Block_Repositories = Entity & {
   __typename?: 'Block_Repositories';
   headline: Scalars['String'];
   /** The unique identifier */
@@ -2558,7 +2558,7 @@ export type Block_RepositoriesWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
-export type Client = Node & {
+export type Client = Entity & Node & {
   __typename?: 'Client';
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
@@ -3136,7 +3136,52 @@ export type DocumentVersion = {
   stage: Stage;
 };
 
-export type Footer = {
+/** An object with an ID */
+export type Entity = {
+  /** The id of the object. */
+  id: Scalars['ID'];
+  /** The Stage of an object */
+  stage: Stage;
+};
+
+/** This enumeration holds all typenames that implement the Entity interface. Components and models implement the Entity interface. */
+export enum EntityTypeName {
+  /** Asset system model */
+  Asset = 'Asset',
+  BlockAbout = 'Block_About',
+  BlockContact = 'Block_Contact',
+  BlockJobs = 'Block_Jobs',
+  BlockProjects = 'Block_Projects',
+  BlockRepositories = 'Block_Repositories',
+  Client = 'Client',
+  Footer = 'Footer',
+  Hero = 'Hero',
+  Job = 'Job',
+  LayoutPrimary = 'Layout_Primary',
+  Navigation = 'Navigation',
+  Page = 'Page',
+  Project = 'Project',
+  Seo = 'SEO',
+  /** Scheduled Operation system model */
+  ScheduledOperation = 'ScheduledOperation',
+  /** Scheduled Release system model */
+  ScheduledRelease = 'ScheduledRelease',
+  SocialNetwork = 'SocialNetwork',
+  /** User system model */
+  User = 'User'
+}
+
+/** Allows to specify input to query models and components directly */
+export type EntityWhereInput = {
+  /** The ID of an object */
+  id: Scalars['ID'];
+  locale?: InputMaybe<Locale>;
+  stage: Stage;
+  /** The Type name of an object */
+  typename: EntityTypeName;
+};
+
+export type Footer = Entity & {
   __typename?: 'Footer';
   /** The unique identifier */
   id: Scalars['ID'];
@@ -3516,7 +3561,7 @@ export type FooterWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
-export type Hero = {
+export type Hero = Entity & {
   __typename?: 'Hero';
   content: RichText;
   /** The unique identifier */
@@ -3830,7 +3875,7 @@ export type ImageTransformationInput = {
   resize?: InputMaybe<ImageResizeInput>;
 };
 
-export type Job = Node & {
+export type Job = Entity & Node & {
   __typename?: 'Job';
   client?: Maybe<Client>;
   /** The time the document was created */
@@ -4349,7 +4394,7 @@ export type JobWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
-export type Layout_Primary = {
+export type Layout_Primary = Entity & {
   __typename?: 'Layout_Primary';
   content: Array<MainLayoutcontentUnion>;
   /** The unique identifier */
@@ -5873,7 +5918,7 @@ export type MutationUpsertSocialNetworkArgs = {
   where: SocialNetworkWhereUniqueInput;
 };
 
-export type Navigation = {
+export type Navigation = Entity & {
   __typename?: 'Navigation';
   /** The unique identifier */
   id: Scalars['ID'];
@@ -6237,7 +6282,7 @@ export type Node = {
   stage: Stage;
 };
 
-export type Page = Node & {
+export type Page = Entity & Node & {
   __typename?: 'Page';
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
@@ -6740,7 +6785,12 @@ export type PageWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
-export type Project = Node & {
+export enum Platforms {
+  IOs = 'iOS',
+  Web = 'web'
+}
+
+export type Project = Entity & Node & {
   __typename?: 'Project';
   client?: Maybe<Client>;
   /** The time the document was created */
@@ -6756,6 +6806,7 @@ export type Project = Node & {
   id: Scalars['ID'];
   image: Asset;
   name: Scalars['String'];
+  platform: Array<Platforms>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']>;
   /** User that last published this document */
@@ -6852,6 +6903,7 @@ export type ProjectCreateInput = {
   description: Scalars['RichTextAST'];
   image: AssetCreateOneInlineInput;
   name: Scalars['String'];
+  platform?: InputMaybe<Array<Platforms>>;
   slogan?: InputMaybe<Scalars['String']>;
   topics: Scalars['Json'];
   updatedAt?: InputMaybe<Scalars['DateTime']>;
@@ -6950,6 +7002,16 @@ export type ProjectManyWhereInput = {
   name_not_starts_with?: InputMaybe<Scalars['String']>;
   /** All values starting with the given string. */
   name_starts_with?: InputMaybe<Scalars['String']>;
+  /** Matches if the field array contains *all* items provided to the filter and order does match */
+  platform?: InputMaybe<Array<Platforms>>;
+  /** Matches if the field array contains *all* items provided to the filter */
+  platform_contains_all?: InputMaybe<Array<Platforms>>;
+  /** Matches if the field array does not contain any of the items provided to the filter */
+  platform_contains_none?: InputMaybe<Array<Platforms>>;
+  /** Matches if the field array contains at least one item provided to the filter */
+  platform_contains_some?: InputMaybe<Array<Platforms>>;
+  /** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+  platform_not?: InputMaybe<Array<Platforms>>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -7041,6 +7103,8 @@ export enum ProjectOrderByInput {
   IdDesc = 'id_DESC',
   NameAsc = 'name_ASC',
   NameDesc = 'name_DESC',
+  PlatformAsc = 'platform_ASC',
+  PlatformDesc = 'platform_DESC',
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
   SloganAsc = 'slogan_ASC',
@@ -7057,6 +7121,7 @@ export type ProjectUpdateInput = {
   description?: InputMaybe<Scalars['RichTextAST']>;
   image?: InputMaybe<AssetUpdateOneInlineInput>;
   name?: InputMaybe<Scalars['String']>;
+  platform?: InputMaybe<Array<Platforms>>;
   slogan?: InputMaybe<Scalars['String']>;
   topics?: InputMaybe<Scalars['Json']>;
   url?: InputMaybe<Scalars['String']>;
@@ -7082,6 +7147,7 @@ export type ProjectUpdateManyInlineInput = {
 export type ProjectUpdateManyInput = {
   description?: InputMaybe<Scalars['RichTextAST']>;
   name?: InputMaybe<Scalars['String']>;
+  platform?: InputMaybe<Array<Platforms>>;
   slogan?: InputMaybe<Scalars['String']>;
   topics?: InputMaybe<Scalars['Json']>;
   url?: InputMaybe<Scalars['String']>;
@@ -7205,6 +7271,16 @@ export type ProjectWhereInput = {
   name_not_starts_with?: InputMaybe<Scalars['String']>;
   /** All values starting with the given string. */
   name_starts_with?: InputMaybe<Scalars['String']>;
+  /** Matches if the field array contains *all* items provided to the filter and order does match */
+  platform?: InputMaybe<Array<Platforms>>;
+  /** Matches if the field array contains *all* items provided to the filter */
+  platform_contains_all?: InputMaybe<Array<Platforms>>;
+  /** Matches if the field array does not contain any of the items provided to the filter */
+  platform_contains_none?: InputMaybe<Array<Platforms>>;
+  /** Matches if the field array contains at least one item provided to the filter */
+  platform_contains_some?: InputMaybe<Array<Platforms>>;
+  /** Matches if the field array does not contains *all* items provided to the filter or order does not match */
+  platform_not?: InputMaybe<Array<Platforms>>;
   publishedAt?: InputMaybe<Scalars['DateTime']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']>;
@@ -7333,6 +7409,8 @@ export type Query = {
   clients: Array<Client>;
   /** Retrieve multiple clients using the Relay connection interface */
   clientsConnection: ClientConnection;
+  /** Fetches an object given its ID */
+  entities?: Maybe<Array<Entity>>;
   /** Retrieve a single job */
   job?: Maybe<Job>;
   /** Retrieve document version */
@@ -7461,6 +7539,12 @@ export type QueryClientsConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   stage?: Stage;
   where?: InputMaybe<ClientWhereInput>;
+};
+
+
+export type QueryEntitiesArgs = {
+  locales?: InputMaybe<Array<Locale>>;
+  where: Array<EntityWhereInput>;
 };
 
 
@@ -7751,7 +7835,7 @@ export type RichText = {
   text: Scalars['String'];
 };
 
-export type Seo = {
+export type Seo = Entity & {
   __typename?: 'SEO';
   description: Scalars['String'];
   /** The unique identifier */
@@ -8118,7 +8202,7 @@ export type SeoWhereUniqueInput = {
 };
 
 /** Scheduled Operation system model */
-export type ScheduledOperation = Node & {
+export type ScheduledOperation = Entity & Node & {
   __typename?: 'ScheduledOperation';
   affectedDocuments: Array<ScheduledOperationAffectedDocument>;
   /** The time the document was created */
@@ -8553,7 +8637,7 @@ export type ScheduledOperationWhereUniqueInput = {
 };
 
 /** Scheduled Release system model */
-export type ScheduledRelease = Node & {
+export type ScheduledRelease = Entity & Node & {
   __typename?: 'ScheduledRelease';
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
@@ -9132,7 +9216,7 @@ export type ScheduledReleaseWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']>;
 };
 
-export type SocialNetwork = Node & {
+export type SocialNetwork = Entity & Node & {
   __typename?: 'SocialNetwork';
   /** The time the document was created */
   createdAt: Scalars['DateTime'];
@@ -9641,7 +9725,7 @@ export type UnpublishLocaleInput = {
 };
 
 /** User system model */
-export type User = Node & {
+export type User = Entity & Node & {
   __typename?: 'User';
   /** The time the document was created */
   createdAt: Scalars['DateTime'];

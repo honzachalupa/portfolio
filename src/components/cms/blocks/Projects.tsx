@@ -65,6 +65,7 @@ export const Block_Projects: React.FC<IBlock_Projects> = ({
                         url,
                         image,
                         client,
+                        platform,
                     },
                     i
                 ) => {
@@ -174,6 +175,26 @@ export const Block_Projects: React.FC<IBlock_Projects> = ({
                                                 "md:text-right": isOdd,
                                             })}
                                         >
+                                            {platform.map((platform) => {
+                                                const label =
+                                                    platform === "web"
+                                                        ? "Web application"
+                                                        : platform === "iOS"
+                                                        ? "iOS application"
+                                                        : null;
+
+                                                return (
+                                                    label && (
+                                                        <span
+                                                            key={platform}
+                                                            className="mx-2 rounded-md bg-[#112240] px-3 py-1.5 font-mono text-sm"
+                                                        >
+                                                            {label}
+                                                        </span>
+                                                    )
+                                                );
+                                            })}
+
                                             {topics.map((topic: string) => (
                                                 <span
                                                     key={topic}
