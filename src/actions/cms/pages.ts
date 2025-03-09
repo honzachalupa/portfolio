@@ -126,6 +126,9 @@ export const findBySlug = async (slug: string, localization: ILocalization) => {
                                     platform
                                 }
                             }
+                            ... on Block_Projects_iOS {
+                                headline
+                            }
                             ... on Block_Repositories {
                                 headline
                                 limit

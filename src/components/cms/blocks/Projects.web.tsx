@@ -26,7 +26,7 @@ const ProjectImage: React.FC<{
     </div>
 );
 
-export const Block_Projects: React.FC<IBlock_Projects> = ({
+export const Block_Projects_web: React.FC<IBlock_Projects> = ({
     headline,
     projects,
 }) => (

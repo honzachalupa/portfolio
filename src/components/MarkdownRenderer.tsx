@@ -9,13 +9,15 @@ interface IProps {
         Omit<NormalComponents, keyof SpecialComponents> & SpecialComponents
     >;
     children: string;
+    className?: string;
 }
 
 export const MarkdownRenderer: React.FC<IProps> = ({
     components,
     children,
+    className,
 }) => (
-    <div>
+    <div className={className}>
         <ReactMarkdown
             rehypePlugins={[rehypeRaw]}
             remarkPlugins={[gfm]}

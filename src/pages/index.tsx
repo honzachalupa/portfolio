@@ -1,4 +1,4 @@
-import { GetStaticProps } from "next";
+import { GetServerSideProps } from "next/types";
 import { CMSLocalesActions, CMSPagesActions } from "../actions/cms";
 import { ContentRenderer } from "../components/ContentRenderer";
 import { Page } from "../types/cms";
@@ -18,7 +18,7 @@ const Index = ({
     </Context.Provider>
 );
 
-export const getStaticProps: GetStaticProps = async ({
+export const getServerSideProps = (async ({
     locale,
     locales,
     defaultLocale,
@@ -38,8 +38,11 @@ export const getStaticProps: GetStaticProps = async ({
             localization,
             cmsLocales,
         },
-        revalidate: 1,
     };
-};
+}) satisfies GetServerSideProps<{
+    page: Page | null;
+    localization: ILocalization;
+    cmsLocales: string[];
+}>;
 
 export default Index;

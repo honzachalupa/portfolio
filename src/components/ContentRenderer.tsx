@@ -3,10 +3,11 @@ import { ILayoutContentItem, Page } from "../types/cms";
 import { Context } from "../utils/context";
 import { checkMatchingLocales } from "../utils/locales";
 import { Block_About } from "./cms/blocks/About";
+import { Block_Contact } from "./cms/blocks/Contact";
 import { Hero } from "./cms/blocks/Hero";
 import { Block_Jobs } from "./cms/blocks/Jobs";
-import { Block_Projects } from "./cms/blocks/Projects";
-import { Block_Contact } from "./cms/blocks/Contact";
+import { Block_Projects_iOS } from "./cms/blocks/Projects.iOS";
+import { Block_Projects_web } from "./cms/blocks/Projects.web";
 import { Block_Repositories } from "./cms/blocks/Repositories";
 import { Footer } from "./cms/Footer";
 import { Layout_Primary } from "./cms/layouts/Primary";
@@ -45,7 +46,10 @@ export const ContentRenderer: React.FC<IProps> = ({ page, cmsLocales }) => {
             return <Block_Jobs {...props} />;
         }
         if (__typename === "Block_Projects") {
-            return <Block_Projects {...props} />;
+            return <Block_Projects_web {...props} />;
+        }
+        if (__typename === "Block_Projects_iOS") {
+            return <Block_Projects_iOS {...props} />;
         }
         if (__typename === "Block_Repositories") {
             return <Block_Repositories {...props} />;
