@@ -22,9 +22,7 @@ export function ContentRenderer({ page }: ContentRendererProps) {
     }
     if (__typename === "Hero") {
       return (
-        <p data-x="Hero">
-          {" "}
-          {/*  {...props} */}
+        <p data-x="Hero" {...props}>
           Hero
         </p>
       );
@@ -38,18 +36,14 @@ export function ContentRenderer({ page }: ContentRendererProps) {
     }
     if (__typename === "SEO") {
       return (
-        <p data-x="SEO" {...props}>
-          {" "}
-          {/* title={page.title} */}
+        <p data-x="SEO" {...props} title={page.title}>
           SEO
         </p>
       );
     }
     if (__typename === "Block_About") {
       return (
-        <p data-x="Block_About">
-          {" "}
-          {/* {...props} */}
+        <p data-x="Block_About" {...props}>
           Block_About
         </p>
       );
