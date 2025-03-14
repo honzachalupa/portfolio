@@ -1,7 +1,6 @@
 "use client";
 
-import { HygraphGetPagesData } from "@/app/api/hygraph/pages/route";
-import hygraph from "@/hygraph";
+import hygraph, { HygraphGetPagesData } from "@/hygraph";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import {
