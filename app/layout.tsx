@@ -1,20 +1,22 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Navigation, Providers } from "@/components";
+import { Analytics } from "@vercel/analytics/react";
+import { Metadata, Viewport } from "next";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Jan Chalupa portfolio",
   description: "",
+};
+
+export const viewport: Viewport = {
+  minimumScale: 1,
+  initialScale: 1,
+  width: "device-width",
+  userScalable: false,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
 };
 
 export default function RootLayout({
@@ -22,12 +24,25 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = "en";
+
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang={locale} suppressHydrationWarning>
+      <body>
+        <Analytics />
+
+        <Providers
+          locale={locale}
+          themeProps={{ attribute: "class", defaultTheme: "dark" }}
+        >
+          <Navigation />
+
+          <main className="flex w-full h-auto items-center justify-center">
+            <div className="z-40 flex px-6 gap-4 w-full flex-row flex-nowrap items-center justify-between max-w-[1024px] mt-10">
+              {children}
+            </div>
+          </main>
+        </Providers>
       </body>
     </html>
   );
