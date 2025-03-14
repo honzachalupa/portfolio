@@ -4,10 +4,8 @@ import hygraph from "@/hygraph";
 export default async function Page() {
   const page = await hygraph.getPage("/");
 
-  console.log("Page data:", page);
-
   if (!page) {
-    return <p>Page not found</p>;
+    throw new Error("Page not found");
   }
 
   return <ContentRenderer page={page} />;

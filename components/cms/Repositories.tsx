@@ -1,0 +1,53 @@
+import { GitHubRepositoryActions } from "@/actions/github";
+import { Block_Repositories } from "@/hygraph/_generated/graphql";
+import { Button } from "@heroui/button";
+import { Link } from "@heroui/link";
+import { Container } from "../Container";
+import { MarkdownRenderer } from "../MarkdownRenderer";
+import { ProjectCard, ProjectCardLink } from "../ProjectCard";
+
+const fetchData = async (limit?: number) => {
+  const data = await GitHubRepositoryActions.search();
+
+  return data.slice(0, limit);
+};
+
+export async function Repositories({ headline, limit }: Block_Repositories) {
+  const repositories = await fetchData(limit);
+
+  return (
+    <Container headline={headline}>
+      <div className="flex flex-wrap gap-[12px]">
+        {repositories?.map(
+          ({ id, name, url, websiteUrl, description, topics }) => (
+            <ProjectCard
+              key={id}
+              title={name}
+              subtitle={topics?.join(", ")}
+              description={<MarkdownRenderer>{description}</MarkdownRenderer>}
+              links={
+                [
+                  websiteUrl && { label: "Visit", url: websiteUrl },
+                  { label: "Show source-code", url: url },
+                ].filter(Boolean) as ProjectCardLink[]
+              }
+              className="basis-[calc(50%-(12px)/2)]"
+            />
+          )
+        )}
+      </div>
+
+      <div className="flex justify-center mt-10">
+        <Button
+          as={Link}
+          variant="solid"
+          color="primary"
+          href="https://github.com/honzachalupa"
+          target="_blank"
+        >
+          Show more
+        </Button>
+      </div>
+    </Container>
+  );
+}
