@@ -1,6 +1,6 @@
 "use server";
 
-import { HygraphGetPageData } from "@/app/api/hygraph/page/route";
+import { HygraphGetPageData } from "@/hygraph";
 
 export async function getPage(
   slug: string

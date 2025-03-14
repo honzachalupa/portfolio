@@ -1,6 +1,6 @@
 "use server";
 
-import { HygraphGetPagesData } from "@/app/api/hygraph/pages/route";
+import { HygraphGetPagesData } from "@/hygraph";
 
 export async function getPages(): Promise<HygraphGetPagesData | null> {
   const url = process.env.HYGRAPH_CONTENT_API_URL ?? "";

@@ -7,3 +7,4 @@ const hygraph = {
 };
 
 export default hygraph;
+export type { HygraphGetPageData, HygraphGetPagesData } from "./types";
