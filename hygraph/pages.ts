@@ -12,7 +12,7 @@ export async function getPages(): Promise<HygraphGetPagesData | null> {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        query: `query GetPages {
+        query: `query {
           pages {
             title
             slug
