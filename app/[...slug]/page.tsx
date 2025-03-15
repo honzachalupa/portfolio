@@ -2,6 +2,12 @@ import { ContentRenderer } from "@/components/ContentRenderer";
 import hygraph from "@/hygraph";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
+import type { Metadata } from "next";
+
+type Props = {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+};
 
 const parseSlug = (slug: string | string[]): string => {
   if (typeof slug === "string") {
@@ -10,6 +16,16 @@ const parseSlug = (slug: string | string[]): string => {
 
   return "/" + slug.join("/");
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+
+  const page = await hygraph.getPage(parseSlug(slug));
+
+  return {
+    title: ["Jan Chalupa portfolio", page?.title].filter(Boolean).join(" | "),
+  };
+}
 
 export default async function Page({
   params,

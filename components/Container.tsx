@@ -11,12 +11,7 @@ export const BlockHeadline: React.FC<BlockHeadlineProps> = ({
   children,
   className,
 }) => (
-  <h2
-    className={clsx(
-      "pb-10 text-4xl font-medium text-white opacity-70",
-      className
-    )}
-  >
+  <h2 className={clsx("pb-10 text-4xl font-medium opacity-70", className)}>
     {children}
   </h2>
 );
