@@ -1,5 +1,5 @@
 import { AppleAppStoreApp } from "@/app/api/apple-app-store/route";
-import { Block_Projects_IOs } from "@/hygraph/_generated/graphql";
+import { Projects_IOs as Projects_iOSProps } from "@/hygraph/_generated/graphql";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import { cache } from "react";
@@ -37,7 +37,7 @@ const fetchApps = cache(async () => {
   }
 });
 
-export async function Projects_iOS({ headline }: Block_Projects_IOs) {
+export async function Projects_iOS({ headline }: Projects_iOSProps) {
   const apps = await fetchApps();
 
   return (

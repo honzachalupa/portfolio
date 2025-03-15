@@ -112,11 +112,6 @@ function Items({
 export function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
-  const closeMenu = () => {
-    console.log("closeMenu");
-    setIsMenuOpen(false);
-  };
-
   return (
     <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
@@ -181,7 +176,7 @@ export function Navigation() {
       </NavbarContent>
 
       <NavbarMenu>
-        <Items variant="mobile" closeMenu={closeMenu} />
+        <Items variant="mobile" closeMenu={() => setIsMenuOpen(false)} />
       </NavbarMenu>
     </Navbar>
   );

@@ -2,10 +2,10 @@ import { HygraphGetPageData } from "@/hygraph";
 import { Fragment } from "react";
 import { About } from "./cms/About";
 import { Footer } from "./cms/Footer";
+import { GitHubRepositories } from "./cms/GitHubRepositories";
 import { Jobs } from "./cms/Jobs";
 import { Projects_iOS } from "./cms/Projects_iOS";
 import { Projects_web } from "./cms/Projects_web";
-import { Repositories } from "./cms/Repositories";
 
 interface ContentRendererProps {
   page: HygraphGetPageData;
@@ -21,24 +21,24 @@ export function ContentRenderer({ page }: ContentRendererProps) {
       return <Footer {...props} />;
     }
 
-    if (__typename === "Block_About") {
+    if (__typename === "About") {
       return <About {...props} />;
     }
 
-    if (__typename === "Block_Jobs") {
+    if (__typename === "Jobs") {
       return <Jobs {...props} />;
     }
 
-    if (__typename === "Block_Projects") {
+    if (__typename === "Projects_web") {
       return <Projects_web {...props} />;
     }
 
-    if (__typename === "Block_Projects_iOS") {
+    if (__typename === "Projects_iOS") {
       return <Projects_iOS {...props} />;
     }
 
-    if (__typename === "Block_Repositories") {
-      return <Repositories {...props} />;
+    if (__typename === "GitHubRepositories") {
+      return <GitHubRepositories {...props} />;
     }
 
     console.warn("Component not found:", __typename);

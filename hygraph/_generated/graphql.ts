@@ -28,6 +28,344 @@ export type Scalars = {
   RichTextAST: { input: any; output: any; }
 };
 
+export type About = Entity & {
+  __typename?: 'About';
+  content: RichText;
+  headline: Scalars['String']['output'];
+  /** The unique identifier */
+  id: Scalars['ID']['output'];
+  image?: Maybe<Asset>;
+  /** System stage field */
+  stage: Stage;
+};
+
+
+export type AboutImageArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  where?: InputMaybe<AssetSingleRelationWhereInput>;
+};
+
+export type AboutConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: AboutWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type AboutConnection = {
+  __typename?: 'AboutConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<AboutEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type AboutCreateInput = {
+  content: Scalars['RichTextAST']['input'];
+  headline: Scalars['String']['input'];
+  image?: InputMaybe<AssetCreateOneInlineInput>;
+};
+
+export type AboutCreateManyInlineInput = {
+  /** Create and connect multiple existing About documents */
+  create?: InputMaybe<Array<AboutCreateInput>>;
+};
+
+export type AboutCreateOneInlineInput = {
+  /** Create and connect one About document */
+  create?: InputMaybe<AboutCreateInput>;
+};
+
+export type AboutCreateWithPositionInput = {
+  /** Document to create */
+  data: AboutCreateInput;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+};
+
+/** An edge in a connection. */
+export type AboutEdge = {
+  __typename?: 'AboutEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: About;
+};
+
+/** Identifies documents */
+export type AboutManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<AboutWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<AboutWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<AboutWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  headline?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  headline_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  headline_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  image?: InputMaybe<AssetWhereInput>;
+};
+
+export enum AboutOrderByInput {
+  HeadlineAsc = 'headline_ASC',
+  HeadlineDesc = 'headline_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC'
+}
+
+export type AboutParent = Layout_Primary;
+
+export type AboutParentConnectInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryConnectInput>;
+};
+
+export type AboutParentCreateInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryCreateInput>;
+};
+
+export type AboutParentCreateManyInlineInput = {
+  /** Create and connect multiple existing AboutParent documents */
+  create?: InputMaybe<Array<AboutParentCreateInput>>;
+};
+
+export type AboutParentCreateOneInlineInput = {
+  /** Create and connect one AboutParent document */
+  create?: InputMaybe<AboutParentCreateInput>;
+};
+
+export type AboutParentCreateWithPositionInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryCreateWithPositionInput>;
+};
+
+export type AboutParentUpdateInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateInput>;
+};
+
+export type AboutParentUpdateManyInlineInput = {
+  /** Create and connect multiple AboutParent component instances */
+  create?: InputMaybe<Array<AboutParentCreateWithPositionInput>>;
+  /** Delete multiple AboutParent documents */
+  delete?: InputMaybe<Array<AboutParentWhereUniqueInput>>;
+  /** Update multiple AboutParent component instances */
+  update?: InputMaybe<Array<AboutParentUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple AboutParent component instances */
+  upsert?: InputMaybe<Array<AboutParentUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type AboutParentUpdateManyWithNestedWhereInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateManyWithNestedWhereInput>;
+};
+
+export type AboutParentUpdateOneInlineInput = {
+  /** Create and connect one AboutParent document */
+  create?: InputMaybe<AboutParentCreateInput>;
+  /** Delete currently connected AboutParent document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single AboutParent document */
+  update?: InputMaybe<AboutParentUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single AboutParent document */
+  upsert?: InputMaybe<AboutParentUpsertWithNestedWhereUniqueInput>;
+};
+
+export type AboutParentUpdateWithNestedWhereUniqueAndPositionInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type AboutParentUpdateWithNestedWhereUniqueInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueInput>;
+};
+
+export type AboutParentUpsertWithNestedWhereUniqueAndPositionInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type AboutParentUpsertWithNestedWhereUniqueInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueInput>;
+};
+
+export type AboutParentWhereInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryWhereInput>;
+};
+
+export type AboutParentWhereUniqueInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryWhereUniqueInput>;
+};
+
+export type AboutUpdateInput = {
+  content?: InputMaybe<Scalars['RichTextAST']['input']>;
+  headline?: InputMaybe<Scalars['String']['input']>;
+  image?: InputMaybe<AssetUpdateOneInlineInput>;
+};
+
+export type AboutUpdateManyInlineInput = {
+  /** Create and connect multiple About component instances */
+  create?: InputMaybe<Array<AboutCreateWithPositionInput>>;
+  /** Delete multiple About documents */
+  delete?: InputMaybe<Array<AboutWhereUniqueInput>>;
+  /** Update multiple About component instances */
+  update?: InputMaybe<Array<AboutUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple About component instances */
+  upsert?: InputMaybe<Array<AboutUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type AboutUpdateManyInput = {
+  content?: InputMaybe<Scalars['RichTextAST']['input']>;
+  headline?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type AboutUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: AboutUpdateManyInput;
+  /** Document search */
+  where: AboutWhereInput;
+};
+
+export type AboutUpdateOneInlineInput = {
+  /** Create and connect one About document */
+  create?: InputMaybe<AboutCreateInput>;
+  /** Delete currently connected About document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single About document */
+  update?: InputMaybe<AboutUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single About document */
+  upsert?: InputMaybe<AboutUpsertWithNestedWhereUniqueInput>;
+};
+
+export type AboutUpdateWithNestedWhereUniqueAndPositionInput = {
+  /** Document to update */
+  data?: InputMaybe<AboutUpdateInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: AboutWhereUniqueInput;
+};
+
+export type AboutUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: AboutUpdateInput;
+  /** Unique document search */
+  where: AboutWhereUniqueInput;
+};
+
+export type AboutUpsertInput = {
+  /** Create document if it didn't exist */
+  create: AboutCreateInput;
+  /** Update document if it exists */
+  update: AboutUpdateInput;
+};
+
+export type AboutUpsertWithNestedWhereUniqueAndPositionInput = {
+  /** Document to upsert */
+  data?: InputMaybe<AboutUpsertInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: AboutWhereUniqueInput;
+};
+
+export type AboutUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: AboutUpsertInput;
+  /** Unique document search */
+  where: AboutWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type AboutWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<AboutWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<AboutWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<AboutWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  headline?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  headline_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  headline_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  image?: InputMaybe<AssetWhereInput>;
+};
+
+/** References About record uniquely */
+export type AboutWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
 export type Aggregate = {
   __typename?: 'Aggregate';
   count: Scalars['Int']['output'];
@@ -227,7 +565,7 @@ export type AssetCreateInput = {
   fileName?: InputMaybe<Scalars['String']['input']>;
   iconClient?: InputMaybe<ClientCreateManyInlineInput>;
   iconSocialNetwork?: InputMaybe<SocialNetworkCreateManyInlineInput>;
-  imageBlockAboutMe?: InputMaybe<Block_AboutCreateManyInlineInput>;
+  imageBlockAboutMe?: InputMaybe<AboutCreateManyInlineInput>;
   imageProject?: InputMaybe<ProjectCreateManyInlineInput>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: InputMaybe<AssetCreateLocalizationsInput>;
@@ -419,7 +757,7 @@ export type AssetUpdateInput = {
   fileName?: InputMaybe<Scalars['String']['input']>;
   iconClient?: InputMaybe<ClientUpdateManyInlineInput>;
   iconSocialNetwork?: InputMaybe<SocialNetworkUpdateManyInlineInput>;
-  imageBlockAboutMe?: InputMaybe<Block_AboutUpdateManyInlineInput>;
+  imageBlockAboutMe?: InputMaybe<AboutUpdateManyInlineInput>;
   imageProject?: InputMaybe<ProjectUpdateManyInlineInput>;
   /** Manage document localizations */
   localizations?: InputMaybe<AssetUpdateLocalizationsInput>;
@@ -862,2122 +1200,6 @@ export type BatchPayload = {
   __typename?: 'BatchPayload';
   /** The number of nodes that have been affected by the Batch operation. */
   count: Scalars['Long']['output'];
-};
-
-export type Block_About = Entity & {
-  __typename?: 'Block_About';
-  content: RichText;
-  headline: Scalars['String']['output'];
-  /** The unique identifier */
-  id: Scalars['ID']['output'];
-  image?: Maybe<Asset>;
-  /** System stage field */
-  stage: Stage;
-};
-
-
-export type Block_AboutImageArgs = {
-  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
-  locales?: InputMaybe<Array<Locale>>;
-  where?: InputMaybe<AssetSingleRelationWhereInput>;
-};
-
-export type Block_AboutConnectInput = {
-  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Document to connect */
-  where: Block_AboutWhereUniqueInput;
-};
-
-/** A connection to a list of items. */
-export type Block_AboutConnection = {
-  __typename?: 'Block_AboutConnection';
-  aggregate: Aggregate;
-  /** A list of edges. */
-  edges: Array<Block_AboutEdge>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-};
-
-export type Block_AboutCreateInput = {
-  content: Scalars['RichTextAST']['input'];
-  headline: Scalars['String']['input'];
-  image?: InputMaybe<AssetCreateOneInlineInput>;
-};
-
-export type Block_AboutCreateManyInlineInput = {
-  /** Create and connect multiple existing Block_About documents */
-  create?: InputMaybe<Array<Block_AboutCreateInput>>;
-};
-
-export type Block_AboutCreateOneInlineInput = {
-  /** Create and connect one Block_About document */
-  create?: InputMaybe<Block_AboutCreateInput>;
-};
-
-export type Block_AboutCreateWithPositionInput = {
-  /** Document to create */
-  data: Block_AboutCreateInput;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-};
-
-/** An edge in a connection. */
-export type Block_AboutEdge = {
-  __typename?: 'Block_AboutEdge';
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']['output'];
-  /** The item at the end of the edge. */
-  node: Block_About;
-};
-
-/** Identifies documents */
-export type Block_AboutManyWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<Block_AboutWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<Block_AboutWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<Block_AboutWhereInput>>;
-  /** Contains search across all appropriate fields. */
-  _search?: InputMaybe<Scalars['String']['input']>;
-  headline?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  headline_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  headline_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  /** All values containing the given string. */
-  id_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values ending with the given string. */
-  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are contained in given list. */
-  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  id_not?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not containing the given string. */
-  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are not contained in given list. */
-  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values starting with the given string. */
-  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  image?: InputMaybe<AssetWhereInput>;
-};
-
-export enum Block_AboutOrderByInput {
-  HeadlineAsc = 'headline_ASC',
-  HeadlineDesc = 'headline_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC'
-}
-
-export type Block_AboutParent = Layout_Primary;
-
-export type Block_AboutParentConnectInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryConnectInput>;
-};
-
-export type Block_AboutParentCreateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateInput>;
-};
-
-export type Block_AboutParentCreateManyInlineInput = {
-  /** Create and connect multiple existing Block_AboutParent documents */
-  create?: InputMaybe<Array<Block_AboutParentCreateInput>>;
-};
-
-export type Block_AboutParentCreateOneInlineInput = {
-  /** Create and connect one Block_AboutParent document */
-  create?: InputMaybe<Block_AboutParentCreateInput>;
-};
-
-export type Block_AboutParentCreateWithPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateWithPositionInput>;
-};
-
-export type Block_AboutParentUpdateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateInput>;
-};
-
-export type Block_AboutParentUpdateManyInlineInput = {
-  /** Create and connect multiple Block_AboutParent component instances */
-  create?: InputMaybe<Array<Block_AboutParentCreateWithPositionInput>>;
-  /** Delete multiple Block_AboutParent documents */
-  delete?: InputMaybe<Array<Block_AboutParentWhereUniqueInput>>;
-  /** Update multiple Block_AboutParent component instances */
-  update?: InputMaybe<Array<Block_AboutParentUpdateWithNestedWhereUniqueAndPositionInput>>;
-  /** Upsert multiple Block_AboutParent component instances */
-  upsert?: InputMaybe<Array<Block_AboutParentUpsertWithNestedWhereUniqueAndPositionInput>>;
-};
-
-export type Block_AboutParentUpdateManyWithNestedWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateManyWithNestedWhereInput>;
-};
-
-export type Block_AboutParentUpdateOneInlineInput = {
-  /** Create and connect one Block_AboutParent document */
-  create?: InputMaybe<Block_AboutParentCreateInput>;
-  /** Delete currently connected Block_AboutParent document */
-  delete?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Update single Block_AboutParent document */
-  update?: InputMaybe<Block_AboutParentUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single Block_AboutParent document */
-  upsert?: InputMaybe<Block_AboutParentUpsertWithNestedWhereUniqueInput>;
-};
-
-export type Block_AboutParentUpdateWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueAndPositionInput>;
-};
-
-export type Block_AboutParentUpdateWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueInput>;
-};
-
-export type Block_AboutParentUpsertWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueAndPositionInput>;
-};
-
-export type Block_AboutParentUpsertWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueInput>;
-};
-
-export type Block_AboutParentWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereInput>;
-};
-
-export type Block_AboutParentWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereUniqueInput>;
-};
-
-export type Block_AboutUpdateInput = {
-  content?: InputMaybe<Scalars['RichTextAST']['input']>;
-  headline?: InputMaybe<Scalars['String']['input']>;
-  image?: InputMaybe<AssetUpdateOneInlineInput>;
-};
-
-export type Block_AboutUpdateManyInlineInput = {
-  /** Create and connect multiple Block_About component instances */
-  create?: InputMaybe<Array<Block_AboutCreateWithPositionInput>>;
-  /** Delete multiple Block_About documents */
-  delete?: InputMaybe<Array<Block_AboutWhereUniqueInput>>;
-  /** Update multiple Block_About component instances */
-  update?: InputMaybe<Array<Block_AboutUpdateWithNestedWhereUniqueAndPositionInput>>;
-  /** Upsert multiple Block_About component instances */
-  upsert?: InputMaybe<Array<Block_AboutUpsertWithNestedWhereUniqueAndPositionInput>>;
-};
-
-export type Block_AboutUpdateManyInput = {
-  content?: InputMaybe<Scalars['RichTextAST']['input']>;
-  headline?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Block_AboutUpdateManyWithNestedWhereInput = {
-  /** Update many input */
-  data: Block_AboutUpdateManyInput;
-  /** Document search */
-  where: Block_AboutWhereInput;
-};
-
-export type Block_AboutUpdateOneInlineInput = {
-  /** Create and connect one Block_About document */
-  create?: InputMaybe<Block_AboutCreateInput>;
-  /** Delete currently connected Block_About document */
-  delete?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Update single Block_About document */
-  update?: InputMaybe<Block_AboutUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single Block_About document */
-  upsert?: InputMaybe<Block_AboutUpsertWithNestedWhereUniqueInput>;
-};
-
-export type Block_AboutUpdateWithNestedWhereUniqueAndPositionInput = {
-  /** Document to update */
-  data?: InputMaybe<Block_AboutUpdateInput>;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Unique component instance search */
-  where: Block_AboutWhereUniqueInput;
-};
-
-export type Block_AboutUpdateWithNestedWhereUniqueInput = {
-  /** Document to update */
-  data: Block_AboutUpdateInput;
-  /** Unique document search */
-  where: Block_AboutWhereUniqueInput;
-};
-
-export type Block_AboutUpsertInput = {
-  /** Create document if it didn't exist */
-  create: Block_AboutCreateInput;
-  /** Update document if it exists */
-  update: Block_AboutUpdateInput;
-};
-
-export type Block_AboutUpsertWithNestedWhereUniqueAndPositionInput = {
-  /** Document to upsert */
-  data?: InputMaybe<Block_AboutUpsertInput>;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Unique component instance search */
-  where: Block_AboutWhereUniqueInput;
-};
-
-export type Block_AboutUpsertWithNestedWhereUniqueInput = {
-  /** Upsert data */
-  data: Block_AboutUpsertInput;
-  /** Unique document search */
-  where: Block_AboutWhereUniqueInput;
-};
-
-/** Identifies documents */
-export type Block_AboutWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<Block_AboutWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<Block_AboutWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<Block_AboutWhereInput>>;
-  /** Contains search across all appropriate fields. */
-  _search?: InputMaybe<Scalars['String']['input']>;
-  headline?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  headline_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  headline_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  /** All values containing the given string. */
-  id_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values ending with the given string. */
-  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are contained in given list. */
-  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  id_not?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not containing the given string. */
-  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are not contained in given list. */
-  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values starting with the given string. */
-  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  image?: InputMaybe<AssetWhereInput>;
-};
-
-/** References Block_About record uniquely */
-export type Block_AboutWhereUniqueInput = {
-  id?: InputMaybe<Scalars['ID']['input']>;
-};
-
-export type Block_Contact = Entity & {
-  __typename?: 'Block_Contact';
-  emailAddress?: Maybe<Scalars['String']['output']>;
-  headline: Scalars['String']['output'];
-  /** The unique identifier */
-  id: Scalars['ID']['output'];
-  phoneNumber?: Maybe<Scalars['String']['output']>;
-  /** System stage field */
-  stage: Stage;
-};
-
-export type Block_ContactConnectInput = {
-  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Document to connect */
-  where: Block_ContactWhereUniqueInput;
-};
-
-/** A connection to a list of items. */
-export type Block_ContactConnection = {
-  __typename?: 'Block_ContactConnection';
-  aggregate: Aggregate;
-  /** A list of edges. */
-  edges: Array<Block_ContactEdge>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-};
-
-export type Block_ContactCreateInput = {
-  emailAddress?: InputMaybe<Scalars['String']['input']>;
-  headline: Scalars['String']['input'];
-  phoneNumber?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Block_ContactCreateManyInlineInput = {
-  /** Create and connect multiple existing Block_Contact documents */
-  create?: InputMaybe<Array<Block_ContactCreateInput>>;
-};
-
-export type Block_ContactCreateOneInlineInput = {
-  /** Create and connect one Block_Contact document */
-  create?: InputMaybe<Block_ContactCreateInput>;
-};
-
-export type Block_ContactCreateWithPositionInput = {
-  /** Document to create */
-  data: Block_ContactCreateInput;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-};
-
-/** An edge in a connection. */
-export type Block_ContactEdge = {
-  __typename?: 'Block_ContactEdge';
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']['output'];
-  /** The item at the end of the edge. */
-  node: Block_Contact;
-};
-
-/** Identifies documents */
-export type Block_ContactManyWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<Block_ContactWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<Block_ContactWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<Block_ContactWhereInput>>;
-  /** Contains search across all appropriate fields. */
-  _search?: InputMaybe<Scalars['String']['input']>;
-  emailAddress?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  emailAddress_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  emailAddress_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  emailAddress_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  emailAddress_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  emailAddress_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  emailAddress_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  emailAddress_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  emailAddress_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  emailAddress_starts_with?: InputMaybe<Scalars['String']['input']>;
-  headline?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  headline_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  headline_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  /** All values containing the given string. */
-  id_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values ending with the given string. */
-  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are contained in given list. */
-  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  id_not?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not containing the given string. */
-  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are not contained in given list. */
-  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values starting with the given string. */
-  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  phoneNumber?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  phoneNumber_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  phoneNumber_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  phoneNumber_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  phoneNumber_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  phoneNumber_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  phoneNumber_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  phoneNumber_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  phoneNumber_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  phoneNumber_starts_with?: InputMaybe<Scalars['String']['input']>;
-};
-
-export enum Block_ContactOrderByInput {
-  EmailAddressAsc = 'emailAddress_ASC',
-  EmailAddressDesc = 'emailAddress_DESC',
-  HeadlineAsc = 'headline_ASC',
-  HeadlineDesc = 'headline_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  PhoneNumberAsc = 'phoneNumber_ASC',
-  PhoneNumberDesc = 'phoneNumber_DESC'
-}
-
-export type Block_ContactParent = Layout_Primary;
-
-export type Block_ContactParentConnectInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryConnectInput>;
-};
-
-export type Block_ContactParentCreateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateInput>;
-};
-
-export type Block_ContactParentCreateManyInlineInput = {
-  /** Create and connect multiple existing Block_ContactParent documents */
-  create?: InputMaybe<Array<Block_ContactParentCreateInput>>;
-};
-
-export type Block_ContactParentCreateOneInlineInput = {
-  /** Create and connect one Block_ContactParent document */
-  create?: InputMaybe<Block_ContactParentCreateInput>;
-};
-
-export type Block_ContactParentCreateWithPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateWithPositionInput>;
-};
-
-export type Block_ContactParentUpdateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateInput>;
-};
-
-export type Block_ContactParentUpdateManyInlineInput = {
-  /** Create and connect multiple Block_ContactParent component instances */
-  create?: InputMaybe<Array<Block_ContactParentCreateWithPositionInput>>;
-  /** Delete multiple Block_ContactParent documents */
-  delete?: InputMaybe<Array<Block_ContactParentWhereUniqueInput>>;
-  /** Update multiple Block_ContactParent component instances */
-  update?: InputMaybe<Array<Block_ContactParentUpdateWithNestedWhereUniqueAndPositionInput>>;
-  /** Upsert multiple Block_ContactParent component instances */
-  upsert?: InputMaybe<Array<Block_ContactParentUpsertWithNestedWhereUniqueAndPositionInput>>;
-};
-
-export type Block_ContactParentUpdateManyWithNestedWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateManyWithNestedWhereInput>;
-};
-
-export type Block_ContactParentUpdateOneInlineInput = {
-  /** Create and connect one Block_ContactParent document */
-  create?: InputMaybe<Block_ContactParentCreateInput>;
-  /** Delete currently connected Block_ContactParent document */
-  delete?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Update single Block_ContactParent document */
-  update?: InputMaybe<Block_ContactParentUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single Block_ContactParent document */
-  upsert?: InputMaybe<Block_ContactParentUpsertWithNestedWhereUniqueInput>;
-};
-
-export type Block_ContactParentUpdateWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueAndPositionInput>;
-};
-
-export type Block_ContactParentUpdateWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueInput>;
-};
-
-export type Block_ContactParentUpsertWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueAndPositionInput>;
-};
-
-export type Block_ContactParentUpsertWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueInput>;
-};
-
-export type Block_ContactParentWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereInput>;
-};
-
-export type Block_ContactParentWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereUniqueInput>;
-};
-
-export type Block_ContactUpdateInput = {
-  emailAddress?: InputMaybe<Scalars['String']['input']>;
-  headline?: InputMaybe<Scalars['String']['input']>;
-  phoneNumber?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Block_ContactUpdateManyInlineInput = {
-  /** Create and connect multiple Block_Contact component instances */
-  create?: InputMaybe<Array<Block_ContactCreateWithPositionInput>>;
-  /** Delete multiple Block_Contact documents */
-  delete?: InputMaybe<Array<Block_ContactWhereUniqueInput>>;
-  /** Update multiple Block_Contact component instances */
-  update?: InputMaybe<Array<Block_ContactUpdateWithNestedWhereUniqueAndPositionInput>>;
-  /** Upsert multiple Block_Contact component instances */
-  upsert?: InputMaybe<Array<Block_ContactUpsertWithNestedWhereUniqueAndPositionInput>>;
-};
-
-export type Block_ContactUpdateManyInput = {
-  emailAddress?: InputMaybe<Scalars['String']['input']>;
-  headline?: InputMaybe<Scalars['String']['input']>;
-  phoneNumber?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Block_ContactUpdateManyWithNestedWhereInput = {
-  /** Update many input */
-  data: Block_ContactUpdateManyInput;
-  /** Document search */
-  where: Block_ContactWhereInput;
-};
-
-export type Block_ContactUpdateOneInlineInput = {
-  /** Create and connect one Block_Contact document */
-  create?: InputMaybe<Block_ContactCreateInput>;
-  /** Delete currently connected Block_Contact document */
-  delete?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Update single Block_Contact document */
-  update?: InputMaybe<Block_ContactUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single Block_Contact document */
-  upsert?: InputMaybe<Block_ContactUpsertWithNestedWhereUniqueInput>;
-};
-
-export type Block_ContactUpdateWithNestedWhereUniqueAndPositionInput = {
-  /** Document to update */
-  data?: InputMaybe<Block_ContactUpdateInput>;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Unique component instance search */
-  where: Block_ContactWhereUniqueInput;
-};
-
-export type Block_ContactUpdateWithNestedWhereUniqueInput = {
-  /** Document to update */
-  data: Block_ContactUpdateInput;
-  /** Unique document search */
-  where: Block_ContactWhereUniqueInput;
-};
-
-export type Block_ContactUpsertInput = {
-  /** Create document if it didn't exist */
-  create: Block_ContactCreateInput;
-  /** Update document if it exists */
-  update: Block_ContactUpdateInput;
-};
-
-export type Block_ContactUpsertWithNestedWhereUniqueAndPositionInput = {
-  /** Document to upsert */
-  data?: InputMaybe<Block_ContactUpsertInput>;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Unique component instance search */
-  where: Block_ContactWhereUniqueInput;
-};
-
-export type Block_ContactUpsertWithNestedWhereUniqueInput = {
-  /** Upsert data */
-  data: Block_ContactUpsertInput;
-  /** Unique document search */
-  where: Block_ContactWhereUniqueInput;
-};
-
-/** Identifies documents */
-export type Block_ContactWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<Block_ContactWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<Block_ContactWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<Block_ContactWhereInput>>;
-  /** Contains search across all appropriate fields. */
-  _search?: InputMaybe<Scalars['String']['input']>;
-  emailAddress?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  emailAddress_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  emailAddress_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  emailAddress_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  emailAddress_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  emailAddress_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  emailAddress_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  emailAddress_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  emailAddress_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  emailAddress_starts_with?: InputMaybe<Scalars['String']['input']>;
-  headline?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  headline_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  headline_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  /** All values containing the given string. */
-  id_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values ending with the given string. */
-  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are contained in given list. */
-  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  id_not?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not containing the given string. */
-  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are not contained in given list. */
-  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values starting with the given string. */
-  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  phoneNumber?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  phoneNumber_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  phoneNumber_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  phoneNumber_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  phoneNumber_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  phoneNumber_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  phoneNumber_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  phoneNumber_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  phoneNumber_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  phoneNumber_starts_with?: InputMaybe<Scalars['String']['input']>;
-};
-
-/** References Block_Contact record uniquely */
-export type Block_ContactWhereUniqueInput = {
-  id?: InputMaybe<Scalars['ID']['input']>;
-};
-
-export type Block_Jobs = Entity & {
-  __typename?: 'Block_Jobs';
-  headline: Scalars['String']['output'];
-  /** The unique identifier */
-  id: Scalars['ID']['output'];
-  jobs: Array<Job>;
-  /** System stage field */
-  stage: Stage;
-};
-
-
-export type Block_JobsJobsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  locales?: InputMaybe<Array<Locale>>;
-  orderBy?: InputMaybe<JobOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<JobWhereInput>;
-};
-
-export type Block_JobsConnectInput = {
-  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Document to connect */
-  where: Block_JobsWhereUniqueInput;
-};
-
-/** A connection to a list of items. */
-export type Block_JobsConnection = {
-  __typename?: 'Block_JobsConnection';
-  aggregate: Aggregate;
-  /** A list of edges. */
-  edges: Array<Block_JobsEdge>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-};
-
-export type Block_JobsCreateInput = {
-  headline: Scalars['String']['input'];
-  jobs?: InputMaybe<JobCreateManyInlineInput>;
-};
-
-export type Block_JobsCreateManyInlineInput = {
-  /** Create and connect multiple existing Block_Jobs documents */
-  create?: InputMaybe<Array<Block_JobsCreateInput>>;
-};
-
-export type Block_JobsCreateOneInlineInput = {
-  /** Create and connect one Block_Jobs document */
-  create?: InputMaybe<Block_JobsCreateInput>;
-};
-
-export type Block_JobsCreateWithPositionInput = {
-  /** Document to create */
-  data: Block_JobsCreateInput;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-};
-
-/** An edge in a connection. */
-export type Block_JobsEdge = {
-  __typename?: 'Block_JobsEdge';
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']['output'];
-  /** The item at the end of the edge. */
-  node: Block_Jobs;
-};
-
-/** Identifies documents */
-export type Block_JobsManyWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<Block_JobsWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<Block_JobsWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<Block_JobsWhereInput>>;
-  /** Contains search across all appropriate fields. */
-  _search?: InputMaybe<Scalars['String']['input']>;
-  headline?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  headline_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  headline_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  /** All values containing the given string. */
-  id_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values ending with the given string. */
-  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are contained in given list. */
-  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  id_not?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not containing the given string. */
-  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are not contained in given list. */
-  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values starting with the given string. */
-  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  jobs_every?: InputMaybe<JobWhereInput>;
-  jobs_none?: InputMaybe<JobWhereInput>;
-  jobs_some?: InputMaybe<JobWhereInput>;
-};
-
-export enum Block_JobsOrderByInput {
-  HeadlineAsc = 'headline_ASC',
-  HeadlineDesc = 'headline_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC'
-}
-
-export type Block_JobsParent = Layout_Primary;
-
-export type Block_JobsParentConnectInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryConnectInput>;
-};
-
-export type Block_JobsParentCreateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateInput>;
-};
-
-export type Block_JobsParentCreateManyInlineInput = {
-  /** Create and connect multiple existing Block_JobsParent documents */
-  create?: InputMaybe<Array<Block_JobsParentCreateInput>>;
-};
-
-export type Block_JobsParentCreateOneInlineInput = {
-  /** Create and connect one Block_JobsParent document */
-  create?: InputMaybe<Block_JobsParentCreateInput>;
-};
-
-export type Block_JobsParentCreateWithPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateWithPositionInput>;
-};
-
-export type Block_JobsParentUpdateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateInput>;
-};
-
-export type Block_JobsParentUpdateManyInlineInput = {
-  /** Create and connect multiple Block_JobsParent component instances */
-  create?: InputMaybe<Array<Block_JobsParentCreateWithPositionInput>>;
-  /** Delete multiple Block_JobsParent documents */
-  delete?: InputMaybe<Array<Block_JobsParentWhereUniqueInput>>;
-  /** Update multiple Block_JobsParent component instances */
-  update?: InputMaybe<Array<Block_JobsParentUpdateWithNestedWhereUniqueAndPositionInput>>;
-  /** Upsert multiple Block_JobsParent component instances */
-  upsert?: InputMaybe<Array<Block_JobsParentUpsertWithNestedWhereUniqueAndPositionInput>>;
-};
-
-export type Block_JobsParentUpdateManyWithNestedWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateManyWithNestedWhereInput>;
-};
-
-export type Block_JobsParentUpdateOneInlineInput = {
-  /** Create and connect one Block_JobsParent document */
-  create?: InputMaybe<Block_JobsParentCreateInput>;
-  /** Delete currently connected Block_JobsParent document */
-  delete?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Update single Block_JobsParent document */
-  update?: InputMaybe<Block_JobsParentUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single Block_JobsParent document */
-  upsert?: InputMaybe<Block_JobsParentUpsertWithNestedWhereUniqueInput>;
-};
-
-export type Block_JobsParentUpdateWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueAndPositionInput>;
-};
-
-export type Block_JobsParentUpdateWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueInput>;
-};
-
-export type Block_JobsParentUpsertWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueAndPositionInput>;
-};
-
-export type Block_JobsParentUpsertWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueInput>;
-};
-
-export type Block_JobsParentWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereInput>;
-};
-
-export type Block_JobsParentWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereUniqueInput>;
-};
-
-export type Block_JobsUpdateInput = {
-  headline?: InputMaybe<Scalars['String']['input']>;
-  jobs?: InputMaybe<JobUpdateManyInlineInput>;
-};
-
-export type Block_JobsUpdateManyInlineInput = {
-  /** Create and connect multiple Block_Jobs component instances */
-  create?: InputMaybe<Array<Block_JobsCreateWithPositionInput>>;
-  /** Delete multiple Block_Jobs documents */
-  delete?: InputMaybe<Array<Block_JobsWhereUniqueInput>>;
-  /** Update multiple Block_Jobs component instances */
-  update?: InputMaybe<Array<Block_JobsUpdateWithNestedWhereUniqueAndPositionInput>>;
-  /** Upsert multiple Block_Jobs component instances */
-  upsert?: InputMaybe<Array<Block_JobsUpsertWithNestedWhereUniqueAndPositionInput>>;
-};
-
-export type Block_JobsUpdateManyInput = {
-  headline?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Block_JobsUpdateManyWithNestedWhereInput = {
-  /** Update many input */
-  data: Block_JobsUpdateManyInput;
-  /** Document search */
-  where: Block_JobsWhereInput;
-};
-
-export type Block_JobsUpdateOneInlineInput = {
-  /** Create and connect one Block_Jobs document */
-  create?: InputMaybe<Block_JobsCreateInput>;
-  /** Delete currently connected Block_Jobs document */
-  delete?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Update single Block_Jobs document */
-  update?: InputMaybe<Block_JobsUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single Block_Jobs document */
-  upsert?: InputMaybe<Block_JobsUpsertWithNestedWhereUniqueInput>;
-};
-
-export type Block_JobsUpdateWithNestedWhereUniqueAndPositionInput = {
-  /** Document to update */
-  data?: InputMaybe<Block_JobsUpdateInput>;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Unique component instance search */
-  where: Block_JobsWhereUniqueInput;
-};
-
-export type Block_JobsUpdateWithNestedWhereUniqueInput = {
-  /** Document to update */
-  data: Block_JobsUpdateInput;
-  /** Unique document search */
-  where: Block_JobsWhereUniqueInput;
-};
-
-export type Block_JobsUpsertInput = {
-  /** Create document if it didn't exist */
-  create: Block_JobsCreateInput;
-  /** Update document if it exists */
-  update: Block_JobsUpdateInput;
-};
-
-export type Block_JobsUpsertWithNestedWhereUniqueAndPositionInput = {
-  /** Document to upsert */
-  data?: InputMaybe<Block_JobsUpsertInput>;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Unique component instance search */
-  where: Block_JobsWhereUniqueInput;
-};
-
-export type Block_JobsUpsertWithNestedWhereUniqueInput = {
-  /** Upsert data */
-  data: Block_JobsUpsertInput;
-  /** Unique document search */
-  where: Block_JobsWhereUniqueInput;
-};
-
-/** Identifies documents */
-export type Block_JobsWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<Block_JobsWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<Block_JobsWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<Block_JobsWhereInput>>;
-  /** Contains search across all appropriate fields. */
-  _search?: InputMaybe<Scalars['String']['input']>;
-  headline?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  headline_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  headline_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  /** All values containing the given string. */
-  id_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values ending with the given string. */
-  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are contained in given list. */
-  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  id_not?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not containing the given string. */
-  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are not contained in given list. */
-  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values starting with the given string. */
-  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  jobs_every?: InputMaybe<JobWhereInput>;
-  jobs_none?: InputMaybe<JobWhereInput>;
-  jobs_some?: InputMaybe<JobWhereInput>;
-};
-
-/** References Block_Jobs record uniquely */
-export type Block_JobsWhereUniqueInput = {
-  id?: InputMaybe<Scalars['ID']['input']>;
-};
-
-export type Block_Projects = Entity & {
-  __typename?: 'Block_Projects';
-  headline: Scalars['String']['output'];
-  /** The unique identifier */
-  id: Scalars['ID']['output'];
-  projects: Array<Project>;
-  /** System stage field */
-  stage: Stage;
-};
-
-
-export type Block_ProjectsProjectsArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  locales?: InputMaybe<Array<Locale>>;
-  orderBy?: InputMaybe<ProjectOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<ProjectWhereInput>;
-};
-
-export type Block_ProjectsConnectInput = {
-  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Document to connect */
-  where: Block_ProjectsWhereUniqueInput;
-};
-
-/** A connection to a list of items. */
-export type Block_ProjectsConnection = {
-  __typename?: 'Block_ProjectsConnection';
-  aggregate: Aggregate;
-  /** A list of edges. */
-  edges: Array<Block_ProjectsEdge>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-};
-
-export type Block_ProjectsCreateInput = {
-  headline: Scalars['String']['input'];
-  projects?: InputMaybe<ProjectCreateManyInlineInput>;
-};
-
-export type Block_ProjectsCreateManyInlineInput = {
-  /** Create and connect multiple existing Block_Projects documents */
-  create?: InputMaybe<Array<Block_ProjectsCreateInput>>;
-};
-
-export type Block_ProjectsCreateOneInlineInput = {
-  /** Create and connect one Block_Projects document */
-  create?: InputMaybe<Block_ProjectsCreateInput>;
-};
-
-export type Block_ProjectsCreateWithPositionInput = {
-  /** Document to create */
-  data: Block_ProjectsCreateInput;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-};
-
-/** An edge in a connection. */
-export type Block_ProjectsEdge = {
-  __typename?: 'Block_ProjectsEdge';
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']['output'];
-  /** The item at the end of the edge. */
-  node: Block_Projects;
-};
-
-/** Identifies documents */
-export type Block_ProjectsManyWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<Block_ProjectsWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<Block_ProjectsWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<Block_ProjectsWhereInput>>;
-  /** Contains search across all appropriate fields. */
-  _search?: InputMaybe<Scalars['String']['input']>;
-  headline?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  headline_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  headline_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  /** All values containing the given string. */
-  id_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values ending with the given string. */
-  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are contained in given list. */
-  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  id_not?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not containing the given string. */
-  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are not contained in given list. */
-  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values starting with the given string. */
-  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  projects_every?: InputMaybe<ProjectWhereInput>;
-  projects_none?: InputMaybe<ProjectWhereInput>;
-  projects_some?: InputMaybe<ProjectWhereInput>;
-};
-
-export enum Block_ProjectsOrderByInput {
-  HeadlineAsc = 'headline_ASC',
-  HeadlineDesc = 'headline_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC'
-}
-
-export type Block_ProjectsParent = Layout_Primary;
-
-export type Block_ProjectsParentConnectInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryConnectInput>;
-};
-
-export type Block_ProjectsParentCreateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateInput>;
-};
-
-export type Block_ProjectsParentCreateManyInlineInput = {
-  /** Create and connect multiple existing Block_ProjectsParent documents */
-  create?: InputMaybe<Array<Block_ProjectsParentCreateInput>>;
-};
-
-export type Block_ProjectsParentCreateOneInlineInput = {
-  /** Create and connect one Block_ProjectsParent document */
-  create?: InputMaybe<Block_ProjectsParentCreateInput>;
-};
-
-export type Block_ProjectsParentCreateWithPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateWithPositionInput>;
-};
-
-export type Block_ProjectsParentUpdateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateInput>;
-};
-
-export type Block_ProjectsParentUpdateManyInlineInput = {
-  /** Create and connect multiple Block_ProjectsParent component instances */
-  create?: InputMaybe<Array<Block_ProjectsParentCreateWithPositionInput>>;
-  /** Delete multiple Block_ProjectsParent documents */
-  delete?: InputMaybe<Array<Block_ProjectsParentWhereUniqueInput>>;
-  /** Update multiple Block_ProjectsParent component instances */
-  update?: InputMaybe<Array<Block_ProjectsParentUpdateWithNestedWhereUniqueAndPositionInput>>;
-  /** Upsert multiple Block_ProjectsParent component instances */
-  upsert?: InputMaybe<Array<Block_ProjectsParentUpsertWithNestedWhereUniqueAndPositionInput>>;
-};
-
-export type Block_ProjectsParentUpdateManyWithNestedWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateManyWithNestedWhereInput>;
-};
-
-export type Block_ProjectsParentUpdateOneInlineInput = {
-  /** Create and connect one Block_ProjectsParent document */
-  create?: InputMaybe<Block_ProjectsParentCreateInput>;
-  /** Delete currently connected Block_ProjectsParent document */
-  delete?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Update single Block_ProjectsParent document */
-  update?: InputMaybe<Block_ProjectsParentUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single Block_ProjectsParent document */
-  upsert?: InputMaybe<Block_ProjectsParentUpsertWithNestedWhereUniqueInput>;
-};
-
-export type Block_ProjectsParentUpdateWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueAndPositionInput>;
-};
-
-export type Block_ProjectsParentUpdateWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueInput>;
-};
-
-export type Block_ProjectsParentUpsertWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueAndPositionInput>;
-};
-
-export type Block_ProjectsParentUpsertWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueInput>;
-};
-
-export type Block_ProjectsParentWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereInput>;
-};
-
-export type Block_ProjectsParentWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereUniqueInput>;
-};
-
-export type Block_ProjectsUpdateInput = {
-  headline?: InputMaybe<Scalars['String']['input']>;
-  projects?: InputMaybe<ProjectUpdateManyInlineInput>;
-};
-
-export type Block_ProjectsUpdateManyInlineInput = {
-  /** Create and connect multiple Block_Projects component instances */
-  create?: InputMaybe<Array<Block_ProjectsCreateWithPositionInput>>;
-  /** Delete multiple Block_Projects documents */
-  delete?: InputMaybe<Array<Block_ProjectsWhereUniqueInput>>;
-  /** Update multiple Block_Projects component instances */
-  update?: InputMaybe<Array<Block_ProjectsUpdateWithNestedWhereUniqueAndPositionInput>>;
-  /** Upsert multiple Block_Projects component instances */
-  upsert?: InputMaybe<Array<Block_ProjectsUpsertWithNestedWhereUniqueAndPositionInput>>;
-};
-
-export type Block_ProjectsUpdateManyInput = {
-  headline?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Block_ProjectsUpdateManyWithNestedWhereInput = {
-  /** Update many input */
-  data: Block_ProjectsUpdateManyInput;
-  /** Document search */
-  where: Block_ProjectsWhereInput;
-};
-
-export type Block_ProjectsUpdateOneInlineInput = {
-  /** Create and connect one Block_Projects document */
-  create?: InputMaybe<Block_ProjectsCreateInput>;
-  /** Delete currently connected Block_Projects document */
-  delete?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Update single Block_Projects document */
-  update?: InputMaybe<Block_ProjectsUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single Block_Projects document */
-  upsert?: InputMaybe<Block_ProjectsUpsertWithNestedWhereUniqueInput>;
-};
-
-export type Block_ProjectsUpdateWithNestedWhereUniqueAndPositionInput = {
-  /** Document to update */
-  data?: InputMaybe<Block_ProjectsUpdateInput>;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Unique component instance search */
-  where: Block_ProjectsWhereUniqueInput;
-};
-
-export type Block_ProjectsUpdateWithNestedWhereUniqueInput = {
-  /** Document to update */
-  data: Block_ProjectsUpdateInput;
-  /** Unique document search */
-  where: Block_ProjectsWhereUniqueInput;
-};
-
-export type Block_ProjectsUpsertInput = {
-  /** Create document if it didn't exist */
-  create: Block_ProjectsCreateInput;
-  /** Update document if it exists */
-  update: Block_ProjectsUpdateInput;
-};
-
-export type Block_ProjectsUpsertWithNestedWhereUniqueAndPositionInput = {
-  /** Document to upsert */
-  data?: InputMaybe<Block_ProjectsUpsertInput>;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Unique component instance search */
-  where: Block_ProjectsWhereUniqueInput;
-};
-
-export type Block_ProjectsUpsertWithNestedWhereUniqueInput = {
-  /** Upsert data */
-  data: Block_ProjectsUpsertInput;
-  /** Unique document search */
-  where: Block_ProjectsWhereUniqueInput;
-};
-
-/** Identifies documents */
-export type Block_ProjectsWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<Block_ProjectsWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<Block_ProjectsWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<Block_ProjectsWhereInput>>;
-  /** Contains search across all appropriate fields. */
-  _search?: InputMaybe<Scalars['String']['input']>;
-  headline?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  headline_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  headline_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  /** All values containing the given string. */
-  id_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values ending with the given string. */
-  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are contained in given list. */
-  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  id_not?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not containing the given string. */
-  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are not contained in given list. */
-  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values starting with the given string. */
-  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  projects_every?: InputMaybe<ProjectWhereInput>;
-  projects_none?: InputMaybe<ProjectWhereInput>;
-  projects_some?: InputMaybe<ProjectWhereInput>;
-};
-
-/** References Block_Projects record uniquely */
-export type Block_ProjectsWhereUniqueInput = {
-  id?: InputMaybe<Scalars['ID']['input']>;
-};
-
-export type Block_Projects_IOs = Entity & {
-  __typename?: 'Block_Projects_iOS';
-  headline: Scalars['String']['output'];
-  /** The unique identifier */
-  id: Scalars['ID']['output'];
-  /** System stage field */
-  stage: Stage;
-};
-
-export type Block_Projects_IOsConnectInput = {
-  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Document to connect */
-  where: Block_Projects_IOsWhereUniqueInput;
-};
-
-/** A connection to a list of items. */
-export type Block_Projects_IOsConnection = {
-  __typename?: 'Block_Projects_iOSConnection';
-  aggregate: Aggregate;
-  /** A list of edges. */
-  edges: Array<Block_Projects_IOsEdge>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-};
-
-export type Block_Projects_IOsCreateInput = {
-  headline: Scalars['String']['input'];
-};
-
-export type Block_Projects_IOsCreateManyInlineInput = {
-  /** Create and connect multiple existing Block_Projects_iOS documents */
-  create?: InputMaybe<Array<Block_Projects_IOsCreateInput>>;
-};
-
-export type Block_Projects_IOsCreateOneInlineInput = {
-  /** Create and connect one Block_Projects_iOS document */
-  create?: InputMaybe<Block_Projects_IOsCreateInput>;
-};
-
-export type Block_Projects_IOsCreateWithPositionInput = {
-  /** Document to create */
-  data: Block_Projects_IOsCreateInput;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-};
-
-/** An edge in a connection. */
-export type Block_Projects_IOsEdge = {
-  __typename?: 'Block_Projects_iOSEdge';
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']['output'];
-  /** The item at the end of the edge. */
-  node: Block_Projects_IOs;
-};
-
-/** Identifies documents */
-export type Block_Projects_IOsManyWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<Block_Projects_IOsWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<Block_Projects_IOsWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<Block_Projects_IOsWhereInput>>;
-  /** Contains search across all appropriate fields. */
-  _search?: InputMaybe<Scalars['String']['input']>;
-  headline?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  headline_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  headline_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  /** All values containing the given string. */
-  id_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values ending with the given string. */
-  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are contained in given list. */
-  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  id_not?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not containing the given string. */
-  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are not contained in given list. */
-  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values starting with the given string. */
-  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
-};
-
-export enum Block_Projects_IOsOrderByInput {
-  HeadlineAsc = 'headline_ASC',
-  HeadlineDesc = 'headline_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC'
-}
-
-export type Block_Projects_IOsParent = Layout_Primary;
-
-export type Block_Projects_IOsParentConnectInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryConnectInput>;
-};
-
-export type Block_Projects_IOsParentCreateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateInput>;
-};
-
-export type Block_Projects_IOsParentCreateManyInlineInput = {
-  /** Create and connect multiple existing Block_Projects_iOSParent documents */
-  create?: InputMaybe<Array<Block_Projects_IOsParentCreateInput>>;
-};
-
-export type Block_Projects_IOsParentCreateOneInlineInput = {
-  /** Create and connect one Block_Projects_iOSParent document */
-  create?: InputMaybe<Block_Projects_IOsParentCreateInput>;
-};
-
-export type Block_Projects_IOsParentCreateWithPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateWithPositionInput>;
-};
-
-export type Block_Projects_IOsParentUpdateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateInput>;
-};
-
-export type Block_Projects_IOsParentUpdateManyInlineInput = {
-  /** Create and connect multiple Block_Projects_iOSParent component instances */
-  create?: InputMaybe<Array<Block_Projects_IOsParentCreateWithPositionInput>>;
-  /** Delete multiple Block_Projects_iOSParent documents */
-  delete?: InputMaybe<Array<Block_Projects_IOsParentWhereUniqueInput>>;
-  /** Update multiple Block_Projects_iOSParent component instances */
-  update?: InputMaybe<Array<Block_Projects_IOsParentUpdateWithNestedWhereUniqueAndPositionInput>>;
-  /** Upsert multiple Block_Projects_iOSParent component instances */
-  upsert?: InputMaybe<Array<Block_Projects_IOsParentUpsertWithNestedWhereUniqueAndPositionInput>>;
-};
-
-export type Block_Projects_IOsParentUpdateManyWithNestedWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateManyWithNestedWhereInput>;
-};
-
-export type Block_Projects_IOsParentUpdateOneInlineInput = {
-  /** Create and connect one Block_Projects_iOSParent document */
-  create?: InputMaybe<Block_Projects_IOsParentCreateInput>;
-  /** Delete currently connected Block_Projects_iOSParent document */
-  delete?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Update single Block_Projects_iOSParent document */
-  update?: InputMaybe<Block_Projects_IOsParentUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single Block_Projects_iOSParent document */
-  upsert?: InputMaybe<Block_Projects_IOsParentUpsertWithNestedWhereUniqueInput>;
-};
-
-export type Block_Projects_IOsParentUpdateWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueAndPositionInput>;
-};
-
-export type Block_Projects_IOsParentUpdateWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueInput>;
-};
-
-export type Block_Projects_IOsParentUpsertWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueAndPositionInput>;
-};
-
-export type Block_Projects_IOsParentUpsertWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueInput>;
-};
-
-export type Block_Projects_IOsParentWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereInput>;
-};
-
-export type Block_Projects_IOsParentWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereUniqueInput>;
-};
-
-export type Block_Projects_IOsUpdateInput = {
-  headline?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Block_Projects_IOsUpdateManyInlineInput = {
-  /** Create and connect multiple Block_Projects_iOS component instances */
-  create?: InputMaybe<Array<Block_Projects_IOsCreateWithPositionInput>>;
-  /** Delete multiple Block_Projects_iOS documents */
-  delete?: InputMaybe<Array<Block_Projects_IOsWhereUniqueInput>>;
-  /** Update multiple Block_Projects_iOS component instances */
-  update?: InputMaybe<Array<Block_Projects_IOsUpdateWithNestedWhereUniqueAndPositionInput>>;
-  /** Upsert multiple Block_Projects_iOS component instances */
-  upsert?: InputMaybe<Array<Block_Projects_IOsUpsertWithNestedWhereUniqueAndPositionInput>>;
-};
-
-export type Block_Projects_IOsUpdateManyInput = {
-  headline?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Block_Projects_IOsUpdateManyWithNestedWhereInput = {
-  /** Update many input */
-  data: Block_Projects_IOsUpdateManyInput;
-  /** Document search */
-  where: Block_Projects_IOsWhereInput;
-};
-
-export type Block_Projects_IOsUpdateOneInlineInput = {
-  /** Create and connect one Block_Projects_iOS document */
-  create?: InputMaybe<Block_Projects_IOsCreateInput>;
-  /** Delete currently connected Block_Projects_iOS document */
-  delete?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Update single Block_Projects_iOS document */
-  update?: InputMaybe<Block_Projects_IOsUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single Block_Projects_iOS document */
-  upsert?: InputMaybe<Block_Projects_IOsUpsertWithNestedWhereUniqueInput>;
-};
-
-export type Block_Projects_IOsUpdateWithNestedWhereUniqueAndPositionInput = {
-  /** Document to update */
-  data?: InputMaybe<Block_Projects_IOsUpdateInput>;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Unique component instance search */
-  where: Block_Projects_IOsWhereUniqueInput;
-};
-
-export type Block_Projects_IOsUpdateWithNestedWhereUniqueInput = {
-  /** Document to update */
-  data: Block_Projects_IOsUpdateInput;
-  /** Unique document search */
-  where: Block_Projects_IOsWhereUniqueInput;
-};
-
-export type Block_Projects_IOsUpsertInput = {
-  /** Create document if it didn't exist */
-  create: Block_Projects_IOsCreateInput;
-  /** Update document if it exists */
-  update: Block_Projects_IOsUpdateInput;
-};
-
-export type Block_Projects_IOsUpsertWithNestedWhereUniqueAndPositionInput = {
-  /** Document to upsert */
-  data?: InputMaybe<Block_Projects_IOsUpsertInput>;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Unique component instance search */
-  where: Block_Projects_IOsWhereUniqueInput;
-};
-
-export type Block_Projects_IOsUpsertWithNestedWhereUniqueInput = {
-  /** Upsert data */
-  data: Block_Projects_IOsUpsertInput;
-  /** Unique document search */
-  where: Block_Projects_IOsWhereUniqueInput;
-};
-
-/** Identifies documents */
-export type Block_Projects_IOsWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<Block_Projects_IOsWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<Block_Projects_IOsWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<Block_Projects_IOsWhereInput>>;
-  /** Contains search across all appropriate fields. */
-  _search?: InputMaybe<Scalars['String']['input']>;
-  headline?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  headline_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  headline_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  /** All values containing the given string. */
-  id_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values ending with the given string. */
-  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are contained in given list. */
-  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  id_not?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not containing the given string. */
-  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are not contained in given list. */
-  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values starting with the given string. */
-  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
-};
-
-/** References Block_Projects_iOS record uniquely */
-export type Block_Projects_IOsWhereUniqueInput = {
-  id?: InputMaybe<Scalars['ID']['input']>;
-};
-
-export type Block_Repositories = Entity & {
-  __typename?: 'Block_Repositories';
-  headline: Scalars['String']['output'];
-  /** The unique identifier */
-  id: Scalars['ID']['output'];
-  limit: Scalars['Int']['output'];
-  /** System stage field */
-  stage: Stage;
-};
-
-export type Block_RepositoriesConnectInput = {
-  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Document to connect */
-  where: Block_RepositoriesWhereUniqueInput;
-};
-
-/** A connection to a list of items. */
-export type Block_RepositoriesConnection = {
-  __typename?: 'Block_RepositoriesConnection';
-  aggregate: Aggregate;
-  /** A list of edges. */
-  edges: Array<Block_RepositoriesEdge>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-};
-
-export type Block_RepositoriesCreateInput = {
-  headline: Scalars['String']['input'];
-  limit: Scalars['Int']['input'];
-};
-
-export type Block_RepositoriesCreateManyInlineInput = {
-  /** Create and connect multiple existing Block_Repositories documents */
-  create?: InputMaybe<Array<Block_RepositoriesCreateInput>>;
-};
-
-export type Block_RepositoriesCreateOneInlineInput = {
-  /** Create and connect one Block_Repositories document */
-  create?: InputMaybe<Block_RepositoriesCreateInput>;
-};
-
-export type Block_RepositoriesCreateWithPositionInput = {
-  /** Document to create */
-  data: Block_RepositoriesCreateInput;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-};
-
-/** An edge in a connection. */
-export type Block_RepositoriesEdge = {
-  __typename?: 'Block_RepositoriesEdge';
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']['output'];
-  /** The item at the end of the edge. */
-  node: Block_Repositories;
-};
-
-/** Identifies documents */
-export type Block_RepositoriesManyWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<Block_RepositoriesWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<Block_RepositoriesWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<Block_RepositoriesWhereInput>>;
-  /** Contains search across all appropriate fields. */
-  _search?: InputMaybe<Scalars['String']['input']>;
-  headline?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  headline_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  headline_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  /** All values containing the given string. */
-  id_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values ending with the given string. */
-  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are contained in given list. */
-  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  id_not?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not containing the given string. */
-  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are not contained in given list. */
-  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values starting with the given string. */
-  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  /** All values greater than the given value. */
-  limit_gt?: InputMaybe<Scalars['Int']['input']>;
-  /** All values greater than or equal the given value. */
-  limit_gte?: InputMaybe<Scalars['Int']['input']>;
-  /** All values that are contained in given list. */
-  limit_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  /** All values less than the given value. */
-  limit_lt?: InputMaybe<Scalars['Int']['input']>;
-  /** All values less than or equal the given value. */
-  limit_lte?: InputMaybe<Scalars['Int']['input']>;
-  /** Any other value that exists and is not equal to the given value. */
-  limit_not?: InputMaybe<Scalars['Int']['input']>;
-  /** All values that are not contained in given list. */
-  limit_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-};
-
-export enum Block_RepositoriesOrderByInput {
-  HeadlineAsc = 'headline_ASC',
-  HeadlineDesc = 'headline_DESC',
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC',
-  LimitAsc = 'limit_ASC',
-  LimitDesc = 'limit_DESC'
-}
-
-export type Block_RepositoriesParent = Layout_Primary;
-
-export type Block_RepositoriesParentConnectInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryConnectInput>;
-};
-
-export type Block_RepositoriesParentCreateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateInput>;
-};
-
-export type Block_RepositoriesParentCreateManyInlineInput = {
-  /** Create and connect multiple existing Block_RepositoriesParent documents */
-  create?: InputMaybe<Array<Block_RepositoriesParentCreateInput>>;
-};
-
-export type Block_RepositoriesParentCreateOneInlineInput = {
-  /** Create and connect one Block_RepositoriesParent document */
-  create?: InputMaybe<Block_RepositoriesParentCreateInput>;
-};
-
-export type Block_RepositoriesParentCreateWithPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateWithPositionInput>;
-};
-
-export type Block_RepositoriesParentUpdateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateInput>;
-};
-
-export type Block_RepositoriesParentUpdateManyInlineInput = {
-  /** Create and connect multiple Block_RepositoriesParent component instances */
-  create?: InputMaybe<Array<Block_RepositoriesParentCreateWithPositionInput>>;
-  /** Delete multiple Block_RepositoriesParent documents */
-  delete?: InputMaybe<Array<Block_RepositoriesParentWhereUniqueInput>>;
-  /** Update multiple Block_RepositoriesParent component instances */
-  update?: InputMaybe<Array<Block_RepositoriesParentUpdateWithNestedWhereUniqueAndPositionInput>>;
-  /** Upsert multiple Block_RepositoriesParent component instances */
-  upsert?: InputMaybe<Array<Block_RepositoriesParentUpsertWithNestedWhereUniqueAndPositionInput>>;
-};
-
-export type Block_RepositoriesParentUpdateManyWithNestedWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateManyWithNestedWhereInput>;
-};
-
-export type Block_RepositoriesParentUpdateOneInlineInput = {
-  /** Create and connect one Block_RepositoriesParent document */
-  create?: InputMaybe<Block_RepositoriesParentCreateInput>;
-  /** Delete currently connected Block_RepositoriesParent document */
-  delete?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Update single Block_RepositoriesParent document */
-  update?: InputMaybe<Block_RepositoriesParentUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single Block_RepositoriesParent document */
-  upsert?: InputMaybe<Block_RepositoriesParentUpsertWithNestedWhereUniqueInput>;
-};
-
-export type Block_RepositoriesParentUpdateWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueAndPositionInput>;
-};
-
-export type Block_RepositoriesParentUpdateWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueInput>;
-};
-
-export type Block_RepositoriesParentUpsertWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueAndPositionInput>;
-};
-
-export type Block_RepositoriesParentUpsertWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueInput>;
-};
-
-export type Block_RepositoriesParentWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereInput>;
-};
-
-export type Block_RepositoriesParentWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereUniqueInput>;
-};
-
-export type Block_RepositoriesUpdateInput = {
-  headline?: InputMaybe<Scalars['String']['input']>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-};
-
-export type Block_RepositoriesUpdateManyInlineInput = {
-  /** Create and connect multiple Block_Repositories component instances */
-  create?: InputMaybe<Array<Block_RepositoriesCreateWithPositionInput>>;
-  /** Delete multiple Block_Repositories documents */
-  delete?: InputMaybe<Array<Block_RepositoriesWhereUniqueInput>>;
-  /** Update multiple Block_Repositories component instances */
-  update?: InputMaybe<Array<Block_RepositoriesUpdateWithNestedWhereUniqueAndPositionInput>>;
-  /** Upsert multiple Block_Repositories component instances */
-  upsert?: InputMaybe<Array<Block_RepositoriesUpsertWithNestedWhereUniqueAndPositionInput>>;
-};
-
-export type Block_RepositoriesUpdateManyInput = {
-  headline?: InputMaybe<Scalars['String']['input']>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-};
-
-export type Block_RepositoriesUpdateManyWithNestedWhereInput = {
-  /** Update many input */
-  data: Block_RepositoriesUpdateManyInput;
-  /** Document search */
-  where: Block_RepositoriesWhereInput;
-};
-
-export type Block_RepositoriesUpdateOneInlineInput = {
-  /** Create and connect one Block_Repositories document */
-  create?: InputMaybe<Block_RepositoriesCreateInput>;
-  /** Delete currently connected Block_Repositories document */
-  delete?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Update single Block_Repositories document */
-  update?: InputMaybe<Block_RepositoriesUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single Block_Repositories document */
-  upsert?: InputMaybe<Block_RepositoriesUpsertWithNestedWhereUniqueInput>;
-};
-
-export type Block_RepositoriesUpdateWithNestedWhereUniqueAndPositionInput = {
-  /** Document to update */
-  data?: InputMaybe<Block_RepositoriesUpdateInput>;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Unique component instance search */
-  where: Block_RepositoriesWhereUniqueInput;
-};
-
-export type Block_RepositoriesUpdateWithNestedWhereUniqueInput = {
-  /** Document to update */
-  data: Block_RepositoriesUpdateInput;
-  /** Unique document search */
-  where: Block_RepositoriesWhereUniqueInput;
-};
-
-export type Block_RepositoriesUpsertInput = {
-  /** Create document if it didn't exist */
-  create: Block_RepositoriesCreateInput;
-  /** Update document if it exists */
-  update: Block_RepositoriesUpdateInput;
-};
-
-export type Block_RepositoriesUpsertWithNestedWhereUniqueAndPositionInput = {
-  /** Document to upsert */
-  data?: InputMaybe<Block_RepositoriesUpsertInput>;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Unique component instance search */
-  where: Block_RepositoriesWhereUniqueInput;
-};
-
-export type Block_RepositoriesUpsertWithNestedWhereUniqueInput = {
-  /** Upsert data */
-  data: Block_RepositoriesUpsertInput;
-  /** Unique document search */
-  where: Block_RepositoriesWhereUniqueInput;
-};
-
-/** Identifies documents */
-export type Block_RepositoriesWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<Block_RepositoriesWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<Block_RepositoriesWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<Block_RepositoriesWhereInput>>;
-  /** Contains search across all appropriate fields. */
-  _search?: InputMaybe<Scalars['String']['input']>;
-  headline?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  headline_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  headline_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  /** All values containing the given string. */
-  id_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values ending with the given string. */
-  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are contained in given list. */
-  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  id_not?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not containing the given string. */
-  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are not contained in given list. */
-  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values starting with the given string. */
-  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
-  /** All values greater than the given value. */
-  limit_gt?: InputMaybe<Scalars['Int']['input']>;
-  /** All values greater than or equal the given value. */
-  limit_gte?: InputMaybe<Scalars['Int']['input']>;
-  /** All values that are contained in given list. */
-  limit_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-  /** All values less than the given value. */
-  limit_lt?: InputMaybe<Scalars['Int']['input']>;
-  /** All values less than or equal the given value. */
-  limit_lte?: InputMaybe<Scalars['Int']['input']>;
-  /** Any other value that exists and is not equal to the given value. */
-  limit_not?: InputMaybe<Scalars['Int']['input']>;
-  /** All values that are not contained in given list. */
-  limit_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
-};
-
-/** References Block_Repositories record uniquely */
-export type Block_RepositoriesWhereUniqueInput = {
-  id?: InputMaybe<Scalars['ID']['input']>;
 };
 
 export type Client = Entity & Node & {
@@ -3495,6 +1717,416 @@ export type ConnectPositionInput = {
   start?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type Contact = Entity & {
+  __typename?: 'Contact';
+  emailAddress?: Maybe<Scalars['String']['output']>;
+  headline: Scalars['String']['output'];
+  /** The unique identifier */
+  id: Scalars['ID']['output'];
+  phoneNumber?: Maybe<Scalars['String']['output']>;
+  /** System stage field */
+  stage: Stage;
+};
+
+export type ContactConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: ContactWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type ContactConnection = {
+  __typename?: 'ContactConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<ContactEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type ContactCreateInput = {
+  emailAddress?: InputMaybe<Scalars['String']['input']>;
+  headline: Scalars['String']['input'];
+  phoneNumber?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ContactCreateManyInlineInput = {
+  /** Create and connect multiple existing Contact documents */
+  create?: InputMaybe<Array<ContactCreateInput>>;
+};
+
+export type ContactCreateOneInlineInput = {
+  /** Create and connect one Contact document */
+  create?: InputMaybe<ContactCreateInput>;
+};
+
+export type ContactCreateWithPositionInput = {
+  /** Document to create */
+  data: ContactCreateInput;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+};
+
+/** An edge in a connection. */
+export type ContactEdge = {
+  __typename?: 'ContactEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: Contact;
+};
+
+/** Identifies documents */
+export type ContactManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ContactWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ContactWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ContactWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  emailAddress?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  emailAddress_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  emailAddress_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  emailAddress_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  emailAddress_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  emailAddress_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  emailAddress_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  emailAddress_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  emailAddress_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  emailAddress_starts_with?: InputMaybe<Scalars['String']['input']>;
+  headline?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  headline_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  headline_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  phoneNumber?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  phoneNumber_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  phoneNumber_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  phoneNumber_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  phoneNumber_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  phoneNumber_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  phoneNumber_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  phoneNumber_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  phoneNumber_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  phoneNumber_starts_with?: InputMaybe<Scalars['String']['input']>;
+};
+
+export enum ContactOrderByInput {
+  EmailAddressAsc = 'emailAddress_ASC',
+  EmailAddressDesc = 'emailAddress_DESC',
+  HeadlineAsc = 'headline_ASC',
+  HeadlineDesc = 'headline_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  PhoneNumberAsc = 'phoneNumber_ASC',
+  PhoneNumberDesc = 'phoneNumber_DESC'
+}
+
+export type ContactParent = Layout_Primary;
+
+export type ContactParentConnectInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryConnectInput>;
+};
+
+export type ContactParentCreateInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryCreateInput>;
+};
+
+export type ContactParentCreateManyInlineInput = {
+  /** Create and connect multiple existing ContactParent documents */
+  create?: InputMaybe<Array<ContactParentCreateInput>>;
+};
+
+export type ContactParentCreateOneInlineInput = {
+  /** Create and connect one ContactParent document */
+  create?: InputMaybe<ContactParentCreateInput>;
+};
+
+export type ContactParentCreateWithPositionInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryCreateWithPositionInput>;
+};
+
+export type ContactParentUpdateInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateInput>;
+};
+
+export type ContactParentUpdateManyInlineInput = {
+  /** Create and connect multiple ContactParent component instances */
+  create?: InputMaybe<Array<ContactParentCreateWithPositionInput>>;
+  /** Delete multiple ContactParent documents */
+  delete?: InputMaybe<Array<ContactParentWhereUniqueInput>>;
+  /** Update multiple ContactParent component instances */
+  update?: InputMaybe<Array<ContactParentUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple ContactParent component instances */
+  upsert?: InputMaybe<Array<ContactParentUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type ContactParentUpdateManyWithNestedWhereInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateManyWithNestedWhereInput>;
+};
+
+export type ContactParentUpdateOneInlineInput = {
+  /** Create and connect one ContactParent document */
+  create?: InputMaybe<ContactParentCreateInput>;
+  /** Delete currently connected ContactParent document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single ContactParent document */
+  update?: InputMaybe<ContactParentUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single ContactParent document */
+  upsert?: InputMaybe<ContactParentUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ContactParentUpdateWithNestedWhereUniqueAndPositionInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type ContactParentUpdateWithNestedWhereUniqueInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueInput>;
+};
+
+export type ContactParentUpsertWithNestedWhereUniqueAndPositionInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type ContactParentUpsertWithNestedWhereUniqueInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ContactParentWhereInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryWhereInput>;
+};
+
+export type ContactParentWhereUniqueInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryWhereUniqueInput>;
+};
+
+export type ContactUpdateInput = {
+  emailAddress?: InputMaybe<Scalars['String']['input']>;
+  headline?: InputMaybe<Scalars['String']['input']>;
+  phoneNumber?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ContactUpdateManyInlineInput = {
+  /** Create and connect multiple Contact component instances */
+  create?: InputMaybe<Array<ContactCreateWithPositionInput>>;
+  /** Delete multiple Contact documents */
+  delete?: InputMaybe<Array<ContactWhereUniqueInput>>;
+  /** Update multiple Contact component instances */
+  update?: InputMaybe<Array<ContactUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple Contact component instances */
+  upsert?: InputMaybe<Array<ContactUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type ContactUpdateManyInput = {
+  emailAddress?: InputMaybe<Scalars['String']['input']>;
+  headline?: InputMaybe<Scalars['String']['input']>;
+  phoneNumber?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ContactUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: ContactUpdateManyInput;
+  /** Document search */
+  where: ContactWhereInput;
+};
+
+export type ContactUpdateOneInlineInput = {
+  /** Create and connect one Contact document */
+  create?: InputMaybe<ContactCreateInput>;
+  /** Delete currently connected Contact document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single Contact document */
+  update?: InputMaybe<ContactUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Contact document */
+  upsert?: InputMaybe<ContactUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ContactUpdateWithNestedWhereUniqueAndPositionInput = {
+  /** Document to update */
+  data?: InputMaybe<ContactUpdateInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: ContactWhereUniqueInput;
+};
+
+export type ContactUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: ContactUpdateInput;
+  /** Unique document search */
+  where: ContactWhereUniqueInput;
+};
+
+export type ContactUpsertInput = {
+  /** Create document if it didn't exist */
+  create: ContactCreateInput;
+  /** Update document if it exists */
+  update: ContactUpdateInput;
+};
+
+export type ContactUpsertWithNestedWhereUniqueAndPositionInput = {
+  /** Document to upsert */
+  data?: InputMaybe<ContactUpsertInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: ContactWhereUniqueInput;
+};
+
+export type ContactUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: ContactUpsertInput;
+  /** Unique document search */
+  where: ContactWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type ContactWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ContactWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ContactWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ContactWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  emailAddress?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  emailAddress_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  emailAddress_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  emailAddress_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  emailAddress_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  emailAddress_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  emailAddress_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  emailAddress_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  emailAddress_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  emailAddress_starts_with?: InputMaybe<Scalars['String']['input']>;
+  headline?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  headline_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  headline_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  phoneNumber?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  phoneNumber_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  phoneNumber_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  phoneNumber_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  phoneNumber_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  phoneNumber_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  phoneNumber_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  phoneNumber_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  phoneNumber_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  phoneNumber_starts_with?: InputMaybe<Scalars['String']['input']>;
+};
+
+/** References Contact record uniquely */
+export type ContactWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
 export enum DocumentFileTypes {
   /** Automatically selects the best format for the image based on the browser's capabilities. */
   AutoImage = 'autoImage',
@@ -3552,22 +2184,22 @@ export type Entity = {
 
 /** This enumeration holds all typenames that implement the Entity interface. Components and models implement the Entity interface. */
 export enum EntityTypeName {
+  About = 'About',
   /** Asset system model */
   Asset = 'Asset',
-  BlockAbout = 'Block_About',
-  BlockContact = 'Block_Contact',
-  BlockJobs = 'Block_Jobs',
-  BlockProjects = 'Block_Projects',
-  BlockProjectsIOs = 'Block_Projects_iOS',
-  BlockRepositories = 'Block_Repositories',
   Client = 'Client',
+  Contact = 'Contact',
   Footer = 'Footer',
+  GitHubRepositories = 'GitHubRepositories',
   Hero = 'Hero',
   Job = 'Job',
+  Jobs = 'Jobs',
   LayoutPrimary = 'Layout_Primary',
   Navigation = 'Navigation',
   Page = 'Page',
   Project = 'Project',
+  ProjectsIOs = 'Projects_iOS',
+  ProjectsWeb = 'Projects_web',
   Seo = 'SEO',
   /** Scheduled Operation system model */
   ScheduledOperation = 'ScheduledOperation',
@@ -3965,6 +2597,364 @@ export type FooterWhereInput = {
 
 /** References Footer record uniquely */
 export type FooterWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type GitHubRepositories = Entity & {
+  __typename?: 'GitHubRepositories';
+  headline: Scalars['String']['output'];
+  /** The unique identifier */
+  id: Scalars['ID']['output'];
+  limit: Scalars['Int']['output'];
+  /** System stage field */
+  stage: Stage;
+};
+
+export type GitHubRepositoriesConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: GitHubRepositoriesWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type GitHubRepositoriesConnection = {
+  __typename?: 'GitHubRepositoriesConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<GitHubRepositoriesEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type GitHubRepositoriesCreateInput = {
+  headline: Scalars['String']['input'];
+  limit: Scalars['Int']['input'];
+};
+
+export type GitHubRepositoriesCreateManyInlineInput = {
+  /** Create and connect multiple existing GitHubRepositories documents */
+  create?: InputMaybe<Array<GitHubRepositoriesCreateInput>>;
+};
+
+export type GitHubRepositoriesCreateOneInlineInput = {
+  /** Create and connect one GitHubRepositories document */
+  create?: InputMaybe<GitHubRepositoriesCreateInput>;
+};
+
+export type GitHubRepositoriesCreateWithPositionInput = {
+  /** Document to create */
+  data: GitHubRepositoriesCreateInput;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+};
+
+/** An edge in a connection. */
+export type GitHubRepositoriesEdge = {
+  __typename?: 'GitHubRepositoriesEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: GitHubRepositories;
+};
+
+/** Identifies documents */
+export type GitHubRepositoriesManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<GitHubRepositoriesWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<GitHubRepositoriesWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<GitHubRepositoriesWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  headline?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  headline_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  headline_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  /** All values greater than the given value. */
+  limit_gt?: InputMaybe<Scalars['Int']['input']>;
+  /** All values greater than or equal the given value. */
+  limit_gte?: InputMaybe<Scalars['Int']['input']>;
+  /** All values that are contained in given list. */
+  limit_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  /** All values less than the given value. */
+  limit_lt?: InputMaybe<Scalars['Int']['input']>;
+  /** All values less than or equal the given value. */
+  limit_lte?: InputMaybe<Scalars['Int']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  limit_not?: InputMaybe<Scalars['Int']['input']>;
+  /** All values that are not contained in given list. */
+  limit_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+};
+
+export enum GitHubRepositoriesOrderByInput {
+  HeadlineAsc = 'headline_ASC',
+  HeadlineDesc = 'headline_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  LimitAsc = 'limit_ASC',
+  LimitDesc = 'limit_DESC'
+}
+
+export type GitHubRepositoriesParent = Layout_Primary;
+
+export type GitHubRepositoriesParentConnectInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryConnectInput>;
+};
+
+export type GitHubRepositoriesParentCreateInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryCreateInput>;
+};
+
+export type GitHubRepositoriesParentCreateManyInlineInput = {
+  /** Create and connect multiple existing GitHubRepositoriesParent documents */
+  create?: InputMaybe<Array<GitHubRepositoriesParentCreateInput>>;
+};
+
+export type GitHubRepositoriesParentCreateOneInlineInput = {
+  /** Create and connect one GitHubRepositoriesParent document */
+  create?: InputMaybe<GitHubRepositoriesParentCreateInput>;
+};
+
+export type GitHubRepositoriesParentCreateWithPositionInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryCreateWithPositionInput>;
+};
+
+export type GitHubRepositoriesParentUpdateInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateInput>;
+};
+
+export type GitHubRepositoriesParentUpdateManyInlineInput = {
+  /** Create and connect multiple GitHubRepositoriesParent component instances */
+  create?: InputMaybe<Array<GitHubRepositoriesParentCreateWithPositionInput>>;
+  /** Delete multiple GitHubRepositoriesParent documents */
+  delete?: InputMaybe<Array<GitHubRepositoriesParentWhereUniqueInput>>;
+  /** Update multiple GitHubRepositoriesParent component instances */
+  update?: InputMaybe<Array<GitHubRepositoriesParentUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple GitHubRepositoriesParent component instances */
+  upsert?: InputMaybe<Array<GitHubRepositoriesParentUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type GitHubRepositoriesParentUpdateManyWithNestedWhereInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateManyWithNestedWhereInput>;
+};
+
+export type GitHubRepositoriesParentUpdateOneInlineInput = {
+  /** Create and connect one GitHubRepositoriesParent document */
+  create?: InputMaybe<GitHubRepositoriesParentCreateInput>;
+  /** Delete currently connected GitHubRepositoriesParent document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single GitHubRepositoriesParent document */
+  update?: InputMaybe<GitHubRepositoriesParentUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single GitHubRepositoriesParent document */
+  upsert?: InputMaybe<GitHubRepositoriesParentUpsertWithNestedWhereUniqueInput>;
+};
+
+export type GitHubRepositoriesParentUpdateWithNestedWhereUniqueAndPositionInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type GitHubRepositoriesParentUpdateWithNestedWhereUniqueInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueInput>;
+};
+
+export type GitHubRepositoriesParentUpsertWithNestedWhereUniqueAndPositionInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type GitHubRepositoriesParentUpsertWithNestedWhereUniqueInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueInput>;
+};
+
+export type GitHubRepositoriesParentWhereInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryWhereInput>;
+};
+
+export type GitHubRepositoriesParentWhereUniqueInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryWhereUniqueInput>;
+};
+
+export type GitHubRepositoriesUpdateInput = {
+  headline?: InputMaybe<Scalars['String']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type GitHubRepositoriesUpdateManyInlineInput = {
+  /** Create and connect multiple GitHubRepositories component instances */
+  create?: InputMaybe<Array<GitHubRepositoriesCreateWithPositionInput>>;
+  /** Delete multiple GitHubRepositories documents */
+  delete?: InputMaybe<Array<GitHubRepositoriesWhereUniqueInput>>;
+  /** Update multiple GitHubRepositories component instances */
+  update?: InputMaybe<Array<GitHubRepositoriesUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple GitHubRepositories component instances */
+  upsert?: InputMaybe<Array<GitHubRepositoriesUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type GitHubRepositoriesUpdateManyInput = {
+  headline?: InputMaybe<Scalars['String']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type GitHubRepositoriesUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: GitHubRepositoriesUpdateManyInput;
+  /** Document search */
+  where: GitHubRepositoriesWhereInput;
+};
+
+export type GitHubRepositoriesUpdateOneInlineInput = {
+  /** Create and connect one GitHubRepositories document */
+  create?: InputMaybe<GitHubRepositoriesCreateInput>;
+  /** Delete currently connected GitHubRepositories document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single GitHubRepositories document */
+  update?: InputMaybe<GitHubRepositoriesUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single GitHubRepositories document */
+  upsert?: InputMaybe<GitHubRepositoriesUpsertWithNestedWhereUniqueInput>;
+};
+
+export type GitHubRepositoriesUpdateWithNestedWhereUniqueAndPositionInput = {
+  /** Document to update */
+  data?: InputMaybe<GitHubRepositoriesUpdateInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: GitHubRepositoriesWhereUniqueInput;
+};
+
+export type GitHubRepositoriesUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: GitHubRepositoriesUpdateInput;
+  /** Unique document search */
+  where: GitHubRepositoriesWhereUniqueInput;
+};
+
+export type GitHubRepositoriesUpsertInput = {
+  /** Create document if it didn't exist */
+  create: GitHubRepositoriesCreateInput;
+  /** Update document if it exists */
+  update: GitHubRepositoriesUpdateInput;
+};
+
+export type GitHubRepositoriesUpsertWithNestedWhereUniqueAndPositionInput = {
+  /** Document to upsert */
+  data?: InputMaybe<GitHubRepositoriesUpsertInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: GitHubRepositoriesWhereUniqueInput;
+};
+
+export type GitHubRepositoriesUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: GitHubRepositoriesUpsertInput;
+  /** Unique document search */
+  where: GitHubRepositoriesWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type GitHubRepositoriesWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<GitHubRepositoriesWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<GitHubRepositoriesWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<GitHubRepositoriesWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  headline?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  headline_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  headline_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  /** All values greater than the given value. */
+  limit_gt?: InputMaybe<Scalars['Int']['input']>;
+  /** All values greater than or equal the given value. */
+  limit_gte?: InputMaybe<Scalars['Int']['input']>;
+  /** All values that are contained in given list. */
+  limit_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+  /** All values less than the given value. */
+  limit_lt?: InputMaybe<Scalars['Int']['input']>;
+  /** All values less than or equal the given value. */
+  limit_lte?: InputMaybe<Scalars['Int']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  limit_not?: InputMaybe<Scalars['Int']['input']>;
+  /** All values that are not contained in given list. */
+  limit_not_in?: InputMaybe<Array<InputMaybe<Scalars['Int']['input']>>>;
+};
+
+/** References GitHubRepositories record uniquely */
+export type GitHubRepositoriesWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
 };
 
@@ -4442,7 +3432,7 @@ export type JobConnection = {
 };
 
 export type JobCreateInput = {
-  cldys9vib1p3z01uicxtlhbhm?: InputMaybe<Block_JobsCreateManyInlineInput>;
+  cldys9vib1p3z01uicxtlhbhm?: InputMaybe<JobsCreateManyInlineInput>;
   client?: InputMaybe<ClientCreateOneInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   dateFrom: Scalars['Date']['input'];
@@ -4628,7 +3618,7 @@ export enum JobOrderByInput {
 }
 
 export type JobUpdateInput = {
-  cldys9vib1p3z01uicxtlhbhm?: InputMaybe<Block_JobsUpdateManyInlineInput>;
+  cldys9vib1p3z01uicxtlhbhm?: InputMaybe<JobsUpdateManyInlineInput>;
   client?: InputMaybe<ClientUpdateOneInlineInput>;
   dateFrom?: InputMaybe<Scalars['Date']['input']>;
   dateTo?: InputMaybe<Scalars['Date']['input']>;
@@ -4860,6 +3850,350 @@ export type JobWhereStageInput = {
 
 /** References Job record uniquely */
 export type JobWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type Jobs = Entity & {
+  __typename?: 'Jobs';
+  headline: Scalars['String']['output'];
+  /** The unique identifier */
+  id: Scalars['ID']['output'];
+  jobs: Array<Job>;
+  /** System stage field */
+  stage: Stage;
+};
+
+
+export type JobsJobsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<JobOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<JobWhereInput>;
+};
+
+export type JobsConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: JobsWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type JobsConnection = {
+  __typename?: 'JobsConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<JobsEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type JobsCreateInput = {
+  headline: Scalars['String']['input'];
+  jobs?: InputMaybe<JobCreateManyInlineInput>;
+};
+
+export type JobsCreateManyInlineInput = {
+  /** Create and connect multiple existing Jobs documents */
+  create?: InputMaybe<Array<JobsCreateInput>>;
+};
+
+export type JobsCreateOneInlineInput = {
+  /** Create and connect one Jobs document */
+  create?: InputMaybe<JobsCreateInput>;
+};
+
+export type JobsCreateWithPositionInput = {
+  /** Document to create */
+  data: JobsCreateInput;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+};
+
+/** An edge in a connection. */
+export type JobsEdge = {
+  __typename?: 'JobsEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: Jobs;
+};
+
+/** Identifies documents */
+export type JobsManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<JobsWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<JobsWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<JobsWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  headline?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  headline_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  headline_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  jobs_every?: InputMaybe<JobWhereInput>;
+  jobs_none?: InputMaybe<JobWhereInput>;
+  jobs_some?: InputMaybe<JobWhereInput>;
+};
+
+export enum JobsOrderByInput {
+  HeadlineAsc = 'headline_ASC',
+  HeadlineDesc = 'headline_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC'
+}
+
+export type JobsParent = Layout_Primary;
+
+export type JobsParentConnectInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryConnectInput>;
+};
+
+export type JobsParentCreateInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryCreateInput>;
+};
+
+export type JobsParentCreateManyInlineInput = {
+  /** Create and connect multiple existing JobsParent documents */
+  create?: InputMaybe<Array<JobsParentCreateInput>>;
+};
+
+export type JobsParentCreateOneInlineInput = {
+  /** Create and connect one JobsParent document */
+  create?: InputMaybe<JobsParentCreateInput>;
+};
+
+export type JobsParentCreateWithPositionInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryCreateWithPositionInput>;
+};
+
+export type JobsParentUpdateInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateInput>;
+};
+
+export type JobsParentUpdateManyInlineInput = {
+  /** Create and connect multiple JobsParent component instances */
+  create?: InputMaybe<Array<JobsParentCreateWithPositionInput>>;
+  /** Delete multiple JobsParent documents */
+  delete?: InputMaybe<Array<JobsParentWhereUniqueInput>>;
+  /** Update multiple JobsParent component instances */
+  update?: InputMaybe<Array<JobsParentUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple JobsParent component instances */
+  upsert?: InputMaybe<Array<JobsParentUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type JobsParentUpdateManyWithNestedWhereInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateManyWithNestedWhereInput>;
+};
+
+export type JobsParentUpdateOneInlineInput = {
+  /** Create and connect one JobsParent document */
+  create?: InputMaybe<JobsParentCreateInput>;
+  /** Delete currently connected JobsParent document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single JobsParent document */
+  update?: InputMaybe<JobsParentUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single JobsParent document */
+  upsert?: InputMaybe<JobsParentUpsertWithNestedWhereUniqueInput>;
+};
+
+export type JobsParentUpdateWithNestedWhereUniqueAndPositionInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type JobsParentUpdateWithNestedWhereUniqueInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueInput>;
+};
+
+export type JobsParentUpsertWithNestedWhereUniqueAndPositionInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type JobsParentUpsertWithNestedWhereUniqueInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueInput>;
+};
+
+export type JobsParentWhereInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryWhereInput>;
+};
+
+export type JobsParentWhereUniqueInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryWhereUniqueInput>;
+};
+
+export type JobsUpdateInput = {
+  headline?: InputMaybe<Scalars['String']['input']>;
+  jobs?: InputMaybe<JobUpdateManyInlineInput>;
+};
+
+export type JobsUpdateManyInlineInput = {
+  /** Create and connect multiple Jobs component instances */
+  create?: InputMaybe<Array<JobsCreateWithPositionInput>>;
+  /** Delete multiple Jobs documents */
+  delete?: InputMaybe<Array<JobsWhereUniqueInput>>;
+  /** Update multiple Jobs component instances */
+  update?: InputMaybe<Array<JobsUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple Jobs component instances */
+  upsert?: InputMaybe<Array<JobsUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type JobsUpdateManyInput = {
+  headline?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type JobsUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: JobsUpdateManyInput;
+  /** Document search */
+  where: JobsWhereInput;
+};
+
+export type JobsUpdateOneInlineInput = {
+  /** Create and connect one Jobs document */
+  create?: InputMaybe<JobsCreateInput>;
+  /** Delete currently connected Jobs document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single Jobs document */
+  update?: InputMaybe<JobsUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Jobs document */
+  upsert?: InputMaybe<JobsUpsertWithNestedWhereUniqueInput>;
+};
+
+export type JobsUpdateWithNestedWhereUniqueAndPositionInput = {
+  /** Document to update */
+  data?: InputMaybe<JobsUpdateInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: JobsWhereUniqueInput;
+};
+
+export type JobsUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: JobsUpdateInput;
+  /** Unique document search */
+  where: JobsWhereUniqueInput;
+};
+
+export type JobsUpsertInput = {
+  /** Create document if it didn't exist */
+  create: JobsCreateInput;
+  /** Update document if it exists */
+  update: JobsUpdateInput;
+};
+
+export type JobsUpsertWithNestedWhereUniqueAndPositionInput = {
+  /** Document to upsert */
+  data?: InputMaybe<JobsUpsertInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: JobsWhereUniqueInput;
+};
+
+export type JobsUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: JobsUpsertInput;
+  /** Unique document search */
+  where: JobsWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type JobsWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<JobsWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<JobsWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<JobsWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  headline?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  headline_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  headline_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  jobs_every?: InputMaybe<JobWhereInput>;
+  jobs_none?: InputMaybe<JobWhereInput>;
+  jobs_some?: InputMaybe<JobWhereInput>;
+};
+
+/** References Jobs record uniquely */
+export type JobsWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
 };
 
@@ -5167,31 +4501,31 @@ export type Layout_PrimaryWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
 };
 
-export type Layout_PrimarycontentUnion = Block_About | Block_Contact | Block_Jobs | Block_Projects | Block_Projects_IOs | Block_Repositories | Footer | Hero | Navigation | Seo;
+export type Layout_PrimarycontentUnion = About | Contact | Footer | GitHubRepositories | Hero | Jobs | Navigation | Projects_IOs | Projects_Web | Seo;
 
 export type Layout_PrimarycontentUnionConnectInput = {
-  Block_About?: InputMaybe<Block_AboutConnectInput>;
-  Block_Contact?: InputMaybe<Block_ContactConnectInput>;
-  Block_Jobs?: InputMaybe<Block_JobsConnectInput>;
-  Block_Projects?: InputMaybe<Block_ProjectsConnectInput>;
-  Block_Projects_iOS?: InputMaybe<Block_Projects_IOsConnectInput>;
-  Block_Repositories?: InputMaybe<Block_RepositoriesConnectInput>;
+  About?: InputMaybe<AboutConnectInput>;
+  Contact?: InputMaybe<ContactConnectInput>;
   Footer?: InputMaybe<FooterConnectInput>;
+  GitHubRepositories?: InputMaybe<GitHubRepositoriesConnectInput>;
   Hero?: InputMaybe<HeroConnectInput>;
+  Jobs?: InputMaybe<JobsConnectInput>;
   Navigation?: InputMaybe<NavigationConnectInput>;
+  Projects_iOS?: InputMaybe<Projects_IOsConnectInput>;
+  Projects_web?: InputMaybe<Projects_WebConnectInput>;
   SEO?: InputMaybe<SeoConnectInput>;
 };
 
 export type Layout_PrimarycontentUnionCreateInput = {
-  Block_About?: InputMaybe<Block_AboutCreateInput>;
-  Block_Contact?: InputMaybe<Block_ContactCreateInput>;
-  Block_Jobs?: InputMaybe<Block_JobsCreateInput>;
-  Block_Projects?: InputMaybe<Block_ProjectsCreateInput>;
-  Block_Projects_iOS?: InputMaybe<Block_Projects_IOsCreateInput>;
-  Block_Repositories?: InputMaybe<Block_RepositoriesCreateInput>;
+  About?: InputMaybe<AboutCreateInput>;
+  Contact?: InputMaybe<ContactCreateInput>;
   Footer?: InputMaybe<FooterCreateInput>;
+  GitHubRepositories?: InputMaybe<GitHubRepositoriesCreateInput>;
   Hero?: InputMaybe<HeroCreateInput>;
+  Jobs?: InputMaybe<JobsCreateInput>;
   Navigation?: InputMaybe<NavigationCreateInput>;
+  Projects_iOS?: InputMaybe<Projects_IOsCreateInput>;
+  Projects_web?: InputMaybe<Projects_WebCreateInput>;
   SEO?: InputMaybe<SeoCreateInput>;
 };
 
@@ -5206,28 +4540,28 @@ export type Layout_PrimarycontentUnionCreateOneInlineInput = {
 };
 
 export type Layout_PrimarycontentUnionCreateWithPositionInput = {
-  Block_About?: InputMaybe<Block_AboutCreateWithPositionInput>;
-  Block_Contact?: InputMaybe<Block_ContactCreateWithPositionInput>;
-  Block_Jobs?: InputMaybe<Block_JobsCreateWithPositionInput>;
-  Block_Projects?: InputMaybe<Block_ProjectsCreateWithPositionInput>;
-  Block_Projects_iOS?: InputMaybe<Block_Projects_IOsCreateWithPositionInput>;
-  Block_Repositories?: InputMaybe<Block_RepositoriesCreateWithPositionInput>;
+  About?: InputMaybe<AboutCreateWithPositionInput>;
+  Contact?: InputMaybe<ContactCreateWithPositionInput>;
   Footer?: InputMaybe<FooterCreateWithPositionInput>;
+  GitHubRepositories?: InputMaybe<GitHubRepositoriesCreateWithPositionInput>;
   Hero?: InputMaybe<HeroCreateWithPositionInput>;
+  Jobs?: InputMaybe<JobsCreateWithPositionInput>;
   Navigation?: InputMaybe<NavigationCreateWithPositionInput>;
+  Projects_iOS?: InputMaybe<Projects_IOsCreateWithPositionInput>;
+  Projects_web?: InputMaybe<Projects_WebCreateWithPositionInput>;
   SEO?: InputMaybe<SeoCreateWithPositionInput>;
 };
 
 export type Layout_PrimarycontentUnionUpdateInput = {
-  Block_About?: InputMaybe<Block_AboutUpdateInput>;
-  Block_Contact?: InputMaybe<Block_ContactUpdateInput>;
-  Block_Jobs?: InputMaybe<Block_JobsUpdateInput>;
-  Block_Projects?: InputMaybe<Block_ProjectsUpdateInput>;
-  Block_Projects_iOS?: InputMaybe<Block_Projects_IOsUpdateInput>;
-  Block_Repositories?: InputMaybe<Block_RepositoriesUpdateInput>;
+  About?: InputMaybe<AboutUpdateInput>;
+  Contact?: InputMaybe<ContactUpdateInput>;
   Footer?: InputMaybe<FooterUpdateInput>;
+  GitHubRepositories?: InputMaybe<GitHubRepositoriesUpdateInput>;
   Hero?: InputMaybe<HeroUpdateInput>;
+  Jobs?: InputMaybe<JobsUpdateInput>;
   Navigation?: InputMaybe<NavigationUpdateInput>;
+  Projects_iOS?: InputMaybe<Projects_IOsUpdateInput>;
+  Projects_web?: InputMaybe<Projects_WebUpdateInput>;
   SEO?: InputMaybe<SeoUpdateInput>;
 };
 
@@ -5243,15 +4577,15 @@ export type Layout_PrimarycontentUnionUpdateManyInlineInput = {
 };
 
 export type Layout_PrimarycontentUnionUpdateManyWithNestedWhereInput = {
-  Block_About?: InputMaybe<Block_AboutUpdateManyWithNestedWhereInput>;
-  Block_Contact?: InputMaybe<Block_ContactUpdateManyWithNestedWhereInput>;
-  Block_Jobs?: InputMaybe<Block_JobsUpdateManyWithNestedWhereInput>;
-  Block_Projects?: InputMaybe<Block_ProjectsUpdateManyWithNestedWhereInput>;
-  Block_Projects_iOS?: InputMaybe<Block_Projects_IOsUpdateManyWithNestedWhereInput>;
-  Block_Repositories?: InputMaybe<Block_RepositoriesUpdateManyWithNestedWhereInput>;
+  About?: InputMaybe<AboutUpdateManyWithNestedWhereInput>;
+  Contact?: InputMaybe<ContactUpdateManyWithNestedWhereInput>;
   Footer?: InputMaybe<FooterUpdateManyWithNestedWhereInput>;
+  GitHubRepositories?: InputMaybe<GitHubRepositoriesUpdateManyWithNestedWhereInput>;
   Hero?: InputMaybe<HeroUpdateManyWithNestedWhereInput>;
+  Jobs?: InputMaybe<JobsUpdateManyWithNestedWhereInput>;
   Navigation?: InputMaybe<NavigationUpdateManyWithNestedWhereInput>;
+  Projects_iOS?: InputMaybe<Projects_IOsUpdateManyWithNestedWhereInput>;
+  Projects_web?: InputMaybe<Projects_WebUpdateManyWithNestedWhereInput>;
   SEO?: InputMaybe<SeoUpdateManyWithNestedWhereInput>;
 };
 
@@ -5267,80 +4601,80 @@ export type Layout_PrimarycontentUnionUpdateOneInlineInput = {
 };
 
 export type Layout_PrimarycontentUnionUpdateWithNestedWhereUniqueAndPositionInput = {
-  Block_About?: InputMaybe<Block_AboutUpdateWithNestedWhereUniqueAndPositionInput>;
-  Block_Contact?: InputMaybe<Block_ContactUpdateWithNestedWhereUniqueAndPositionInput>;
-  Block_Jobs?: InputMaybe<Block_JobsUpdateWithNestedWhereUniqueAndPositionInput>;
-  Block_Projects?: InputMaybe<Block_ProjectsUpdateWithNestedWhereUniqueAndPositionInput>;
-  Block_Projects_iOS?: InputMaybe<Block_Projects_IOsUpdateWithNestedWhereUniqueAndPositionInput>;
-  Block_Repositories?: InputMaybe<Block_RepositoriesUpdateWithNestedWhereUniqueAndPositionInput>;
+  About?: InputMaybe<AboutUpdateWithNestedWhereUniqueAndPositionInput>;
+  Contact?: InputMaybe<ContactUpdateWithNestedWhereUniqueAndPositionInput>;
   Footer?: InputMaybe<FooterUpdateWithNestedWhereUniqueAndPositionInput>;
+  GitHubRepositories?: InputMaybe<GitHubRepositoriesUpdateWithNestedWhereUniqueAndPositionInput>;
   Hero?: InputMaybe<HeroUpdateWithNestedWhereUniqueAndPositionInput>;
+  Jobs?: InputMaybe<JobsUpdateWithNestedWhereUniqueAndPositionInput>;
   Navigation?: InputMaybe<NavigationUpdateWithNestedWhereUniqueAndPositionInput>;
+  Projects_iOS?: InputMaybe<Projects_IOsUpdateWithNestedWhereUniqueAndPositionInput>;
+  Projects_web?: InputMaybe<Projects_WebUpdateWithNestedWhereUniqueAndPositionInput>;
   SEO?: InputMaybe<SeoUpdateWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type Layout_PrimarycontentUnionUpdateWithNestedWhereUniqueInput = {
-  Block_About?: InputMaybe<Block_AboutUpdateWithNestedWhereUniqueInput>;
-  Block_Contact?: InputMaybe<Block_ContactUpdateWithNestedWhereUniqueInput>;
-  Block_Jobs?: InputMaybe<Block_JobsUpdateWithNestedWhereUniqueInput>;
-  Block_Projects?: InputMaybe<Block_ProjectsUpdateWithNestedWhereUniqueInput>;
-  Block_Projects_iOS?: InputMaybe<Block_Projects_IOsUpdateWithNestedWhereUniqueInput>;
-  Block_Repositories?: InputMaybe<Block_RepositoriesUpdateWithNestedWhereUniqueInput>;
+  About?: InputMaybe<AboutUpdateWithNestedWhereUniqueInput>;
+  Contact?: InputMaybe<ContactUpdateWithNestedWhereUniqueInput>;
   Footer?: InputMaybe<FooterUpdateWithNestedWhereUniqueInput>;
+  GitHubRepositories?: InputMaybe<GitHubRepositoriesUpdateWithNestedWhereUniqueInput>;
   Hero?: InputMaybe<HeroUpdateWithNestedWhereUniqueInput>;
+  Jobs?: InputMaybe<JobsUpdateWithNestedWhereUniqueInput>;
   Navigation?: InputMaybe<NavigationUpdateWithNestedWhereUniqueInput>;
+  Projects_iOS?: InputMaybe<Projects_IOsUpdateWithNestedWhereUniqueInput>;
+  Projects_web?: InputMaybe<Projects_WebUpdateWithNestedWhereUniqueInput>;
   SEO?: InputMaybe<SeoUpdateWithNestedWhereUniqueInput>;
 };
 
 export type Layout_PrimarycontentUnionUpsertWithNestedWhereUniqueAndPositionInput = {
-  Block_About?: InputMaybe<Block_AboutUpsertWithNestedWhereUniqueAndPositionInput>;
-  Block_Contact?: InputMaybe<Block_ContactUpsertWithNestedWhereUniqueAndPositionInput>;
-  Block_Jobs?: InputMaybe<Block_JobsUpsertWithNestedWhereUniqueAndPositionInput>;
-  Block_Projects?: InputMaybe<Block_ProjectsUpsertWithNestedWhereUniqueAndPositionInput>;
-  Block_Projects_iOS?: InputMaybe<Block_Projects_IOsUpsertWithNestedWhereUniqueAndPositionInput>;
-  Block_Repositories?: InputMaybe<Block_RepositoriesUpsertWithNestedWhereUniqueAndPositionInput>;
+  About?: InputMaybe<AboutUpsertWithNestedWhereUniqueAndPositionInput>;
+  Contact?: InputMaybe<ContactUpsertWithNestedWhereUniqueAndPositionInput>;
   Footer?: InputMaybe<FooterUpsertWithNestedWhereUniqueAndPositionInput>;
+  GitHubRepositories?: InputMaybe<GitHubRepositoriesUpsertWithNestedWhereUniqueAndPositionInput>;
   Hero?: InputMaybe<HeroUpsertWithNestedWhereUniqueAndPositionInput>;
+  Jobs?: InputMaybe<JobsUpsertWithNestedWhereUniqueAndPositionInput>;
   Navigation?: InputMaybe<NavigationUpsertWithNestedWhereUniqueAndPositionInput>;
+  Projects_iOS?: InputMaybe<Projects_IOsUpsertWithNestedWhereUniqueAndPositionInput>;
+  Projects_web?: InputMaybe<Projects_WebUpsertWithNestedWhereUniqueAndPositionInput>;
   SEO?: InputMaybe<SeoUpsertWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type Layout_PrimarycontentUnionUpsertWithNestedWhereUniqueInput = {
-  Block_About?: InputMaybe<Block_AboutUpsertWithNestedWhereUniqueInput>;
-  Block_Contact?: InputMaybe<Block_ContactUpsertWithNestedWhereUniqueInput>;
-  Block_Jobs?: InputMaybe<Block_JobsUpsertWithNestedWhereUniqueInput>;
-  Block_Projects?: InputMaybe<Block_ProjectsUpsertWithNestedWhereUniqueInput>;
-  Block_Projects_iOS?: InputMaybe<Block_Projects_IOsUpsertWithNestedWhereUniqueInput>;
-  Block_Repositories?: InputMaybe<Block_RepositoriesUpsertWithNestedWhereUniqueInput>;
+  About?: InputMaybe<AboutUpsertWithNestedWhereUniqueInput>;
+  Contact?: InputMaybe<ContactUpsertWithNestedWhereUniqueInput>;
   Footer?: InputMaybe<FooterUpsertWithNestedWhereUniqueInput>;
+  GitHubRepositories?: InputMaybe<GitHubRepositoriesUpsertWithNestedWhereUniqueInput>;
   Hero?: InputMaybe<HeroUpsertWithNestedWhereUniqueInput>;
+  Jobs?: InputMaybe<JobsUpsertWithNestedWhereUniqueInput>;
   Navigation?: InputMaybe<NavigationUpsertWithNestedWhereUniqueInput>;
+  Projects_iOS?: InputMaybe<Projects_IOsUpsertWithNestedWhereUniqueInput>;
+  Projects_web?: InputMaybe<Projects_WebUpsertWithNestedWhereUniqueInput>;
   SEO?: InputMaybe<SeoUpsertWithNestedWhereUniqueInput>;
 };
 
 export type Layout_PrimarycontentUnionWhereInput = {
-  Block_About?: InputMaybe<Block_AboutWhereInput>;
-  Block_Contact?: InputMaybe<Block_ContactWhereInput>;
-  Block_Jobs?: InputMaybe<Block_JobsWhereInput>;
-  Block_Projects?: InputMaybe<Block_ProjectsWhereInput>;
-  Block_Projects_iOS?: InputMaybe<Block_Projects_IOsWhereInput>;
-  Block_Repositories?: InputMaybe<Block_RepositoriesWhereInput>;
+  About?: InputMaybe<AboutWhereInput>;
+  Contact?: InputMaybe<ContactWhereInput>;
   Footer?: InputMaybe<FooterWhereInput>;
+  GitHubRepositories?: InputMaybe<GitHubRepositoriesWhereInput>;
   Hero?: InputMaybe<HeroWhereInput>;
+  Jobs?: InputMaybe<JobsWhereInput>;
   Navigation?: InputMaybe<NavigationWhereInput>;
+  Projects_iOS?: InputMaybe<Projects_IOsWhereInput>;
+  Projects_web?: InputMaybe<Projects_WebWhereInput>;
   SEO?: InputMaybe<SeoWhereInput>;
 };
 
 export type Layout_PrimarycontentUnionWhereUniqueInput = {
-  Block_About?: InputMaybe<Block_AboutWhereUniqueInput>;
-  Block_Contact?: InputMaybe<Block_ContactWhereUniqueInput>;
-  Block_Jobs?: InputMaybe<Block_JobsWhereUniqueInput>;
-  Block_Projects?: InputMaybe<Block_ProjectsWhereUniqueInput>;
-  Block_Projects_iOS?: InputMaybe<Block_Projects_IOsWhereUniqueInput>;
-  Block_Repositories?: InputMaybe<Block_RepositoriesWhereUniqueInput>;
+  About?: InputMaybe<AboutWhereUniqueInput>;
+  Contact?: InputMaybe<ContactWhereUniqueInput>;
   Footer?: InputMaybe<FooterWhereUniqueInput>;
+  GitHubRepositories?: InputMaybe<GitHubRepositoriesWhereUniqueInput>;
   Hero?: InputMaybe<HeroWhereUniqueInput>;
+  Jobs?: InputMaybe<JobsWhereUniqueInput>;
   Navigation?: InputMaybe<NavigationWhereUniqueInput>;
+  Projects_iOS?: InputMaybe<Projects_IOsWhereUniqueInput>;
+  Projects_web?: InputMaybe<Projects_WebWhereUniqueInput>;
   SEO?: InputMaybe<SeoWhereUniqueInput>;
 };
 
@@ -7410,7 +6744,7 @@ export type ProjectConnection = {
 };
 
 export type ProjectCreateInput = {
-  cldyzbl1l1xpg01rr0navgb9u?: InputMaybe<Block_ProjectsCreateManyInlineInput>;
+  cldyzbl1l1xpg01rr0navgb9u?: InputMaybe<Projects_WebCreateManyInlineInput>;
   client?: InputMaybe<ClientCreateOneInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   description: Scalars['RichTextAST']['input'];
@@ -7629,7 +6963,7 @@ export enum ProjectOrderByInput {
 }
 
 export type ProjectUpdateInput = {
-  cldyzbl1l1xpg01rr0navgb9u?: InputMaybe<Block_ProjectsUpdateManyInlineInput>;
+  cldyzbl1l1xpg01rr0navgb9u?: InputMaybe<Projects_WebUpdateManyInlineInput>;
   client?: InputMaybe<ClientUpdateOneInlineInput>;
   description?: InputMaybe<Scalars['RichTextAST']['input']>;
   image?: InputMaybe<AssetUpdateOneInlineInput>;
@@ -7894,6 +7228,672 @@ export type ProjectWhereStageInput = {
 
 /** References Project record uniquely */
 export type ProjectWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type Projects_IOs = Entity & {
+  __typename?: 'Projects_iOS';
+  headline: Scalars['String']['output'];
+  /** The unique identifier */
+  id: Scalars['ID']['output'];
+  /** System stage field */
+  stage: Stage;
+};
+
+export type Projects_IOsConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: Projects_IOsWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type Projects_IOsConnection = {
+  __typename?: 'Projects_iOSConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<Projects_IOsEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type Projects_IOsCreateInput = {
+  headline: Scalars['String']['input'];
+};
+
+export type Projects_IOsCreateManyInlineInput = {
+  /** Create and connect multiple existing Projects_iOS documents */
+  create?: InputMaybe<Array<Projects_IOsCreateInput>>;
+};
+
+export type Projects_IOsCreateOneInlineInput = {
+  /** Create and connect one Projects_iOS document */
+  create?: InputMaybe<Projects_IOsCreateInput>;
+};
+
+export type Projects_IOsCreateWithPositionInput = {
+  /** Document to create */
+  data: Projects_IOsCreateInput;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+};
+
+/** An edge in a connection. */
+export type Projects_IOsEdge = {
+  __typename?: 'Projects_iOSEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: Projects_IOs;
+};
+
+/** Identifies documents */
+export type Projects_IOsManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<Projects_IOsWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<Projects_IOsWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<Projects_IOsWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  headline?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  headline_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  headline_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export enum Projects_IOsOrderByInput {
+  HeadlineAsc = 'headline_ASC',
+  HeadlineDesc = 'headline_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC'
+}
+
+export type Projects_IOsParent = Layout_Primary;
+
+export type Projects_IOsParentConnectInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryConnectInput>;
+};
+
+export type Projects_IOsParentCreateInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryCreateInput>;
+};
+
+export type Projects_IOsParentCreateManyInlineInput = {
+  /** Create and connect multiple existing Projects_iOSParent documents */
+  create?: InputMaybe<Array<Projects_IOsParentCreateInput>>;
+};
+
+export type Projects_IOsParentCreateOneInlineInput = {
+  /** Create and connect one Projects_iOSParent document */
+  create?: InputMaybe<Projects_IOsParentCreateInput>;
+};
+
+export type Projects_IOsParentCreateWithPositionInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryCreateWithPositionInput>;
+};
+
+export type Projects_IOsParentUpdateInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateInput>;
+};
+
+export type Projects_IOsParentUpdateManyInlineInput = {
+  /** Create and connect multiple Projects_iOSParent component instances */
+  create?: InputMaybe<Array<Projects_IOsParentCreateWithPositionInput>>;
+  /** Delete multiple Projects_iOSParent documents */
+  delete?: InputMaybe<Array<Projects_IOsParentWhereUniqueInput>>;
+  /** Update multiple Projects_iOSParent component instances */
+  update?: InputMaybe<Array<Projects_IOsParentUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple Projects_iOSParent component instances */
+  upsert?: InputMaybe<Array<Projects_IOsParentUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type Projects_IOsParentUpdateManyWithNestedWhereInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateManyWithNestedWhereInput>;
+};
+
+export type Projects_IOsParentUpdateOneInlineInput = {
+  /** Create and connect one Projects_iOSParent document */
+  create?: InputMaybe<Projects_IOsParentCreateInput>;
+  /** Delete currently connected Projects_iOSParent document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single Projects_iOSParent document */
+  update?: InputMaybe<Projects_IOsParentUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Projects_iOSParent document */
+  upsert?: InputMaybe<Projects_IOsParentUpsertWithNestedWhereUniqueInput>;
+};
+
+export type Projects_IOsParentUpdateWithNestedWhereUniqueAndPositionInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type Projects_IOsParentUpdateWithNestedWhereUniqueInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueInput>;
+};
+
+export type Projects_IOsParentUpsertWithNestedWhereUniqueAndPositionInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type Projects_IOsParentUpsertWithNestedWhereUniqueInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueInput>;
+};
+
+export type Projects_IOsParentWhereInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryWhereInput>;
+};
+
+export type Projects_IOsParentWhereUniqueInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryWhereUniqueInput>;
+};
+
+export type Projects_IOsUpdateInput = {
+  headline?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Projects_IOsUpdateManyInlineInput = {
+  /** Create and connect multiple Projects_iOS component instances */
+  create?: InputMaybe<Array<Projects_IOsCreateWithPositionInput>>;
+  /** Delete multiple Projects_iOS documents */
+  delete?: InputMaybe<Array<Projects_IOsWhereUniqueInput>>;
+  /** Update multiple Projects_iOS component instances */
+  update?: InputMaybe<Array<Projects_IOsUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple Projects_iOS component instances */
+  upsert?: InputMaybe<Array<Projects_IOsUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type Projects_IOsUpdateManyInput = {
+  headline?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Projects_IOsUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: Projects_IOsUpdateManyInput;
+  /** Document search */
+  where: Projects_IOsWhereInput;
+};
+
+export type Projects_IOsUpdateOneInlineInput = {
+  /** Create and connect one Projects_iOS document */
+  create?: InputMaybe<Projects_IOsCreateInput>;
+  /** Delete currently connected Projects_iOS document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single Projects_iOS document */
+  update?: InputMaybe<Projects_IOsUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Projects_iOS document */
+  upsert?: InputMaybe<Projects_IOsUpsertWithNestedWhereUniqueInput>;
+};
+
+export type Projects_IOsUpdateWithNestedWhereUniqueAndPositionInput = {
+  /** Document to update */
+  data?: InputMaybe<Projects_IOsUpdateInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: Projects_IOsWhereUniqueInput;
+};
+
+export type Projects_IOsUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: Projects_IOsUpdateInput;
+  /** Unique document search */
+  where: Projects_IOsWhereUniqueInput;
+};
+
+export type Projects_IOsUpsertInput = {
+  /** Create document if it didn't exist */
+  create: Projects_IOsCreateInput;
+  /** Update document if it exists */
+  update: Projects_IOsUpdateInput;
+};
+
+export type Projects_IOsUpsertWithNestedWhereUniqueAndPositionInput = {
+  /** Document to upsert */
+  data?: InputMaybe<Projects_IOsUpsertInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: Projects_IOsWhereUniqueInput;
+};
+
+export type Projects_IOsUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: Projects_IOsUpsertInput;
+  /** Unique document search */
+  where: Projects_IOsWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type Projects_IOsWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<Projects_IOsWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<Projects_IOsWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<Projects_IOsWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  headline?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  headline_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  headline_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+};
+
+/** References Projects_iOS record uniquely */
+export type Projects_IOsWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type Projects_Web = Entity & {
+  __typename?: 'Projects_web';
+  headline: Scalars['String']['output'];
+  /** The unique identifier */
+  id: Scalars['ID']['output'];
+  projects: Array<Project>;
+  /** System stage field */
+  stage: Stage;
+};
+
+
+export type Projects_WebProjectsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<ProjectOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ProjectWhereInput>;
+};
+
+export type Projects_WebConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: Projects_WebWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type Projects_WebConnection = {
+  __typename?: 'Projects_webConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<Projects_WebEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type Projects_WebCreateInput = {
+  headline: Scalars['String']['input'];
+  projects?: InputMaybe<ProjectCreateManyInlineInput>;
+};
+
+export type Projects_WebCreateManyInlineInput = {
+  /** Create and connect multiple existing Projects_web documents */
+  create?: InputMaybe<Array<Projects_WebCreateInput>>;
+};
+
+export type Projects_WebCreateOneInlineInput = {
+  /** Create and connect one Projects_web document */
+  create?: InputMaybe<Projects_WebCreateInput>;
+};
+
+export type Projects_WebCreateWithPositionInput = {
+  /** Document to create */
+  data: Projects_WebCreateInput;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+};
+
+/** An edge in a connection. */
+export type Projects_WebEdge = {
+  __typename?: 'Projects_webEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: Projects_Web;
+};
+
+/** Identifies documents */
+export type Projects_WebManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<Projects_WebWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<Projects_WebWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<Projects_WebWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  headline?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  headline_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  headline_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  projects_every?: InputMaybe<ProjectWhereInput>;
+  projects_none?: InputMaybe<ProjectWhereInput>;
+  projects_some?: InputMaybe<ProjectWhereInput>;
+};
+
+export enum Projects_WebOrderByInput {
+  HeadlineAsc = 'headline_ASC',
+  HeadlineDesc = 'headline_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC'
+}
+
+export type Projects_WebParent = Layout_Primary;
+
+export type Projects_WebParentConnectInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryConnectInput>;
+};
+
+export type Projects_WebParentCreateInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryCreateInput>;
+};
+
+export type Projects_WebParentCreateManyInlineInput = {
+  /** Create and connect multiple existing Projects_webParent documents */
+  create?: InputMaybe<Array<Projects_WebParentCreateInput>>;
+};
+
+export type Projects_WebParentCreateOneInlineInput = {
+  /** Create and connect one Projects_webParent document */
+  create?: InputMaybe<Projects_WebParentCreateInput>;
+};
+
+export type Projects_WebParentCreateWithPositionInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryCreateWithPositionInput>;
+};
+
+export type Projects_WebParentUpdateInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateInput>;
+};
+
+export type Projects_WebParentUpdateManyInlineInput = {
+  /** Create and connect multiple Projects_webParent component instances */
+  create?: InputMaybe<Array<Projects_WebParentCreateWithPositionInput>>;
+  /** Delete multiple Projects_webParent documents */
+  delete?: InputMaybe<Array<Projects_WebParentWhereUniqueInput>>;
+  /** Update multiple Projects_webParent component instances */
+  update?: InputMaybe<Array<Projects_WebParentUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple Projects_webParent component instances */
+  upsert?: InputMaybe<Array<Projects_WebParentUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type Projects_WebParentUpdateManyWithNestedWhereInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateManyWithNestedWhereInput>;
+};
+
+export type Projects_WebParentUpdateOneInlineInput = {
+  /** Create and connect one Projects_webParent document */
+  create?: InputMaybe<Projects_WebParentCreateInput>;
+  /** Delete currently connected Projects_webParent document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single Projects_webParent document */
+  update?: InputMaybe<Projects_WebParentUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Projects_webParent document */
+  upsert?: InputMaybe<Projects_WebParentUpsertWithNestedWhereUniqueInput>;
+};
+
+export type Projects_WebParentUpdateWithNestedWhereUniqueAndPositionInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type Projects_WebParentUpdateWithNestedWhereUniqueInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueInput>;
+};
+
+export type Projects_WebParentUpsertWithNestedWhereUniqueAndPositionInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type Projects_WebParentUpsertWithNestedWhereUniqueInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueInput>;
+};
+
+export type Projects_WebParentWhereInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryWhereInput>;
+};
+
+export type Projects_WebParentWhereUniqueInput = {
+  Layout_Primary?: InputMaybe<Layout_PrimaryWhereUniqueInput>;
+};
+
+export type Projects_WebUpdateInput = {
+  headline?: InputMaybe<Scalars['String']['input']>;
+  projects?: InputMaybe<ProjectUpdateManyInlineInput>;
+};
+
+export type Projects_WebUpdateManyInlineInput = {
+  /** Create and connect multiple Projects_web component instances */
+  create?: InputMaybe<Array<Projects_WebCreateWithPositionInput>>;
+  /** Delete multiple Projects_web documents */
+  delete?: InputMaybe<Array<Projects_WebWhereUniqueInput>>;
+  /** Update multiple Projects_web component instances */
+  update?: InputMaybe<Array<Projects_WebUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple Projects_web component instances */
+  upsert?: InputMaybe<Array<Projects_WebUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type Projects_WebUpdateManyInput = {
+  headline?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type Projects_WebUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: Projects_WebUpdateManyInput;
+  /** Document search */
+  where: Projects_WebWhereInput;
+};
+
+export type Projects_WebUpdateOneInlineInput = {
+  /** Create and connect one Projects_web document */
+  create?: InputMaybe<Projects_WebCreateInput>;
+  /** Delete currently connected Projects_web document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single Projects_web document */
+  update?: InputMaybe<Projects_WebUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Projects_web document */
+  upsert?: InputMaybe<Projects_WebUpsertWithNestedWhereUniqueInput>;
+};
+
+export type Projects_WebUpdateWithNestedWhereUniqueAndPositionInput = {
+  /** Document to update */
+  data?: InputMaybe<Projects_WebUpdateInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: Projects_WebWhereUniqueInput;
+};
+
+export type Projects_WebUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: Projects_WebUpdateInput;
+  /** Unique document search */
+  where: Projects_WebWhereUniqueInput;
+};
+
+export type Projects_WebUpsertInput = {
+  /** Create document if it didn't exist */
+  create: Projects_WebCreateInput;
+  /** Update document if it exists */
+  update: Projects_WebUpdateInput;
+};
+
+export type Projects_WebUpsertWithNestedWhereUniqueAndPositionInput = {
+  /** Document to upsert */
+  data?: InputMaybe<Projects_WebUpsertInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: Projects_WebWhereUniqueInput;
+};
+
+export type Projects_WebUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: Projects_WebUpsertInput;
+  /** Unique document search */
+  where: Projects_WebWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type Projects_WebWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<Projects_WebWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<Projects_WebWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<Projects_WebWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  headline?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  headline_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  headline_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  projects_every?: InputMaybe<ProjectWhereInput>;
+  projects_none?: InputMaybe<ProjectWhereInput>;
+  projects_some?: InputMaybe<ProjectWhereInput>;
+};
+
+/** References Projects_web record uniquely */
+export type Projects_WebWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
 };
 

@@ -1,5 +1,5 @@
 import { GitHubRepositoryActions } from "@/actions/github";
-import { Block_Repositories } from "@/hygraph/_generated/graphql";
+import { GitHubRepositories as GitHubRepositoriesProps } from "@/hygraph/_generated/graphql";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import { cache } from "react";
@@ -18,7 +18,9 @@ const fetchData = cache(async () => {
   return data;
 });
 
-export async function Repositories({ headline }: Block_Repositories) {
+export async function GitHubRepositories({
+  headline,
+}: GitHubRepositoriesProps) {
   const repositories = await fetchData();
 
   return (

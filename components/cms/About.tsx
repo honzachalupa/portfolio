@@ -1,4 +1,4 @@
-import { Block_About as AboutProps } from "@/hygraph/_generated/graphql";
+import { About as AboutProps } from "@/hygraph/_generated/graphql";
 import Image from "next/image";
 import { Container } from "../Container";
 import { MarkdownRenderer } from "../MarkdownRenderer";

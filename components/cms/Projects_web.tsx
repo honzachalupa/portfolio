@@ -1,9 +1,9 @@
-import { Block_Projects } from "@/hygraph/_generated/graphql";
+import { Projects_Web as Projects_webProps } from "@/hygraph/_generated/graphql";
 import { Container } from "../Container";
 import { MarkdownRenderer } from "../MarkdownRenderer";
 import { ProjectCard, ProjectCardLink } from "../ProjectCard";
 
-export function Projects_web({ headline, projects }: Block_Projects) {
+export function Projects_web({ headline, projects }: Projects_webProps) {
   return (
     <Container headline={headline}>
       <div className="flex flex-wrap gap-[12px]">

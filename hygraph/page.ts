@@ -55,7 +55,7 @@ export async function getPage(
                   }
                   text
                 }
-                ... on Block_About {
+                ... on About {
                   __typename
                   image {
                     url
@@ -68,7 +68,7 @@ export async function getPage(
                     markdown
                   }
                 }
-                ... on Block_Jobs {
+                ... on Jobs {
                   __typename
                   headline
                   jobs {
@@ -91,7 +91,7 @@ export async function getPage(
                     }
                   }
                 }
-                ... on Block_Projects {
+                ... on Projects_web {
                   __typename
                   headline
                   projects {
@@ -121,16 +121,16 @@ export async function getPage(
                     platform
                   }
                 }
-                ... on Block_Projects_iOS {
+                ... on Projects_iOS {
                   __typename
                   headline
                 }
-                ... on Block_Repositories {
+                ... on GitHubRepositories {
                   __typename
                   headline
                   limit
                 }
-                ... on Block_Contact {
+                ... on Contact {
                   __typename
                   headline
                   phoneNumber
