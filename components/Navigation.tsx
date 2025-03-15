@@ -2,6 +2,12 @@
 
 import hygraph, { HygraphGetPagesData } from "@/hygraph";
 import { Button } from "@heroui/button";
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+} from "@heroui/dropdown";
 import { Link } from "@heroui/link";
 import {
   Navbar,
@@ -13,27 +19,106 @@ import {
   NavbarMenuToggle,
 } from "@heroui/navbar";
 import { Popover, PopoverContent, PopoverTrigger } from "@heroui/popover";
+import { ButtonVariantProps } from "@heroui/theme";
 import { User } from "@heroui/user";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { FaChevronDown } from "react-icons/fa6";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 
-export function Navigation() {
+function Items({
+  variant = "desktop",
+  closeMenu,
+}: {
+  variant?: "desktop" | "mobile";
+  closeMenu?: () => void;
+}) {
   const currentSlug = usePathname();
-
   const [pages, setPages] = useState<HygraphGetPagesData | null>();
-  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   const getPages = async () => {
-    setPages(await hygraph.getPages());
+    const pages = await hygraph.getPages();
+
+    setPages(pages?.filter(({ isHidden }) => !isHidden));
   };
+
+  const getActiveButtonStyle = (isActive: boolean): ButtonVariantProps => ({
+    color: isActive ? "primary" : "default",
+    variant: isActive ? "flat" : "light",
+  });
 
   useEffect(() => {
     getPages();
   }, []);
 
+  const ItemComponent = variant === "desktop" ? NavbarItem : NavbarMenuItem;
+
+  return pages?.map(({ slug, title, nestedPages }) => {
+    const isActive = currentSlug === slug;
+
+    if (nestedPages?.length) {
+      return (
+        <Dropdown key={title}>
+          <ItemComponent isActive={isActive}>
+            <DropdownTrigger>
+              <Button
+                {...getActiveButtonStyle(isActive)}
+                as={Link}
+                endContent={<FaChevronDown />}
+                variant="light"
+              >
+                {title}
+              </Button>
+            </DropdownTrigger>
+          </ItemComponent>
+
+          <DropdownMenu>
+            {nestedPages.map(({ slug, title }) => {
+              const isActive = currentSlug === slug;
+
+              return (
+                <DropdownItem key={slug!}>
+                  <Link
+                    href={slug!}
+                    color={isActive ? "primary" : "foreground"}
+                    size="sm"
+                    onPress={closeMenu}
+                  >
+                    {title}
+                  </Link>
+                </DropdownItem>
+              );
+            })}
+          </DropdownMenu>
+        </Dropdown>
+      );
+    }
+
+    return (
+      <NavbarMenuItem key={title} isActive={isActive}>
+        <Button
+          {...getActiveButtonStyle(isActive)}
+          as={Link}
+          href={slug!}
+          onPress={closeMenu}
+        >
+          {title}
+        </Button>
+      </NavbarMenuItem>
+    );
+  });
+}
+
+export function Navigation() {
+  const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
+
+  const closeMenu = () => {
+    console.log("closeMenu");
+    setIsMenuOpen(false);
+  };
+
   return (
-    <Navbar isBordered shouldHideOnScroll onMenuOpenChange={setIsMenuOpen}>
+    <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
         <NavbarMenuToggle
           title={isMenuOpen ? "Close menu" : "Open menu"}
@@ -51,25 +136,15 @@ export function Navigation() {
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        {pages?.map(({ slug, title }) => {
-          const isActive = currentSlug === slug;
-
-          return (
-            <NavbarItem key={title} isActive={isActive}>
-              <Link href={slug!} color={isActive ? "primary" : "foreground"}>
-                {title}
-              </Link>
-            </NavbarItem>
-          );
-        })}
+      <NavbarContent className="hidden sm:flex gap-1" justify="center">
+        <Items />
       </NavbarContent>
 
       <NavbarContent justify="end">
         <NavbarItem>
           <Popover backdrop="blur">
             <PopoverTrigger>
-              <Button color="primary" variant="flat">
+              <Button color="primary" variant="solid">
                 Contact me
               </Button>
             </PopoverTrigger>
@@ -106,22 +181,7 @@ export function Navigation() {
       </NavbarContent>
 
       <NavbarMenu>
-        {pages?.map(({ slug, title }) => {
-          const isActive = currentSlug === slug;
-
-          return (
-            <NavbarMenuItem key={title} isActive={isActive}>
-              <Link
-                href={slug!}
-                color={isActive ? "primary" : "foreground"}
-                size="lg"
-                className="w-full"
-              >
-                {title}
-              </Link>
-            </NavbarMenuItem>
-          );
-        })}
+        <Items variant="mobile" closeMenu={closeMenu} />
       </NavbarMenu>
     </Navbar>
   );

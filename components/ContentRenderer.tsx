@@ -56,5 +56,5 @@ export function ContentRenderer({ page }: ContentRendererProps) {
     return children;
   };
 
-  return <section>{renderLayout(page)}</section>;
+  return <section className="w-full">{renderLayout(page)}</section>;
 }

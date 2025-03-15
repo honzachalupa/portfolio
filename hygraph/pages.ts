@@ -16,6 +16,11 @@ export async function getPages(): Promise<HygraphGetPagesData | null> {
           pages {
             title
             slug
+            nestedPages {
+              title
+              slug
+            }
+            isHidden
           }
         }`,
         variables: {},

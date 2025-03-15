@@ -33,7 +33,7 @@ export const Container: React.FC<ContainerProps> = ({
   children,
 }) => {
   return (
-    <section className={clsx("mx-auto py-10 md:py-20", className)}>
+    <section className={clsx("my-5", className)}>
       {headline && <BlockHeadline>{headline}</BlockHeadline>}
 
       {children}

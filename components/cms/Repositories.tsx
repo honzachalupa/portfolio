@@ -2,18 +2,24 @@ import { GitHubRepositoryActions } from "@/actions/github";
 import { Block_Repositories } from "@/hygraph/_generated/graphql";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
+import { cache } from "react";
+import "server-only";
 import { Container } from "../Container";
 import { MarkdownRenderer } from "../MarkdownRenderer";
 import { ProjectCard, ProjectCardLink } from "../ProjectCard";
 
-const fetchData = async (limit?: number) => {
-  const data = await GitHubRepositoryActions.search();
-
-  return data.slice(0, limit);
+export const preload = () => {
+  void fetchData();
 };
 
-export async function Repositories({ headline, limit }: Block_Repositories) {
-  const repositories = await fetchData(limit);
+const fetchData = cache(async () => {
+  const data = await GitHubRepositoryActions.search();
+
+  return data;
+});
+
+export async function Repositories({ headline }: Block_Repositories) {
+  const repositories = await fetchData();
 
   return (
     <Container headline={headline}>

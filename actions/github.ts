@@ -64,6 +64,7 @@ const search = (): Promise<IGitHubRepository[]> =>
 
           return data;
         })
+        .slice(0, 6)
     );
 
 const getReadme = async (

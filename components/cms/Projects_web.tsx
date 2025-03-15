@@ -1,29 +1,7 @@
 import { Block_Projects } from "@/hygraph/_generated/graphql";
-import clsx from "clsx";
-import Image from "next/image";
 import { Container } from "../Container";
 import { MarkdownRenderer } from "../MarkdownRenderer";
 import { ProjectCard, ProjectCardLink } from "../ProjectCard";
-
-const ProjectImage: React.FC<{
-  src: string;
-  alt: string;
-  className?: string;
-}> = ({ src, alt, className }) => (
-  <div
-    className={clsx(
-      "aspect-video basis-1/2 overflow-hidden rounded-md",
-      className
-    )}
-  >
-    <Image
-      src={src}
-      alt={alt}
-      fill
-      className="!relative !h-full !w-full object-cover object-top"
-    />
-  </div>
-);
 
 export function Projects_web({ headline, projects }: Block_Projects) {
   return (

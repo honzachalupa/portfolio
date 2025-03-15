@@ -8,6 +8,7 @@ import clsx from "clsx";
 export interface ProjectCardLink {
   label: string;
   url: string;
+  icon?: React.ReactNode;
 }
 
 interface ProjectCardProps {
@@ -31,7 +32,9 @@ export function ProjectCard({
     <Card className={clsx("w-full", className)}>
       <div className="flex">
         <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-          <h3 className="font-bold text-primary-400 text-large">{title}</h3>
+          <h3 className="w-full font-bold text-primary-400 text-large">
+            {title}
+          </h3>
 
           <small className="text-default-500">{subtitle}</small>
         </CardHeader>
@@ -55,6 +58,7 @@ export function ProjectCard({
                     key={link.label}
                     as={Link}
                     isExternal
+                    startContent={link.icon}
                     showAnchorIcon
                     href={link.url}
                   >
