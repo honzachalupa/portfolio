@@ -6,6 +6,7 @@ import { GitHubRepositories } from "./cms/GitHubRepositories";
 import { Jobs } from "./cms/Jobs";
 import { Projects_iOS } from "./cms/Projects_iOS";
 import { Projects_web } from "./cms/Projects_web";
+import { Statistics } from "./cms/Statistics";
 
 interface ContentRendererProps {
   page: HygraphGetPageData;
@@ -13,41 +14,32 @@ interface ContentRendererProps {
 
 export function ContentRenderer({ page }: ContentRendererProps) {
   const renderComponent = (
-    props: HygraphGetPageData["layout"]["content"][number]
+    props: HygraphGetPageData["components"]["content"][number]
   ) => {
-    const { __typename } = props;
+    switch (props.__typename) {
+      case "Footer":
+        return <Footer {...props} />;
+      case "About":
+        return <About {...props} />;
+      case "Statistics":
+        return <Statistics {...props} />;
+      case "Jobs":
+        return <Jobs {...props} />;
+      case "Projects_web":
+        return <Projects_web {...props} />;
+      case "Projects_iOS":
+        return <Projects_iOS {...props} />;
+      case "GitHubRepositories":
+        return <GitHubRepositories {...props} />;
+      default:
+        console.warn("Component not found:", props.__typename);
 
-    if (__typename === "Footer") {
-      return <Footer {...props} />;
+        return null;
     }
-
-    if (__typename === "About") {
-      return <About {...props} />;
-    }
-
-    if (__typename === "Jobs") {
-      return <Jobs {...props} />;
-    }
-
-    if (__typename === "Projects_web") {
-      return <Projects_web {...props} />;
-    }
-
-    if (__typename === "Projects_iOS") {
-      return <Projects_iOS {...props} />;
-    }
-
-    if (__typename === "GitHubRepositories") {
-      return <GitHubRepositories {...props} />;
-    }
-
-    console.warn("Component not found:", __typename);
-
-    return null;
   };
 
-  const renderLayout = ({
-    /* title, */ layout: { content },
+  const renderComponents = ({
+    /* title, */ components: { content },
   }: HygraphGetPageData) => {
     const children = content.map((data, i) => (
       <Fragment key={i}>{renderComponent(data)}</Fragment>
@@ -56,5 +48,5 @@ export function ContentRenderer({ page }: ContentRendererProps) {
     return children;
   };
 
-  return <section className="w-full">{renderLayout(page)}</section>;
+  return <section className="w-full">{renderComponents(page)}</section>;
 }

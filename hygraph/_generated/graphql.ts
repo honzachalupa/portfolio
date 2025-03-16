@@ -153,14 +153,14 @@ export enum AboutOrderByInput {
   IdDesc = 'id_DESC'
 }
 
-export type AboutParent = Layout_Primary;
+export type AboutParent = ComponentsContainer;
 
 export type AboutParentConnectInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryConnectInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerConnectInput>;
 };
 
 export type AboutParentCreateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerCreateInput>;
 };
 
 export type AboutParentCreateManyInlineInput = {
@@ -174,11 +174,11 @@ export type AboutParentCreateOneInlineInput = {
 };
 
 export type AboutParentCreateWithPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateWithPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerCreateWithPositionInput>;
 };
 
 export type AboutParentUpdateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateInput>;
 };
 
 export type AboutParentUpdateManyInlineInput = {
@@ -193,7 +193,7 @@ export type AboutParentUpdateManyInlineInput = {
 };
 
 export type AboutParentUpdateManyWithNestedWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateManyWithNestedWhereInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateManyWithNestedWhereInput>;
 };
 
 export type AboutParentUpdateOneInlineInput = {
@@ -208,27 +208,27 @@ export type AboutParentUpdateOneInlineInput = {
 };
 
 export type AboutParentUpdateWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueAndPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type AboutParentUpdateWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateWithNestedWhereUniqueInput>;
 };
 
 export type AboutParentUpsertWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueAndPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpsertWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type AboutParentUpsertWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpsertWithNestedWhereUniqueInput>;
 };
 
 export type AboutParentWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerWhereInput>;
 };
 
 export type AboutParentWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerWhereUniqueInput>;
 };
 
 export type AboutUpdateInput = {
@@ -1706,6 +1706,498 @@ export type ColorInput = {
   rgba?: InputMaybe<RgbaInput>;
 };
 
+export type ComponentsContainer = Entity & {
+  __typename?: 'ComponentsContainer';
+  content: Array<ComponentsContainercontentUnion>;
+  /** The unique identifier */
+  id: Scalars['ID']['output'];
+  /** System stage field */
+  stage: Stage;
+};
+
+
+export type ComponentsContainerContentArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+};
+
+export type ComponentsContainerConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: ComponentsContainerWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type ComponentsContainerConnection = {
+  __typename?: 'ComponentsContainerConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<ComponentsContainerEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type ComponentsContainerCreateInput = {
+  content?: InputMaybe<ComponentsContainercontentUnionCreateManyInlineInput>;
+};
+
+export type ComponentsContainerCreateManyInlineInput = {
+  /** Create and connect multiple existing ComponentsContainer documents */
+  create?: InputMaybe<Array<ComponentsContainerCreateInput>>;
+};
+
+export type ComponentsContainerCreateOneInlineInput = {
+  /** Create and connect one ComponentsContainer document */
+  create?: InputMaybe<ComponentsContainerCreateInput>;
+};
+
+export type ComponentsContainerCreateWithPositionInput = {
+  /** Document to create */
+  data: ComponentsContainerCreateInput;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+};
+
+/** An edge in a connection. */
+export type ComponentsContainerEdge = {
+  __typename?: 'ComponentsContainerEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: ComponentsContainer;
+};
+
+/** Identifies documents */
+export type ComponentsContainerManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ComponentsContainerWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ComponentsContainerWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ComponentsContainerWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  /** All values in which the union is empty. */
+  content_empty?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Matches if the modular component contains at least one connection to the item provided to the filter */
+  content_some?: InputMaybe<ComponentsContainercontentUnionWhereInput>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export enum ComponentsContainerOrderByInput {
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC'
+}
+
+export type ComponentsContainerParent = Page;
+
+export type ComponentsContainerParentConnectInput = {
+  Page?: InputMaybe<PageConnectInput>;
+};
+
+export type ComponentsContainerParentCreateInput = {
+  Page?: InputMaybe<PageCreateInput>;
+};
+
+export type ComponentsContainerParentCreateManyInlineInput = {
+  /** Connect multiple existing ComponentsContainerParent documents */
+  connect?: InputMaybe<Array<ComponentsContainerParentWhereUniqueInput>>;
+  /** Create and connect multiple existing ComponentsContainerParent documents */
+  create?: InputMaybe<Array<ComponentsContainerParentCreateInput>>;
+};
+
+export type ComponentsContainerParentCreateOneInlineInput = {
+  /** Connect one existing ComponentsContainerParent document */
+  connect?: InputMaybe<ComponentsContainerParentWhereUniqueInput>;
+  /** Create and connect one ComponentsContainerParent document */
+  create?: InputMaybe<ComponentsContainerParentCreateInput>;
+};
+
+export type ComponentsContainerParentUpdateInput = {
+  Page?: InputMaybe<PageUpdateInput>;
+};
+
+export type ComponentsContainerParentUpdateManyInlineInput = {
+  /** Connect multiple existing ComponentsContainerParent documents */
+  connect?: InputMaybe<Array<ComponentsContainerParentConnectInput>>;
+  /** Create and connect multiple ComponentsContainerParent documents */
+  create?: InputMaybe<Array<ComponentsContainerParentCreateInput>>;
+  /** Delete multiple ComponentsContainerParent documents */
+  delete?: InputMaybe<Array<ComponentsContainerParentWhereUniqueInput>>;
+  /** Disconnect multiple ComponentsContainerParent documents */
+  disconnect?: InputMaybe<Array<ComponentsContainerParentWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing ComponentsContainerParent documents */
+  set?: InputMaybe<Array<ComponentsContainerParentWhereUniqueInput>>;
+  /** Update multiple ComponentsContainerParent documents */
+  update?: InputMaybe<Array<ComponentsContainerParentUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple ComponentsContainerParent documents */
+  upsert?: InputMaybe<Array<ComponentsContainerParentUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type ComponentsContainerParentUpdateManyWithNestedWhereInput = {
+  Page?: InputMaybe<PageUpdateManyWithNestedWhereInput>;
+};
+
+export type ComponentsContainerParentUpdateOneInlineInput = {
+  /** Connect existing ComponentsContainerParent document */
+  connect?: InputMaybe<ComponentsContainerParentWhereUniqueInput>;
+  /** Create and connect one ComponentsContainerParent document */
+  create?: InputMaybe<ComponentsContainerParentCreateInput>;
+  /** Delete currently connected ComponentsContainerParent document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Disconnect currently connected ComponentsContainerParent document */
+  disconnect?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single ComponentsContainerParent document */
+  update?: InputMaybe<ComponentsContainerParentUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single ComponentsContainerParent document */
+  upsert?: InputMaybe<ComponentsContainerParentUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ComponentsContainerParentUpdateWithNestedWhereUniqueInput = {
+  Page?: InputMaybe<PageUpdateWithNestedWhereUniqueInput>;
+};
+
+export type ComponentsContainerParentUpsertWithNestedWhereUniqueInput = {
+  Page?: InputMaybe<PageUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ComponentsContainerParentWhereInput = {
+  Page?: InputMaybe<PageWhereInput>;
+};
+
+export type ComponentsContainerParentWhereUniqueInput = {
+  Page?: InputMaybe<PageWhereUniqueInput>;
+};
+
+export type ComponentsContainerUpdateInput = {
+  content?: InputMaybe<ComponentsContainercontentUnionUpdateManyInlineInput>;
+};
+
+export type ComponentsContainerUpdateManyInlineInput = {
+  /** Create and connect multiple ComponentsContainer component instances */
+  create?: InputMaybe<Array<ComponentsContainerCreateWithPositionInput>>;
+  /** Delete multiple ComponentsContainer documents */
+  delete?: InputMaybe<Array<ComponentsContainerWhereUniqueInput>>;
+  /** Update multiple ComponentsContainer component instances */
+  update?: InputMaybe<Array<ComponentsContainerUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple ComponentsContainer component instances */
+  upsert?: InputMaybe<Array<ComponentsContainerUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type ComponentsContainerUpdateManyInput = {
+  /** No fields in updateMany data input */
+  _?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ComponentsContainerUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: ComponentsContainerUpdateManyInput;
+  /** Document search */
+  where: ComponentsContainerWhereInput;
+};
+
+export type ComponentsContainerUpdateOneInlineInput = {
+  /** Create and connect one ComponentsContainer document */
+  create?: InputMaybe<ComponentsContainerCreateInput>;
+  /** Delete currently connected ComponentsContainer document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single ComponentsContainer document */
+  update?: InputMaybe<ComponentsContainerUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single ComponentsContainer document */
+  upsert?: InputMaybe<ComponentsContainerUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ComponentsContainerUpdateWithNestedWhereUniqueAndPositionInput = {
+  /** Document to update */
+  data?: InputMaybe<ComponentsContainerUpdateInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: ComponentsContainerWhereUniqueInput;
+};
+
+export type ComponentsContainerUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: ComponentsContainerUpdateInput;
+  /** Unique document search */
+  where: ComponentsContainerWhereUniqueInput;
+};
+
+export type ComponentsContainerUpsertInput = {
+  /** Create document if it didn't exist */
+  create: ComponentsContainerCreateInput;
+  /** Update document if it exists */
+  update: ComponentsContainerUpdateInput;
+};
+
+export type ComponentsContainerUpsertWithNestedWhereUniqueAndPositionInput = {
+  /** Document to upsert */
+  data?: InputMaybe<ComponentsContainerUpsertInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: ComponentsContainerWhereUniqueInput;
+};
+
+export type ComponentsContainerUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: ComponentsContainerUpsertInput;
+  /** Unique document search */
+  where: ComponentsContainerWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type ComponentsContainerWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ComponentsContainerWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ComponentsContainerWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ComponentsContainerWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  /** All values in which the union is empty. */
+  content_empty?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Matches if the modular component contains at least one connection to the item provided to the filter */
+  content_some?: InputMaybe<ComponentsContainercontentUnionWhereInput>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+};
+
+/** References ComponentsContainer record uniquely */
+export type ComponentsContainerWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type ComponentsContainercontentUnion = About | Contact | Footer | GitHubRepositories | Hero | Jobs | Navigation | Projects_IOs | Projects_Web | Seo | Statistics;
+
+export type ComponentsContainercontentUnionConnectInput = {
+  About?: InputMaybe<AboutConnectInput>;
+  Contact?: InputMaybe<ContactConnectInput>;
+  Footer?: InputMaybe<FooterConnectInput>;
+  GitHubRepositories?: InputMaybe<GitHubRepositoriesConnectInput>;
+  Hero?: InputMaybe<HeroConnectInput>;
+  Jobs?: InputMaybe<JobsConnectInput>;
+  Navigation?: InputMaybe<NavigationConnectInput>;
+  Projects_iOS?: InputMaybe<Projects_IOsConnectInput>;
+  Projects_web?: InputMaybe<Projects_WebConnectInput>;
+  SEO?: InputMaybe<SeoConnectInput>;
+  Statistics?: InputMaybe<StatisticsConnectInput>;
+};
+
+export type ComponentsContainercontentUnionCreateInput = {
+  About?: InputMaybe<AboutCreateInput>;
+  Contact?: InputMaybe<ContactCreateInput>;
+  Footer?: InputMaybe<FooterCreateInput>;
+  GitHubRepositories?: InputMaybe<GitHubRepositoriesCreateInput>;
+  Hero?: InputMaybe<HeroCreateInput>;
+  Jobs?: InputMaybe<JobsCreateInput>;
+  Navigation?: InputMaybe<NavigationCreateInput>;
+  Projects_iOS?: InputMaybe<Projects_IOsCreateInput>;
+  Projects_web?: InputMaybe<Projects_WebCreateInput>;
+  SEO?: InputMaybe<SeoCreateInput>;
+  Statistics?: InputMaybe<StatisticsCreateInput>;
+};
+
+export type ComponentsContainercontentUnionCreateManyInlineInput = {
+  /** Create and connect multiple existing ComponentsContainercontentUnion documents */
+  create?: InputMaybe<Array<ComponentsContainercontentUnionCreateInput>>;
+};
+
+export type ComponentsContainercontentUnionCreateOneInlineInput = {
+  /** Create and connect one ComponentsContainercontentUnion document */
+  create?: InputMaybe<ComponentsContainercontentUnionCreateInput>;
+};
+
+export type ComponentsContainercontentUnionCreateWithPositionInput = {
+  About?: InputMaybe<AboutCreateWithPositionInput>;
+  Contact?: InputMaybe<ContactCreateWithPositionInput>;
+  Footer?: InputMaybe<FooterCreateWithPositionInput>;
+  GitHubRepositories?: InputMaybe<GitHubRepositoriesCreateWithPositionInput>;
+  Hero?: InputMaybe<HeroCreateWithPositionInput>;
+  Jobs?: InputMaybe<JobsCreateWithPositionInput>;
+  Navigation?: InputMaybe<NavigationCreateWithPositionInput>;
+  Projects_iOS?: InputMaybe<Projects_IOsCreateWithPositionInput>;
+  Projects_web?: InputMaybe<Projects_WebCreateWithPositionInput>;
+  SEO?: InputMaybe<SeoCreateWithPositionInput>;
+  Statistics?: InputMaybe<StatisticsCreateWithPositionInput>;
+};
+
+export type ComponentsContainercontentUnionUpdateInput = {
+  About?: InputMaybe<AboutUpdateInput>;
+  Contact?: InputMaybe<ContactUpdateInput>;
+  Footer?: InputMaybe<FooterUpdateInput>;
+  GitHubRepositories?: InputMaybe<GitHubRepositoriesUpdateInput>;
+  Hero?: InputMaybe<HeroUpdateInput>;
+  Jobs?: InputMaybe<JobsUpdateInput>;
+  Navigation?: InputMaybe<NavigationUpdateInput>;
+  Projects_iOS?: InputMaybe<Projects_IOsUpdateInput>;
+  Projects_web?: InputMaybe<Projects_WebUpdateInput>;
+  SEO?: InputMaybe<SeoUpdateInput>;
+  Statistics?: InputMaybe<StatisticsUpdateInput>;
+};
+
+export type ComponentsContainercontentUnionUpdateManyInlineInput = {
+  /** Create and connect multiple ComponentsContainercontentUnion component instances */
+  create?: InputMaybe<Array<ComponentsContainercontentUnionCreateWithPositionInput>>;
+  /** Delete multiple ComponentsContainercontentUnion documents */
+  delete?: InputMaybe<Array<ComponentsContainercontentUnionWhereUniqueInput>>;
+  /** Update multiple ComponentsContainercontentUnion component instances */
+  update?: InputMaybe<Array<ComponentsContainercontentUnionUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple ComponentsContainercontentUnion component instances */
+  upsert?: InputMaybe<Array<ComponentsContainercontentUnionUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type ComponentsContainercontentUnionUpdateManyWithNestedWhereInput = {
+  About?: InputMaybe<AboutUpdateManyWithNestedWhereInput>;
+  Contact?: InputMaybe<ContactUpdateManyWithNestedWhereInput>;
+  Footer?: InputMaybe<FooterUpdateManyWithNestedWhereInput>;
+  GitHubRepositories?: InputMaybe<GitHubRepositoriesUpdateManyWithNestedWhereInput>;
+  Hero?: InputMaybe<HeroUpdateManyWithNestedWhereInput>;
+  Jobs?: InputMaybe<JobsUpdateManyWithNestedWhereInput>;
+  Navigation?: InputMaybe<NavigationUpdateManyWithNestedWhereInput>;
+  Projects_iOS?: InputMaybe<Projects_IOsUpdateManyWithNestedWhereInput>;
+  Projects_web?: InputMaybe<Projects_WebUpdateManyWithNestedWhereInput>;
+  SEO?: InputMaybe<SeoUpdateManyWithNestedWhereInput>;
+  Statistics?: InputMaybe<StatisticsUpdateManyWithNestedWhereInput>;
+};
+
+export type ComponentsContainercontentUnionUpdateOneInlineInput = {
+  /** Create and connect one ComponentsContainercontentUnion document */
+  create?: InputMaybe<ComponentsContainercontentUnionCreateInput>;
+  /** Delete currently connected ComponentsContainercontentUnion document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single ComponentsContainercontentUnion document */
+  update?: InputMaybe<ComponentsContainercontentUnionUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single ComponentsContainercontentUnion document */
+  upsert?: InputMaybe<ComponentsContainercontentUnionUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ComponentsContainercontentUnionUpdateWithNestedWhereUniqueAndPositionInput = {
+  About?: InputMaybe<AboutUpdateWithNestedWhereUniqueAndPositionInput>;
+  Contact?: InputMaybe<ContactUpdateWithNestedWhereUniqueAndPositionInput>;
+  Footer?: InputMaybe<FooterUpdateWithNestedWhereUniqueAndPositionInput>;
+  GitHubRepositories?: InputMaybe<GitHubRepositoriesUpdateWithNestedWhereUniqueAndPositionInput>;
+  Hero?: InputMaybe<HeroUpdateWithNestedWhereUniqueAndPositionInput>;
+  Jobs?: InputMaybe<JobsUpdateWithNestedWhereUniqueAndPositionInput>;
+  Navigation?: InputMaybe<NavigationUpdateWithNestedWhereUniqueAndPositionInput>;
+  Projects_iOS?: InputMaybe<Projects_IOsUpdateWithNestedWhereUniqueAndPositionInput>;
+  Projects_web?: InputMaybe<Projects_WebUpdateWithNestedWhereUniqueAndPositionInput>;
+  SEO?: InputMaybe<SeoUpdateWithNestedWhereUniqueAndPositionInput>;
+  Statistics?: InputMaybe<StatisticsUpdateWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type ComponentsContainercontentUnionUpdateWithNestedWhereUniqueInput = {
+  About?: InputMaybe<AboutUpdateWithNestedWhereUniqueInput>;
+  Contact?: InputMaybe<ContactUpdateWithNestedWhereUniqueInput>;
+  Footer?: InputMaybe<FooterUpdateWithNestedWhereUniqueInput>;
+  GitHubRepositories?: InputMaybe<GitHubRepositoriesUpdateWithNestedWhereUniqueInput>;
+  Hero?: InputMaybe<HeroUpdateWithNestedWhereUniqueInput>;
+  Jobs?: InputMaybe<JobsUpdateWithNestedWhereUniqueInput>;
+  Navigation?: InputMaybe<NavigationUpdateWithNestedWhereUniqueInput>;
+  Projects_iOS?: InputMaybe<Projects_IOsUpdateWithNestedWhereUniqueInput>;
+  Projects_web?: InputMaybe<Projects_WebUpdateWithNestedWhereUniqueInput>;
+  SEO?: InputMaybe<SeoUpdateWithNestedWhereUniqueInput>;
+  Statistics?: InputMaybe<StatisticsUpdateWithNestedWhereUniqueInput>;
+};
+
+export type ComponentsContainercontentUnionUpsertWithNestedWhereUniqueAndPositionInput = {
+  About?: InputMaybe<AboutUpsertWithNestedWhereUniqueAndPositionInput>;
+  Contact?: InputMaybe<ContactUpsertWithNestedWhereUniqueAndPositionInput>;
+  Footer?: InputMaybe<FooterUpsertWithNestedWhereUniqueAndPositionInput>;
+  GitHubRepositories?: InputMaybe<GitHubRepositoriesUpsertWithNestedWhereUniqueAndPositionInput>;
+  Hero?: InputMaybe<HeroUpsertWithNestedWhereUniqueAndPositionInput>;
+  Jobs?: InputMaybe<JobsUpsertWithNestedWhereUniqueAndPositionInput>;
+  Navigation?: InputMaybe<NavigationUpsertWithNestedWhereUniqueAndPositionInput>;
+  Projects_iOS?: InputMaybe<Projects_IOsUpsertWithNestedWhereUniqueAndPositionInput>;
+  Projects_web?: InputMaybe<Projects_WebUpsertWithNestedWhereUniqueAndPositionInput>;
+  SEO?: InputMaybe<SeoUpsertWithNestedWhereUniqueAndPositionInput>;
+  Statistics?: InputMaybe<StatisticsUpsertWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type ComponentsContainercontentUnionUpsertWithNestedWhereUniqueInput = {
+  About?: InputMaybe<AboutUpsertWithNestedWhereUniqueInput>;
+  Contact?: InputMaybe<ContactUpsertWithNestedWhereUniqueInput>;
+  Footer?: InputMaybe<FooterUpsertWithNestedWhereUniqueInput>;
+  GitHubRepositories?: InputMaybe<GitHubRepositoriesUpsertWithNestedWhereUniqueInput>;
+  Hero?: InputMaybe<HeroUpsertWithNestedWhereUniqueInput>;
+  Jobs?: InputMaybe<JobsUpsertWithNestedWhereUniqueInput>;
+  Navigation?: InputMaybe<NavigationUpsertWithNestedWhereUniqueInput>;
+  Projects_iOS?: InputMaybe<Projects_IOsUpsertWithNestedWhereUniqueInput>;
+  Projects_web?: InputMaybe<Projects_WebUpsertWithNestedWhereUniqueInput>;
+  SEO?: InputMaybe<SeoUpsertWithNestedWhereUniqueInput>;
+  Statistics?: InputMaybe<StatisticsUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ComponentsContainercontentUnionWhereInput = {
+  About?: InputMaybe<AboutWhereInput>;
+  Contact?: InputMaybe<ContactWhereInput>;
+  Footer?: InputMaybe<FooterWhereInput>;
+  GitHubRepositories?: InputMaybe<GitHubRepositoriesWhereInput>;
+  Hero?: InputMaybe<HeroWhereInput>;
+  Jobs?: InputMaybe<JobsWhereInput>;
+  Navigation?: InputMaybe<NavigationWhereInput>;
+  Projects_iOS?: InputMaybe<Projects_IOsWhereInput>;
+  Projects_web?: InputMaybe<Projects_WebWhereInput>;
+  SEO?: InputMaybe<SeoWhereInput>;
+  Statistics?: InputMaybe<StatisticsWhereInput>;
+};
+
+export type ComponentsContainercontentUnionWhereUniqueInput = {
+  About?: InputMaybe<AboutWhereUniqueInput>;
+  Contact?: InputMaybe<ContactWhereUniqueInput>;
+  Footer?: InputMaybe<FooterWhereUniqueInput>;
+  GitHubRepositories?: InputMaybe<GitHubRepositoriesWhereUniqueInput>;
+  Hero?: InputMaybe<HeroWhereUniqueInput>;
+  Jobs?: InputMaybe<JobsWhereUniqueInput>;
+  Navigation?: InputMaybe<NavigationWhereUniqueInput>;
+  Projects_iOS?: InputMaybe<Projects_IOsWhereUniqueInput>;
+  Projects_web?: InputMaybe<Projects_WebWhereUniqueInput>;
+  SEO?: InputMaybe<SeoWhereUniqueInput>;
+  Statistics?: InputMaybe<StatisticsWhereUniqueInput>;
+};
+
 export type ConnectPositionInput = {
   /** Connect document after specified document */
   after?: InputMaybe<Scalars['ID']['input']>;
@@ -1876,14 +2368,14 @@ export enum ContactOrderByInput {
   PhoneNumberDesc = 'phoneNumber_DESC'
 }
 
-export type ContactParent = Layout_Primary;
+export type ContactParent = ComponentsContainer;
 
 export type ContactParentConnectInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryConnectInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerConnectInput>;
 };
 
 export type ContactParentCreateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerCreateInput>;
 };
 
 export type ContactParentCreateManyInlineInput = {
@@ -1897,11 +2389,11 @@ export type ContactParentCreateOneInlineInput = {
 };
 
 export type ContactParentCreateWithPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateWithPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerCreateWithPositionInput>;
 };
 
 export type ContactParentUpdateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateInput>;
 };
 
 export type ContactParentUpdateManyInlineInput = {
@@ -1916,7 +2408,7 @@ export type ContactParentUpdateManyInlineInput = {
 };
 
 export type ContactParentUpdateManyWithNestedWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateManyWithNestedWhereInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateManyWithNestedWhereInput>;
 };
 
 export type ContactParentUpdateOneInlineInput = {
@@ -1931,27 +2423,27 @@ export type ContactParentUpdateOneInlineInput = {
 };
 
 export type ContactParentUpdateWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueAndPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type ContactParentUpdateWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateWithNestedWhereUniqueInput>;
 };
 
 export type ContactParentUpsertWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueAndPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpsertWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type ContactParentUpsertWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpsertWithNestedWhereUniqueInput>;
 };
 
 export type ContactParentWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerWhereInput>;
 };
 
 export type ContactParentWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerWhereUniqueInput>;
 };
 
 export type ContactUpdateInput = {
@@ -2188,13 +2680,13 @@ export enum EntityTypeName {
   /** Asset system model */
   Asset = 'Asset',
   Client = 'Client',
+  ComponentsContainer = 'ComponentsContainer',
   Contact = 'Contact',
   Footer = 'Footer',
   GitHubRepositories = 'GitHubRepositories',
   Hero = 'Hero',
   Job = 'Job',
   Jobs = 'Jobs',
-  LayoutPrimary = 'Layout_Primary',
   Navigation = 'Navigation',
   Page = 'Page',
   Project = 'Project',
@@ -2206,6 +2698,7 @@ export enum EntityTypeName {
   /** Scheduled Release system model */
   ScheduledRelease = 'ScheduledRelease',
   SocialNetwork = 'SocialNetwork',
+  Statistics = 'Statistics',
   /** User system model */
   User = 'User'
 }
@@ -2370,14 +2863,14 @@ export enum FooterOrderByInput {
   YearFromDesc = 'yearFrom_DESC'
 }
 
-export type FooterParent = Layout_Primary;
+export type FooterParent = ComponentsContainer;
 
 export type FooterParentConnectInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryConnectInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerConnectInput>;
 };
 
 export type FooterParentCreateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerCreateInput>;
 };
 
 export type FooterParentCreateManyInlineInput = {
@@ -2391,11 +2884,11 @@ export type FooterParentCreateOneInlineInput = {
 };
 
 export type FooterParentCreateWithPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateWithPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerCreateWithPositionInput>;
 };
 
 export type FooterParentUpdateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateInput>;
 };
 
 export type FooterParentUpdateManyInlineInput = {
@@ -2410,7 +2903,7 @@ export type FooterParentUpdateManyInlineInput = {
 };
 
 export type FooterParentUpdateManyWithNestedWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateManyWithNestedWhereInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateManyWithNestedWhereInput>;
 };
 
 export type FooterParentUpdateOneInlineInput = {
@@ -2425,27 +2918,27 @@ export type FooterParentUpdateOneInlineInput = {
 };
 
 export type FooterParentUpdateWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueAndPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type FooterParentUpdateWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateWithNestedWhereUniqueInput>;
 };
 
 export type FooterParentUpsertWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueAndPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpsertWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type FooterParentUpsertWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpsertWithNestedWhereUniqueInput>;
 };
 
 export type FooterParentWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerWhereInput>;
 };
 
 export type FooterParentWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerWhereUniqueInput>;
 };
 
 export type FooterUpdateInput = {
@@ -2732,14 +3225,14 @@ export enum GitHubRepositoriesOrderByInput {
   LimitDesc = 'limit_DESC'
 }
 
-export type GitHubRepositoriesParent = Layout_Primary;
+export type GitHubRepositoriesParent = ComponentsContainer;
 
 export type GitHubRepositoriesParentConnectInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryConnectInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerConnectInput>;
 };
 
 export type GitHubRepositoriesParentCreateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerCreateInput>;
 };
 
 export type GitHubRepositoriesParentCreateManyInlineInput = {
@@ -2753,11 +3246,11 @@ export type GitHubRepositoriesParentCreateOneInlineInput = {
 };
 
 export type GitHubRepositoriesParentCreateWithPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateWithPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerCreateWithPositionInput>;
 };
 
 export type GitHubRepositoriesParentUpdateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateInput>;
 };
 
 export type GitHubRepositoriesParentUpdateManyInlineInput = {
@@ -2772,7 +3265,7 @@ export type GitHubRepositoriesParentUpdateManyInlineInput = {
 };
 
 export type GitHubRepositoriesParentUpdateManyWithNestedWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateManyWithNestedWhereInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateManyWithNestedWhereInput>;
 };
 
 export type GitHubRepositoriesParentUpdateOneInlineInput = {
@@ -2787,27 +3280,27 @@ export type GitHubRepositoriesParentUpdateOneInlineInput = {
 };
 
 export type GitHubRepositoriesParentUpdateWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueAndPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type GitHubRepositoriesParentUpdateWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateWithNestedWhereUniqueInput>;
 };
 
 export type GitHubRepositoriesParentUpsertWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueAndPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpsertWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type GitHubRepositoriesParentUpsertWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpsertWithNestedWhereUniqueInput>;
 };
 
 export type GitHubRepositoriesParentWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerWhereInput>;
 };
 
 export type GitHubRepositoriesParentWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerWhereUniqueInput>;
 };
 
 export type GitHubRepositoriesUpdateInput = {
@@ -3050,14 +3543,14 @@ export enum HeroOrderByInput {
   IdDesc = 'id_DESC'
 }
 
-export type HeroParent = Layout_Primary;
+export type HeroParent = ComponentsContainer;
 
 export type HeroParentConnectInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryConnectInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerConnectInput>;
 };
 
 export type HeroParentCreateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerCreateInput>;
 };
 
 export type HeroParentCreateManyInlineInput = {
@@ -3071,11 +3564,11 @@ export type HeroParentCreateOneInlineInput = {
 };
 
 export type HeroParentCreateWithPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateWithPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerCreateWithPositionInput>;
 };
 
 export type HeroParentUpdateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateInput>;
 };
 
 export type HeroParentUpdateManyInlineInput = {
@@ -3090,7 +3583,7 @@ export type HeroParentUpdateManyInlineInput = {
 };
 
 export type HeroParentUpdateManyWithNestedWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateManyWithNestedWhereInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateManyWithNestedWhereInput>;
 };
 
 export type HeroParentUpdateOneInlineInput = {
@@ -3105,27 +3598,27 @@ export type HeroParentUpdateOneInlineInput = {
 };
 
 export type HeroParentUpdateWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueAndPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type HeroParentUpdateWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateWithNestedWhereUniqueInput>;
 };
 
 export type HeroParentUpsertWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueAndPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpsertWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type HeroParentUpsertWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpsertWithNestedWhereUniqueInput>;
 };
 
 export type HeroParentWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerWhereInput>;
 };
 
 export type HeroParentWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerWhereUniqueInput>;
 };
 
 export type HeroUpdateInput = {
@@ -3984,14 +4477,14 @@ export enum JobsOrderByInput {
   IdDesc = 'id_DESC'
 }
 
-export type JobsParent = Layout_Primary;
+export type JobsParent = ComponentsContainer;
 
 export type JobsParentConnectInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryConnectInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerConnectInput>;
 };
 
 export type JobsParentCreateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerCreateInput>;
 };
 
 export type JobsParentCreateManyInlineInput = {
@@ -4005,11 +4498,11 @@ export type JobsParentCreateOneInlineInput = {
 };
 
 export type JobsParentCreateWithPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateWithPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerCreateWithPositionInput>;
 };
 
 export type JobsParentUpdateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateInput>;
 };
 
 export type JobsParentUpdateManyInlineInput = {
@@ -4024,7 +4517,7 @@ export type JobsParentUpdateManyInlineInput = {
 };
 
 export type JobsParentUpdateManyWithNestedWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateManyWithNestedWhereInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateManyWithNestedWhereInput>;
 };
 
 export type JobsParentUpdateOneInlineInput = {
@@ -4039,27 +4532,27 @@ export type JobsParentUpdateOneInlineInput = {
 };
 
 export type JobsParentUpdateWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueAndPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type JobsParentUpdateWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateWithNestedWhereUniqueInput>;
 };
 
 export type JobsParentUpsertWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueAndPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpsertWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type JobsParentUpsertWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpsertWithNestedWhereUniqueInput>;
 };
 
 export type JobsParentWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerWhereInput>;
 };
 
 export type JobsParentWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerWhereUniqueInput>;
 };
 
 export type JobsUpdateInput = {
@@ -4195,487 +4688,6 @@ export type JobsWhereInput = {
 /** References Jobs record uniquely */
 export type JobsWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
-};
-
-export type Layout_Primary = Entity & {
-  __typename?: 'Layout_Primary';
-  content: Array<Layout_PrimarycontentUnion>;
-  /** The unique identifier */
-  id: Scalars['ID']['output'];
-  /** System stage field */
-  stage: Stage;
-};
-
-
-export type Layout_PrimaryContentArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  locales?: InputMaybe<Array<Locale>>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-};
-
-export type Layout_PrimaryConnectInput = {
-  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Document to connect */
-  where: Layout_PrimaryWhereUniqueInput;
-};
-
-/** A connection to a list of items. */
-export type Layout_PrimaryConnection = {
-  __typename?: 'Layout_PrimaryConnection';
-  aggregate: Aggregate;
-  /** A list of edges. */
-  edges: Array<Layout_PrimaryEdge>;
-  /** Information to aid in pagination. */
-  pageInfo: PageInfo;
-};
-
-export type Layout_PrimaryCreateInput = {
-  content?: InputMaybe<Layout_PrimarycontentUnionCreateManyInlineInput>;
-};
-
-export type Layout_PrimaryCreateManyInlineInput = {
-  /** Create and connect multiple existing Layout_Primary documents */
-  create?: InputMaybe<Array<Layout_PrimaryCreateInput>>;
-};
-
-export type Layout_PrimaryCreateOneInlineInput = {
-  /** Create and connect one Layout_Primary document */
-  create?: InputMaybe<Layout_PrimaryCreateInput>;
-};
-
-export type Layout_PrimaryCreateWithPositionInput = {
-  /** Document to create */
-  data: Layout_PrimaryCreateInput;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-};
-
-/** An edge in a connection. */
-export type Layout_PrimaryEdge = {
-  __typename?: 'Layout_PrimaryEdge';
-  /** A cursor for use in pagination. */
-  cursor: Scalars['String']['output'];
-  /** The item at the end of the edge. */
-  node: Layout_Primary;
-};
-
-/** Identifies documents */
-export type Layout_PrimaryManyWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<Layout_PrimaryWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<Layout_PrimaryWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<Layout_PrimaryWhereInput>>;
-  /** Contains search across all appropriate fields. */
-  _search?: InputMaybe<Scalars['String']['input']>;
-  /** All values in which the union is empty. */
-  content_empty?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Matches if the modular component contains at least one connection to the item provided to the filter */
-  content_some?: InputMaybe<Layout_PrimarycontentUnionWhereInput>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  /** All values containing the given string. */
-  id_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values ending with the given string. */
-  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are contained in given list. */
-  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  id_not?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not containing the given string. */
-  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are not contained in given list. */
-  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values starting with the given string. */
-  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
-};
-
-export enum Layout_PrimaryOrderByInput {
-  IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC'
-}
-
-export type Layout_PrimaryParent = Page;
-
-export type Layout_PrimaryParentConnectInput = {
-  Page?: InputMaybe<PageConnectInput>;
-};
-
-export type Layout_PrimaryParentCreateInput = {
-  Page?: InputMaybe<PageCreateInput>;
-};
-
-export type Layout_PrimaryParentCreateManyInlineInput = {
-  /** Connect multiple existing Layout_PrimaryParent documents */
-  connect?: InputMaybe<Array<Layout_PrimaryParentWhereUniqueInput>>;
-  /** Create and connect multiple existing Layout_PrimaryParent documents */
-  create?: InputMaybe<Array<Layout_PrimaryParentCreateInput>>;
-};
-
-export type Layout_PrimaryParentCreateOneInlineInput = {
-  /** Connect one existing Layout_PrimaryParent document */
-  connect?: InputMaybe<Layout_PrimaryParentWhereUniqueInput>;
-  /** Create and connect one Layout_PrimaryParent document */
-  create?: InputMaybe<Layout_PrimaryParentCreateInput>;
-};
-
-export type Layout_PrimaryParentUpdateInput = {
-  Page?: InputMaybe<PageUpdateInput>;
-};
-
-export type Layout_PrimaryParentUpdateManyInlineInput = {
-  /** Connect multiple existing Layout_PrimaryParent documents */
-  connect?: InputMaybe<Array<Layout_PrimaryParentConnectInput>>;
-  /** Create and connect multiple Layout_PrimaryParent documents */
-  create?: InputMaybe<Array<Layout_PrimaryParentCreateInput>>;
-  /** Delete multiple Layout_PrimaryParent documents */
-  delete?: InputMaybe<Array<Layout_PrimaryParentWhereUniqueInput>>;
-  /** Disconnect multiple Layout_PrimaryParent documents */
-  disconnect?: InputMaybe<Array<Layout_PrimaryParentWhereUniqueInput>>;
-  /** Override currently-connected documents with multiple existing Layout_PrimaryParent documents */
-  set?: InputMaybe<Array<Layout_PrimaryParentWhereUniqueInput>>;
-  /** Update multiple Layout_PrimaryParent documents */
-  update?: InputMaybe<Array<Layout_PrimaryParentUpdateWithNestedWhereUniqueInput>>;
-  /** Upsert multiple Layout_PrimaryParent documents */
-  upsert?: InputMaybe<Array<Layout_PrimaryParentUpsertWithNestedWhereUniqueInput>>;
-};
-
-export type Layout_PrimaryParentUpdateManyWithNestedWhereInput = {
-  Page?: InputMaybe<PageUpdateManyWithNestedWhereInput>;
-};
-
-export type Layout_PrimaryParentUpdateOneInlineInput = {
-  /** Connect existing Layout_PrimaryParent document */
-  connect?: InputMaybe<Layout_PrimaryParentWhereUniqueInput>;
-  /** Create and connect one Layout_PrimaryParent document */
-  create?: InputMaybe<Layout_PrimaryParentCreateInput>;
-  /** Delete currently connected Layout_PrimaryParent document */
-  delete?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Disconnect currently connected Layout_PrimaryParent document */
-  disconnect?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Update single Layout_PrimaryParent document */
-  update?: InputMaybe<Layout_PrimaryParentUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single Layout_PrimaryParent document */
-  upsert?: InputMaybe<Layout_PrimaryParentUpsertWithNestedWhereUniqueInput>;
-};
-
-export type Layout_PrimaryParentUpdateWithNestedWhereUniqueInput = {
-  Page?: InputMaybe<PageUpdateWithNestedWhereUniqueInput>;
-};
-
-export type Layout_PrimaryParentUpsertWithNestedWhereUniqueInput = {
-  Page?: InputMaybe<PageUpsertWithNestedWhereUniqueInput>;
-};
-
-export type Layout_PrimaryParentWhereInput = {
-  Page?: InputMaybe<PageWhereInput>;
-};
-
-export type Layout_PrimaryParentWhereUniqueInput = {
-  Page?: InputMaybe<PageWhereUniqueInput>;
-};
-
-export type Layout_PrimaryUpdateInput = {
-  content?: InputMaybe<Layout_PrimarycontentUnionUpdateManyInlineInput>;
-};
-
-export type Layout_PrimaryUpdateManyInlineInput = {
-  /** Create and connect multiple Layout_Primary component instances */
-  create?: InputMaybe<Array<Layout_PrimaryCreateWithPositionInput>>;
-  /** Delete multiple Layout_Primary documents */
-  delete?: InputMaybe<Array<Layout_PrimaryWhereUniqueInput>>;
-  /** Update multiple Layout_Primary component instances */
-  update?: InputMaybe<Array<Layout_PrimaryUpdateWithNestedWhereUniqueAndPositionInput>>;
-  /** Upsert multiple Layout_Primary component instances */
-  upsert?: InputMaybe<Array<Layout_PrimaryUpsertWithNestedWhereUniqueAndPositionInput>>;
-};
-
-export type Layout_PrimaryUpdateManyInput = {
-  /** No fields in updateMany data input */
-  _?: InputMaybe<Scalars['String']['input']>;
-};
-
-export type Layout_PrimaryUpdateManyWithNestedWhereInput = {
-  /** Update many input */
-  data: Layout_PrimaryUpdateManyInput;
-  /** Document search */
-  where: Layout_PrimaryWhereInput;
-};
-
-export type Layout_PrimaryUpdateOneInlineInput = {
-  /** Create and connect one Layout_Primary document */
-  create?: InputMaybe<Layout_PrimaryCreateInput>;
-  /** Delete currently connected Layout_Primary document */
-  delete?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Update single Layout_Primary document */
-  update?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single Layout_Primary document */
-  upsert?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueInput>;
-};
-
-export type Layout_PrimaryUpdateWithNestedWhereUniqueAndPositionInput = {
-  /** Document to update */
-  data?: InputMaybe<Layout_PrimaryUpdateInput>;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Unique component instance search */
-  where: Layout_PrimaryWhereUniqueInput;
-};
-
-export type Layout_PrimaryUpdateWithNestedWhereUniqueInput = {
-  /** Document to update */
-  data: Layout_PrimaryUpdateInput;
-  /** Unique document search */
-  where: Layout_PrimaryWhereUniqueInput;
-};
-
-export type Layout_PrimaryUpsertInput = {
-  /** Create document if it didn't exist */
-  create: Layout_PrimaryCreateInput;
-  /** Update document if it exists */
-  update: Layout_PrimaryUpdateInput;
-};
-
-export type Layout_PrimaryUpsertWithNestedWhereUniqueAndPositionInput = {
-  /** Document to upsert */
-  data?: InputMaybe<Layout_PrimaryUpsertInput>;
-  /** Position in the list of existing component instances, will default to appending at the end of list */
-  position?: InputMaybe<ConnectPositionInput>;
-  /** Unique component instance search */
-  where: Layout_PrimaryWhereUniqueInput;
-};
-
-export type Layout_PrimaryUpsertWithNestedWhereUniqueInput = {
-  /** Upsert data */
-  data: Layout_PrimaryUpsertInput;
-  /** Unique document search */
-  where: Layout_PrimaryWhereUniqueInput;
-};
-
-/** Identifies documents */
-export type Layout_PrimaryWhereInput = {
-  /** Logical AND on all given filters. */
-  AND?: InputMaybe<Array<Layout_PrimaryWhereInput>>;
-  /** Logical NOT on all given filters combined by AND. */
-  NOT?: InputMaybe<Array<Layout_PrimaryWhereInput>>;
-  /** Logical OR on all given filters. */
-  OR?: InputMaybe<Array<Layout_PrimaryWhereInput>>;
-  /** Contains search across all appropriate fields. */
-  _search?: InputMaybe<Scalars['String']['input']>;
-  /** All values in which the union is empty. */
-  content_empty?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Matches if the modular component contains at least one connection to the item provided to the filter */
-  content_some?: InputMaybe<Layout_PrimarycontentUnionWhereInput>;
-  id?: InputMaybe<Scalars['ID']['input']>;
-  /** All values containing the given string. */
-  id_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values ending with the given string. */
-  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are contained in given list. */
-  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  id_not?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not containing the given string. */
-  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
-  /** All values not ending with the given string */
-  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values that are not contained in given list. */
-  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
-  /** All values not starting with the given string. */
-  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  /** All values starting with the given string. */
-  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
-};
-
-/** References Layout_Primary record uniquely */
-export type Layout_PrimaryWhereUniqueInput = {
-  id?: InputMaybe<Scalars['ID']['input']>;
-};
-
-export type Layout_PrimarycontentUnion = About | Contact | Footer | GitHubRepositories | Hero | Jobs | Navigation | Projects_IOs | Projects_Web | Seo;
-
-export type Layout_PrimarycontentUnionConnectInput = {
-  About?: InputMaybe<AboutConnectInput>;
-  Contact?: InputMaybe<ContactConnectInput>;
-  Footer?: InputMaybe<FooterConnectInput>;
-  GitHubRepositories?: InputMaybe<GitHubRepositoriesConnectInput>;
-  Hero?: InputMaybe<HeroConnectInput>;
-  Jobs?: InputMaybe<JobsConnectInput>;
-  Navigation?: InputMaybe<NavigationConnectInput>;
-  Projects_iOS?: InputMaybe<Projects_IOsConnectInput>;
-  Projects_web?: InputMaybe<Projects_WebConnectInput>;
-  SEO?: InputMaybe<SeoConnectInput>;
-};
-
-export type Layout_PrimarycontentUnionCreateInput = {
-  About?: InputMaybe<AboutCreateInput>;
-  Contact?: InputMaybe<ContactCreateInput>;
-  Footer?: InputMaybe<FooterCreateInput>;
-  GitHubRepositories?: InputMaybe<GitHubRepositoriesCreateInput>;
-  Hero?: InputMaybe<HeroCreateInput>;
-  Jobs?: InputMaybe<JobsCreateInput>;
-  Navigation?: InputMaybe<NavigationCreateInput>;
-  Projects_iOS?: InputMaybe<Projects_IOsCreateInput>;
-  Projects_web?: InputMaybe<Projects_WebCreateInput>;
-  SEO?: InputMaybe<SeoCreateInput>;
-};
-
-export type Layout_PrimarycontentUnionCreateManyInlineInput = {
-  /** Create and connect multiple existing Layout_PrimarycontentUnion documents */
-  create?: InputMaybe<Array<Layout_PrimarycontentUnionCreateInput>>;
-};
-
-export type Layout_PrimarycontentUnionCreateOneInlineInput = {
-  /** Create and connect one Layout_PrimarycontentUnion document */
-  create?: InputMaybe<Layout_PrimarycontentUnionCreateInput>;
-};
-
-export type Layout_PrimarycontentUnionCreateWithPositionInput = {
-  About?: InputMaybe<AboutCreateWithPositionInput>;
-  Contact?: InputMaybe<ContactCreateWithPositionInput>;
-  Footer?: InputMaybe<FooterCreateWithPositionInput>;
-  GitHubRepositories?: InputMaybe<GitHubRepositoriesCreateWithPositionInput>;
-  Hero?: InputMaybe<HeroCreateWithPositionInput>;
-  Jobs?: InputMaybe<JobsCreateWithPositionInput>;
-  Navigation?: InputMaybe<NavigationCreateWithPositionInput>;
-  Projects_iOS?: InputMaybe<Projects_IOsCreateWithPositionInput>;
-  Projects_web?: InputMaybe<Projects_WebCreateWithPositionInput>;
-  SEO?: InputMaybe<SeoCreateWithPositionInput>;
-};
-
-export type Layout_PrimarycontentUnionUpdateInput = {
-  About?: InputMaybe<AboutUpdateInput>;
-  Contact?: InputMaybe<ContactUpdateInput>;
-  Footer?: InputMaybe<FooterUpdateInput>;
-  GitHubRepositories?: InputMaybe<GitHubRepositoriesUpdateInput>;
-  Hero?: InputMaybe<HeroUpdateInput>;
-  Jobs?: InputMaybe<JobsUpdateInput>;
-  Navigation?: InputMaybe<NavigationUpdateInput>;
-  Projects_iOS?: InputMaybe<Projects_IOsUpdateInput>;
-  Projects_web?: InputMaybe<Projects_WebUpdateInput>;
-  SEO?: InputMaybe<SeoUpdateInput>;
-};
-
-export type Layout_PrimarycontentUnionUpdateManyInlineInput = {
-  /** Create and connect multiple Layout_PrimarycontentUnion component instances */
-  create?: InputMaybe<Array<Layout_PrimarycontentUnionCreateWithPositionInput>>;
-  /** Delete multiple Layout_PrimarycontentUnion documents */
-  delete?: InputMaybe<Array<Layout_PrimarycontentUnionWhereUniqueInput>>;
-  /** Update multiple Layout_PrimarycontentUnion component instances */
-  update?: InputMaybe<Array<Layout_PrimarycontentUnionUpdateWithNestedWhereUniqueAndPositionInput>>;
-  /** Upsert multiple Layout_PrimarycontentUnion component instances */
-  upsert?: InputMaybe<Array<Layout_PrimarycontentUnionUpsertWithNestedWhereUniqueAndPositionInput>>;
-};
-
-export type Layout_PrimarycontentUnionUpdateManyWithNestedWhereInput = {
-  About?: InputMaybe<AboutUpdateManyWithNestedWhereInput>;
-  Contact?: InputMaybe<ContactUpdateManyWithNestedWhereInput>;
-  Footer?: InputMaybe<FooterUpdateManyWithNestedWhereInput>;
-  GitHubRepositories?: InputMaybe<GitHubRepositoriesUpdateManyWithNestedWhereInput>;
-  Hero?: InputMaybe<HeroUpdateManyWithNestedWhereInput>;
-  Jobs?: InputMaybe<JobsUpdateManyWithNestedWhereInput>;
-  Navigation?: InputMaybe<NavigationUpdateManyWithNestedWhereInput>;
-  Projects_iOS?: InputMaybe<Projects_IOsUpdateManyWithNestedWhereInput>;
-  Projects_web?: InputMaybe<Projects_WebUpdateManyWithNestedWhereInput>;
-  SEO?: InputMaybe<SeoUpdateManyWithNestedWhereInput>;
-};
-
-export type Layout_PrimarycontentUnionUpdateOneInlineInput = {
-  /** Create and connect one Layout_PrimarycontentUnion document */
-  create?: InputMaybe<Layout_PrimarycontentUnionCreateInput>;
-  /** Delete currently connected Layout_PrimarycontentUnion document */
-  delete?: InputMaybe<Scalars['Boolean']['input']>;
-  /** Update single Layout_PrimarycontentUnion document */
-  update?: InputMaybe<Layout_PrimarycontentUnionUpdateWithNestedWhereUniqueInput>;
-  /** Upsert single Layout_PrimarycontentUnion document */
-  upsert?: InputMaybe<Layout_PrimarycontentUnionUpsertWithNestedWhereUniqueInput>;
-};
-
-export type Layout_PrimarycontentUnionUpdateWithNestedWhereUniqueAndPositionInput = {
-  About?: InputMaybe<AboutUpdateWithNestedWhereUniqueAndPositionInput>;
-  Contact?: InputMaybe<ContactUpdateWithNestedWhereUniqueAndPositionInput>;
-  Footer?: InputMaybe<FooterUpdateWithNestedWhereUniqueAndPositionInput>;
-  GitHubRepositories?: InputMaybe<GitHubRepositoriesUpdateWithNestedWhereUniqueAndPositionInput>;
-  Hero?: InputMaybe<HeroUpdateWithNestedWhereUniqueAndPositionInput>;
-  Jobs?: InputMaybe<JobsUpdateWithNestedWhereUniqueAndPositionInput>;
-  Navigation?: InputMaybe<NavigationUpdateWithNestedWhereUniqueAndPositionInput>;
-  Projects_iOS?: InputMaybe<Projects_IOsUpdateWithNestedWhereUniqueAndPositionInput>;
-  Projects_web?: InputMaybe<Projects_WebUpdateWithNestedWhereUniqueAndPositionInput>;
-  SEO?: InputMaybe<SeoUpdateWithNestedWhereUniqueAndPositionInput>;
-};
-
-export type Layout_PrimarycontentUnionUpdateWithNestedWhereUniqueInput = {
-  About?: InputMaybe<AboutUpdateWithNestedWhereUniqueInput>;
-  Contact?: InputMaybe<ContactUpdateWithNestedWhereUniqueInput>;
-  Footer?: InputMaybe<FooterUpdateWithNestedWhereUniqueInput>;
-  GitHubRepositories?: InputMaybe<GitHubRepositoriesUpdateWithNestedWhereUniqueInput>;
-  Hero?: InputMaybe<HeroUpdateWithNestedWhereUniqueInput>;
-  Jobs?: InputMaybe<JobsUpdateWithNestedWhereUniqueInput>;
-  Navigation?: InputMaybe<NavigationUpdateWithNestedWhereUniqueInput>;
-  Projects_iOS?: InputMaybe<Projects_IOsUpdateWithNestedWhereUniqueInput>;
-  Projects_web?: InputMaybe<Projects_WebUpdateWithNestedWhereUniqueInput>;
-  SEO?: InputMaybe<SeoUpdateWithNestedWhereUniqueInput>;
-};
-
-export type Layout_PrimarycontentUnionUpsertWithNestedWhereUniqueAndPositionInput = {
-  About?: InputMaybe<AboutUpsertWithNestedWhereUniqueAndPositionInput>;
-  Contact?: InputMaybe<ContactUpsertWithNestedWhereUniqueAndPositionInput>;
-  Footer?: InputMaybe<FooterUpsertWithNestedWhereUniqueAndPositionInput>;
-  GitHubRepositories?: InputMaybe<GitHubRepositoriesUpsertWithNestedWhereUniqueAndPositionInput>;
-  Hero?: InputMaybe<HeroUpsertWithNestedWhereUniqueAndPositionInput>;
-  Jobs?: InputMaybe<JobsUpsertWithNestedWhereUniqueAndPositionInput>;
-  Navigation?: InputMaybe<NavigationUpsertWithNestedWhereUniqueAndPositionInput>;
-  Projects_iOS?: InputMaybe<Projects_IOsUpsertWithNestedWhereUniqueAndPositionInput>;
-  Projects_web?: InputMaybe<Projects_WebUpsertWithNestedWhereUniqueAndPositionInput>;
-  SEO?: InputMaybe<SeoUpsertWithNestedWhereUniqueAndPositionInput>;
-};
-
-export type Layout_PrimarycontentUnionUpsertWithNestedWhereUniqueInput = {
-  About?: InputMaybe<AboutUpsertWithNestedWhereUniqueInput>;
-  Contact?: InputMaybe<ContactUpsertWithNestedWhereUniqueInput>;
-  Footer?: InputMaybe<FooterUpsertWithNestedWhereUniqueInput>;
-  GitHubRepositories?: InputMaybe<GitHubRepositoriesUpsertWithNestedWhereUniqueInput>;
-  Hero?: InputMaybe<HeroUpsertWithNestedWhereUniqueInput>;
-  Jobs?: InputMaybe<JobsUpsertWithNestedWhereUniqueInput>;
-  Navigation?: InputMaybe<NavigationUpsertWithNestedWhereUniqueInput>;
-  Projects_iOS?: InputMaybe<Projects_IOsUpsertWithNestedWhereUniqueInput>;
-  Projects_web?: InputMaybe<Projects_WebUpsertWithNestedWhereUniqueInput>;
-  SEO?: InputMaybe<SeoUpsertWithNestedWhereUniqueInput>;
-};
-
-export type Layout_PrimarycontentUnionWhereInput = {
-  About?: InputMaybe<AboutWhereInput>;
-  Contact?: InputMaybe<ContactWhereInput>;
-  Footer?: InputMaybe<FooterWhereInput>;
-  GitHubRepositories?: InputMaybe<GitHubRepositoriesWhereInput>;
-  Hero?: InputMaybe<HeroWhereInput>;
-  Jobs?: InputMaybe<JobsWhereInput>;
-  Navigation?: InputMaybe<NavigationWhereInput>;
-  Projects_iOS?: InputMaybe<Projects_IOsWhereInput>;
-  Projects_web?: InputMaybe<Projects_WebWhereInput>;
-  SEO?: InputMaybe<SeoWhereInput>;
-};
-
-export type Layout_PrimarycontentUnionWhereUniqueInput = {
-  About?: InputMaybe<AboutWhereUniqueInput>;
-  Contact?: InputMaybe<ContactWhereUniqueInput>;
-  Footer?: InputMaybe<FooterWhereUniqueInput>;
-  GitHubRepositories?: InputMaybe<GitHubRepositoriesWhereUniqueInput>;
-  Hero?: InputMaybe<HeroWhereUniqueInput>;
-  Jobs?: InputMaybe<JobsWhereUniqueInput>;
-  Navigation?: InputMaybe<NavigationWhereUniqueInput>;
-  Projects_iOS?: InputMaybe<Projects_IOsWhereUniqueInput>;
-  Projects_web?: InputMaybe<Projects_WebWhereUniqueInput>;
-  SEO?: InputMaybe<SeoWhereUniqueInput>;
 };
 
 /** Locale system enumeration */
@@ -5867,14 +5879,14 @@ export enum NavigationOrderByInput {
   IsLanguageSelectorVisibleDesc = 'isLanguageSelectorVisible_DESC'
 }
 
-export type NavigationParent = Layout_Primary;
+export type NavigationParent = ComponentsContainer;
 
 export type NavigationParentConnectInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryConnectInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerConnectInput>;
 };
 
 export type NavigationParentCreateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerCreateInput>;
 };
 
 export type NavigationParentCreateManyInlineInput = {
@@ -5888,11 +5900,11 @@ export type NavigationParentCreateOneInlineInput = {
 };
 
 export type NavigationParentCreateWithPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateWithPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerCreateWithPositionInput>;
 };
 
 export type NavigationParentUpdateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateInput>;
 };
 
 export type NavigationParentUpdateManyInlineInput = {
@@ -5907,7 +5919,7 @@ export type NavigationParentUpdateManyInlineInput = {
 };
 
 export type NavigationParentUpdateManyWithNestedWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateManyWithNestedWhereInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateManyWithNestedWhereInput>;
 };
 
 export type NavigationParentUpdateOneInlineInput = {
@@ -5922,27 +5934,27 @@ export type NavigationParentUpdateOneInlineInput = {
 };
 
 export type NavigationParentUpdateWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueAndPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type NavigationParentUpdateWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateWithNestedWhereUniqueInput>;
 };
 
 export type NavigationParentUpsertWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueAndPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpsertWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type NavigationParentUpsertWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpsertWithNestedWhereUniqueInput>;
 };
 
 export type NavigationParentWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerWhereInput>;
 };
 
 export type NavigationParentWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerWhereUniqueInput>;
 };
 
 export type NavigationUpdateInput = {
@@ -6095,6 +6107,7 @@ export type Node = {
 
 export type Page = Entity & Node & {
   __typename?: 'Page';
+  components: ComponentsContainer;
   /** The time the document was created */
   createdAt: Scalars['DateTime']['output'];
   /** User that created this document */
@@ -6106,7 +6119,6 @@ export type Page = Entity & Node & {
   /** The unique identifier */
   id: Scalars['ID']['output'];
   isHidden?: Maybe<Scalars['Boolean']['output']>;
-  layout: Layout_Primary;
   nestedPages: Array<Page>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
@@ -6121,6 +6133,12 @@ export type Page = Entity & Node & {
   updatedAt: Scalars['DateTime']['output'];
   /** User that last updated this document */
   updatedBy?: Maybe<User>;
+};
+
+
+export type PageComponentsArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
 };
 
 
@@ -6141,12 +6159,6 @@ export type PageHistoryArgs = {
   limit?: Scalars['Int']['input'];
   skip?: Scalars['Int']['input'];
   stageOverride?: InputMaybe<Stage>;
-};
-
-
-export type PageLayoutArgs = {
-  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
-  locales?: InputMaybe<Array<Locale>>;
 };
 
 
@@ -6206,9 +6218,9 @@ export type PageConnection = {
 export type PageCreateInput = {
   cle1ru7u13t4y01uf2npoa8jk?: InputMaybe<NavigationCreateManyInlineInput>;
   cm8aivdhh0s2s07vwe17p17h8?: InputMaybe<PageCreateManyInlineInput>;
+  components: ComponentsContainerCreateOneInlineInput;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   isHidden?: InputMaybe<Scalars['Boolean']['input']>;
-  layout: Layout_PrimaryCreateOneInlineInput;
   nestedPages?: InputMaybe<PageCreateManyInlineInput>;
   slug?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
@@ -6263,6 +6275,7 @@ export type PageManyWhereInput = {
   OR?: InputMaybe<Array<PageWhereInput>>;
   /** Contains search across all appropriate fields. */
   _search?: InputMaybe<Scalars['String']['input']>;
+  components?: InputMaybe<ComponentsContainerWhereInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -6304,7 +6317,6 @@ export type PageManyWhereInput = {
   isHidden?: InputMaybe<Scalars['Boolean']['input']>;
   /** Any other value that exists and is not equal to the given value. */
   isHidden_not?: InputMaybe<Scalars['Boolean']['input']>;
-  layout?: InputMaybe<Layout_PrimaryWhereInput>;
   nestedPages_every?: InputMaybe<PageWhereInput>;
   nestedPages_none?: InputMaybe<PageWhereInput>;
   nestedPages_some?: InputMaybe<PageWhereInput>;
@@ -6403,8 +6415,8 @@ export enum PageOrderByInput {
 export type PageUpdateInput = {
   cle1ru7u13t4y01uf2npoa8jk?: InputMaybe<NavigationUpdateManyInlineInput>;
   cm8aivdhh0s2s07vwe17p17h8?: InputMaybe<PageUpdateManyInlineInput>;
+  components?: InputMaybe<ComponentsContainerUpdateOneInlineInput>;
   isHidden?: InputMaybe<Scalars['Boolean']['input']>;
-  layout?: InputMaybe<Layout_PrimaryUpdateOneInlineInput>;
   nestedPages?: InputMaybe<PageUpdateManyInlineInput>;
   slug?: InputMaybe<Scalars['String']['input']>;
   title?: InputMaybe<Scalars['String']['input']>;
@@ -6491,6 +6503,7 @@ export type PageWhereInput = {
   OR?: InputMaybe<Array<PageWhereInput>>;
   /** Contains search across all appropriate fields. */
   _search?: InputMaybe<Scalars['String']['input']>;
+  components?: InputMaybe<ComponentsContainerWhereInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -6532,7 +6545,6 @@ export type PageWhereInput = {
   isHidden?: InputMaybe<Scalars['Boolean']['input']>;
   /** Any other value that exists and is not equal to the given value. */
   isHidden_not?: InputMaybe<Scalars['Boolean']['input']>;
-  layout?: InputMaybe<Layout_PrimaryWhereInput>;
   nestedPages_every?: InputMaybe<PageWhereInput>;
   nestedPages_none?: InputMaybe<PageWhereInput>;
   nestedPages_some?: InputMaybe<PageWhereInput>;
@@ -7233,7 +7245,7 @@ export type ProjectWhereUniqueInput = {
 
 export type Projects_IOs = Entity & {
   __typename?: 'Projects_iOS';
-  headline: Scalars['String']['output'];
+  headline?: Maybe<Scalars['String']['output']>;
   /** The unique identifier */
   id: Scalars['ID']['output'];
   /** System stage field */
@@ -7258,7 +7270,7 @@ export type Projects_IOsConnection = {
 };
 
 export type Projects_IOsCreateInput = {
-  headline: Scalars['String']['input'];
+  headline?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type Projects_IOsCreateManyInlineInput = {
@@ -7344,14 +7356,14 @@ export enum Projects_IOsOrderByInput {
   IdDesc = 'id_DESC'
 }
 
-export type Projects_IOsParent = Layout_Primary;
+export type Projects_IOsParent = ComponentsContainer;
 
 export type Projects_IOsParentConnectInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryConnectInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerConnectInput>;
 };
 
 export type Projects_IOsParentCreateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerCreateInput>;
 };
 
 export type Projects_IOsParentCreateManyInlineInput = {
@@ -7365,11 +7377,11 @@ export type Projects_IOsParentCreateOneInlineInput = {
 };
 
 export type Projects_IOsParentCreateWithPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateWithPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerCreateWithPositionInput>;
 };
 
 export type Projects_IOsParentUpdateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateInput>;
 };
 
 export type Projects_IOsParentUpdateManyInlineInput = {
@@ -7384,7 +7396,7 @@ export type Projects_IOsParentUpdateManyInlineInput = {
 };
 
 export type Projects_IOsParentUpdateManyWithNestedWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateManyWithNestedWhereInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateManyWithNestedWhereInput>;
 };
 
 export type Projects_IOsParentUpdateOneInlineInput = {
@@ -7399,27 +7411,27 @@ export type Projects_IOsParentUpdateOneInlineInput = {
 };
 
 export type Projects_IOsParentUpdateWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueAndPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type Projects_IOsParentUpdateWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateWithNestedWhereUniqueInput>;
 };
 
 export type Projects_IOsParentUpsertWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueAndPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpsertWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type Projects_IOsParentUpsertWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpsertWithNestedWhereUniqueInput>;
 };
 
 export type Projects_IOsParentWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerWhereInput>;
 };
 
 export type Projects_IOsParentWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerWhereUniqueInput>;
 };
 
 export type Projects_IOsUpdateInput = {
@@ -7555,7 +7567,7 @@ export type Projects_IOsWhereUniqueInput = {
 
 export type Projects_Web = Entity & {
   __typename?: 'Projects_web';
-  headline: Scalars['String']['output'];
+  headline?: Maybe<Scalars['String']['output']>;
   /** The unique identifier */
   id: Scalars['ID']['output'];
   projects: Array<Project>;
@@ -7594,7 +7606,7 @@ export type Projects_WebConnection = {
 };
 
 export type Projects_WebCreateInput = {
-  headline: Scalars['String']['input'];
+  headline?: InputMaybe<Scalars['String']['input']>;
   projects?: InputMaybe<ProjectCreateManyInlineInput>;
 };
 
@@ -7684,14 +7696,14 @@ export enum Projects_WebOrderByInput {
   IdDesc = 'id_DESC'
 }
 
-export type Projects_WebParent = Layout_Primary;
+export type Projects_WebParent = ComponentsContainer;
 
 export type Projects_WebParentConnectInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryConnectInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerConnectInput>;
 };
 
 export type Projects_WebParentCreateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerCreateInput>;
 };
 
 export type Projects_WebParentCreateManyInlineInput = {
@@ -7705,11 +7717,11 @@ export type Projects_WebParentCreateOneInlineInput = {
 };
 
 export type Projects_WebParentCreateWithPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateWithPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerCreateWithPositionInput>;
 };
 
 export type Projects_WebParentUpdateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateInput>;
 };
 
 export type Projects_WebParentUpdateManyInlineInput = {
@@ -7724,7 +7736,7 @@ export type Projects_WebParentUpdateManyInlineInput = {
 };
 
 export type Projects_WebParentUpdateManyWithNestedWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateManyWithNestedWhereInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateManyWithNestedWhereInput>;
 };
 
 export type Projects_WebParentUpdateOneInlineInput = {
@@ -7739,27 +7751,27 @@ export type Projects_WebParentUpdateOneInlineInput = {
 };
 
 export type Projects_WebParentUpdateWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueAndPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type Projects_WebParentUpdateWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateWithNestedWhereUniqueInput>;
 };
 
 export type Projects_WebParentUpsertWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueAndPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpsertWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type Projects_WebParentUpsertWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpsertWithNestedWhereUniqueInput>;
 };
 
 export type Projects_WebParentWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerWhereInput>;
 };
 
 export type Projects_WebParentWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerWhereUniqueInput>;
 };
 
 export type Projects_WebUpdateInput = {
@@ -8484,14 +8496,14 @@ export enum SeoOrderByInput {
   KeywordsDesc = 'keywords_DESC'
 }
 
-export type SeoParent = Layout_Primary;
+export type SeoParent = ComponentsContainer;
 
 export type SeoParentConnectInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryConnectInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerConnectInput>;
 };
 
 export type SeoParentCreateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerCreateInput>;
 };
 
 export type SeoParentCreateManyInlineInput = {
@@ -8505,11 +8517,11 @@ export type SeoParentCreateOneInlineInput = {
 };
 
 export type SeoParentCreateWithPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryCreateWithPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerCreateWithPositionInput>;
 };
 
 export type SeoParentUpdateInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateInput>;
 };
 
 export type SeoParentUpdateManyInlineInput = {
@@ -8524,7 +8536,7 @@ export type SeoParentUpdateManyInlineInput = {
 };
 
 export type SeoParentUpdateManyWithNestedWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateManyWithNestedWhereInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateManyWithNestedWhereInput>;
 };
 
 export type SeoParentUpdateOneInlineInput = {
@@ -8539,27 +8551,27 @@ export type SeoParentUpdateOneInlineInput = {
 };
 
 export type SeoParentUpdateWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueAndPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type SeoParentUpdateWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpdateWithNestedWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateWithNestedWhereUniqueInput>;
 };
 
 export type SeoParentUpsertWithNestedWhereUniqueAndPositionInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueAndPositionInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpsertWithNestedWhereUniqueAndPositionInput>;
 };
 
 export type SeoParentUpsertWithNestedWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryUpsertWithNestedWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpsertWithNestedWhereUniqueInput>;
 };
 
 export type SeoParentWhereInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerWhereInput>;
 };
 
 export type SeoParentWhereUniqueInput = {
-  Layout_Primary?: InputMaybe<Layout_PrimaryWhereUniqueInput>;
+  ComponentsContainer?: InputMaybe<ComponentsContainerWhereUniqueInput>;
 };
 
 export type SeoUpdateInput = {
@@ -10224,6 +10236,328 @@ export enum Stage {
   /** The Published stage is where you can publish your content to. */
   Published = 'PUBLISHED'
 }
+
+export type Statistics = Entity & {
+  __typename?: 'Statistics';
+  headline?: Maybe<Scalars['String']['output']>;
+  /** The unique identifier */
+  id: Scalars['ID']['output'];
+  /** System stage field */
+  stage: Stage;
+};
+
+export type StatisticsConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: StatisticsWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type StatisticsConnection = {
+  __typename?: 'StatisticsConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<StatisticsEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type StatisticsCreateInput = {
+  headline?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type StatisticsCreateManyInlineInput = {
+  /** Create and connect multiple existing Statistics documents */
+  create?: InputMaybe<Array<StatisticsCreateInput>>;
+};
+
+export type StatisticsCreateOneInlineInput = {
+  /** Create and connect one Statistics document */
+  create?: InputMaybe<StatisticsCreateInput>;
+};
+
+export type StatisticsCreateWithPositionInput = {
+  /** Document to create */
+  data: StatisticsCreateInput;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+};
+
+/** An edge in a connection. */
+export type StatisticsEdge = {
+  __typename?: 'StatisticsEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: Statistics;
+};
+
+/** Identifies documents */
+export type StatisticsManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<StatisticsWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<StatisticsWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<StatisticsWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  headline?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  headline_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  headline_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export enum StatisticsOrderByInput {
+  HeadlineAsc = 'headline_ASC',
+  HeadlineDesc = 'headline_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC'
+}
+
+export type StatisticsParent = ComponentsContainer;
+
+export type StatisticsParentConnectInput = {
+  ComponentsContainer?: InputMaybe<ComponentsContainerConnectInput>;
+};
+
+export type StatisticsParentCreateInput = {
+  ComponentsContainer?: InputMaybe<ComponentsContainerCreateInput>;
+};
+
+export type StatisticsParentCreateManyInlineInput = {
+  /** Create and connect multiple existing StatisticsParent documents */
+  create?: InputMaybe<Array<StatisticsParentCreateInput>>;
+};
+
+export type StatisticsParentCreateOneInlineInput = {
+  /** Create and connect one StatisticsParent document */
+  create?: InputMaybe<StatisticsParentCreateInput>;
+};
+
+export type StatisticsParentCreateWithPositionInput = {
+  ComponentsContainer?: InputMaybe<ComponentsContainerCreateWithPositionInput>;
+};
+
+export type StatisticsParentUpdateInput = {
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateInput>;
+};
+
+export type StatisticsParentUpdateManyInlineInput = {
+  /** Create and connect multiple StatisticsParent component instances */
+  create?: InputMaybe<Array<StatisticsParentCreateWithPositionInput>>;
+  /** Delete multiple StatisticsParent documents */
+  delete?: InputMaybe<Array<StatisticsParentWhereUniqueInput>>;
+  /** Update multiple StatisticsParent component instances */
+  update?: InputMaybe<Array<StatisticsParentUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple StatisticsParent component instances */
+  upsert?: InputMaybe<Array<StatisticsParentUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type StatisticsParentUpdateManyWithNestedWhereInput = {
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateManyWithNestedWhereInput>;
+};
+
+export type StatisticsParentUpdateOneInlineInput = {
+  /** Create and connect one StatisticsParent document */
+  create?: InputMaybe<StatisticsParentCreateInput>;
+  /** Delete currently connected StatisticsParent document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single StatisticsParent document */
+  update?: InputMaybe<StatisticsParentUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single StatisticsParent document */
+  upsert?: InputMaybe<StatisticsParentUpsertWithNestedWhereUniqueInput>;
+};
+
+export type StatisticsParentUpdateWithNestedWhereUniqueAndPositionInput = {
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type StatisticsParentUpdateWithNestedWhereUniqueInput = {
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateWithNestedWhereUniqueInput>;
+};
+
+export type StatisticsParentUpsertWithNestedWhereUniqueAndPositionInput = {
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpsertWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type StatisticsParentUpsertWithNestedWhereUniqueInput = {
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpsertWithNestedWhereUniqueInput>;
+};
+
+export type StatisticsParentWhereInput = {
+  ComponentsContainer?: InputMaybe<ComponentsContainerWhereInput>;
+};
+
+export type StatisticsParentWhereUniqueInput = {
+  ComponentsContainer?: InputMaybe<ComponentsContainerWhereUniqueInput>;
+};
+
+export type StatisticsUpdateInput = {
+  headline?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type StatisticsUpdateManyInlineInput = {
+  /** Create and connect multiple Statistics component instances */
+  create?: InputMaybe<Array<StatisticsCreateWithPositionInput>>;
+  /** Delete multiple Statistics documents */
+  delete?: InputMaybe<Array<StatisticsWhereUniqueInput>>;
+  /** Update multiple Statistics component instances */
+  update?: InputMaybe<Array<StatisticsUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple Statistics component instances */
+  upsert?: InputMaybe<Array<StatisticsUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type StatisticsUpdateManyInput = {
+  headline?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type StatisticsUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: StatisticsUpdateManyInput;
+  /** Document search */
+  where: StatisticsWhereInput;
+};
+
+export type StatisticsUpdateOneInlineInput = {
+  /** Create and connect one Statistics document */
+  create?: InputMaybe<StatisticsCreateInput>;
+  /** Delete currently connected Statistics document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single Statistics document */
+  update?: InputMaybe<StatisticsUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Statistics document */
+  upsert?: InputMaybe<StatisticsUpsertWithNestedWhereUniqueInput>;
+};
+
+export type StatisticsUpdateWithNestedWhereUniqueAndPositionInput = {
+  /** Document to update */
+  data?: InputMaybe<StatisticsUpdateInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: StatisticsWhereUniqueInput;
+};
+
+export type StatisticsUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: StatisticsUpdateInput;
+  /** Unique document search */
+  where: StatisticsWhereUniqueInput;
+};
+
+export type StatisticsUpsertInput = {
+  /** Create document if it didn't exist */
+  create: StatisticsCreateInput;
+  /** Update document if it exists */
+  update: StatisticsUpdateInput;
+};
+
+export type StatisticsUpsertWithNestedWhereUniqueAndPositionInput = {
+  /** Document to upsert */
+  data?: InputMaybe<StatisticsUpsertInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: StatisticsWhereUniqueInput;
+};
+
+export type StatisticsUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: StatisticsUpsertInput;
+  /** Unique document search */
+  where: StatisticsWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type StatisticsWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<StatisticsWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<StatisticsWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<StatisticsWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  headline?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  headline_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  headline_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+};
+
+/** References Statistics record uniquely */
+export type StatisticsWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
 
 export enum SystemDateTimeFieldVariation {
   Base = 'BASE',
