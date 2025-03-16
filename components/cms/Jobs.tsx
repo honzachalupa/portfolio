@@ -1,6 +1,6 @@
 "use client";
 
-import { Job } from "@/hygraph/_generated/graphql";
+import { Job } from "@/actions/hygraph/_generated/graphql";
 import dayjs from "dayjs";
 import { Container } from "../Container";
 import { MarkdownRenderer } from "../MarkdownRenderer";

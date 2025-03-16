@@ -1,7 +1,7 @@
 "use client";
 
-import hygraph from "@/hygraph";
-import { HygraphGetPagesData } from "@/hygraph/pages";
+import hygraph from "@/actions/hygraph";
+import { HygraphGetPagesData } from "@/actions/hygraph/pages";
 import { Button } from "@heroui/button";
 import {
   Dropdown,

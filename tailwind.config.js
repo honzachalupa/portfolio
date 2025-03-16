@@ -11,11 +11,13 @@ const config = {
     "./node_modules/@heroui/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   darkMode: "class",
-  plugins: [heroui(/* {
-    layout: {
-      radius: "15px"
-    }
-  } */)],
+  plugins: [
+    heroui({
+      /* layout: {
+          radius: "15px"
+        } */
+    }),
+  ],
 };
 
 export default config;

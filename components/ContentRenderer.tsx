@@ -1,4 +1,4 @@
-import { HygraphGetPageData } from "@/hygraph/page";
+import { HygraphGetPageData } from "@/actions/hygraph/page";
 import { Fragment } from "react";
 import { About } from "./cms/About";
 import { Footer } from "./cms/Footer";

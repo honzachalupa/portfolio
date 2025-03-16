@@ -1,5 +1,5 @@
-import { GitHubRepositoryActions } from "@/actions/github";
-import { GitHubRepositories as GitHubRepositoriesProps } from "@/hygraph/_generated/graphql";
+import githubApi from "@/actions/github";
+import { GitHubRepositories as GitHubRepositoriesProps } from "@/actions/hygraph/_generated/graphql";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import { cache } from "react";
@@ -13,7 +13,9 @@ export const preload = (): void => {
 };
 
 const fetchData = cache(async () => {
-  const data = await GitHubRepositoryActions.search();
+  const data = await githubApi.search({
+    limit: 6,
+  });
 
   return data;
 });

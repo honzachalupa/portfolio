@@ -1,6 +1,6 @@
 "use client";
 
-import hygraph from "@/hygraph";
+import hygraph from "@/actions/hygraph";
 import {
   BreadcrumbItem,
   Breadcrumbs as HeroBreadcrumbs,

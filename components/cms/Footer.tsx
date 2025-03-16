@@ -1,6 +1,6 @@
 "use client";
 
-import { Footer as FooterProps } from "@/hygraph/_generated/graphql";
+import { Footer as FooterProps } from "@/actions/hygraph/_generated/graphql";
 import dayjs from "dayjs";
 import { ReactSVG } from "react-svg";
 

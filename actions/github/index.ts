@@ -37,7 +37,15 @@ const headers = {
   Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
 };
 
-const search = (): Promise<IGitHubRepository[]> =>
+const search = (
+  options:
+    | {
+        limit?: number;
+        includeWithoutDescription?: boolean;
+        includeArchived?: boolean;
+      }
+    | undefined = undefined
+): Promise<IGitHubRepository[]> =>
   fetch("https://api.github.com/users/honzachalupa/repos", {
     method: "GET",
     headers,
@@ -45,26 +53,41 @@ const search = (): Promise<IGitHubRepository[]> =>
     .then((response) => response.json())
     .then((data: IGitHubRepositoryOriginal[]) =>
       data
-        .filter(({ description, archived }) => description && !archived)
+        .filter(
+          ({ description, archived }) =>
+            (options?.includeWithoutDescription || description) &&
+            (options?.includeArchived || !archived)
+        )
         .sort(
           (a, b) =>
             new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime()
         )
-        .map((original) => {
-          const data: IGitHubRepository = {
-            id: original.id,
-            name: original.name,
-            fullName: original.full_name,
-            description: original.description,
-            url: original.html_url,
-            websiteUrl: original.homepage,
-            topics: original.topics,
-            pushedAt: original.pushed_at,
-          };
+        .map(
+          ({
+            id,
+            name,
+            full_name: fullName,
+            description,
+            html_url: url,
+            homepage: websiteUrl,
+            topics,
+            pushed_at: pushedAt,
+          }) => {
+            const data: IGitHubRepository = {
+              id,
+              name,
+              fullName,
+              description,
+              url,
+              websiteUrl,
+              topics,
+              pushedAt,
+            };
 
-          return data;
-        })
-        .slice(0, 6)
+            return data;
+          }
+        )
+        .slice(0, options?.limit ?? 100)
     );
 
 const getReadme = async (
@@ -82,7 +105,9 @@ const getReadme = async (
       content: Buffer.from(original.content, original.encoding).toString(),
     }));
 
-export const GitHubRepositoryActions = {
+const githubApi = {
   search,
   getReadme,
 };
+
+export default githubApi;

@@ -1,8 +1,7 @@
-import { AppleAppStoreApp } from "@/app/api/apple-app-store/route";
-import { Projects_IOs as Projects_iOSProps } from "@/hygraph/_generated/graphql";
+import appleAppStoreApi from "@/actions/appleAppStore";
+import { Projects_IOs as Projects_iOSProps } from "@/actions/hygraph/_generated/graphql";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
-import { cache } from "react";
 import { FaAppStoreIos } from "react-icons/fa";
 import "server-only";
 import { Container } from "../Container";
@@ -10,37 +9,13 @@ import { MarkdownRenderer } from "../MarkdownRenderer";
 import { ProjectCard, ProjectCardLink } from "../ProjectCard";
 
 export function preload(): void {
-  void fetchApps();
+  void appleAppStoreApi.getApps({ limit: 6 });
 }
-
-const fetchApps = cache(async () => {
-  try {
-    const response = await fetch(
-      process.env.NEXT_PUBLIC_API_URL + "/api/apple-app-store"
-    );
-
-    if (!response.ok) {
-      console.error(
-        "Error fetching apps:",
-        response.status,
-        response.statusText
-      );
-
-      return [];
-    }
-
-    const data = (await response.json()) as AppleAppStoreApp[];
-
-    return data.filter(({ description }) => description);
-  } catch (error) {
-    console.error("Failed to fetch apps:", error);
-  }
-});
 
 export async function Projects_iOS({
   headline,
 }: Projects_iOSProps): Promise<React.ReactNode> {
-  const apps = await fetchApps();
+  const apps = await appleAppStoreApi.getApps({ limit: 6 });
 
   return (
     <Container headline={headline}>

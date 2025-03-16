@@ -1,5 +1,5 @@
 import { ContentRenderer } from "@/components/ContentRenderer";
-import hygraph from "@/hygraph";
+import hygraph from "@/actions/hygraph";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {

@@ -1,4 +1,4 @@
-import { Maybe } from "@/hygraph/_generated/graphql";
+import { Maybe } from "@/actions/hygraph/_generated/graphql";
 import clsx from "clsx";
 import { ReactNode } from "react";
 

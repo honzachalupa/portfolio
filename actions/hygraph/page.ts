@@ -9,46 +9,11 @@ export async function getPage(
   slug: string
 ): Promise<HygraphGetPageData | null> {
   const query = `query ($slug: String!) {
-    page(where: {slug: $slug}) {
+    page(where: { slug: $slug }) {
       slug
       title
-      layout {
+      components {
         content {
-          ... on SEO {
-          __typename
-            description
-            keywords
-          }
-          ... on Navigation {
-          __typename
-            indexTitleFallback
-            pages {
-              title
-              slug
-            }
-            isLanguageSelectorVisible
-          }
-          ... on Hero {
-          __typename
-            content {
-              text
-              markdown
-            }
-          }
-          ... on Footer {
-          __typename
-            yearFrom
-            socialNetworks {
-              name
-              url
-              icon {
-                url
-                width
-                mimeType
-              }
-            }
-            text
-          }
           ... on About {
             __typename
             image {
@@ -61,6 +26,17 @@ export async function getPage(
               text
               markdown
             }
+          }
+          ... on Contact {
+            __typename
+            headline
+            phoneNumber
+            emailAddress
+          }
+          ... on GitHubRepositories {
+            __typename
+            headline
+            limit
           }
           ... on Jobs {
             __typename
@@ -84,6 +60,10 @@ export async function getPage(
                 }
               }
             }
+          }
+          ... on Projects_iOS {
+            __typename
+            headline
           }
           ... on Projects_web {
             __typename
@@ -115,20 +95,29 @@ export async function getPage(
               platform
             }
           }
-          ... on Projects_iOS {
+          ... on Statistics {
             __typename
             headline
+            items {
+              key
+              description
+              tooltipDescription
+              unit
+            }
           }
-          ... on GitHubRepositories {
+          ... on Footer {
             __typename
-            headline
-            limit
-          }
-          ... on Contact {
-            __typename
-            headline
-            phoneNumber
-            emailAddress
+            yearFrom
+            socialNetworks {
+              name
+              url
+              icon {
+                url
+                width
+                mimeType
+              }
+            }
+            text
           }
         }
       }

@@ -13,7 +13,7 @@ export async function executeHygraphQuery<T>(
   revalidationTime: number = 60
 ): Promise<T | null> {
   const url = process.env.HYGRAPH_CONTENT_API_URL ?? "";
-  
+
   if (!url) {
     console.error("HYGRAPH_CONTENT_API_URL environment variable is not set");
     return null;
@@ -45,12 +45,14 @@ export async function executeHygraphQuery<T>(
 
     if (json.errors) {
       console.error("GraphQL errors:", JSON.stringify(json.errors, null, 2));
+
       return null;
     }
 
     return json.data;
   } catch (error) {
     console.error("Error fetching data from Hygraph:", error);
+
     return null;
   }
 }

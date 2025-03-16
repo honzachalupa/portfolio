@@ -1,5 +1,5 @@
 import { ContentRenderer } from "@/components/ContentRenderer";
-import hygraph from "@/hygraph";
+import hygraph from "@/actions/hygraph";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import type { Metadata } from "next";

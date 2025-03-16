@@ -1,4 +1,4 @@
-import { Projects_Web as Projects_webProps } from "@/hygraph/_generated/graphql";
+import { Projects_Web as Projects_webProps } from "@/actions/hygraph/_generated/graphql";
 import { Container } from "../Container";
 import { MarkdownRenderer } from "../MarkdownRenderer";
 import { ProjectCard, ProjectCardLink } from "../ProjectCard";
