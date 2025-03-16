@@ -19,11 +19,11 @@ interface Breadcrumb {
   slug: string;
 }
 
-export function Breadcrumbs({ className }: BreadcrumbsProps) {
+export function Breadcrumbs({ className }: BreadcrumbsProps): React.ReactNode {
   const currentSlug = usePathname();
   const [breadcrumbs, setBreadcrumb] = useState<Breadcrumb[]>();
 
-  const getBreadcrumb = async () => {
+  const getBreadcrumb = async (): Promise<void> => {
     const pages = await hygraph.getPages();
 
     const breadcrumbs = pages

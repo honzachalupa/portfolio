@@ -1,7 +1,12 @@
 "use server";
 
-import { HygraphGetPagesData } from "@/hygraph";
+import { Page as HygraphPage } from "./_generated/graphql";
 import { executeHygraphQuery } from "./utils";
+
+export type HygraphGetPagesData = Pick<
+  HygraphPage,
+  "slug" | "title" | "isHidden" | "nestedPages"
+>[];
 
 export async function getPages(): Promise<HygraphGetPagesData | null> {
   const query = `query {
@@ -17,5 +22,6 @@ export async function getPages(): Promise<HygraphGetPagesData | null> {
   }`;
 
   const data = await executeHygraphQuery<{ pages: HygraphGetPagesData }>(query);
+
   return data?.pages || null;
 }

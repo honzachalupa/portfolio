@@ -5,11 +5,11 @@ import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
 import { CgDarkMode } from "react-icons/cg";
 
-export function ThemeSwitcher() {
+export function ThemeSwitcher(): React.ReactNode {
   const [isClient, setIsClient] = useState(false);
   const { theme, setTheme } = useTheme();
 
-  const toggle = () => {
+  const toggle = (): void => {
     setTheme(theme === "light" ? "dark" : "light");
   };
 
@@ -22,6 +22,12 @@ export function ThemeSwitcher() {
   }
 
   return (
-    <Button variant="light" size="lg" startContent={<CgDarkMode />} isIconOnly onPress={toggle} />
+    <Button
+      variant="light"
+      size="lg"
+      startContent={<CgDarkMode />}
+      isIconOnly
+      onPress={toggle}
+    />
   );
 }

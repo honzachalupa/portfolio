@@ -8,7 +8,7 @@ import { Container } from "../Container";
 import { MarkdownRenderer } from "../MarkdownRenderer";
 import { ProjectCard, ProjectCardLink } from "../ProjectCard";
 
-export const preload = () => {
+export const preload = (): void => {
   void fetchData();
 };
 
@@ -20,7 +20,7 @@ const fetchData = cache(async () => {
 
 export async function GitHubRepositories({
   headline,
-}: GitHubRepositoriesProps) {
+}: GitHubRepositoriesProps): Promise<React.ReactNode> {
   const repositories = await fetchData();
 
   return (

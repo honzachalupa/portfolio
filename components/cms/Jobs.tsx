@@ -11,7 +11,7 @@ interface JobsProps {
   jobs: Job[];
 }
 
-export function Jobs({ headline, jobs }: JobsProps) {
+export function Jobs({ headline, jobs }: JobsProps): React.ReactNode {
   jobs = jobs.sort((a, b) => dayjs(b.dateFrom).diff(a.dateFrom));
 
   return (

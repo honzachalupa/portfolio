@@ -3,7 +3,11 @@ import Image from "next/image";
 import { Container } from "../Container";
 import { MarkdownRenderer } from "../MarkdownRenderer";
 
-export function About({ headline, content, image }: AboutProps) {
+export function About({
+  headline,
+  content,
+  image,
+}: AboutProps): React.ReactNode {
   return (
     <Container headline={headline}>
       <div className="group flex">

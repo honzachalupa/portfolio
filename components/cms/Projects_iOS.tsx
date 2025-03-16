@@ -9,9 +9,9 @@ import { Container } from "../Container";
 import { MarkdownRenderer } from "../MarkdownRenderer";
 import { ProjectCard, ProjectCardLink } from "../ProjectCard";
 
-export const preload = () => {
+export function preload(): void {
   void fetchApps();
-};
+}
 
 const fetchApps = cache(async () => {
   try {
@@ -37,7 +37,9 @@ const fetchApps = cache(async () => {
   }
 });
 
-export async function Projects_iOS({ headline }: Projects_iOSProps) {
+export async function Projects_iOS({
+  headline,
+}: Projects_iOSProps): Promise<React.ReactNode> {
   const apps = await fetchApps();
 
   return (

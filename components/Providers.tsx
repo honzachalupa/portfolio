@@ -13,7 +13,11 @@ interface ProvidersProps {
   themeProps?: ThemeProviderProps;
 }
 
-export function Providers({ children, locale, themeProps }: ProvidersProps) {
+export function Providers({
+  children,
+  locale,
+  themeProps,
+}: ProvidersProps): React.ReactNode {
   const router = useRouter();
 
   return (

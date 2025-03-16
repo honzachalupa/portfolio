@@ -8,18 +8,20 @@ interface MarkdownRendererProps {
   className?: string;
 }
 
-export const MarkdownRenderer: React.FC<MarkdownRendererProps> = ({
+export function MarkdownRenderer({
   components,
   children,
   className,
-}) => (
-  <div className={className}>
-    <ReactMarkdown
-      // rehypePlugins={[rehypeRaw]}
-      // remarkPlugins={[gfm]}
-      components={components}
-    >
-      {children}
-    </ReactMarkdown>
-  </div>
-);
+}: MarkdownRendererProps): React.ReactNode {
+  return (
+    <div className={className}>
+      <ReactMarkdown
+        // rehypePlugins={[rehypeRaw]}
+        // remarkPlugins={[gfm]}
+        components={components}
+      >
+        {children}
+      </ReactMarkdown>
+    </div>
+  );
+}

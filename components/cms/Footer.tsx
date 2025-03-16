@@ -4,7 +4,7 @@ import { Footer as FooterProps } from "@/hygraph/_generated/graphql";
 import dayjs from "dayjs";
 import { ReactSVG } from "react-svg";
 
-export function Footer({ socialNetworks, text }: FooterProps) {
+export function Footer({ socialNetworks, text }: FooterProps): React.ReactNode {
   const years = [dayjs("2008-01-01").year(), dayjs().year()].join(" - ");
 
   return (

@@ -3,7 +3,10 @@ import { Container } from "../Container";
 import { MarkdownRenderer } from "../MarkdownRenderer";
 import { ProjectCard, ProjectCardLink } from "../ProjectCard";
 
-export function Projects_web({ headline, projects }: Projects_webProps) {
+export function Projects_web({
+  headline,
+  projects,
+}: Projects_webProps): React.ReactNode {
   return (
     <Container headline={headline}>
       <div className="flex flex-wrap gap-[12px]">
@@ -49,6 +52,7 @@ export function Projects_web({ headline, projects }: Projects_webProps) {
               }
               description={
                 <>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={image.url}
                     alt={name}
@@ -63,6 +67,7 @@ export function Projects_web({ headline, projects }: Projects_webProps) {
                   <div className="flex items-center">
                     <span>Made for</span>
 
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={client.logo.url}
                       alt={`${client.name} icon`}

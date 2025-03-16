@@ -1,6 +1,7 @@
 "use client";
 
-import hygraph, { HygraphGetPagesData } from "@/hygraph";
+import hygraph from "@/hygraph";
+import { HygraphGetPagesData } from "@/hygraph/pages";
 import { Button } from "@heroui/button";
 import {
   Dropdown,
@@ -32,11 +33,11 @@ function Items({
 }: {
   variant?: "desktop" | "mobile";
   closeMenu?: () => void;
-}) {
+}): React.ReactNode {
   const currentSlug = usePathname();
   const [pages, setPages] = useState<HygraphGetPagesData | null>();
 
-  const getPages = async () => {
+  const getPages = async (): Promise<void> => {
     const pages = await hygraph.getPages();
 
     setPages(pages?.filter(({ isHidden }) => !isHidden));
@@ -109,7 +110,7 @@ function Items({
   });
 }
 
-export function Navigation() {
+export function Navigation(): React.ReactNode {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   return (

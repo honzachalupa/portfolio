@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title: "Jan Chalupa portfolio",
 };
 
-export default async function Page() {
+export default async function Page(): Promise<React.ReactNode> {
   const page = await hygraph.getPage("/");
 
   if (!page) {

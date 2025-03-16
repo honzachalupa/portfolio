@@ -1,4 +1,4 @@
-import { HygraphGetPageData } from "@/hygraph";
+import { HygraphGetPageData } from "@/hygraph/page";
 import { Fragment } from "react";
 import { About } from "./cms/About";
 import { Footer } from "./cms/Footer";
@@ -12,10 +12,12 @@ interface ContentRendererProps {
   page: HygraphGetPageData;
 }
 
-export function ContentRenderer({ page }: ContentRendererProps) {
+export function ContentRenderer({
+  page,
+}: ContentRendererProps): React.ReactNode {
   const renderComponent = (
     props: HygraphGetPageData["components"]["content"][number]
-  ) => {
+  ): React.ReactNode | null => {
     switch (props.__typename) {
       case "Footer":
         return <Footer {...props} />;
@@ -40,7 +42,7 @@ export function ContentRenderer({ page }: ContentRendererProps) {
 
   const renderComponents = ({
     /* title, */ components: { content },
-  }: HygraphGetPageData) => {
+  }: HygraphGetPageData): React.ReactNode => {
     const children = content.map((data, i) => (
       <Fragment key={i}>{renderComponent(data)}</Fragment>
     ));

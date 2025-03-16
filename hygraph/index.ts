@@ -10,4 +10,3 @@ const hygraph = {
 
 export default hygraph;
 export { executeHygraphQuery };
-export type { HygraphGetPageData, HygraphGetPagesData } from "./types";

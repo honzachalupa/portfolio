@@ -114,7 +114,7 @@ async function getAppStoreVersions(
   }
 }
 
-export async function GET() {
+export async function GET(): Promise<Response> {
   let apps = await getApps();
 
   apps = await Promise.all(

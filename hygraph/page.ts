@@ -1,7 +1,9 @@
 "use server";
 
-import { HygraphGetPageData } from "@/hygraph";
+import { Page as HygraphPage } from "./_generated/graphql";
 import { executeHygraphQuery } from "./utils";
+
+export type HygraphGetPageData = HygraphPage;
 
 export async function getPage(
   slug: string
@@ -141,6 +143,6 @@ export async function getPage(
     query,
     variables
   );
-  
+
   return data?.page || null;
 }

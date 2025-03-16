@@ -27,7 +27,7 @@ export function ProjectCard({
   footer,
   links,
   className,
-}: ProjectCardProps) {
+}: ProjectCardProps): React.ReactNode {
   return (
     <Card className={clsx("w-full", className)}>
       <div className="flex">

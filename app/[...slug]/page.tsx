@@ -31,7 +31,7 @@ export default async function Page({
   params,
 }: {
   params: Promise<{ slug: string }>;
-}) {
+}): Promise<React.ReactNode> {
   const paramsList = await params;
   const slug = parseSlug(paramsList.slug);
   const page = await hygraph.getPage(slug);
