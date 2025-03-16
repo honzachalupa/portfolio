@@ -10,7 +10,7 @@ export default async function Page(): Promise<React.ReactNode> {
   const page = await hygraph.getPage("/");
 
   if (!page) {
-    throw new Error("Page not found");
+    return <p>Page not found</p>;
   }
 
   return <ContentRenderer page={page} />;
