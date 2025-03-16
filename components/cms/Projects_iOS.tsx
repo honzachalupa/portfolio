@@ -47,6 +47,8 @@ export async function Projects_iOS({
           color="primary"
           href="https://apps.apple.com/cz/developer/jan-chalupa/id1557529575"
           target="_blank"
+          startContent={<FaAppStoreIos />}
+          showAnchorIcon
         >
           Show more
         </Button>

@@ -15,6 +15,7 @@ interface ProjectCardProps {
   title: React.ReactNode | string;
   subtitle?: React.ReactNode | string;
   description: React.ReactNode | string;
+  image?: React.ReactNode | null;
   footer?: React.ReactNode | string;
   links?: ProjectCardLink[];
   className?: string;
@@ -24,6 +25,7 @@ export function ProjectCard({
   title,
   subtitle,
   description,
+  image,
   footer,
   links,
   className,
@@ -40,8 +42,10 @@ export function ProjectCard({
         </CardHeader>
       </div>
 
-      <CardBody className="px-4">
+      <CardBody className="px-4 flex flex-row justify-between gap-2">
         <ScrollShadow className="max-h-[200px]">{description}</ScrollShadow>
+
+        {image}
       </CardBody>
 
       {(links || footer) && (
@@ -57,10 +61,13 @@ export function ProjectCard({
                   <Button
                     key={link.label}
                     as={Link}
-                    isExternal
+                    href={link.url}
+                    variant="bordered"
+                    color="primary"
+                    size="sm"
                     startContent={link.icon}
                     showAnchorIcon
-                    href={link.url}
+                    isExternal
                   >
                     {link.label}
                   </Button>

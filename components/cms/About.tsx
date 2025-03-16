@@ -8,7 +8,6 @@ export function About({ headline, content }: AboutProps): React.ReactNode {
       <MarkdownRenderer
         components={{
           p: (props) => <p className="pb-5 md:text-lg" {...props} />,
-          strong: (props) => <strong className="text-primary-400" {...props} />,
         }}
       >
         {content.markdown}

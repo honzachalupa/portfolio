@@ -3,6 +3,7 @@ import { GitHubRepositories as GitHubRepositoriesProps } from "@/actions/hygraph
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import { cache } from "react";
+import { FaGithub } from "react-icons/fa";
 import "server-only";
 import { Container } from "../Container";
 import { MarkdownRenderer } from "../MarkdownRenderer";
@@ -38,7 +39,7 @@ export async function GitHubRepositories({
               links={
                 [
                   websiteUrl && { label: "Visit", url: websiteUrl },
-                  { label: "Show source-code", url: url },
+                  { label: "Show source-code", url: url, icon: <FaGithub /> },
                 ].filter(Boolean) as ProjectCardLink[]
               }
               className="basis-[calc(50%-(12px)/2)]"
@@ -54,6 +55,8 @@ export async function GitHubRepositories({
           color="primary"
           href="https://github.com/honzachalupa"
           target="_blank"
+          startContent={<FaGithub />}
+          showAnchorIcon
         >
           Show more
         </Button>

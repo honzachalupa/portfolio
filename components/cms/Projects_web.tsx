@@ -11,56 +11,23 @@ export function Projects_web({
     <Container headline={headline}>
       <div className="flex flex-wrap gap-[12px]">
         {projects?.map(
-          ({
-            id,
-            name,
-            slogan,
-            description,
-            topics,
-            url,
-            image,
-            client,
-            platform,
-          }) => (
+          ({ id, name, description, topics, url, image, client }) => (
             <ProjectCard
               key={id}
-              title={name + " | " + slogan}
-              subtitle={
-                <div className="pt-2">
-                  {platform.map((platform) => {
-                    const label =
-                      platform === "web"
-                        ? "Web application"
-                        : platform === "iOS"
-                        ? "iOS application"
-                        : null;
-
-                    return (
-                      label && (
-                        <span
-                          key={platform}
-                          className="bg-foreground-200 px-2 py-1 rounded-lg mr-2"
-                        >
-                          {label}
-                        </span>
-                      )
-                    );
-                  })}
-
-                  <span>{topics.join(", ")}</span>
-                </div>
-              }
+              title={name}
+              subtitle={<div className="pt-2">{topics.join(", ")}</div>}
               description={
-                <>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                <MarkdownRenderer>{description.markdown}</MarkdownRenderer>
+              }
+              image={
+                image?.url && (
+                  // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={image.url}
                     alt={name}
-                    className="rounded-b-none md:hidden w-[400px] h-[300px]"
+                    className="rounded-b-none h-[300px] aspect-video object-cover object-top rounded-xl"
                   />
-
-                  <MarkdownRenderer>{description.markdown}</MarkdownRenderer>
-                </>
+                )
               }
               footer={
                 client?.logo && (

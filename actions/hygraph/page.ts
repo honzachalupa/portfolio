@@ -69,7 +69,6 @@ export async function getPage(
             projects {
               id
               name
-              slogan
               url
               topics
               description {
@@ -90,7 +89,6 @@ export async function getPage(
                   mimeType
                 }
               }
-              platform
             }
           }
           ... on Statistics {

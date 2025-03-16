@@ -37,7 +37,7 @@ export function ContentRenderer({
       case "GitHubRepositories":
         return <GitHubRepositories {...props} />;
       default:
-        console.warn("Component not found:", props.__typename);
+        console.warn("Component not found:", JSON.stringify(props));
 
         return null;
     }

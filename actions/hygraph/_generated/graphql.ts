@@ -7746,7 +7746,7 @@ export type Project = Entity & Node & {
   history: Array<Version>;
   /** The unique identifier */
   id: Scalars['ID']['output'];
-  image: Asset;
+  image?: Maybe<Asset>;
   name: Scalars['String']['output'];
   platform: Array<Platforms>;
   /** The time the document was published. Null on documents in draft stage. */
@@ -7844,7 +7844,7 @@ export type ProjectCreateInput = {
   client?: InputMaybe<ClientCreateOneInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   description: Scalars['RichTextAST']['input'];
-  image: AssetCreateOneInlineInput;
+  image?: InputMaybe<AssetCreateOneInlineInput>;
   name: Scalars['String']['input'];
   platform?: InputMaybe<Array<Platforms>>;
   slogan?: InputMaybe<Scalars['String']['input']>;

@@ -29,22 +29,20 @@ export function Jobs({ headline, jobs }: JobsProps): React.ReactNode {
                   </a>
                 </div>
 
-                {client!.logo && (
+                {client?.logo && (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
-                    src={client!.logo.url}
-                    alt={`${client!.name} logo`}
+                    src={client.logo.url}
+                    alt={`${client.name} logo`}
                     className="w-32 object-contain"
                   />
                 )}
               </div>
             }
-            subtitle={
-              <>
-                {dayjs(dateFrom).format("MMMM YYYY")} -{" "}
-                {dateTo ? dayjs(dateTo).format("MMMM YYYY") : "Present"}
-              </>
-            }
+            subtitle={[
+              dayjs(dateFrom).format("MMMM YYYY"),
+              dateTo ? dayjs(dateTo).format("MMMM YYYY") : "Present",
+            ].join(" - ")}
             description={
               <MarkdownRenderer>{description.markdown}</MarkdownRenderer>
             }
