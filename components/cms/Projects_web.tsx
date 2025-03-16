@@ -25,7 +25,7 @@ export function Projects_web({
                   <img
                     src={image.url}
                     alt={name}
-                    className="rounded-b-none h-[300px] aspect-video object-cover object-top rounded-xl"
+                    className="rounded-b-none w-full md:w-1/2 aspect-video object-cover object-top rounded-xl"
                   />
                 )
               }

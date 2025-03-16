@@ -42,7 +42,7 @@ export function ProjectCard({
         </CardHeader>
       </div>
 
-      <CardBody className="px-4 flex flex-row justify-between gap-2">
+      <CardBody className="px-4 flex flex-col-reverse md:flex-row justify-between gap-2">
         <ScrollShadow className="max-h-[200px]">{description}</ScrollShadow>
 
         {image}

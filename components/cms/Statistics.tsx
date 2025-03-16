@@ -100,7 +100,7 @@ export async function Statistics({
 
   return (
     <Container headline={headline}>
-      <div className="grid grid-cols-3 md:grid-cols-6 grid-rows-2 md:grid-rows-1 gap-4">
+      <div className="grid grid-cols-3 grid-rows-2 md:grid-cols-6 md:grid-rows-1 gap-4">
         {itemsWithValue.map(
           ({ value, description, tooltipDescription, unit, tooltipAction }) => (
             <Tooltip
