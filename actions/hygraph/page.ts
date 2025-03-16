@@ -27,11 +27,6 @@ export async function getPage(
               markdown
             }
           }
-          ... on Contact {
-            __typename
-            headline
-            phoneNumber
-          }
           ... on ContactForm {
             __typename
             headline
