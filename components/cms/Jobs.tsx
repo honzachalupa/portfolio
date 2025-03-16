@@ -1,15 +1,10 @@
 "use client";
 
-import { Job } from "@/actions/hygraph/_generated/graphql";
+import { Jobs as JobsProps } from "@/actions/hygraph/_generated/graphql";
 import dayjs from "dayjs";
 import { Container } from "../Container";
 import { MarkdownRenderer } from "../MarkdownRenderer";
 import { ProjectCard } from "../ProjectCard";
-
-interface JobsProps {
-  headline: string;
-  jobs: Job[];
-}
 
 export function Jobs({ headline, jobs }: JobsProps): React.ReactNode {
   jobs = jobs.sort((a, b) => dayjs(b.dateFrom).diff(a.dateFrom));
