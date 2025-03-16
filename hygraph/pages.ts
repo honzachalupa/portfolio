@@ -3,7 +3,7 @@
 import { HygraphGetPagesData } from "@/hygraph";
 import { executeHygraphQuery } from "./utils";
 
-export async function getPages(): Promise<HygraphGetPagesData | null> {
+export async function getPages() {
   const query = `query {
     pages {
       title
