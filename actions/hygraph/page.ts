@@ -30,7 +30,6 @@ export async function getPage(
           ... on ContactForm {
             __typename
             headline
-            emailAddress
           }
           ... on GitHubRepositories {
             __typename
