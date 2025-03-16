@@ -1,7 +1,7 @@
 "use server";
 
+import { executeHygraphQuery } from "../../utils/hygraphQuery";
 import { Client as HygraphClient } from "./_generated/graphql";
-import { executeHygraphQuery } from "./utils";
 
 export type HygraphGetClientsData = Pick<HygraphClient, "name">[];
 

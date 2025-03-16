@@ -1,7 +1,7 @@
 "use server";
 
+import { executeHygraphQuery } from "../../utils/hygraphQuery";
 import { Page as HygraphPage } from "./_generated/graphql";
-import { executeHygraphQuery } from "./utils";
 
 export type HygraphGetPageData = HygraphPage;
 
@@ -31,6 +31,10 @@ export async function getPage(
             __typename
             headline
             phoneNumber
+          }
+          ... on ContactForm {
+            __typename
+            headline
             emailAddress
           }
           ... on GitHubRepositories {

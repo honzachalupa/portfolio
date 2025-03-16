@@ -2010,11 +2010,12 @@ export type ComponentsContainerWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
 };
 
-export type ComponentsContainercontentUnion = About | Contact | Footer | GitHubRepositories | Hero | Jobs | Navigation | Projects_IOs | Projects_Web | Seo | Statistics;
+export type ComponentsContainercontentUnion = About | Contact | ContactForm | Footer | GitHubRepositories | Hero | Jobs | Navigation | Projects_IOs | Projects_Web | Seo | Statistics;
 
 export type ComponentsContainercontentUnionConnectInput = {
   About?: InputMaybe<AboutConnectInput>;
   Contact?: InputMaybe<ContactConnectInput>;
+  ContactForm?: InputMaybe<ContactFormConnectInput>;
   Footer?: InputMaybe<FooterConnectInput>;
   GitHubRepositories?: InputMaybe<GitHubRepositoriesConnectInput>;
   Hero?: InputMaybe<HeroConnectInput>;
@@ -2029,6 +2030,7 @@ export type ComponentsContainercontentUnionConnectInput = {
 export type ComponentsContainercontentUnionCreateInput = {
   About?: InputMaybe<AboutCreateInput>;
   Contact?: InputMaybe<ContactCreateInput>;
+  ContactForm?: InputMaybe<ContactFormCreateInput>;
   Footer?: InputMaybe<FooterCreateInput>;
   GitHubRepositories?: InputMaybe<GitHubRepositoriesCreateInput>;
   Hero?: InputMaybe<HeroCreateInput>;
@@ -2053,6 +2055,7 @@ export type ComponentsContainercontentUnionCreateOneInlineInput = {
 export type ComponentsContainercontentUnionCreateWithPositionInput = {
   About?: InputMaybe<AboutCreateWithPositionInput>;
   Contact?: InputMaybe<ContactCreateWithPositionInput>;
+  ContactForm?: InputMaybe<ContactFormCreateWithPositionInput>;
   Footer?: InputMaybe<FooterCreateWithPositionInput>;
   GitHubRepositories?: InputMaybe<GitHubRepositoriesCreateWithPositionInput>;
   Hero?: InputMaybe<HeroCreateWithPositionInput>;
@@ -2067,6 +2070,7 @@ export type ComponentsContainercontentUnionCreateWithPositionInput = {
 export type ComponentsContainercontentUnionUpdateInput = {
   About?: InputMaybe<AboutUpdateInput>;
   Contact?: InputMaybe<ContactUpdateInput>;
+  ContactForm?: InputMaybe<ContactFormUpdateInput>;
   Footer?: InputMaybe<FooterUpdateInput>;
   GitHubRepositories?: InputMaybe<GitHubRepositoriesUpdateInput>;
   Hero?: InputMaybe<HeroUpdateInput>;
@@ -2092,6 +2096,7 @@ export type ComponentsContainercontentUnionUpdateManyInlineInput = {
 export type ComponentsContainercontentUnionUpdateManyWithNestedWhereInput = {
   About?: InputMaybe<AboutUpdateManyWithNestedWhereInput>;
   Contact?: InputMaybe<ContactUpdateManyWithNestedWhereInput>;
+  ContactForm?: InputMaybe<ContactFormUpdateManyWithNestedWhereInput>;
   Footer?: InputMaybe<FooterUpdateManyWithNestedWhereInput>;
   GitHubRepositories?: InputMaybe<GitHubRepositoriesUpdateManyWithNestedWhereInput>;
   Hero?: InputMaybe<HeroUpdateManyWithNestedWhereInput>;
@@ -2117,6 +2122,7 @@ export type ComponentsContainercontentUnionUpdateOneInlineInput = {
 export type ComponentsContainercontentUnionUpdateWithNestedWhereUniqueAndPositionInput = {
   About?: InputMaybe<AboutUpdateWithNestedWhereUniqueAndPositionInput>;
   Contact?: InputMaybe<ContactUpdateWithNestedWhereUniqueAndPositionInput>;
+  ContactForm?: InputMaybe<ContactFormUpdateWithNestedWhereUniqueAndPositionInput>;
   Footer?: InputMaybe<FooterUpdateWithNestedWhereUniqueAndPositionInput>;
   GitHubRepositories?: InputMaybe<GitHubRepositoriesUpdateWithNestedWhereUniqueAndPositionInput>;
   Hero?: InputMaybe<HeroUpdateWithNestedWhereUniqueAndPositionInput>;
@@ -2131,6 +2137,7 @@ export type ComponentsContainercontentUnionUpdateWithNestedWhereUniqueAndPositio
 export type ComponentsContainercontentUnionUpdateWithNestedWhereUniqueInput = {
   About?: InputMaybe<AboutUpdateWithNestedWhereUniqueInput>;
   Contact?: InputMaybe<ContactUpdateWithNestedWhereUniqueInput>;
+  ContactForm?: InputMaybe<ContactFormUpdateWithNestedWhereUniqueInput>;
   Footer?: InputMaybe<FooterUpdateWithNestedWhereUniqueInput>;
   GitHubRepositories?: InputMaybe<GitHubRepositoriesUpdateWithNestedWhereUniqueInput>;
   Hero?: InputMaybe<HeroUpdateWithNestedWhereUniqueInput>;
@@ -2145,6 +2152,7 @@ export type ComponentsContainercontentUnionUpdateWithNestedWhereUniqueInput = {
 export type ComponentsContainercontentUnionUpsertWithNestedWhereUniqueAndPositionInput = {
   About?: InputMaybe<AboutUpsertWithNestedWhereUniqueAndPositionInput>;
   Contact?: InputMaybe<ContactUpsertWithNestedWhereUniqueAndPositionInput>;
+  ContactForm?: InputMaybe<ContactFormUpsertWithNestedWhereUniqueAndPositionInput>;
   Footer?: InputMaybe<FooterUpsertWithNestedWhereUniqueAndPositionInput>;
   GitHubRepositories?: InputMaybe<GitHubRepositoriesUpsertWithNestedWhereUniqueAndPositionInput>;
   Hero?: InputMaybe<HeroUpsertWithNestedWhereUniqueAndPositionInput>;
@@ -2159,6 +2167,7 @@ export type ComponentsContainercontentUnionUpsertWithNestedWhereUniqueAndPositio
 export type ComponentsContainercontentUnionUpsertWithNestedWhereUniqueInput = {
   About?: InputMaybe<AboutUpsertWithNestedWhereUniqueInput>;
   Contact?: InputMaybe<ContactUpsertWithNestedWhereUniqueInput>;
+  ContactForm?: InputMaybe<ContactFormUpsertWithNestedWhereUniqueInput>;
   Footer?: InputMaybe<FooterUpsertWithNestedWhereUniqueInput>;
   GitHubRepositories?: InputMaybe<GitHubRepositoriesUpsertWithNestedWhereUniqueInput>;
   Hero?: InputMaybe<HeroUpsertWithNestedWhereUniqueInput>;
@@ -2173,6 +2182,7 @@ export type ComponentsContainercontentUnionUpsertWithNestedWhereUniqueInput = {
 export type ComponentsContainercontentUnionWhereInput = {
   About?: InputMaybe<AboutWhereInput>;
   Contact?: InputMaybe<ContactWhereInput>;
+  ContactForm?: InputMaybe<ContactFormWhereInput>;
   Footer?: InputMaybe<FooterWhereInput>;
   GitHubRepositories?: InputMaybe<GitHubRepositoriesWhereInput>;
   Hero?: InputMaybe<HeroWhereInput>;
@@ -2187,6 +2197,7 @@ export type ComponentsContainercontentUnionWhereInput = {
 export type ComponentsContainercontentUnionWhereUniqueInput = {
   About?: InputMaybe<AboutWhereUniqueInput>;
   Contact?: InputMaybe<ContactWhereUniqueInput>;
+  ContactForm?: InputMaybe<ContactFormWhereUniqueInput>;
   Footer?: InputMaybe<FooterWhereUniqueInput>;
   GitHubRepositories?: InputMaybe<GitHubRepositoriesWhereUniqueInput>;
   Hero?: InputMaybe<HeroWhereUniqueInput>;
@@ -2196,6 +2207,436 @@ export type ComponentsContainercontentUnionWhereUniqueInput = {
   Projects_web?: InputMaybe<Projects_WebWhereUniqueInput>;
   SEO?: InputMaybe<SeoWhereUniqueInput>;
   Statistics?: InputMaybe<StatisticsWhereUniqueInput>;
+};
+
+export type Config = Entity & Node & {
+  __typename?: 'Config';
+  /** The time the document was created */
+  createdAt: Scalars['DateTime']['output'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  /** Get the document in other stages */
+  documentInStages: Array<Config>;
+  emailAddress: Scalars['String']['output'];
+  /** List of Config versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID']['output'];
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  scheduledIn: Array<ScheduledOperation>;
+  /** System stage field */
+  stage: Stage;
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime']['output'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+};
+
+
+export type ConfigCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type ConfigDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean']['input'];
+  inheritLocale?: Scalars['Boolean']['input'];
+  stages?: Array<Stage>;
+};
+
+
+export type ConfigHistoryArgs = {
+  limit?: Scalars['Int']['input'];
+  skip?: Scalars['Int']['input'];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+
+export type ConfigPublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type ConfigScheduledInArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+export type ConfigUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type ConfigConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: ConfigWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type ConfigConnection = {
+  __typename?: 'ConfigConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<ConfigEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type ConfigCreateInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  emailAddress: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type ConfigCreateManyInlineInput = {
+  /** Connect multiple existing Config documents */
+  connect?: InputMaybe<Array<ConfigWhereUniqueInput>>;
+  /** Create and connect multiple existing Config documents */
+  create?: InputMaybe<Array<ConfigCreateInput>>;
+};
+
+export type ConfigCreateOneInlineInput = {
+  /** Connect one existing Config document */
+  connect?: InputMaybe<ConfigWhereUniqueInput>;
+  /** Create and connect one Config document */
+  create?: InputMaybe<ConfigCreateInput>;
+};
+
+/** An edge in a connection. */
+export type ConfigEdge = {
+  __typename?: 'ConfigEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: Config;
+};
+
+/** Identifies documents */
+export type ConfigManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ConfigWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ConfigWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ConfigWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<ConfigWhereStageInput>;
+  documentInStages_none?: InputMaybe<ConfigWhereStageInput>;
+  documentInStages_some?: InputMaybe<ConfigWhereStageInput>;
+  emailAddress?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  emailAddress_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  emailAddress_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  emailAddress_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  emailAddress_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  emailAddress_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  emailAddress_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  emailAddress_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  emailAddress_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  emailAddress_starts_with?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum ConfigOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  EmailAddressAsc = 'emailAddress_ASC',
+  EmailAddressDesc = 'emailAddress_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type ConfigUpdateInput = {
+  emailAddress?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ConfigUpdateManyInlineInput = {
+  /** Connect multiple existing Config documents */
+  connect?: InputMaybe<Array<ConfigConnectInput>>;
+  /** Create and connect multiple Config documents */
+  create?: InputMaybe<Array<ConfigCreateInput>>;
+  /** Delete multiple Config documents */
+  delete?: InputMaybe<Array<ConfigWhereUniqueInput>>;
+  /** Disconnect multiple Config documents */
+  disconnect?: InputMaybe<Array<ConfigWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing Config documents */
+  set?: InputMaybe<Array<ConfigWhereUniqueInput>>;
+  /** Update multiple Config documents */
+  update?: InputMaybe<Array<ConfigUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Config documents */
+  upsert?: InputMaybe<Array<ConfigUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type ConfigUpdateManyInput = {
+  emailAddress?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ConfigUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: ConfigUpdateManyInput;
+  /** Document search */
+  where: ConfigWhereInput;
+};
+
+export type ConfigUpdateOneInlineInput = {
+  /** Connect existing Config document */
+  connect?: InputMaybe<ConfigWhereUniqueInput>;
+  /** Create and connect one Config document */
+  create?: InputMaybe<ConfigCreateInput>;
+  /** Delete currently connected Config document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Disconnect currently connected Config document */
+  disconnect?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single Config document */
+  update?: InputMaybe<ConfigUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Config document */
+  upsert?: InputMaybe<ConfigUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ConfigUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: ConfigUpdateInput;
+  /** Unique document search */
+  where: ConfigWhereUniqueInput;
+};
+
+export type ConfigUpsertInput = {
+  /** Create document if it didn't exist */
+  create: ConfigCreateInput;
+  /** Update document if it exists */
+  update: ConfigUpdateInput;
+};
+
+export type ConfigUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: ConfigUpsertInput;
+  /** Unique document search */
+  where: ConfigWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type ConfigWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Identifies documents */
+export type ConfigWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ConfigWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ConfigWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ConfigWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  documentInStages_every?: InputMaybe<ConfigWhereStageInput>;
+  documentInStages_none?: InputMaybe<ConfigWhereStageInput>;
+  documentInStages_some?: InputMaybe<ConfigWhereStageInput>;
+  emailAddress?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  emailAddress_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  emailAddress_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  emailAddress_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  emailAddress_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  emailAddress_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  emailAddress_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  emailAddress_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  emailAddress_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  emailAddress_starts_with?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type ConfigWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ConfigWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ConfigWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ConfigWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<ConfigWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References Config record uniquely */
+export type ConfigWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
 };
 
 export type ConnectPositionInput = {
@@ -2267,6 +2708,328 @@ export type ContactEdge = {
   cursor: Scalars['String']['output'];
   /** The item at the end of the edge. */
   node: Contact;
+};
+
+export type ContactForm = Entity & {
+  __typename?: 'ContactForm';
+  headline?: Maybe<Scalars['String']['output']>;
+  /** The unique identifier */
+  id: Scalars['ID']['output'];
+  /** System stage field */
+  stage: Stage;
+};
+
+export type ContactFormConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: ContactFormWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type ContactFormConnection = {
+  __typename?: 'ContactFormConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<ContactFormEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type ContactFormCreateInput = {
+  headline?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ContactFormCreateManyInlineInput = {
+  /** Create and connect multiple existing ContactForm documents */
+  create?: InputMaybe<Array<ContactFormCreateInput>>;
+};
+
+export type ContactFormCreateOneInlineInput = {
+  /** Create and connect one ContactForm document */
+  create?: InputMaybe<ContactFormCreateInput>;
+};
+
+export type ContactFormCreateWithPositionInput = {
+  /** Document to create */
+  data: ContactFormCreateInput;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+};
+
+/** An edge in a connection. */
+export type ContactFormEdge = {
+  __typename?: 'ContactFormEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: ContactForm;
+};
+
+/** Identifies documents */
+export type ContactFormManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ContactFormWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ContactFormWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ContactFormWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  headline?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  headline_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  headline_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export enum ContactFormOrderByInput {
+  HeadlineAsc = 'headline_ASC',
+  HeadlineDesc = 'headline_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC'
+}
+
+export type ContactFormParent = ComponentsContainer;
+
+export type ContactFormParentConnectInput = {
+  ComponentsContainer?: InputMaybe<ComponentsContainerConnectInput>;
+};
+
+export type ContactFormParentCreateInput = {
+  ComponentsContainer?: InputMaybe<ComponentsContainerCreateInput>;
+};
+
+export type ContactFormParentCreateManyInlineInput = {
+  /** Create and connect multiple existing ContactFormParent documents */
+  create?: InputMaybe<Array<ContactFormParentCreateInput>>;
+};
+
+export type ContactFormParentCreateOneInlineInput = {
+  /** Create and connect one ContactFormParent document */
+  create?: InputMaybe<ContactFormParentCreateInput>;
+};
+
+export type ContactFormParentCreateWithPositionInput = {
+  ComponentsContainer?: InputMaybe<ComponentsContainerCreateWithPositionInput>;
+};
+
+export type ContactFormParentUpdateInput = {
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateInput>;
+};
+
+export type ContactFormParentUpdateManyInlineInput = {
+  /** Create and connect multiple ContactFormParent component instances */
+  create?: InputMaybe<Array<ContactFormParentCreateWithPositionInput>>;
+  /** Delete multiple ContactFormParent documents */
+  delete?: InputMaybe<Array<ContactFormParentWhereUniqueInput>>;
+  /** Update multiple ContactFormParent component instances */
+  update?: InputMaybe<Array<ContactFormParentUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple ContactFormParent component instances */
+  upsert?: InputMaybe<Array<ContactFormParentUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type ContactFormParentUpdateManyWithNestedWhereInput = {
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateManyWithNestedWhereInput>;
+};
+
+export type ContactFormParentUpdateOneInlineInput = {
+  /** Create and connect one ContactFormParent document */
+  create?: InputMaybe<ContactFormParentCreateInput>;
+  /** Delete currently connected ContactFormParent document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single ContactFormParent document */
+  update?: InputMaybe<ContactFormParentUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single ContactFormParent document */
+  upsert?: InputMaybe<ContactFormParentUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ContactFormParentUpdateWithNestedWhereUniqueAndPositionInput = {
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type ContactFormParentUpdateWithNestedWhereUniqueInput = {
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpdateWithNestedWhereUniqueInput>;
+};
+
+export type ContactFormParentUpsertWithNestedWhereUniqueAndPositionInput = {
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpsertWithNestedWhereUniqueAndPositionInput>;
+};
+
+export type ContactFormParentUpsertWithNestedWhereUniqueInput = {
+  ComponentsContainer?: InputMaybe<ComponentsContainerUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ContactFormParentWhereInput = {
+  ComponentsContainer?: InputMaybe<ComponentsContainerWhereInput>;
+};
+
+export type ContactFormParentWhereUniqueInput = {
+  ComponentsContainer?: InputMaybe<ComponentsContainerWhereUniqueInput>;
+};
+
+export type ContactFormUpdateInput = {
+  headline?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ContactFormUpdateManyInlineInput = {
+  /** Create and connect multiple ContactForm component instances */
+  create?: InputMaybe<Array<ContactFormCreateWithPositionInput>>;
+  /** Delete multiple ContactForm documents */
+  delete?: InputMaybe<Array<ContactFormWhereUniqueInput>>;
+  /** Update multiple ContactForm component instances */
+  update?: InputMaybe<Array<ContactFormUpdateWithNestedWhereUniqueAndPositionInput>>;
+  /** Upsert multiple ContactForm component instances */
+  upsert?: InputMaybe<Array<ContactFormUpsertWithNestedWhereUniqueAndPositionInput>>;
+};
+
+export type ContactFormUpdateManyInput = {
+  headline?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type ContactFormUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: ContactFormUpdateManyInput;
+  /** Document search */
+  where: ContactFormWhereInput;
+};
+
+export type ContactFormUpdateOneInlineInput = {
+  /** Create and connect one ContactForm document */
+  create?: InputMaybe<ContactFormCreateInput>;
+  /** Delete currently connected ContactForm document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single ContactForm document */
+  update?: InputMaybe<ContactFormUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single ContactForm document */
+  upsert?: InputMaybe<ContactFormUpsertWithNestedWhereUniqueInput>;
+};
+
+export type ContactFormUpdateWithNestedWhereUniqueAndPositionInput = {
+  /** Document to update */
+  data?: InputMaybe<ContactFormUpdateInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: ContactFormWhereUniqueInput;
+};
+
+export type ContactFormUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: ContactFormUpdateInput;
+  /** Unique document search */
+  where: ContactFormWhereUniqueInput;
+};
+
+export type ContactFormUpsertInput = {
+  /** Create document if it didn't exist */
+  create: ContactFormCreateInput;
+  /** Update document if it exists */
+  update: ContactFormUpdateInput;
+};
+
+export type ContactFormUpsertWithNestedWhereUniqueAndPositionInput = {
+  /** Document to upsert */
+  data?: InputMaybe<ContactFormUpsertInput>;
+  /** Position in the list of existing component instances, will default to appending at the end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Unique component instance search */
+  where: ContactFormWhereUniqueInput;
+};
+
+export type ContactFormUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: ContactFormUpsertInput;
+  /** Unique document search */
+  where: ContactFormWhereUniqueInput;
+};
+
+/** Identifies documents */
+export type ContactFormWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<ContactFormWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<ContactFormWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<ContactFormWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  headline?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  headline_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  headline_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  headline_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  headline_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  headline_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  headline_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  headline_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  headline_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  headline_starts_with?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+};
+
+/** References ContactForm record uniquely */
+export type ContactFormWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
 };
 
 /** Identifies documents */
@@ -2681,7 +3444,9 @@ export enum EntityTypeName {
   Asset = 'Asset',
   Client = 'Client',
   ComponentsContainer = 'ComponentsContainer',
+  Config = 'Config',
   Contact = 'Contact',
+  ContactForm = 'ContactForm',
   Footer = 'Footer',
   GitHubRepositories = 'GitHubRepositories',
   Hero = 'Hero',
@@ -3734,12 +4499,6 @@ export type HeroWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
 };
 
-export enum HorizontalAlignment {
-  Center = 'CENTER',
-  Left = 'LEFT',
-  Right = 'RIGHT'
-}
-
 export type ImageBlurInput = {
   /** The amount of blurring to apply to the image. The value must be an integer from 1 to 20. */
   amount: Scalars['Int']['input'];
@@ -4723,6 +5482,8 @@ export type Mutation = {
   createAsset?: Maybe<Asset>;
   /** Create one client */
   createClient?: Maybe<Client>;
+  /** Create one config */
+  createConfig?: Maybe<Config>;
   /** Create one job */
   createJob?: Maybe<Job>;
   /** Create one page */
@@ -4739,6 +5500,8 @@ export type Mutation = {
   deleteAsset?: Maybe<Asset>;
   /** Delete one client from _all_ existing stages. Returns deleted document. */
   deleteClient?: Maybe<Client>;
+  /** Delete one config from _all_ existing stages. Returns deleted document. */
+  deleteConfig?: Maybe<Config>;
   /** Delete one job from _all_ existing stages. Returns deleted document. */
   deleteJob?: Maybe<Job>;
   /**
@@ -4755,6 +5518,13 @@ export type Mutation = {
   deleteManyClients: BatchPayload;
   /** Delete many Client documents, return deleted documents */
   deleteManyClientsConnection: ClientConnection;
+  /**
+   * Delete many Config documents
+   * @deprecated Please use the new paginated many mutation (deleteManyConfigsConnection)
+   */
+  deleteManyConfigs: BatchPayload;
+  /** Delete many Config documents, return deleted documents */
+  deleteManyConfigsConnection: ConfigConnection;
   /**
    * Delete many Job documents
    * @deprecated Please use the new paginated many mutation (deleteManyJobsConnection)
@@ -4806,6 +5576,8 @@ export type Mutation = {
   publishAsset?: Maybe<Asset>;
   /** Publish one client */
   publishClient?: Maybe<Client>;
+  /** Publish one config */
+  publishConfig?: Maybe<Config>;
   /** Publish one job */
   publishJob?: Maybe<Job>;
   /**
@@ -4822,6 +5594,13 @@ export type Mutation = {
   publishManyClients: BatchPayload;
   /** Publish many Client documents */
   publishManyClientsConnection: ClientConnection;
+  /**
+   * Publish many Config documents
+   * @deprecated Please use the new paginated many mutation (publishManyConfigsConnection)
+   */
+  publishManyConfigs: BatchPayload;
+  /** Publish many Config documents */
+  publishManyConfigsConnection: ConfigConnection;
   /**
    * Publish many Job documents
    * @deprecated Please use the new paginated many mutation (publishManyJobsConnection)
@@ -4869,6 +5648,8 @@ export type Mutation = {
   schedulePublishAsset?: Maybe<Asset>;
   /** Schedule to publish one client */
   schedulePublishClient?: Maybe<Client>;
+  /** Schedule to publish one config */
+  schedulePublishConfig?: Maybe<Config>;
   /** Schedule to publish one job */
   schedulePublishJob?: Maybe<Job>;
   /** Schedule to publish one page */
@@ -4883,6 +5664,8 @@ export type Mutation = {
   scheduleUnpublishAsset?: Maybe<Asset>;
   /** Unpublish one client from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishClient?: Maybe<Client>;
+  /** Unpublish one config from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishConfig?: Maybe<Config>;
   /** Unpublish one job from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishJob?: Maybe<Job>;
   /** Unpublish one page from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -4897,6 +5680,8 @@ export type Mutation = {
   unpublishAsset?: Maybe<Asset>;
   /** Unpublish one client from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishClient?: Maybe<Client>;
+  /** Unpublish one config from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishConfig?: Maybe<Config>;
   /** Unpublish one job from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishJob?: Maybe<Job>;
   /**
@@ -4913,6 +5698,13 @@ export type Mutation = {
   unpublishManyClients: BatchPayload;
   /** Find many Client documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyClientsConnection: ClientConnection;
+  /**
+   * Unpublish many Config documents
+   * @deprecated Please use the new paginated many mutation (unpublishManyConfigsConnection)
+   */
+  unpublishManyConfigs: BatchPayload;
+  /** Find many Config documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManyConfigsConnection: ConfigConnection;
   /**
    * Unpublish many Job documents
    * @deprecated Please use the new paginated many mutation (unpublishManyJobsConnection)
@@ -4960,6 +5752,8 @@ export type Mutation = {
   updateAsset?: Maybe<Asset>;
   /** Update one client */
   updateClient?: Maybe<Client>;
+  /** Update one config */
+  updateConfig?: Maybe<Config>;
   /** Update one job */
   updateJob?: Maybe<Job>;
   /**
@@ -4976,6 +5770,13 @@ export type Mutation = {
   updateManyClients: BatchPayload;
   /** Update many Client documents */
   updateManyClientsConnection: ClientConnection;
+  /**
+   * Update many configs
+   * @deprecated Please use the new paginated many mutation (updateManyConfigsConnection)
+   */
+  updateManyConfigs: BatchPayload;
+  /** Update many Config documents */
+  updateManyConfigsConnection: ConfigConnection;
   /**
    * Update many jobs
    * @deprecated Please use the new paginated many mutation (updateManyJobsConnection)
@@ -5025,6 +5826,8 @@ export type Mutation = {
   upsertAsset?: Maybe<Asset>;
   /** Upsert one client */
   upsertClient?: Maybe<Client>;
+  /** Upsert one config */
+  upsertConfig?: Maybe<Config>;
   /** Upsert one job */
   upsertJob?: Maybe<Job>;
   /** Upsert one page */
@@ -5045,6 +5848,11 @@ export type MutationCreateAssetArgs = {
 
 export type MutationCreateClientArgs = {
   data: ClientCreateInput;
+};
+
+
+export type MutationCreateConfigArgs = {
+  data: ConfigCreateInput;
 };
 
 
@@ -5088,6 +5896,11 @@ export type MutationDeleteClientArgs = {
 };
 
 
+export type MutationDeleteConfigArgs = {
+  where: ConfigWhereUniqueInput;
+};
+
+
 export type MutationDeleteJobArgs = {
   where: JobWhereUniqueInput;
 };
@@ -5120,6 +5933,21 @@ export type MutationDeleteManyClientsConnectionArgs = {
   last?: InputMaybe<Scalars['Int']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ClientManyWhereInput>;
+};
+
+
+export type MutationDeleteManyConfigsArgs = {
+  where?: InputMaybe<ConfigManyWhereInput>;
+};
+
+
+export type MutationDeleteManyConfigsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ConfigManyWhereInput>;
 };
 
 
@@ -5243,6 +6071,12 @@ export type MutationPublishClientArgs = {
 };
 
 
+export type MutationPublishConfigArgs = {
+  to?: Array<Stage>;
+  where: ConfigWhereUniqueInput;
+};
+
+
 export type MutationPublishJobArgs = {
   to?: Array<Stage>;
   where: JobWhereUniqueInput;
@@ -5288,6 +6122,24 @@ export type MutationPublishManyClientsConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   to?: Array<Stage>;
   where?: InputMaybe<ClientManyWhereInput>;
+};
+
+
+export type MutationPublishManyConfigsArgs = {
+  to?: Array<Stage>;
+  where?: InputMaybe<ConfigManyWhereInput>;
+};
+
+
+export type MutationPublishManyConfigsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  to?: Array<Stage>;
+  where?: InputMaybe<ConfigManyWhereInput>;
 };
 
 
@@ -5424,6 +6276,14 @@ export type MutationSchedulePublishClientArgs = {
 };
 
 
+export type MutationSchedulePublishConfigArgs = {
+  releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
+  releaseId?: InputMaybe<Scalars['String']['input']>;
+  to?: Array<Stage>;
+  where: ConfigWhereUniqueInput;
+};
+
+
 export type MutationSchedulePublishJobArgs = {
   releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
   releaseId?: InputMaybe<Scalars['String']['input']>;
@@ -5482,6 +6342,14 @@ export type MutationScheduleUnpublishClientArgs = {
 };
 
 
+export type MutationScheduleUnpublishConfigArgs = {
+  from?: Array<Stage>;
+  releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
+  releaseId?: InputMaybe<Scalars['String']['input']>;
+  where: ConfigWhereUniqueInput;
+};
+
+
 export type MutationScheduleUnpublishJobArgs = {
   from?: Array<Stage>;
   releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -5536,6 +6404,12 @@ export type MutationUnpublishClientArgs = {
 };
 
 
+export type MutationUnpublishConfigArgs = {
+  from?: Array<Stage>;
+  where: ConfigWhereUniqueInput;
+};
+
+
 export type MutationUnpublishJobArgs = {
   from?: Array<Stage>;
   where: JobWhereUniqueInput;
@@ -5579,6 +6453,24 @@ export type MutationUnpublishManyClientsConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   stage?: InputMaybe<Stage>;
   where?: InputMaybe<ClientManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyConfigsArgs = {
+  from?: Array<Stage>;
+  where?: InputMaybe<ConfigManyWhereInput>;
+};
+
+
+export type MutationUnpublishManyConfigsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  stage?: InputMaybe<Stage>;
+  where?: InputMaybe<ConfigManyWhereInput>;
 };
 
 
@@ -5708,6 +6600,12 @@ export type MutationUpdateClientArgs = {
 };
 
 
+export type MutationUpdateConfigArgs = {
+  data: ConfigUpdateInput;
+  where: ConfigWhereUniqueInput;
+};
+
+
 export type MutationUpdateJobArgs = {
   data: JobUpdateInput;
   where: JobWhereUniqueInput;
@@ -5745,6 +6643,23 @@ export type MutationUpdateManyClientsConnectionArgs = {
   last?: InputMaybe<Scalars['Int']['input']>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ClientManyWhereInput>;
+};
+
+
+export type MutationUpdateManyConfigsArgs = {
+  data: ConfigUpdateManyInput;
+  where?: InputMaybe<ConfigManyWhereInput>;
+};
+
+
+export type MutationUpdateManyConfigsConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  data: ConfigUpdateManyInput;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ConfigManyWhereInput>;
 };
 
 
@@ -5872,6 +6787,12 @@ export type MutationUpsertAssetArgs = {
 export type MutationUpsertClientArgs = {
   upsert: ClientUpsertInput;
   where: ClientWhereUniqueInput;
+};
+
+
+export type MutationUpsertConfigArgs = {
+  upsert: ConfigUpsertInput;
+  where: ConfigWhereUniqueInput;
 };
 
 
@@ -8097,6 +9018,14 @@ export type Query = {
   clients: Array<Client>;
   /** Retrieve multiple clients using the Relay connection interface */
   clientsConnection: ClientConnection;
+  /** Retrieve a single config */
+  config?: Maybe<Config>;
+  /** Retrieve document version */
+  configVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple configs */
+  configs: Array<Config>;
+  /** Retrieve multiple configs using the Relay connection interface */
+  configsConnection: ConfigConnection;
   /** Fetches an object given its ID */
   entities?: Maybe<Array<Entity>>;
   /** Retrieve a single job */
@@ -8235,6 +9164,44 @@ export type QueryClientsConnectionArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   stage?: Stage;
   where?: InputMaybe<ClientWhereInput>;
+};
+
+
+export type QueryConfigArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: ConfigWhereUniqueInput;
+};
+
+
+export type QueryConfigVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QueryConfigsArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<ConfigOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  stage?: Stage;
+  where?: InputMaybe<ConfigWhereInput>;
+};
+
+
+export type QueryConfigsConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<ConfigOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  stage?: Stage;
+  where?: InputMaybe<ConfigWhereInput>;
 };
 
 
@@ -9017,7 +9984,7 @@ export type ScheduledOperationUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = Asset | Client | Job | Page | Project | SocialNetwork | StatisticsItem;
+export type ScheduledOperationAffectedDocument = Asset | Client | Config | Job | Page | Project | SocialNetwork | StatisticsItem;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */

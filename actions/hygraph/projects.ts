@@ -1,7 +1,7 @@
 "use server";
 
+import { executeHygraphQuery } from "../../utils/hygraphQuery";
 import { Project as HygraphProject } from "./_generated/graphql";
-import { executeHygraphQuery } from "./utils";
 
 export type HygraphGetProjectsData = Pick<HygraphProject, "name">[];
 

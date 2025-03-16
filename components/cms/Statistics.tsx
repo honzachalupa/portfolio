@@ -100,7 +100,7 @@ export async function Statistics({
 
   return (
     <Container headline={headline}>
-      <div className="flex flex-row justify-between gap-5">
+      <div className="grid grid-cols-3 md:grid-cols-6 grid-rows-2 md:grid-rows-1 gap-4">
         {itemsWithValue.map(
           ({ value, description, tooltipDescription, unit, tooltipAction }) => (
             <Tooltip
@@ -111,11 +111,12 @@ export async function Statistics({
                   {tooltipAction}
                 </>
               }
-              className="max-w-[200px] text-center"
               placement="bottom"
               offset={-20}
+              className="max-w-[200px] text-center"
+              showArrow
             >
-              <Card className="w-1/4 h-full aspect-square gap-1 flex flex-col items-center justify-center text-center cursor-pointer">
+              <Card className="w-full h-full aspect-square gap-1 flex flex-col items-center justify-center text-center cursor-pointer">
                 <span className="text-4xl">
                   <span className="font-bold">{value}</span>
                   <span className="opacity-50">{unit}</span>

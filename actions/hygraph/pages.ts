@@ -1,7 +1,7 @@
 "use server";
 
+import { executeHygraphQuery } from "../../utils/hygraphQuery";
 import { Page as HygraphPage } from "./_generated/graphql";
-import { executeHygraphQuery } from "./utils";
 
 export type HygraphGetPagesData = Pick<
   HygraphPage,
