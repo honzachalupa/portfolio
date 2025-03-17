@@ -18,8 +18,6 @@ export async function getPage(
             __typename
             image {
               url
-              width
-              mimeType
             }
             headline
             content {
@@ -53,8 +51,6 @@ export async function getPage(
                 url
                 logo {
                   url
-                  width
-                  mimeType
                 }
               }
             }
@@ -77,16 +73,12 @@ export async function getPage(
               }
               image {
                 url
-                width
-                mimeType
               }
               client {
                 name
                 url
                 logo {
                   url
-                  width
-                  mimeType
                 }
               }
             }
@@ -103,15 +95,6 @@ export async function getPage(
           }
           ... on Footer {
             __typename
-            socialNetworks {
-              name
-              url
-              icon {
-                url
-                width
-                mimeType
-              }
-            }
             text
           }
         }

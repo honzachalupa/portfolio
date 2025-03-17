@@ -2227,6 +2227,7 @@ export type Config = Entity & Node & {
   /** User that last published this document */
   publishedBy?: Maybe<User>;
   scheduledIn: Array<ScheduledOperation>;
+  socialNetworks: Array<SocialNetwork>;
   /** System stage field */
   stage: Stage;
   /** The time the document was updated */
@@ -2274,6 +2275,19 @@ export type ConfigScheduledInArgs = {
 };
 
 
+export type ConfigSocialNetworksArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<SocialNetworkOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<SocialNetworkWhereInput>;
+};
+
+
 export type ConfigUpdatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
@@ -2299,6 +2313,7 @@ export type ConfigConnection = {
 export type ConfigCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   emailAddress: Scalars['String']['input'];
+  socialNetworks?: InputMaybe<SocialNetworkCreateManyInlineInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
 
@@ -2411,6 +2426,9 @@ export type ConfigManyWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  socialNetworks_every?: InputMaybe<SocialNetworkWhereInput>;
+  socialNetworks_none?: InputMaybe<SocialNetworkWhereInput>;
+  socialNetworks_some?: InputMaybe<SocialNetworkWhereInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -2444,6 +2462,7 @@ export enum ConfigOrderByInput {
 
 export type ConfigUpdateInput = {
   emailAddress?: InputMaybe<Scalars['String']['input']>;
+  socialNetworks?: InputMaybe<SocialNetworkUpdateManyInlineInput>;
 };
 
 export type ConfigUpdateManyInlineInput = {
@@ -2602,6 +2621,9 @@ export type ConfigWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  socialNetworks_every?: InputMaybe<SocialNetworkWhereInput>;
+  socialNetworks_none?: InputMaybe<SocialNetworkWhereInput>;
+  socialNetworks_some?: InputMaybe<SocialNetworkWhereInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -3487,7 +3509,6 @@ export type Footer = Entity & {
   /** System stage field */
   stage: Stage;
   text?: Maybe<Scalars['String']['output']>;
-  yearFrom?: Maybe<Scalars['Date']['output']>;
 };
 
 
@@ -3523,7 +3544,6 @@ export type FooterConnection = {
 export type FooterCreateInput = {
   socialNetworks?: InputMaybe<SocialNetworkCreateManyInlineInput>;
   text?: InputMaybe<Scalars['String']['input']>;
-  yearFrom?: InputMaybe<Scalars['Date']['input']>;
 };
 
 export type FooterCreateManyInlineInput = {
@@ -3603,30 +3623,13 @@ export type FooterManyWhereInput = {
   text_not_starts_with?: InputMaybe<Scalars['String']['input']>;
   /** All values starting with the given string. */
   text_starts_with?: InputMaybe<Scalars['String']['input']>;
-  yearFrom?: InputMaybe<Scalars['Date']['input']>;
-  /** All values greater than the given value. */
-  yearFrom_gt?: InputMaybe<Scalars['Date']['input']>;
-  /** All values greater than or equal the given value. */
-  yearFrom_gte?: InputMaybe<Scalars['Date']['input']>;
-  /** All values that are contained in given list. */
-  yearFrom_in?: InputMaybe<Array<InputMaybe<Scalars['Date']['input']>>>;
-  /** All values less than the given value. */
-  yearFrom_lt?: InputMaybe<Scalars['Date']['input']>;
-  /** All values less than or equal the given value. */
-  yearFrom_lte?: InputMaybe<Scalars['Date']['input']>;
-  /** Any other value that exists and is not equal to the given value. */
-  yearFrom_not?: InputMaybe<Scalars['Date']['input']>;
-  /** All values that are not contained in given list. */
-  yearFrom_not_in?: InputMaybe<Array<InputMaybe<Scalars['Date']['input']>>>;
 };
 
 export enum FooterOrderByInput {
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
   TextAsc = 'text_ASC',
-  TextDesc = 'text_DESC',
-  YearFromAsc = 'yearFrom_ASC',
-  YearFromDesc = 'yearFrom_DESC'
+  TextDesc = 'text_DESC'
 }
 
 export type FooterParent = ComponentsContainer;
@@ -3710,7 +3713,6 @@ export type FooterParentWhereUniqueInput = {
 export type FooterUpdateInput = {
   socialNetworks?: InputMaybe<SocialNetworkUpdateManyInlineInput>;
   text?: InputMaybe<Scalars['String']['input']>;
-  yearFrom?: InputMaybe<Scalars['Date']['input']>;
 };
 
 export type FooterUpdateManyInlineInput = {
@@ -3726,7 +3728,6 @@ export type FooterUpdateManyInlineInput = {
 
 export type FooterUpdateManyInput = {
   text?: InputMaybe<Scalars['String']['input']>;
-  yearFrom?: InputMaybe<Scalars['Date']['input']>;
 };
 
 export type FooterUpdateManyWithNestedWhereInput = {
@@ -3837,21 +3838,6 @@ export type FooterWhereInput = {
   text_not_starts_with?: InputMaybe<Scalars['String']['input']>;
   /** All values starting with the given string. */
   text_starts_with?: InputMaybe<Scalars['String']['input']>;
-  yearFrom?: InputMaybe<Scalars['Date']['input']>;
-  /** All values greater than the given value. */
-  yearFrom_gt?: InputMaybe<Scalars['Date']['input']>;
-  /** All values greater than or equal the given value. */
-  yearFrom_gte?: InputMaybe<Scalars['Date']['input']>;
-  /** All values that are contained in given list. */
-  yearFrom_in?: InputMaybe<Array<InputMaybe<Scalars['Date']['input']>>>;
-  /** All values less than the given value. */
-  yearFrom_lt?: InputMaybe<Scalars['Date']['input']>;
-  /** All values less than or equal the given value. */
-  yearFrom_lte?: InputMaybe<Scalars['Date']['input']>;
-  /** Any other value that exists and is not equal to the given value. */
-  yearFrom_not?: InputMaybe<Scalars['Date']['input']>;
-  /** All values that are not contained in given list. */
-  yearFrom_not_in?: InputMaybe<Array<InputMaybe<Scalars['Date']['input']>>>;
 };
 
 /** References Footer record uniquely */
@@ -11015,6 +11001,7 @@ export type SocialNetworkConnection = {
 
 export type SocialNetworkCreateInput = {
   cle1jvs993n9k01rreciqgy3j?: InputMaybe<FooterCreateManyInlineInput>;
+  cm8d97iou03af07w89zwt7sj0?: InputMaybe<ConfigCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   icon: AssetCreateOneInlineInput;
   name: Scalars['String']['input'];
@@ -11186,6 +11173,7 @@ export enum SocialNetworkOrderByInput {
 
 export type SocialNetworkUpdateInput = {
   cle1jvs993n9k01rreciqgy3j?: InputMaybe<FooterUpdateManyInlineInput>;
+  cm8d97iou03af07w89zwt7sj0?: InputMaybe<ConfigUpdateManyInlineInput>;
   icon?: InputMaybe<AssetUpdateOneInlineInput>;
   name?: InputMaybe<Scalars['String']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;

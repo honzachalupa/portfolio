@@ -1,19 +1,20 @@
-"use client";
-
+import hygraphApi from "@/actions/hygraph";
 import { Footer as FooterProps } from "@/actions/hygraph/_generated/graphql";
 import dayjs from "dayjs";
-import { ReactSVG } from "react-svg";
+import { SvgIcon } from "../SvgIcon";
 
-export function Footer({ socialNetworks, text }: FooterProps): React.ReactNode {
-  const years = [dayjs("2008-01-01").year(), dayjs().year()].join(" - ");
+export async function Footer({ text }: FooterProps): Promise<React.ReactNode> {
+  const config = await hygraphApi.getConfig();
+
+  const years = [2008, dayjs().year()].join(" - ");
 
   return (
     <>
       <footer>
-        <div className="flex flex-row justify-center">
-          {socialNetworks.map(({ name, url, icon }) => (
+        <div className="flex flex-row justify-center gap-2">
+          {config?.socialNetworks.map(({ name, url, icon }) => (
             <a key={name} href={url} title={name}>
-              <ReactSVG src={icon.url} className="w-10" />
+              <SvgIcon icon={icon} className="h-[60px]" />
             </a>
           ))}
         </div>
