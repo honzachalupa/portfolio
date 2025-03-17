@@ -103,7 +103,6 @@ export async function getPage(
           }
           ... on Footer {
             __typename
-            yearFrom
             socialNetworks {
               name
               url

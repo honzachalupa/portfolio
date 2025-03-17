@@ -36,7 +36,12 @@ export async function executeHygraphQuery<T>(
       console.error(
         "GraphQL request failed:",
         response.status,
-        response.statusText
+        response.statusText,
+        "payload:",
+        {
+          query,
+          variables,
+        }
       );
       return null;
     }
