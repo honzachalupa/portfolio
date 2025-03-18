@@ -1,6 +1,5 @@
 import { Navigation, Providers } from "@/components";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-import { Analytics } from "@vercel/analytics/react";
 import { Metadata, Viewport } from "next";
 import "./globals.css";
 
@@ -30,8 +29,6 @@ export default function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body>
-        <Analytics />
-
         <Providers
           locale={locale}
           themeProps={{ attribute: "class", defaultTheme: "dark" }}
@@ -39,7 +36,7 @@ export default function RootLayout({
           <Navigation />
 
           <main className="flex w-full h-auto items-center justify-center">
-            <div className="flex px-6 gap-4 w-full flex-col flex-nowrap items-center justify-between max-w-[1024px]">
+            <div className="flex px-6 gap-4 w-full flex-col flex-nowrap items-center justify-between max-w-[1280px]">
               <Breadcrumbs className="mt-2" />
 
               <div className="mt-5">{children}</div>

@@ -114,7 +114,12 @@ export function Navigation(): React.ReactNode {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   return (
-    <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
+    <Navbar
+      maxWidth="xl"
+      isBordered
+      isMenuOpen={isMenuOpen}
+      onMenuOpenChange={setIsMenuOpen}
+    >
       <NavbarContent>
         <NavbarMenuToggle
           title={isMenuOpen ? "Close menu" : "Open menu"}

@@ -1,9 +1,16 @@
+"use client";
+
 import { Button, ButtonGroup } from "@heroui/button";
 import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
 import { Divider } from "@heroui/divider";
 import { Link } from "@heroui/link";
-import { ScrollShadow } from "@heroui/scroll-shadow";
 import clsx from "clsx";
+
+export interface ProjectCardAction {
+  label: string;
+  icon?: React.ReactNode;
+  onClick: () => void;
+}
 
 export interface ProjectCardLink {
   label: string;
@@ -17,7 +24,7 @@ interface ProjectCardProps {
   description: React.ReactNode | string;
   image?: React.ReactNode | null;
   footer?: React.ReactNode | string;
-  links?: ProjectCardLink[];
+  actions?: (ProjectCardAction | ProjectCardLink | false)[];
   className?: string;
 }
 
@@ -27,51 +34,70 @@ export function ProjectCard({
   description,
   image,
   footer,
-  links,
+  actions: _actions,
   className,
 }: ProjectCardProps): React.ReactNode {
+  const actions = _actions?.filter(Boolean) as (
+    | ProjectCardAction
+    | ProjectCardLink
+  )[];
+
+  function isProjectCardLink(
+    action: ProjectCardAction | ProjectCardLink
+  ): action is ProjectCardLink {
+    return "url" in action;
+  }
+
   return (
     <Card className={clsx("w-full", className)}>
       <div className="flex">
         <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-          <h3 className="w-full font-bold text-primary-400 text-large">
-            {title}
-          </h3>
+          <h3 className="w-full font-bold text-primary text-large">{title}</h3>
 
           <small className="text-default-500">{subtitle}</small>
         </CardHeader>
       </div>
 
-      <CardBody className="px-4 flex flex-col-reverse md:flex-row justify-between gap-2">
-        <ScrollShadow className="max-h-[200px]">{description}</ScrollShadow>
-
+      <CardBody className="px-4 flex flex-col-reverse md:flex-row justify-between items-start gap-2">
+        {description}
         {image}
       </CardBody>
 
-      {(links || footer) && (
+      {(actions || footer) && (
         <>
           <Divider />
 
           <CardFooter className="px-4 justify-between">
             {footer ? <div>{footer}</div> : <span />}
 
-            {links ? (
+            {actions ? (
               <ButtonGroup variant="bordered">
-                {links?.map((link) => (
-                  <Button
-                    key={link.label}
-                    as={Link}
-                    href={link.url}
-                    variant="bordered"
-                    color="primary"
-                    size="sm"
-                    startContent={link.icon}
-                    showAnchorIcon
-                    isExternal
-                  >
-                    {link.label}
-                  </Button>
-                ))}
+                {actions?.map((action) =>
+                  isProjectCardLink(action) ? (
+                    <Button
+                      key={action.label}
+                      as={Link}
+                      href={action.url}
+                      variant="bordered"
+                      color="primary"
+                      startContent={action.icon}
+                      showAnchorIcon
+                      isExternal
+                    >
+                      {action.label}
+                    </Button>
+                  ) : (
+                    <Button
+                      key={action.label}
+                      onPress={action.onClick}
+                      variant="bordered"
+                      color="primary"
+                      startContent={action.icon}
+                    >
+                      {action.label}
+                    </Button>
+                  )
+                )}
               </ButtonGroup>
             ) : (
               <span />

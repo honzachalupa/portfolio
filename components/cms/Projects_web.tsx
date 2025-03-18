@@ -1,7 +1,8 @@
 import { Projects_Web as Projects_webProps } from "@/actions/hygraph/_generated/graphql";
 import { Container } from "../Container";
+import { ImagePreview } from "../ImagePreview";
 import { MarkdownRenderer } from "../MarkdownRenderer";
-import { ProjectCard, ProjectCardLink } from "../ProjectCard";
+import { ProjectCard } from "../ProjectCard";
 
 export function Projects_web({
   headline,
@@ -21,11 +22,10 @@ export function Projects_web({
               }
               image={
                 image?.url && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
+                  <ImagePreview
                     src={image.url}
                     alt={name}
-                    className="rounded-b-none w-full md:w-1/2 aspect-video object-cover object-top rounded-xl"
+                    className="w-full md:w-1/2 aspect-video object-cover rounded-xl cursor-pointer"
                   />
                 )
               }
@@ -43,14 +43,12 @@ export function Projects_web({
                   </div>
                 )
               }
-              links={
-                [
-                  url && {
-                    label: "Visit",
-                    url,
-                  },
-                ].filter(Boolean) as ProjectCardLink[]
-              }
+              actions={[
+                !!url && {
+                  label: "Visit",
+                  url,
+                },
+              ]}
             />
           )
         )}

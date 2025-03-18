@@ -1,4 +1,4 @@
-interface IGitHubRepositoryOriginal {
+interface GitHubRepositoryOriginal {
   id: string;
   name: string;
   full_name: string;
@@ -9,7 +9,7 @@ interface IGitHubRepositoryOriginal {
   pushed_at: string;
   archived: boolean;
 }
-export interface IGitHubRepository {
+export interface GithubRepository {
   id: string;
   name: string;
   fullName: string;
@@ -20,14 +20,14 @@ export interface IGitHubRepository {
   pushedAt: string;
 }
 
-interface IGitHubReadmeOriginal {
+interface GithubReadmeOriginal {
   html_url: string;
   download_url: string;
   content: string;
   encoding: "base64";
 }
 
-export interface IGitHubReadme {
+export interface GithubReadme {
   url: string;
   rawUrl: string;
   content: string;
@@ -45,13 +45,13 @@ const search = (
         includeArchived?: boolean;
       }
     | undefined = undefined
-): Promise<IGitHubRepository[]> =>
+): Promise<GithubRepository[]> =>
   fetch("https://api.github.com/users/honzachalupa/repos", {
     method: "GET",
     headers,
   })
     .then((response) => response.json())
-    .then((data: IGitHubRepositoryOriginal[]) =>
+    .then((data: GitHubRepositoryOriginal[]) =>
       data
         .filter(
           ({ description, archived }) =>
@@ -73,7 +73,7 @@ const search = (
             topics,
             pushed_at: pushedAt,
           }) => {
-            const data: IGitHubRepository = {
+            const data: GithubRepository = {
               id,
               name,
               fullName,
@@ -90,20 +90,22 @@ const search = (
         .slice(0, options?.limit ?? 100)
     );
 
-const getReadme = async (
-  owner: string,
-  repositoryName: string
-): Promise<IGitHubReadme> =>
-  fetch(`https://api.github.com/repos/${owner}/${repositoryName}/readme`, {
-    method: "GET",
-    headers,
-  })
-    .then((response) => response.json())
-    .then((original: IGitHubReadmeOriginal) => ({
-      url: original.html_url,
-      rawUrl: original.download_url,
-      content: Buffer.from(original.content, original.encoding).toString(),
-    }));
+async function getReadme(repositoryName: string): Promise<GithubReadme> {
+  const response = await fetch(
+    `https://api.github.com/repos/honzachalupa/${repositoryName}/readme`,
+    {
+      method: "GET",
+    }
+  );
+
+  const data = await response.json();
+
+  return {
+    url: data.html_url,
+    rawUrl: data.download_url,
+    content: Buffer.from(data.content, data.encoding).toString(),
+  };
+}
 
 const githubApi = {
   search,

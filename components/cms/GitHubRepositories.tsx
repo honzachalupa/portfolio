@@ -6,8 +6,7 @@ import { cache } from "react";
 import { FaGithub } from "react-icons/fa";
 import "server-only";
 import { Container } from "../Container";
-import { MarkdownRenderer } from "../MarkdownRenderer";
-import { ProjectCard, ProjectCardLink } from "../ProjectCard";
+import { GitHubRepositories_Client } from "./GitHubRepositories.client";
 
 export const preload = (): void => {
   void fetchData();
@@ -29,23 +28,7 @@ export async function GitHubRepositories({
   return (
     <Container headline={headline}>
       <div className="flex flex-wrap gap-[12px]">
-        {repositories?.map(
-          ({ id, name, url, websiteUrl, description, topics }) => (
-            <ProjectCard
-              key={id}
-              title={name}
-              subtitle={topics?.join(", ")}
-              description={<MarkdownRenderer>{description}</MarkdownRenderer>}
-              links={
-                [
-                  websiteUrl && { label: "Visit", url: websiteUrl },
-                  { label: "Show source-code", url: url, icon: <FaGithub /> },
-                ].filter(Boolean) as ProjectCardLink[]
-              }
-              className="basis-[calc(50%-(12px)/2)]"
-            />
-          )
-        )}
+        <GitHubRepositories_Client repositories={repositories} />
       </div>
 
       <div className="flex justify-center mt-10">

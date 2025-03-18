@@ -378,6 +378,7 @@ export type Asset = Entity & Node & {
   createdAt: Scalars['DateTime']['output'];
   /** User that created this document */
   createdBy?: Maybe<User>;
+  cvFileConfig: Array<Config>;
   /** Get the document in other stages */
   documentInStages: Array<Asset>;
   /** The file name */
@@ -431,6 +432,20 @@ export type AssetCreatedAtArgs = {
 export type AssetCreatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
+};
+
+
+/** Asset system model */
+export type AssetCvFileConfigArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<ConfigOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ConfigWhereInput>;
 };
 
 
@@ -562,6 +577,7 @@ export type AssetConnection = {
 
 export type AssetCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  cvFileConfig?: InputMaybe<ConfigCreateManyInlineInput>;
   fileName?: InputMaybe<Scalars['String']['input']>;
   iconClient?: InputMaybe<ClientCreateManyInlineInput>;
   iconSocialNetwork?: InputMaybe<SocialNetworkCreateManyInlineInput>;
@@ -642,6 +658,9 @@ export type AssetManyWhereInput = {
   /** All values that are not contained in given list. */
   createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   createdBy?: InputMaybe<UserWhereInput>;
+  cvFileConfig_every?: InputMaybe<ConfigWhereInput>;
+  cvFileConfig_none?: InputMaybe<ConfigWhereInput>;
+  cvFileConfig_some?: InputMaybe<ConfigWhereInput>;
   documentInStages_every?: InputMaybe<AssetWhereStageInput>;
   documentInStages_none?: InputMaybe<AssetWhereStageInput>;
   documentInStages_some?: InputMaybe<AssetWhereStageInput>;
@@ -754,6 +773,7 @@ export type AssetTransformationInput = {
 };
 
 export type AssetUpdateInput = {
+  cvFileConfig?: InputMaybe<ConfigUpdateManyInlineInput>;
   fileName?: InputMaybe<Scalars['String']['input']>;
   iconClient?: InputMaybe<ClientUpdateManyInlineInput>;
   iconSocialNetwork?: InputMaybe<SocialNetworkUpdateManyInlineInput>;
@@ -1006,6 +1026,9 @@ export type AssetWhereInput = {
   /** All values that are not contained in given list. */
   createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   createdBy?: InputMaybe<UserWhereInput>;
+  cvFileConfig_every?: InputMaybe<ConfigWhereInput>;
+  cvFileConfig_none?: InputMaybe<ConfigWhereInput>;
+  cvFileConfig_some?: InputMaybe<ConfigWhereInput>;
   documentInStages_every?: InputMaybe<AssetWhereStageInput>;
   documentInStages_none?: InputMaybe<AssetWhereStageInput>;
   documentInStages_some?: InputMaybe<AssetWhereStageInput>;
@@ -2215,6 +2238,7 @@ export type Config = Entity & Node & {
   createdAt: Scalars['DateTime']['output'];
   /** User that created this document */
   createdBy?: Maybe<User>;
+  cvFile?: Maybe<Asset>;
   /** Get the document in other stages */
   documentInStages: Array<Config>;
   emailAddress: Scalars['String']['output'];
@@ -2240,6 +2264,13 @@ export type Config = Entity & Node & {
 export type ConfigCreatedByArgs = {
   forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
   locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type ConfigCvFileArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  where?: InputMaybe<AssetSingleRelationWhereInput>;
 };
 
 
@@ -2312,6 +2343,7 @@ export type ConfigConnection = {
 
 export type ConfigCreateInput = {
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  cvFile?: InputMaybe<AssetCreateOneInlineInput>;
   emailAddress: Scalars['String']['input'];
   socialNetworks?: InputMaybe<SocialNetworkCreateManyInlineInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -2366,6 +2398,7 @@ export type ConfigManyWhereInput = {
   /** All values that are not contained in given list. */
   createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   createdBy?: InputMaybe<UserWhereInput>;
+  cvFile?: InputMaybe<AssetWhereInput>;
   documentInStages_every?: InputMaybe<ConfigWhereStageInput>;
   documentInStages_none?: InputMaybe<ConfigWhereStageInput>;
   documentInStages_some?: InputMaybe<ConfigWhereStageInput>;
@@ -2461,6 +2494,7 @@ export enum ConfigOrderByInput {
 }
 
 export type ConfigUpdateInput = {
+  cvFile?: InputMaybe<AssetUpdateOneInlineInput>;
   emailAddress?: InputMaybe<Scalars['String']['input']>;
   socialNetworks?: InputMaybe<SocialNetworkUpdateManyInlineInput>;
 };
@@ -2561,6 +2595,7 @@ export type ConfigWhereInput = {
   /** All values that are not contained in given list. */
   createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   createdBy?: InputMaybe<UserWhereInput>;
+  cvFile?: InputMaybe<AssetWhereInput>;
   documentInStages_every?: InputMaybe<ConfigWhereStageInput>;
   documentInStages_none?: InputMaybe<ConfigWhereStageInput>;
   documentInStages_some?: InputMaybe<ConfigWhereStageInput>;

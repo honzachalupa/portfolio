@@ -23,7 +23,7 @@ export function Jobs({ headline, jobs }: JobsProps): React.ReactNode {
                     href={client!.url}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-primary-400"
+                    className="text-primary"
                   >
                     {client!.name}
                   </a>

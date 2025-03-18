@@ -1,6 +1,7 @@
 "use client";
 
 import { HeroUIProvider } from "@heroui/system";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
 import {
   ThemeProvider as NextThemesProvider,
   ThemeProviderProps,
@@ -21,8 +22,12 @@ export function Providers({
   const router = useRouter();
 
   return (
-    <HeroUIProvider locale={locale} navigate={router.push}>
-      <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
-    </HeroUIProvider>
+    <>
+      <VercelAnalytics />
+
+      <HeroUIProvider locale={locale} navigate={router.push}>
+        <NextThemesProvider {...themeProps}>{children}</NextThemesProvider>
+      </HeroUIProvider>
+    </>
   );
 }

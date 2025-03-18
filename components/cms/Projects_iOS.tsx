@@ -6,7 +6,7 @@ import { FaAppStoreIos } from "react-icons/fa";
 import "server-only";
 import { Container } from "../Container";
 import { MarkdownRenderer } from "../MarkdownRenderer";
-import { ProjectCard, ProjectCardLink } from "../ProjectCard";
+import { ProjectCard } from "../ProjectCard";
 
 export function preload(): void {
   void appleAppStoreApi.getApps({ limit: 6 });
@@ -26,15 +26,13 @@ export async function Projects_iOS({
             title={name}
             subtitle={keywords.join(", ")}
             description={<MarkdownRenderer>{description}</MarkdownRenderer>}
-            links={
-              [
-                url && {
-                  label: "View in App Store",
-                  icon: <FaAppStoreIos />,
-                  url,
-                },
-              ].filter(Boolean) as ProjectCardLink[]
-            }
+            actions={[
+              !!url && {
+                label: "View in App Store",
+                icon: <FaAppStoreIos />,
+                url,
+              },
+            ]}
             className="basis-[calc(50%-(12px)/2)]"
           />
         ))}

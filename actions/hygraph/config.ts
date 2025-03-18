@@ -19,6 +19,9 @@ export async function getConfig(): Promise<HygraphGetConfigData | null> {
         }
         url
       }
+      cvFile {
+        url
+      }
     }
   }`;
 
