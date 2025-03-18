@@ -36,8 +36,6 @@ export function GitHubRepositories_Client({
 
     const data = await githubApi.getReadme(name);
 
-    console.log(data);
-
     setSelectedRepositoryReadme(data);
   }
 
@@ -46,8 +44,6 @@ export function GitHubRepositories_Client({
       fetchReadme(selectedRepositoryName);
     }
   }, [selectedRepositoryName]);
-
-  console.log({ isOpen });
 
   return (
     <>
