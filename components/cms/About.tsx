@@ -19,6 +19,7 @@ export async function About({
 
       <Button
         as={Link}
+        // @ts-ignore
         href={config?.cvFile?.url}
         variant="bordered"
         color="primary"
