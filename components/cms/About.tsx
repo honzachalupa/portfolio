@@ -13,7 +13,7 @@ export async function About({
 
   return (
     <Container headline={headline}>
-      <MarkdownRenderer p_className="md:text-lg">
+      <MarkdownRenderer classNames={{ p: "md:text-lg" }}>
         {content.markdown}
       </MarkdownRenderer>
 
