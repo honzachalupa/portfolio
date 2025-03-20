@@ -1,20 +1,13 @@
 import hygraph from "@/actions/hygraph";
 import { ContentRenderer } from "@/components/ContentRenderer";
 import type { Metadata } from "next";
-import { cache } from "react";
 
 export const metadata: Metadata = {
   title: "Jan Chalupa portfolio",
 };
 
-const getPage = cache(async () => await hygraph.getPage("/"));
-
-export const preload = (): void => {
-  void getPage();
-};
-
 export default async function Page(): Promise<React.ReactNode> {
-  const page = await getPage();
+  const page = await hygraph.getPage("/");
 
   if (!page) {
     // Instead of throwing an error, render a fallback UI
