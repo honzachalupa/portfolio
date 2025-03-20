@@ -2,20 +2,25 @@ import appleAppStoreApi from "@/actions/appleAppStore";
 import { Projects_IOs as Projects_iOSProps } from "@/actions/hygraph/_generated/graphql";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
+import { cache } from "react";
 import { FaAppStoreIos } from "react-icons/fa";
 import "server-only";
 import { Container } from "../Container";
 import { MarkdownRenderer } from "../MarkdownRenderer";
 import { ProjectCard } from "../ProjectCard";
 
+const getIosApps = cache(
+  async () => await appleAppStoreApi.getApps({ limit: 6 })
+);
+
 export function preload(): void {
-  void appleAppStoreApi.getApps({ limit: 6 });
+  void getIosApps();
 }
 
 export async function Projects_iOS({
   headline,
 }: Projects_iOSProps): Promise<React.ReactNode> {
-  const apps = await appleAppStoreApi.getApps({ limit: 6 });
+  const apps = await getIosApps();
 
   return (
     <Container headline={headline}>

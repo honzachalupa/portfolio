@@ -6,19 +6,35 @@ import { Button } from "@heroui/button";
 import { Card } from "@heroui/card";
 import { Link } from "@heroui/link";
 import { Tooltip } from "@heroui/tooltip";
+import { cache } from "react";
 import { Container } from "../Container";
+
+const getProjects = cache(async () => await hygraph.getProjects());
+const getClients = cache(async () => await hygraph.getClients());
+const getIosApps = cache(async () => await appleAppStoreApi.getApps());
+const getRepositories = cache(
+  async () =>
+    await githubApi.search({
+      includeWithoutDescription: true,
+      includeArchived: true,
+    })
+);
+
+export const preload = (): void => {
+  void getProjects();
+  void getClients();
+  void getIosApps();
+  void getRepositories();
+};
 
 export async function Statistics({
   headline,
   items,
 }: StatisticsProps): Promise<React.ReactNode> {
-  const projects = await hygraph.getProjects();
-  const clients = await hygraph.getClients();
-  const iOSapps = await appleAppStoreApi.getApps();
-  const repositories = await githubApi.search({
-    includeWithoutDescription: true,
-    includeArchived: true,
-  });
+  const projects = await getProjects();
+  const clients = await getClients();
+  const iOSapps = await getIosApps();
+  const repositories = await getRepositories();
 
   const values = {
     yearsOfWeb: new Date().getFullYear() - 2008,

@@ -8,13 +8,7 @@ import "server-only";
 import { Container } from "../Container";
 import { GitHubRepositories_Client } from "./GitHubRepositories.client";
 
-const fetchData = cache(async () => {
-  const data = await githubApi.search({
-    limit: 6,
-  });
-
-  return data;
-});
+const fetchData = cache(async () => await githubApi.search());
 
 export const preload = (): void => {
   void fetchData();
