@@ -1,5 +1,5 @@
 import { HygraphGetPageData } from "@/actions/hygraph/page";
-import { Fragment } from "react";
+import { Fragment, Suspense } from "react";
 import { About } from "./cms/About";
 import { ContactForm } from "./cms/ContactForm";
 import { GitHubRepositories } from "./cms/GitHubRepositories";
@@ -7,6 +7,7 @@ import { Jobs } from "./cms/Jobs";
 import { Projects_iOS } from "./cms/Projects_iOS";
 import { Projects_web } from "./cms/Projects_web";
 import { Statistics } from "./cms/Statistics";
+import { LoadingIndicator } from "./LoadingIndicator";
 
 interface ContentRendererProps {
   page: HygraphGetPageData;
@@ -44,7 +45,11 @@ export function ContentRenderer({
     /* title, */ components: { content },
   }: HygraphGetPageData): React.ReactNode => {
     const children = content.map((data, i) => (
-      <Fragment key={i}>{renderComponent(data)}</Fragment>
+      <Fragment key={i}>
+        <Suspense fallback={<LoadingIndicator />}>
+          {renderComponent(data)}
+        </Suspense>
+      </Fragment>
     ));
 
     return children;
