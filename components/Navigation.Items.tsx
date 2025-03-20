@@ -44,7 +44,7 @@ export function Items({
             <DropdownTrigger>
               <Button
                 {...getActiveButtonStyle(isActive)}
-                as={Link}
+                title={title!}
                 endContent={<FaChevronDown />}
                 variant="light"
               >
@@ -61,6 +61,7 @@ export function Items({
                 <DropdownItem key={slug!}>
                   <Link
                     href={slug!}
+                    title={title!}
                     color={isActive ? "primary" : "foreground"}
                     size="sm"
                     onPress={closeMenu}
@@ -81,6 +82,7 @@ export function Items({
           {...getActiveButtonStyle(isActive)}
           as={Link}
           href={slug!}
+          title={title!}
           onPress={closeMenu}
         >
           {title}

@@ -37,7 +37,7 @@ export function Navigation({
       <NavbarContent>
         <NavbarMenuToggle
           title={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
+          className="md:hidden"
         />
 
         <NavbarBrand>
@@ -51,15 +51,16 @@ export function Navigation({
         </NavbarBrand>
       </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-1" justify="center">
+      <NavbarContent className="hidden md:flex gap-1" justify="center">
         <Items pages={pages} />
       </NavbarContent>
 
       <NavbarContent justify="end">
         {config?.cvFile && (
-          <NavbarItem>
+          <NavbarItem className="hidden md:inline">
             <Button
               as={Link}
+              title="Download my CV"
               href={config.cvFile.url}
               variant="bordered"
               color="primary"
@@ -71,15 +72,28 @@ export function Navigation({
           </NavbarItem>
         )}
 
-        <NavbarItem>
+        <NavbarItem className="inline lg:hidden">
           <Button
             as={Link}
+            title="Contact me"
+            href="/contact-me"
+            color="primary"
+            variant="solid"
+            isIconOnly
+            startContent={<FaRegEnvelope />}
+          />
+        </NavbarItem>
+
+        <NavbarItem className="hidden lg:inline">
+          <Button
+            as={Link}
+            title="Contact me"
             href="/contact-me"
             color="primary"
             variant="solid"
             startContent={<FaRegEnvelope />}
           >
-            <span className="hidden lg:inline">Contact me</span>
+            Contact me
           </Button>
         </NavbarItem>
 

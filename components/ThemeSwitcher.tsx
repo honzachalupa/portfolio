@@ -26,6 +26,7 @@ export function ThemeSwitcher(): React.ReactNode {
       variant="light"
       size="lg"
       startContent={<CgDarkMode />}
+      title={`Toggle ${theme === "light" ? "dark" : "light"} theme`}
       isIconOnly
       onPress={toggle}
     />

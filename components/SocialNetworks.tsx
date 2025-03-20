@@ -1,7 +1,8 @@
 import hygraphApi from "@/actions/hygraph";
+import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
-import { cache } from "react";
-import { SocialNetworkIcon } from "./SocialNetworkIcon";
+import { cache, createElement } from "react";
+import * as FaIcons from "react-icons/fa6";
 
 const getConfig = cache(async () => {
   return await hygraphApi.getConfig();
@@ -11,17 +12,32 @@ export const preload = (): void => {
   void getConfig();
 };
 
+function SocialNetworkIcon({ name }: { name: string }): React.ReactNode {
+  const IconComponent = FaIcons[name as keyof typeof FaIcons];
+
+  if (!IconComponent) {
+    console.warn(`Icon "${name}" not found in FaIcons`);
+
+    return null;
+  }
+
+  return createElement(IconComponent, { className: "w-full h-full" });
+}
+
 export async function SocialNetworks(): Promise<React.ReactNode> {
   const config = await getConfig();
 
   return (
-    <div className="fixed bottom-0 right-0 flex flex-col justify-center gap-5 m-5">
+    <div className="xl:fixed bottom-0 right-0 flex xl:flex-col justify-center gap-5 m-5">
       {config?.socialNetworks.map(({ name, url, iconName }) => (
         <Link
+          as={Button}
           key={name}
           href={url}
           title={name}
-          className="w-[40px] h-[40px] opacity-40"
+          variant="light"
+          className="w-[50px] h-[50px] p-2"
+          isIconOnly
         >
           <SocialNetworkIcon name={iconName} />
         </Link>

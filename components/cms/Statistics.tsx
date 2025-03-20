@@ -3,7 +3,7 @@ import githubApi from "@/actions/github";
 import hygraph from "@/actions/hygraph";
 import { Statistics as StatisticsProps } from "@/actions/hygraph/_generated/graphql";
 import { Button } from "@heroui/button";
-import { Card } from "@heroui/card";
+import { Card, CardFooter } from "@heroui/card";
 import { Link } from "@heroui/link";
 import { Tooltip } from "@heroui/tooltip";
 import { cache } from "react";
@@ -26,7 +26,7 @@ export const preload = async (): Promise<void> => {
     getProjects(),
     getClients(),
     getIosApps(),
-    getRepositories()
+    getRepositories(),
   ]);
 };
 
@@ -49,7 +49,7 @@ export async function Statistics({
     githubRepositories: repositories?.length,
   };
 
-  const tooltipActions = {
+  const actions = {
     clients: (
       <Button
         as={Link}
@@ -113,24 +113,19 @@ export async function Statistics({
       description: replaceValue(key, description),
       tooltipDescription: replaceValue(key, tooltipDescription),
       unit,
-      tooltipAction: tooltipActions[key as keyof typeof tooltipActions],
+      action: actions[key as keyof typeof actions],
     })
   );
 
   return (
     <Container headline={headline}>
-      <div className="grid grid-cols-3 grid-rows-2 md:grid-cols-6 md:grid-rows-1 gap-4">
+      <div className="grid grid-cols-2 grid-rows-3 xs:grid-cols-3 xs:grid-rows-2 sm:grid-cols-4 sm:grid-rows-2 lg:grid-cols-6 lg:grid-rows-1 gap-4">
         {itemsWithValue.map(
-          ({ value, description, tooltipDescription, unit, tooltipAction }) => (
+          ({ value, description, tooltipDescription, unit, action }) => (
             <Tooltip
               key={description}
-              content={
-                <>
-                  <p>{tooltipDescription}</p>
-                  {tooltipAction}
-                </>
-              }
-              placement="bottom"
+              content={tooltipDescription}
+              placement="top"
               offset={-20}
               className="max-w-[200px] text-center"
               showArrow
@@ -144,6 +139,12 @@ export async function Statistics({
                 <span className="text-sm font-light opacity-50 text-center">
                   {description}
                 </span>
+
+                {action && (
+                  <CardFooter className="py-1 absolute bottom-0 w-[calc(100%_-_8px)] z-10">
+                    {action}
+                  </CardFooter>
+                )}
               </Card>
             </Tooltip>
           )
