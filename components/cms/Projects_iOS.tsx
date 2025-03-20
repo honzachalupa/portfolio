@@ -6,8 +6,7 @@ import { cache } from "react";
 import { FaAppStoreIos } from "react-icons/fa";
 import "server-only";
 import { Container } from "../Container";
-import { MarkdownRenderer } from "../MarkdownRenderer";
-import { ProjectCard } from "../ProjectCard";
+import { ProjectCard, ProjectCardGrid } from "../ProjectCard";
 
 const getIosApps = cache(
   async () => await appleAppStoreApi.getApps({ limit: 6 })
@@ -24,24 +23,25 @@ export async function Projects_iOS({
 
   return (
     <Container headline={headline}>
-      <div className="flex flex-wrap gap-[12px]">
+      <ProjectCardGrid>
         {apps?.map(({ id, name, description, keywords, url }) => (
           <ProjectCard
             key={id}
             title={name}
             subtitle={keywords.join(", ")}
-            description={<MarkdownRenderer>{description}</MarkdownRenderer>}
+            descriptionMarkdown={description}
             actions={[
               !!url && {
                 label: "View in App Store",
                 icon: <FaAppStoreIos />,
                 url,
+                variant: "solid",
               },
             ]}
             className="basis-[calc(50%-(12px)/2)]"
           />
         ))}
-      </div>
+      </ProjectCardGrid>
 
       <div className="flex justify-center mt-10">
         <Button

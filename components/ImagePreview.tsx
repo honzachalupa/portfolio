@@ -25,8 +25,8 @@ export function ImagePreview({
       </Button>
 
       <Modal
-        backdrop="blur"
         size="5xl"
+        backdrop="blur"
         isOpen={isOpen}
         onOpenChange={onOpenChange}
       >

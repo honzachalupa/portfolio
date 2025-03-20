@@ -392,7 +392,6 @@ export type Asset = Entity & Node & {
   iconClient: Array<Client>;
   /** The unique identifier */
   id: Scalars['ID']['output'];
-  imageProject: Array<Project>;
   /** System Locale field */
   locale: Locale;
   /** Get the other localizations for this document */
@@ -476,20 +475,6 @@ export type AssetIconClientArgs = {
   orderBy?: InputMaybe<ClientOrderByInput>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ClientWhereInput>;
-};
-
-
-/** Asset system model */
-export type AssetImageProjectArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  locales?: InputMaybe<Array<Locale>>;
-  orderBy?: InputMaybe<ProjectOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<ProjectWhereInput>;
 };
 
 
@@ -581,7 +566,6 @@ export type AssetCreateInput = {
   fileName?: InputMaybe<Scalars['String']['input']>;
   iconClient?: InputMaybe<ClientCreateManyInlineInput>;
   imageBlockAboutMe?: InputMaybe<AboutCreateManyInlineInput>;
-  imageProject?: InputMaybe<ProjectCreateManyInlineInput>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: InputMaybe<AssetCreateLocalizationsInput>;
   photoConfig?: InputMaybe<ConfigCreateManyInlineInput>;
@@ -686,9 +670,6 @@ export type AssetManyWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  imageProject_every?: InputMaybe<ProjectWhereInput>;
-  imageProject_none?: InputMaybe<ProjectWhereInput>;
-  imageProject_some?: InputMaybe<ProjectWhereInput>;
   photoConfig_every?: InputMaybe<ConfigWhereInput>;
   photoConfig_none?: InputMaybe<ConfigWhereInput>;
   photoConfig_some?: InputMaybe<ConfigWhereInput>;
@@ -777,7 +758,6 @@ export type AssetUpdateInput = {
   fileName?: InputMaybe<Scalars['String']['input']>;
   iconClient?: InputMaybe<ClientUpdateManyInlineInput>;
   imageBlockAboutMe?: InputMaybe<AboutUpdateManyInlineInput>;
-  imageProject?: InputMaybe<ProjectUpdateManyInlineInput>;
   /** Manage document localizations */
   localizations?: InputMaybe<AssetUpdateLocalizationsInput>;
   photoConfig?: InputMaybe<ConfigUpdateManyInlineInput>;
@@ -1107,9 +1087,6 @@ export type AssetWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  imageProject_every?: InputMaybe<ProjectWhereInput>;
-  imageProject_none?: InputMaybe<ProjectWhereInput>;
-  imageProject_some?: InputMaybe<ProjectWhereInput>;
   mimeType?: InputMaybe<Scalars['String']['input']>;
   /** All values containing the given string. */
   mimeType_contains?: InputMaybe<Scalars['String']['input']>;
@@ -6860,11 +6837,6 @@ export type PageWhereUniqueInput = {
   slug?: InputMaybe<Scalars['String']['input']>;
 };
 
-export enum Platforms {
-  IOs = 'iOS',
-  Web = 'web'
-}
-
 export type Project = Entity & Node & {
   __typename?: 'Project';
   client?: Maybe<Client>;
@@ -6879,15 +6851,12 @@ export type Project = Entity & Node & {
   history: Array<Version>;
   /** The unique identifier */
   id: Scalars['ID']['output'];
-  image?: Maybe<Asset>;
   name: Scalars['String']['output'];
-  platform: Array<Platforms>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   /** User that last published this document */
   publishedBy?: Maybe<User>;
   scheduledIn: Array<ScheduledOperation>;
-  slogan?: Maybe<Scalars['String']['output']>;
   /** System stage field */
   stage: Stage;
   topics: Scalars['Json']['output'];
@@ -6922,13 +6891,6 @@ export type ProjectHistoryArgs = {
   limit?: Scalars['Int']['input'];
   skip?: Scalars['Int']['input'];
   stageOverride?: InputMaybe<Stage>;
-};
-
-
-export type ProjectImageArgs = {
-  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
-  locales?: InputMaybe<Array<Locale>>;
-  where?: InputMaybe<AssetSingleRelationWhereInput>;
 };
 
 
@@ -6977,10 +6939,7 @@ export type ProjectCreateInput = {
   client?: InputMaybe<ClientCreateOneInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   description: Scalars['RichTextAST']['input'];
-  image?: InputMaybe<AssetCreateOneInlineInput>;
   name: Scalars['String']['input'];
-  platform?: InputMaybe<Array<Platforms>>;
-  slogan?: InputMaybe<Scalars['String']['input']>;
   topics: Scalars['Json']['input'];
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;
@@ -7058,7 +7017,6 @@ export type ProjectManyWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  image?: InputMaybe<AssetWhereInput>;
   name?: InputMaybe<Scalars['String']['input']>;
   /** All values containing the given string. */
   name_contains?: InputMaybe<Scalars['String']['input']>;
@@ -7078,16 +7036,6 @@ export type ProjectManyWhereInput = {
   name_not_starts_with?: InputMaybe<Scalars['String']['input']>;
   /** All values starting with the given string. */
   name_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** Matches if the field array contains *all* items provided to the filter and order does match */
-  platform?: InputMaybe<Array<Platforms>>;
-  /** Matches if the field array contains *all* items provided to the filter */
-  platform_contains_all?: InputMaybe<Array<Platforms>>;
-  /** Matches if the field array does not contain any of the items provided to the filter */
-  platform_contains_none?: InputMaybe<Array<Platforms>>;
-  /** Matches if the field array contains at least one item provided to the filter */
-  platform_contains_some?: InputMaybe<Array<Platforms>>;
-  /** Matches if the field array does not contains *all* items provided to the filter or order does not match */
-  platform_not?: InputMaybe<Array<Platforms>>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -7107,25 +7055,6 @@ export type ProjectManyWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
-  slogan?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  slogan_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  slogan_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  slogan_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  slogan_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  slogan_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  slogan_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  slogan_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  slogan_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  slogan_starts_with?: InputMaybe<Scalars['String']['input']>;
   /** All values containing the given json path. */
   topics_json_path_exists?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -7179,12 +7108,8 @@ export enum ProjectOrderByInput {
   IdDesc = 'id_DESC',
   NameAsc = 'name_ASC',
   NameDesc = 'name_DESC',
-  PlatformAsc = 'platform_ASC',
-  PlatformDesc = 'platform_DESC',
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
-  SloganAsc = 'slogan_ASC',
-  SloganDesc = 'slogan_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
   UpdatedAtDesc = 'updatedAt_DESC',
   UrlAsc = 'url_ASC',
@@ -7195,10 +7120,7 @@ export type ProjectUpdateInput = {
   cldyzbl1l1xpg01rr0navgb9u?: InputMaybe<Projects_WebUpdateManyInlineInput>;
   client?: InputMaybe<ClientUpdateOneInlineInput>;
   description?: InputMaybe<Scalars['RichTextAST']['input']>;
-  image?: InputMaybe<AssetUpdateOneInlineInput>;
   name?: InputMaybe<Scalars['String']['input']>;
-  platform?: InputMaybe<Array<Platforms>>;
-  slogan?: InputMaybe<Scalars['String']['input']>;
   topics?: InputMaybe<Scalars['Json']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;
 };
@@ -7223,8 +7145,6 @@ export type ProjectUpdateManyInlineInput = {
 export type ProjectUpdateManyInput = {
   description?: InputMaybe<Scalars['RichTextAST']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
-  platform?: InputMaybe<Array<Platforms>>;
-  slogan?: InputMaybe<Scalars['String']['input']>;
   topics?: InputMaybe<Scalars['Json']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;
 };
@@ -7327,7 +7247,6 @@ export type ProjectWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']['input']>;
-  image?: InputMaybe<AssetWhereInput>;
   name?: InputMaybe<Scalars['String']['input']>;
   /** All values containing the given string. */
   name_contains?: InputMaybe<Scalars['String']['input']>;
@@ -7347,16 +7266,6 @@ export type ProjectWhereInput = {
   name_not_starts_with?: InputMaybe<Scalars['String']['input']>;
   /** All values starting with the given string. */
   name_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** Matches if the field array contains *all* items provided to the filter and order does match */
-  platform?: InputMaybe<Array<Platforms>>;
-  /** Matches if the field array contains *all* items provided to the filter */
-  platform_contains_all?: InputMaybe<Array<Platforms>>;
-  /** Matches if the field array does not contain any of the items provided to the filter */
-  platform_contains_none?: InputMaybe<Array<Platforms>>;
-  /** Matches if the field array contains at least one item provided to the filter */
-  platform_contains_some?: InputMaybe<Array<Platforms>>;
-  /** Matches if the field array does not contains *all* items provided to the filter or order does not match */
-  platform_not?: InputMaybe<Array<Platforms>>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -7376,25 +7285,6 @@ export type ProjectWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
-  slogan?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  slogan_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  slogan_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  slogan_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  slogan_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  slogan_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  slogan_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  slogan_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  slogan_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  slogan_starts_with?: InputMaybe<Scalars['String']['input']>;
   /** All values containing the given json path. */
   topics_json_path_exists?: InputMaybe<Scalars['String']['input']>;
   /**
@@ -9694,6 +9584,7 @@ export type SocialNetwork = Entity & Node & {
   documentInStages: Array<SocialNetwork>;
   /** List of SocialNetwork versions */
   history: Array<Version>;
+  /** Can be any icon from "fa6". https://react-icons.github.io/react-icons/icons/fa6/ */
   iconName: Scalars['String']['output'];
   /** The unique identifier */
   id: Scalars['ID']['output'];

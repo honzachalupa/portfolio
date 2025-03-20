@@ -54,10 +54,8 @@ export function GitHubRepositories_Client({
               key={id}
               title={name}
               subtitle={topics?.join(", ")}
-              description={<MarkdownRenderer>{description}</MarkdownRenderer>}
+              descriptionMarkdown={description}
               actions={[
-                !!websiteUrl && { label: "Visit", url: websiteUrl },
-                { label: "View source-code", url: url, icon: <FaGithub /> },
                 {
                   label: "View readme",
                   onClick: (): void => {
@@ -65,6 +63,12 @@ export function GitHubRepositories_Client({
                     onOpen();
                   },
                   icon: <FaGithub />,
+                },
+                { label: "View source-code", url: url, icon: <FaGithub /> },
+                !!websiteUrl && {
+                  label: "Visit",
+                  url: websiteUrl,
+                  variant: "solid",
                 },
               ]}
               className="basis-[calc(50%-(12px)/2)]"
@@ -74,8 +78,8 @@ export function GitHubRepositories_Client({
       )}
 
       <Modal
-        backdrop="blur"
         size={!selectedRepositoryReadme?.content ? "2xl" : "5xl"}
+        backdrop="blur"
         className="max-h-[70vh]"
         isOpen={isOpen}
         onOpenChange={() => {

@@ -6,6 +6,7 @@ import { cache } from "react";
 import { FaGithub } from "react-icons/fa";
 import "server-only";
 import { Container } from "../Container";
+import { ProjectCardGrid } from "../ProjectCard";
 import { GitHubRepositories_Client } from "./GitHubRepositories.client";
 
 const fetchData = cache(async () => await githubApi.search());
@@ -21,9 +22,9 @@ export async function GitHubRepositories({
 
   return (
     <Container headline={headline}>
-      <div className="flex flex-wrap gap-[12px]">
+      <ProjectCardGrid>
         <GitHubRepositories_Client repositories={repositories} />
-      </div>
+      </ProjectCardGrid>
 
       <div className="flex justify-center mt-10">
         <Button
