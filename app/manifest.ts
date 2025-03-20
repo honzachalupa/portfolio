@@ -1,10 +1,13 @@
+import hygraphApi from "@/actions/hygraph";
 import type { MetadataRoute } from "next";
 
-export default function manifest(): MetadataRoute.Manifest {
+export default async function manifest(): Promise<MetadataRoute.Manifest> {
+  const config = await hygraphApi.getConfig();
+
   return {
-    name: "Jan Chalupa portfolio",
-    short_name: "Jan Chalupa",
-    description: "",
+    name: config?.seo?.name,
+    short_name: config?.seo?.name,
+    description: config?.seo?.description,
     start_url: "/",
     display: "standalone",
     background_color: "#ffffff",

@@ -2187,6 +2187,7 @@ export type Config = Entity & Node & {
   /** User that last published this document */
   publishedBy?: Maybe<User>;
   scheduledIn: Array<ScheduledOperation>;
+  seo?: Maybe<Seo>;
   socialNetworks: Array<SocialNetwork>;
   /** System stage field */
   stage: Stage;
@@ -2194,7 +2195,6 @@ export type Config = Entity & Node & {
   updatedAt: Scalars['DateTime']['output'];
   /** User that last updated this document */
   updatedBy?: Maybe<User>;
-  webName: Scalars['String']['output'];
 };
 
 
@@ -2250,6 +2250,12 @@ export type ConfigScheduledInArgs = {
 };
 
 
+export type ConfigSeoArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
 export type ConfigSocialNetworksArgs = {
   after?: InputMaybe<Scalars['String']['input']>;
   before?: InputMaybe<Scalars['String']['input']>;
@@ -2292,9 +2298,9 @@ export type ConfigCreateInput = {
   jobDescription?: InputMaybe<Scalars['String']['input']>;
   phoneNumber?: InputMaybe<Scalars['String']['input']>;
   photo?: InputMaybe<AssetCreateOneInlineInput>;
+  seo?: InputMaybe<SeoCreateOneInlineInput>;
   socialNetworks?: InputMaybe<SocialNetworkCreateManyInlineInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
-  webName: Scalars['String']['input'];
 };
 
 export type ConfigCreateManyInlineInput = {
@@ -2446,6 +2452,7 @@ export type ConfigManyWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  seo?: InputMaybe<SeoWhereInput>;
   socialNetworks_every?: InputMaybe<SocialNetworkWhereInput>;
   socialNetworks_none?: InputMaybe<SocialNetworkWhereInput>;
   socialNetworks_some?: InputMaybe<SocialNetworkWhereInput>;
@@ -2465,25 +2472,6 @@ export type ConfigManyWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
-  webName?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  webName_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  webName_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  webName_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  webName_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  webName_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  webName_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  webName_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  webName_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  webName_starts_with?: InputMaybe<Scalars['String']['input']>;
 };
 
 export enum ConfigOrderByInput {
@@ -2500,9 +2488,7 @@ export enum ConfigOrderByInput {
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC',
-  WebNameAsc = 'webName_ASC',
-  WebNameDesc = 'webName_DESC'
+  UpdatedAtDesc = 'updatedAt_DESC'
 }
 
 export type ConfigUpdateInput = {
@@ -2511,8 +2497,8 @@ export type ConfigUpdateInput = {
   jobDescription?: InputMaybe<Scalars['String']['input']>;
   phoneNumber?: InputMaybe<Scalars['String']['input']>;
   photo?: InputMaybe<AssetUpdateOneInlineInput>;
+  seo?: InputMaybe<SeoUpdateOneInlineInput>;
   socialNetworks?: InputMaybe<SocialNetworkUpdateManyInlineInput>;
-  webName?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ConfigUpdateManyInlineInput = {
@@ -2536,7 +2522,6 @@ export type ConfigUpdateManyInput = {
   emailAddress?: InputMaybe<Scalars['String']['input']>;
   jobDescription?: InputMaybe<Scalars['String']['input']>;
   phoneNumber?: InputMaybe<Scalars['String']['input']>;
-  webName?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ConfigUpdateManyWithNestedWhereInput = {
@@ -2714,6 +2699,7 @@ export type ConfigWhereInput = {
   scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
   scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  seo?: InputMaybe<SeoWhereInput>;
   socialNetworks_every?: InputMaybe<SocialNetworkWhereInput>;
   socialNetworks_none?: InputMaybe<SocialNetworkWhereInput>;
   socialNetworks_some?: InputMaybe<SocialNetworkWhereInput>;
@@ -2733,25 +2719,6 @@ export type ConfigWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
-  webName?: InputMaybe<Scalars['String']['input']>;
-  /** All values containing the given string. */
-  webName_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values ending with the given string. */
-  webName_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are contained in given list. */
-  webName_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** Any other value that exists and is not equal to the given value. */
-  webName_not?: InputMaybe<Scalars['String']['input']>;
-  /** All values not containing the given string. */
-  webName_not_contains?: InputMaybe<Scalars['String']['input']>;
-  /** All values not ending with the given string */
-  webName_not_ends_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values that are not contained in given list. */
-  webName_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  /** All values not starting with the given string. */
-  webName_not_starts_with?: InputMaybe<Scalars['String']['input']>;
-  /** All values starting with the given string. */
-  webName_starts_with?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
@@ -3592,6 +3559,7 @@ export enum EntityTypeName {
   ScheduledOperation = 'ScheduledOperation',
   /** Scheduled Release system model */
   ScheduledRelease = 'ScheduledRelease',
+  Seo = 'Seo',
   SocialNetwork = 'SocialNetwork',
   Statistics = 'Statistics',
   StatisticsItem = 'StatisticsItem',
@@ -4960,6 +4928,8 @@ export type Mutation = {
   createProject?: Maybe<Project>;
   /** Create one scheduledRelease */
   createScheduledRelease?: Maybe<ScheduledRelease>;
+  /** Create one seo */
+  createSeo?: Maybe<Seo>;
   /** Create one socialNetwork */
   createSocialNetwork?: Maybe<SocialNetwork>;
   /** Create one statisticsItem */
@@ -5015,6 +4985,13 @@ export type Mutation = {
   /** Delete many Project documents, return deleted documents */
   deleteManyProjectsConnection: ProjectConnection;
   /**
+   * Delete many Seo documents
+   * @deprecated Please use the new paginated many mutation (deleteManySeosConnection)
+   */
+  deleteManySeos: BatchPayload;
+  /** Delete many Seo documents, return deleted documents */
+  deleteManySeosConnection: SeoConnection;
+  /**
    * Delete many SocialNetwork documents
    * @deprecated Please use the new paginated many mutation (deleteManySocialNetworksConnection)
    */
@@ -5036,6 +5013,8 @@ export type Mutation = {
   deleteScheduledOperation?: Maybe<ScheduledOperation>;
   /** Delete one scheduledRelease from _all_ existing stages. Returns deleted document. */
   deleteScheduledRelease?: Maybe<ScheduledRelease>;
+  /** Delete one seo from _all_ existing stages. Returns deleted document. */
+  deleteSeo?: Maybe<Seo>;
   /** Delete one socialNetwork from _all_ existing stages. Returns deleted document. */
   deleteSocialNetwork?: Maybe<SocialNetwork>;
   /** Delete one statisticsItem from _all_ existing stages. Returns deleted document. */
@@ -5091,6 +5070,13 @@ export type Mutation = {
   /** Publish many Project documents */
   publishManyProjectsConnection: ProjectConnection;
   /**
+   * Publish many Seo documents
+   * @deprecated Please use the new paginated many mutation (publishManySeosConnection)
+   */
+  publishManySeos: BatchPayload;
+  /** Publish many Seo documents */
+  publishManySeosConnection: SeoConnection;
+  /**
    * Publish many SocialNetwork documents
    * @deprecated Please use the new paginated many mutation (publishManySocialNetworksConnection)
    */
@@ -5108,6 +5094,8 @@ export type Mutation = {
   publishPage?: Maybe<Page>;
   /** Publish one project */
   publishProject?: Maybe<Project>;
+  /** Publish one seo */
+  publishSeo?: Maybe<Seo>;
   /** Publish one socialNetwork */
   publishSocialNetwork?: Maybe<SocialNetwork>;
   /** Publish one statisticsItem */
@@ -5124,6 +5112,8 @@ export type Mutation = {
   schedulePublishPage?: Maybe<Page>;
   /** Schedule to publish one project */
   schedulePublishProject?: Maybe<Project>;
+  /** Schedule to publish one seo */
+  schedulePublishSeo?: Maybe<Seo>;
   /** Schedule to publish one socialNetwork */
   schedulePublishSocialNetwork?: Maybe<SocialNetwork>;
   /** Schedule to publish one statisticsItem */
@@ -5140,6 +5130,8 @@ export type Mutation = {
   scheduleUnpublishPage?: Maybe<Page>;
   /** Unpublish one project from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishProject?: Maybe<Project>;
+  /** Unpublish one seo from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  scheduleUnpublishSeo?: Maybe<Seo>;
   /** Unpublish one socialNetwork from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   scheduleUnpublishSocialNetwork?: Maybe<SocialNetwork>;
   /** Unpublish one statisticsItem from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -5195,6 +5187,13 @@ export type Mutation = {
   /** Find many Project documents that match criteria in specified stage and unpublish from target stages */
   unpublishManyProjectsConnection: ProjectConnection;
   /**
+   * Unpublish many Seo documents
+   * @deprecated Please use the new paginated many mutation (unpublishManySeosConnection)
+   */
+  unpublishManySeos: BatchPayload;
+  /** Find many Seo documents that match criteria in specified stage and unpublish from target stages */
+  unpublishManySeosConnection: SeoConnection;
+  /**
    * Unpublish many SocialNetwork documents
    * @deprecated Please use the new paginated many mutation (unpublishManySocialNetworksConnection)
    */
@@ -5212,6 +5211,8 @@ export type Mutation = {
   unpublishPage?: Maybe<Page>;
   /** Unpublish one project from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishProject?: Maybe<Project>;
+  /** Unpublish one seo from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
+  unpublishSeo?: Maybe<Seo>;
   /** Unpublish one socialNetwork from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
   unpublishSocialNetwork?: Maybe<SocialNetwork>;
   /** Unpublish one statisticsItem from selected stages. Unpublish either the complete document with its relations, localizations and base data or specific localizations only. */
@@ -5267,6 +5268,13 @@ export type Mutation = {
   /** Update many Project documents */
   updateManyProjectsConnection: ProjectConnection;
   /**
+   * Update many seos
+   * @deprecated Please use the new paginated many mutation (updateManySeosConnection)
+   */
+  updateManySeos: BatchPayload;
+  /** Update many Seo documents */
+  updateManySeosConnection: SeoConnection;
+  /**
    * Update many socialNetworks
    * @deprecated Please use the new paginated many mutation (updateManySocialNetworksConnection)
    */
@@ -5286,6 +5294,8 @@ export type Mutation = {
   updateProject?: Maybe<Project>;
   /** Update one scheduledRelease */
   updateScheduledRelease?: Maybe<ScheduledRelease>;
+  /** Update one seo */
+  updateSeo?: Maybe<Seo>;
   /** Update one socialNetwork */
   updateSocialNetwork?: Maybe<SocialNetwork>;
   /** Update one statisticsItem */
@@ -5302,6 +5312,8 @@ export type Mutation = {
   upsertPage?: Maybe<Page>;
   /** Upsert one project */
   upsertProject?: Maybe<Project>;
+  /** Upsert one seo */
+  upsertSeo?: Maybe<Seo>;
   /** Upsert one socialNetwork */
   upsertSocialNetwork?: Maybe<SocialNetwork>;
   /** Upsert one statisticsItem */
@@ -5341,6 +5353,11 @@ export type MutationCreateProjectArgs = {
 
 export type MutationCreateScheduledReleaseArgs = {
   data: ScheduledReleaseCreateInput;
+};
+
+
+export type MutationCreateSeoArgs = {
+  data: SeoCreateInput;
 };
 
 
@@ -5464,6 +5481,21 @@ export type MutationDeleteManyProjectsConnectionArgs = {
 };
 
 
+export type MutationDeleteManySeosArgs = {
+  where?: InputMaybe<SeoManyWhereInput>;
+};
+
+
+export type MutationDeleteManySeosConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<SeoManyWhereInput>;
+};
+
+
 export type MutationDeleteManySocialNetworksArgs = {
   where?: InputMaybe<SocialNetworkManyWhereInput>;
 };
@@ -5511,6 +5543,11 @@ export type MutationDeleteScheduledOperationArgs = {
 
 export type MutationDeleteScheduledReleaseArgs = {
   where: ScheduledReleaseWhereUniqueInput;
+};
+
+
+export type MutationDeleteSeoArgs = {
+  where: SeoWhereUniqueInput;
 };
 
 
@@ -5665,6 +5702,24 @@ export type MutationPublishManyProjectsConnectionArgs = {
 };
 
 
+export type MutationPublishManySeosArgs = {
+  to?: Array<Stage>;
+  where?: InputMaybe<SeoManyWhereInput>;
+};
+
+
+export type MutationPublishManySeosConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  from?: InputMaybe<Stage>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  to?: Array<Stage>;
+  where?: InputMaybe<SeoManyWhereInput>;
+};
+
+
 export type MutationPublishManySocialNetworksArgs = {
   to?: Array<Stage>;
   where?: InputMaybe<SocialNetworkManyWhereInput>;
@@ -5710,6 +5765,12 @@ export type MutationPublishPageArgs = {
 export type MutationPublishProjectArgs = {
   to?: Array<Stage>;
   where: ProjectWhereUniqueInput;
+};
+
+
+export type MutationPublishSeoArgs = {
+  to?: Array<Stage>;
+  where: SeoWhereUniqueInput;
 };
 
 
@@ -5776,6 +5837,14 @@ export type MutationSchedulePublishProjectArgs = {
 };
 
 
+export type MutationSchedulePublishSeoArgs = {
+  releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
+  releaseId?: InputMaybe<Scalars['String']['input']>;
+  to?: Array<Stage>;
+  where: SeoWhereUniqueInput;
+};
+
+
 export type MutationSchedulePublishSocialNetworkArgs = {
   releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
   releaseId?: InputMaybe<Scalars['String']['input']>;
@@ -5839,6 +5908,14 @@ export type MutationScheduleUnpublishProjectArgs = {
   releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
   releaseId?: InputMaybe<Scalars['String']['input']>;
   where: ProjectWhereUniqueInput;
+};
+
+
+export type MutationScheduleUnpublishSeoArgs = {
+  from?: Array<Stage>;
+  releaseAt?: InputMaybe<Scalars['DateTime']['input']>;
+  releaseId?: InputMaybe<Scalars['String']['input']>;
+  where: SeoWhereUniqueInput;
 };
 
 
@@ -5996,6 +6073,24 @@ export type MutationUnpublishManyProjectsConnectionArgs = {
 };
 
 
+export type MutationUnpublishManySeosArgs = {
+  from?: Array<Stage>;
+  where?: InputMaybe<SeoManyWhereInput>;
+};
+
+
+export type MutationUnpublishManySeosConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  from?: Array<Stage>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  stage?: InputMaybe<Stage>;
+  where?: InputMaybe<SeoManyWhereInput>;
+};
+
+
 export type MutationUnpublishManySocialNetworksArgs = {
   from?: Array<Stage>;
   where?: InputMaybe<SocialNetworkManyWhereInput>;
@@ -6041,6 +6136,12 @@ export type MutationUnpublishPageArgs = {
 export type MutationUnpublishProjectArgs = {
   from?: Array<Stage>;
   where: ProjectWhereUniqueInput;
+};
+
+
+export type MutationUnpublishSeoArgs = {
+  from?: Array<Stage>;
+  where: SeoWhereUniqueInput;
 };
 
 
@@ -6182,6 +6283,23 @@ export type MutationUpdateManyProjectsConnectionArgs = {
 };
 
 
+export type MutationUpdateManySeosArgs = {
+  data: SeoUpdateManyInput;
+  where?: InputMaybe<SeoManyWhereInput>;
+};
+
+
+export type MutationUpdateManySeosConnectionArgs = {
+  after?: InputMaybe<Scalars['ID']['input']>;
+  before?: InputMaybe<Scalars['ID']['input']>;
+  data: SeoUpdateManyInput;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<SeoManyWhereInput>;
+};
+
+
 export type MutationUpdateManySocialNetworksArgs = {
   data: SocialNetworkUpdateManyInput;
   where?: InputMaybe<SocialNetworkManyWhereInput>;
@@ -6234,6 +6352,12 @@ export type MutationUpdateScheduledReleaseArgs = {
 };
 
 
+export type MutationUpdateSeoArgs = {
+  data: SeoUpdateInput;
+  where: SeoWhereUniqueInput;
+};
+
+
 export type MutationUpdateSocialNetworkArgs = {
   data: SocialNetworkUpdateInput;
   where: SocialNetworkWhereUniqueInput;
@@ -6279,6 +6403,12 @@ export type MutationUpsertPageArgs = {
 export type MutationUpsertProjectArgs = {
   upsert: ProjectUpsertInput;
   where: ProjectWhereUniqueInput;
+};
+
+
+export type MutationUpsertSeoArgs = {
+  upsert: SeoUpsertInput;
+  where: SeoWhereUniqueInput;
 };
 
 
@@ -8089,6 +8219,14 @@ export type Query = {
   scheduledReleases: Array<ScheduledRelease>;
   /** Retrieve multiple scheduledReleases using the Relay connection interface */
   scheduledReleasesConnection: ScheduledReleaseConnection;
+  /** Retrieve a single seo */
+  seo?: Maybe<Seo>;
+  /** Retrieve document version */
+  seoVersion?: Maybe<DocumentVersion>;
+  /** Retrieve multiple seos */
+  seos: Array<Seo>;
+  /** Retrieve multiple seos using the Relay connection interface */
+  seosConnection: SeoConnection;
   /** Retrieve a single socialNetwork */
   socialNetwork?: Maybe<SocialNetwork>;
   /** Retrieve document version */
@@ -8421,6 +8559,44 @@ export type QueryScheduledReleasesConnectionArgs = {
 };
 
 
+export type QuerySeoArgs = {
+  locales?: Array<Locale>;
+  stage?: Stage;
+  where: SeoWhereUniqueInput;
+};
+
+
+export type QuerySeoVersionArgs = {
+  where: VersionWhereInput;
+};
+
+
+export type QuerySeosArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<SeoOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  stage?: Stage;
+  where?: InputMaybe<SeoWhereInput>;
+};
+
+
+export type QuerySeosConnectionArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: Array<Locale>;
+  orderBy?: InputMaybe<SeoOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  stage?: Stage;
+  where?: InputMaybe<SeoWhereInput>;
+};
+
+
 export type QuerySocialNetworkArgs = {
   locales?: Array<Locale>;
   stage?: Stage;
@@ -8641,7 +8817,7 @@ export type ScheduledOperationUpdatedByArgs = {
   locales?: InputMaybe<Array<Locale>>;
 };
 
-export type ScheduledOperationAffectedDocument = Asset | Client | Config | Job | Page | Project | SocialNetwork | StatisticsItem;
+export type ScheduledOperationAffectedDocument = Asset | Client | Config | Job | Page | Project | Seo | SocialNetwork | StatisticsItem;
 
 export type ScheduledOperationConnectInput = {
   /** Allow to specify document position in list of connected documents, will default to appending at end of list */
@@ -9571,6 +9747,482 @@ export type ScheduledReleaseWhereInput = {
 
 /** References ScheduledRelease record uniquely */
 export type ScheduledReleaseWhereUniqueInput = {
+  id?: InputMaybe<Scalars['ID']['input']>;
+};
+
+export type Seo = Entity & Node & {
+  __typename?: 'Seo';
+  /** The time the document was created */
+  createdAt: Scalars['DateTime']['output'];
+  /** User that created this document */
+  createdBy?: Maybe<User>;
+  description: Scalars['String']['output'];
+  /** Get the document in other stages */
+  documentInStages: Array<Seo>;
+  /** List of Seo versions */
+  history: Array<Version>;
+  /** The unique identifier */
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  /** The time the document was published. Null on documents in draft stage. */
+  publishedAt?: Maybe<Scalars['DateTime']['output']>;
+  /** User that last published this document */
+  publishedBy?: Maybe<User>;
+  scheduledIn: Array<ScheduledOperation>;
+  /** System stage field */
+  stage: Stage;
+  /** The time the document was updated */
+  updatedAt: Scalars['DateTime']['output'];
+  /** User that last updated this document */
+  updatedBy?: Maybe<User>;
+};
+
+
+export type SeoCreatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type SeoDocumentInStagesArgs = {
+  includeCurrent?: Scalars['Boolean']['input'];
+  inheritLocale?: Scalars['Boolean']['input'];
+  stages?: Array<Stage>;
+};
+
+
+export type SeoHistoryArgs = {
+  limit?: Scalars['Int']['input'];
+  skip?: Scalars['Int']['input'];
+  stageOverride?: InputMaybe<Stage>;
+};
+
+
+export type SeoPublishedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+
+export type SeoScheduledInArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ScheduledOperationWhereInput>;
+};
+
+
+export type SeoUpdatedByArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+};
+
+export type SeoConnectInput = {
+  /** Allow to specify document position in list of connected documents, will default to appending at end of list */
+  position?: InputMaybe<ConnectPositionInput>;
+  /** Document to connect */
+  where: SeoWhereUniqueInput;
+};
+
+/** A connection to a list of items. */
+export type SeoConnection = {
+  __typename?: 'SeoConnection';
+  aggregate: Aggregate;
+  /** A list of edges. */
+  edges: Array<SeoEdge>;
+  /** Information to aid in pagination. */
+  pageInfo: PageInfo;
+};
+
+export type SeoCreateInput = {
+  cm8hvncoe064007ur7yl2gutu?: InputMaybe<ConfigCreateManyInlineInput>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  description: Scalars['String']['input'];
+  name: Scalars['String']['input'];
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+};
+
+export type SeoCreateManyInlineInput = {
+  /** Connect multiple existing Seo documents */
+  connect?: InputMaybe<Array<SeoWhereUniqueInput>>;
+  /** Create and connect multiple existing Seo documents */
+  create?: InputMaybe<Array<SeoCreateInput>>;
+};
+
+export type SeoCreateOneInlineInput = {
+  /** Connect one existing Seo document */
+  connect?: InputMaybe<SeoWhereUniqueInput>;
+  /** Create and connect one Seo document */
+  create?: InputMaybe<SeoCreateInput>;
+};
+
+/** An edge in a connection. */
+export type SeoEdge = {
+  __typename?: 'SeoEdge';
+  /** A cursor for use in pagination. */
+  cursor: Scalars['String']['output'];
+  /** The item at the end of the edge. */
+  node: Seo;
+};
+
+/** Identifies documents */
+export type SeoManyWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<SeoWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<SeoWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<SeoWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  description_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  description_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  description_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  description_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  description_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  description_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  description_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  description_starts_with?: InputMaybe<Scalars['String']['input']>;
+  documentInStages_every?: InputMaybe<SeoWhereStageInput>;
+  documentInStages_none?: InputMaybe<SeoWhereStageInput>;
+  documentInStages_some?: InputMaybe<SeoWhereStageInput>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  name_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  name_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  name_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  name_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  name_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  name_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  name_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  name_starts_with?: InputMaybe<Scalars['String']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+export enum SeoOrderByInput {
+  CreatedAtAsc = 'createdAt_ASC',
+  CreatedAtDesc = 'createdAt_DESC',
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  IdAsc = 'id_ASC',
+  IdDesc = 'id_DESC',
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  PublishedAtAsc = 'publishedAt_ASC',
+  PublishedAtDesc = 'publishedAt_DESC',
+  UpdatedAtAsc = 'updatedAt_ASC',
+  UpdatedAtDesc = 'updatedAt_DESC'
+}
+
+export type SeoUpdateInput = {
+  cm8hvncoe064007ur7yl2gutu?: InputMaybe<ConfigUpdateManyInlineInput>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SeoUpdateManyInlineInput = {
+  /** Connect multiple existing Seo documents */
+  connect?: InputMaybe<Array<SeoConnectInput>>;
+  /** Create and connect multiple Seo documents */
+  create?: InputMaybe<Array<SeoCreateInput>>;
+  /** Delete multiple Seo documents */
+  delete?: InputMaybe<Array<SeoWhereUniqueInput>>;
+  /** Disconnect multiple Seo documents */
+  disconnect?: InputMaybe<Array<SeoWhereUniqueInput>>;
+  /** Override currently-connected documents with multiple existing Seo documents */
+  set?: InputMaybe<Array<SeoWhereUniqueInput>>;
+  /** Update multiple Seo documents */
+  update?: InputMaybe<Array<SeoUpdateWithNestedWhereUniqueInput>>;
+  /** Upsert multiple Seo documents */
+  upsert?: InputMaybe<Array<SeoUpsertWithNestedWhereUniqueInput>>;
+};
+
+export type SeoUpdateManyInput = {
+  description?: InputMaybe<Scalars['String']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type SeoUpdateManyWithNestedWhereInput = {
+  /** Update many input */
+  data: SeoUpdateManyInput;
+  /** Document search */
+  where: SeoWhereInput;
+};
+
+export type SeoUpdateOneInlineInput = {
+  /** Connect existing Seo document */
+  connect?: InputMaybe<SeoWhereUniqueInput>;
+  /** Create and connect one Seo document */
+  create?: InputMaybe<SeoCreateInput>;
+  /** Delete currently connected Seo document */
+  delete?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Disconnect currently connected Seo document */
+  disconnect?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Update single Seo document */
+  update?: InputMaybe<SeoUpdateWithNestedWhereUniqueInput>;
+  /** Upsert single Seo document */
+  upsert?: InputMaybe<SeoUpsertWithNestedWhereUniqueInput>;
+};
+
+export type SeoUpdateWithNestedWhereUniqueInput = {
+  /** Document to update */
+  data: SeoUpdateInput;
+  /** Unique document search */
+  where: SeoWhereUniqueInput;
+};
+
+export type SeoUpsertInput = {
+  /** Create document if it didn't exist */
+  create: SeoCreateInput;
+  /** Update document if it exists */
+  update: SeoUpdateInput;
+};
+
+export type SeoUpsertWithNestedWhereUniqueInput = {
+  /** Upsert data */
+  data: SeoUpsertInput;
+  /** Unique document search */
+  where: SeoWhereUniqueInput;
+};
+
+/** This contains a set of filters that can be used to compare values internally */
+export type SeoWhereComparatorInput = {
+  /** This field can be used to request to check if the entry is outdated by internal comparison */
+  outdated_to?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+/** Identifies documents */
+export type SeoWhereInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<SeoWhereInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<SeoWhereInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<SeoWhereInput>>;
+  /** Contains search across all appropriate fields. */
+  _search?: InputMaybe<Scalars['String']['input']>;
+  createdAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  createdAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  createdAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  createdAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  createdAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  createdAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  createdAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  createdAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  createdBy?: InputMaybe<UserWhereInput>;
+  description?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  description_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  description_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  description_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  description_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  description_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  description_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  description_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  description_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  description_starts_with?: InputMaybe<Scalars['String']['input']>;
+  documentInStages_every?: InputMaybe<SeoWhereStageInput>;
+  documentInStages_none?: InputMaybe<SeoWhereStageInput>;
+  documentInStages_some?: InputMaybe<SeoWhereStageInput>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  /** All values containing the given string. */
+  id_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values ending with the given string. */
+  id_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are contained in given list. */
+  id_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not containing the given string. */
+  id_not_contains?: InputMaybe<Scalars['ID']['input']>;
+  /** All values not ending with the given string */
+  id_not_ends_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values that are not contained in given list. */
+  id_not_in?: InputMaybe<Array<InputMaybe<Scalars['ID']['input']>>>;
+  /** All values not starting with the given string. */
+  id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  /** All values starting with the given string. */
+  id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  name_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  name_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  name_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  name_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  name_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  name_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  name_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  name_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  name_starts_with?: InputMaybe<Scalars['String']['input']>;
+  publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  publishedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  publishedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  publishedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  publishedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  publishedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  publishedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  publishedBy?: InputMaybe<UserWhereInput>;
+  scheduledIn_every?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_none?: InputMaybe<ScheduledOperationWhereInput>;
+  scheduledIn_some?: InputMaybe<ScheduledOperationWhereInput>;
+  updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than the given value. */
+  updatedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values greater than or equal the given value. */
+  updatedAt_gte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are contained in given list. */
+  updatedAt_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  /** All values less than the given value. */
+  updatedAt_lt?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values less than or equal the given value. */
+  updatedAt_lte?: InputMaybe<Scalars['DateTime']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  updatedAt_not?: InputMaybe<Scalars['DateTime']['input']>;
+  /** All values that are not contained in given list. */
+  updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
+  updatedBy?: InputMaybe<UserWhereInput>;
+};
+
+/** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
+export type SeoWhereStageInput = {
+  /** Logical AND on all given filters. */
+  AND?: InputMaybe<Array<SeoWhereStageInput>>;
+  /** Logical NOT on all given filters combined by AND. */
+  NOT?: InputMaybe<Array<SeoWhereStageInput>>;
+  /** Logical OR on all given filters. */
+  OR?: InputMaybe<Array<SeoWhereStageInput>>;
+  /** This field contains fields which can be set as true or false to specify an internal comparison */
+  compareWithParent?: InputMaybe<SeoWhereComparatorInput>;
+  /** Specify the stage to compare with */
+  stage?: InputMaybe<Stage>;
+};
+
+/** References Seo record uniquely */
+export type SeoWhereUniqueInput = {
   id?: InputMaybe<Scalars['ID']['input']>;
 };
 

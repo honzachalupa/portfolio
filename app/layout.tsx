@@ -2,14 +2,9 @@ import hygraphApi from "@/actions/hygraph";
 import { Navigation, Providers } from "@/components";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Footer } from "@/components/Footer";
-import { Metadata, Viewport } from "next";
+import { Viewport } from "next";
 import { cache } from "react";
 import "./globals.css";
-
-export const metadata: Metadata = {
-  title: "Jan Chalupa portfolio",
-  description: "",
-};
 
 export const viewport: Viewport = {
   minimumScale: 1,

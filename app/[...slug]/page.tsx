@@ -1,5 +1,5 @@
+import hygraphApi from "@/actions/hygraph";
 import { ContentRenderer } from "@/components/ContentRenderer";
-import hygraph from "@/actions/hygraph";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import type { Metadata } from "next";
@@ -20,10 +20,11 @@ const parseSlug = (slug: string | string[]): string => {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
 
-  const page = await hygraph.getPage(parseSlug(slug));
+  const config = await hygraphApi.getConfig();
+  const page = await hygraphApi.getPage(parseSlug(slug));
 
   return {
-    title: ["Jan Chalupa portfolio", page?.title].filter(Boolean).join(" | "),
+    title: [config?.seo?.name, page?.title].filter(Boolean).join(" | "),
   };
 }
 
@@ -34,7 +35,7 @@ export default async function Page({
 }): Promise<React.ReactNode> {
   const paramsList = await params;
   const slug = parseSlug(paramsList.slug);
-  const page = await hygraph.getPage(slug);
+  const page = await hygraphApi.getPage(slug);
 
   if (!page) {
     return (

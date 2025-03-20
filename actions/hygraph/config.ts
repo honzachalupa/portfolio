@@ -11,12 +11,13 @@ export type HygraphGetConfigData = Pick<
   | "photo"
   | "cvFile"
   | "socialNetworks"
+  | "seo"
 >;
 
 export async function getConfig(): Promise<HygraphGetConfigData | null> {
   const query = `query {
     configs {
-    jobDescription
+      jobDescription
       emailAddress
       phoneNumber
       photo {
@@ -29,6 +30,10 @@ export async function getConfig(): Promise<HygraphGetConfigData | null> {
         name
         iconName
         url
+      }
+      seo {
+        name
+        description
       }
     }
   }`;
