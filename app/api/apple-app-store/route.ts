@@ -48,7 +48,7 @@ async function fetchApi<T>(endpoint: string): Promise<T> {
     }
   );
 
-  const { data } = (await response.json()) as any;
+  const { data } = (await response.json()) as { data: T };
 
   return data;
 }

@@ -27,9 +27,7 @@ export async function getConfig(): Promise<HygraphGetConfigData | null> {
       }
       socialNetworks {
         name
-        icon {
-          url
-        }
+        iconName
         url
       }
     }

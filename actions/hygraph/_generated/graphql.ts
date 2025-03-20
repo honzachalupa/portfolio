@@ -390,7 +390,6 @@ export type Asset = Entity & Node & {
   /** List of Asset versions */
   history: Array<Version>;
   iconClient: Array<Client>;
-  iconSocialNetwork: Array<SocialNetwork>;
   /** The unique identifier */
   id: Scalars['ID']['output'];
   imageProject: Array<Project>;
@@ -477,20 +476,6 @@ export type AssetIconClientArgs = {
   orderBy?: InputMaybe<ClientOrderByInput>;
   skip?: InputMaybe<Scalars['Int']['input']>;
   where?: InputMaybe<ClientWhereInput>;
-};
-
-
-/** Asset system model */
-export type AssetIconSocialNetworkArgs = {
-  after?: InputMaybe<Scalars['String']['input']>;
-  before?: InputMaybe<Scalars['String']['input']>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
-  last?: InputMaybe<Scalars['Int']['input']>;
-  locales?: InputMaybe<Array<Locale>>;
-  orderBy?: InputMaybe<SocialNetworkOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  where?: InputMaybe<SocialNetworkWhereInput>;
 };
 
 
@@ -595,7 +580,6 @@ export type AssetCreateInput = {
   cvFileConfig?: InputMaybe<ConfigCreateManyInlineInput>;
   fileName?: InputMaybe<Scalars['String']['input']>;
   iconClient?: InputMaybe<ClientCreateManyInlineInput>;
-  iconSocialNetwork?: InputMaybe<SocialNetworkCreateManyInlineInput>;
   imageBlockAboutMe?: InputMaybe<AboutCreateManyInlineInput>;
   imageProject?: InputMaybe<ProjectCreateManyInlineInput>;
   /** Inline mutations for managing document localizations excluding the default locale */
@@ -683,9 +667,6 @@ export type AssetManyWhereInput = {
   iconClient_every?: InputMaybe<ClientWhereInput>;
   iconClient_none?: InputMaybe<ClientWhereInput>;
   iconClient_some?: InputMaybe<ClientWhereInput>;
-  iconSocialNetwork_every?: InputMaybe<SocialNetworkWhereInput>;
-  iconSocialNetwork_none?: InputMaybe<SocialNetworkWhereInput>;
-  iconSocialNetwork_some?: InputMaybe<SocialNetworkWhereInput>;
   id?: InputMaybe<Scalars['ID']['input']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']['input']>;
@@ -795,7 +776,6 @@ export type AssetUpdateInput = {
   cvFileConfig?: InputMaybe<ConfigUpdateManyInlineInput>;
   fileName?: InputMaybe<Scalars['String']['input']>;
   iconClient?: InputMaybe<ClientUpdateManyInlineInput>;
-  iconSocialNetwork?: InputMaybe<SocialNetworkUpdateManyInlineInput>;
   imageBlockAboutMe?: InputMaybe<AboutUpdateManyInlineInput>;
   imageProject?: InputMaybe<ProjectUpdateManyInlineInput>;
   /** Manage document localizations */
@@ -1108,9 +1088,6 @@ export type AssetWhereInput = {
   iconClient_every?: InputMaybe<ClientWhereInput>;
   iconClient_none?: InputMaybe<ClientWhereInput>;
   iconClient_some?: InputMaybe<ClientWhereInput>;
-  iconSocialNetwork_every?: InputMaybe<SocialNetworkWhereInput>;
-  iconSocialNetwork_none?: InputMaybe<SocialNetworkWhereInput>;
-  iconSocialNetwork_some?: InputMaybe<SocialNetworkWhereInput>;
   id?: InputMaybe<Scalars['ID']['input']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']['input']>;
@@ -2240,6 +2217,7 @@ export type Config = Entity & Node & {
   updatedAt: Scalars['DateTime']['output'];
   /** User that last updated this document */
   updatedBy?: Maybe<User>;
+  webName: Scalars['String']['output'];
 };
 
 
@@ -2339,6 +2317,7 @@ export type ConfigCreateInput = {
   photo?: InputMaybe<AssetCreateOneInlineInput>;
   socialNetworks?: InputMaybe<SocialNetworkCreateManyInlineInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
+  webName: Scalars['String']['input'];
 };
 
 export type ConfigCreateManyInlineInput = {
@@ -2509,6 +2488,25 @@ export type ConfigManyWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
+  webName?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  webName_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  webName_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  webName_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  webName_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  webName_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  webName_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  webName_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  webName_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  webName_starts_with?: InputMaybe<Scalars['String']['input']>;
 };
 
 export enum ConfigOrderByInput {
@@ -2525,7 +2523,9 @@ export enum ConfigOrderByInput {
   PublishedAtAsc = 'publishedAt_ASC',
   PublishedAtDesc = 'publishedAt_DESC',
   UpdatedAtAsc = 'updatedAt_ASC',
-  UpdatedAtDesc = 'updatedAt_DESC'
+  UpdatedAtDesc = 'updatedAt_DESC',
+  WebNameAsc = 'webName_ASC',
+  WebNameDesc = 'webName_DESC'
 }
 
 export type ConfigUpdateInput = {
@@ -2535,6 +2535,7 @@ export type ConfigUpdateInput = {
   phoneNumber?: InputMaybe<Scalars['String']['input']>;
   photo?: InputMaybe<AssetUpdateOneInlineInput>;
   socialNetworks?: InputMaybe<SocialNetworkUpdateManyInlineInput>;
+  webName?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ConfigUpdateManyInlineInput = {
@@ -2558,6 +2559,7 @@ export type ConfigUpdateManyInput = {
   emailAddress?: InputMaybe<Scalars['String']['input']>;
   jobDescription?: InputMaybe<Scalars['String']['input']>;
   phoneNumber?: InputMaybe<Scalars['String']['input']>;
+  webName?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ConfigUpdateManyWithNestedWhereInput = {
@@ -2754,6 +2756,25 @@ export type ConfigWhereInput = {
   /** All values that are not contained in given list. */
   updatedAt_not_in?: InputMaybe<Array<InputMaybe<Scalars['DateTime']['input']>>>;
   updatedBy?: InputMaybe<UserWhereInput>;
+  webName?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  webName_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  webName_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  webName_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  webName_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  webName_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  webName_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  webName_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  webName_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  webName_starts_with?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** The document in stages filter allows specifying a stage entry to cross compare the same document between different stages */
@@ -9673,7 +9694,7 @@ export type SocialNetwork = Entity & Node & {
   documentInStages: Array<SocialNetwork>;
   /** List of SocialNetwork versions */
   history: Array<Version>;
-  icon: Asset;
+  iconName: Scalars['String']['output'];
   /** The unique identifier */
   id: Scalars['ID']['output'];
   name: Scalars['String']['output'];
@@ -9709,13 +9730,6 @@ export type SocialNetworkHistoryArgs = {
   limit?: Scalars['Int']['input'];
   skip?: Scalars['Int']['input'];
   stageOverride?: InputMaybe<Stage>;
-};
-
-
-export type SocialNetworkIconArgs = {
-  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
-  locales?: InputMaybe<Array<Locale>>;
-  where?: InputMaybe<AssetSingleRelationWhereInput>;
 };
 
 
@@ -9762,7 +9776,7 @@ export type SocialNetworkConnection = {
 export type SocialNetworkCreateInput = {
   cm8d97iou03af07w89zwt7sj0?: InputMaybe<ConfigCreateManyInlineInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
-  icon: AssetCreateOneInlineInput;
+  iconName: Scalars['String']['input'];
   name: Scalars['String']['input'];
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   url: Scalars['String']['input'];
@@ -9820,7 +9834,25 @@ export type SocialNetworkManyWhereInput = {
   documentInStages_every?: InputMaybe<SocialNetworkWhereStageInput>;
   documentInStages_none?: InputMaybe<SocialNetworkWhereStageInput>;
   documentInStages_some?: InputMaybe<SocialNetworkWhereStageInput>;
-  icon?: InputMaybe<AssetWhereInput>;
+  iconName?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  iconName_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  iconName_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  iconName_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  iconName_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  iconName_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  iconName_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  iconName_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  iconName_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  iconName_starts_with?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']['input']>;
@@ -9918,6 +9950,8 @@ export type SocialNetworkManyWhereInput = {
 export enum SocialNetworkOrderByInput {
   CreatedAtAsc = 'createdAt_ASC',
   CreatedAtDesc = 'createdAt_DESC',
+  IconNameAsc = 'iconName_ASC',
+  IconNameDesc = 'iconName_DESC',
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
   NameAsc = 'name_ASC',
@@ -9932,7 +9966,7 @@ export enum SocialNetworkOrderByInput {
 
 export type SocialNetworkUpdateInput = {
   cm8d97iou03af07w89zwt7sj0?: InputMaybe<ConfigUpdateManyInlineInput>;
-  icon?: InputMaybe<AssetUpdateOneInlineInput>;
+  iconName?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;
 };
@@ -9955,6 +9989,7 @@ export type SocialNetworkUpdateManyInlineInput = {
 };
 
 export type SocialNetworkUpdateManyInput = {
+  iconName?: InputMaybe<Scalars['String']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;
 };
@@ -10037,7 +10072,25 @@ export type SocialNetworkWhereInput = {
   documentInStages_every?: InputMaybe<SocialNetworkWhereStageInput>;
   documentInStages_none?: InputMaybe<SocialNetworkWhereStageInput>;
   documentInStages_some?: InputMaybe<SocialNetworkWhereStageInput>;
-  icon?: InputMaybe<AssetWhereInput>;
+  iconName?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  iconName_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  iconName_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  iconName_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  iconName_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  iconName_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  iconName_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  iconName_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  iconName_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  iconName_starts_with?: InputMaybe<Scalars['String']['input']>;
   id?: InputMaybe<Scalars['ID']['input']>;
   /** All values containing the given string. */
   id_contains?: InputMaybe<Scalars['ID']['input']>;

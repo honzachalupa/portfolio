@@ -1,12 +1,22 @@
+import clsx from "clsx";
 import dayjs from "dayjs";
 import { SocialNetworks } from "./SocialNetworks";
 
-export async function Footer(): Promise<React.ReactNode> {
+export async function Footer({
+  className,
+}: {
+  className?: string;
+}): Promise<React.ReactNode> {
   const years = [2008, dayjs().year()].join(" - ");
 
   return (
     <>
-      <footer className="w-full flex flex-col items-center justify-center">
+      <footer
+        className={clsx(
+          className,
+          "w-full flex flex-col items-center justify-center pb-5"
+        )}
+      >
         <SocialNetworks />
 
         <p>

@@ -12,7 +12,6 @@ import {
   NavbarMenu,
   NavbarMenuToggle,
 } from "@heroui/navbar";
-import { Popover, PopoverContent, PopoverTrigger } from "@heroui/popover";
 import { User } from "@heroui/user";
 import { useState } from "react";
 import { Items } from "./Navigation.Items";
@@ -57,37 +56,20 @@ export function Navigation({
 
       <NavbarContent justify="end">
         <NavbarItem>
-          <Popover backdrop="blur">
-            <PopoverTrigger>
-              <Button color="primary" variant="solid">
-                Contact me
-              </Button>
-            </PopoverTrigger>
+          <Button
+            as={Link}
+            href={config?.cvFile?.url}
+            variant="bordered"
+            color="primary"
+          >
+            Download my CV
+          </Button>
+        </NavbarItem>
 
-            <PopoverContent className="w-[240px]">
-              <div className="px-1 py-2 w-full">
-                <h3>Contact me</h3>
-
-                <Link
-                  as={Button}
-                  variant="flat"
-                  size="sm"
-                  href={`mailto:${config?.emailAddress}`}
-                >
-                  {config?.emailAddress}
-                </Link>
-
-                <Link
-                  as={Button}
-                  variant="flat"
-                  size="sm"
-                  href={`tel:${config?.phoneNumber?.replace(/\s/g, "")}`}
-                >
-                  {config?.phoneNumber}
-                </Link>
-              </div>
-            </PopoverContent>
-          </Popover>
+        <NavbarItem>
+          <Button as={Link} href="/contact-me" color="primary" variant="solid">
+            Contact me
+          </Button>
         </NavbarItem>
 
         <NavbarItem>

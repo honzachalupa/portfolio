@@ -52,19 +52,19 @@ export default async function RootLayout({
           locale={locale}
           themeProps={{ attribute: "class", defaultTheme: "dark" }}
         >
-          <Navigation config={config} pages={pages} />
+          <div className="flex flex-col min-h-screen">
+            <Navigation config={config} pages={pages} />
 
-          <main className="flex w-full h-auto items-center justify-center">
-            <div className="flex px-6 gap-4 w-full flex-col flex-nowrap items-center justify-between max-w-[1280px]">
-              <Breadcrumbs className="mt-2" />
+            <main className="flex-grow w-full py-4 flex flex-col">
+              <div className="w-full max-w-[1280px] mx-auto px-6 flex flex-col">
+                <Breadcrumbs className="mb-4" />
 
-              <div className="mt-5">
                 {children}
-
-                <Footer />
               </div>
-            </div>
-          </main>
+            </main>
+
+            <Footer className="mt-auto" />
+          </div>
         </Providers>
       </body>
     </html>
