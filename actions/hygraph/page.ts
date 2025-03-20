@@ -71,9 +71,6 @@ export async function getPage(
                 text
                 markdown
               }
-              image {
-                url
-              }
               client {
                 name
                 url
