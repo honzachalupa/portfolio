@@ -1,9 +1,7 @@
 "use client";
 
-import { Button, ButtonGroup } from "@heroui/button";
-import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
 import { Divider } from "@heroui/divider";
-import { Link } from "@heroui/link";
+import { Button, ButtonGroup, Card } from "@mantine/core";
 import clsx from "clsx";
 
 export interface ProjectCardAction {
@@ -50,24 +48,22 @@ export function ProjectCard({
 
   return (
     <Card className={clsx("w-full", className)}>
-      <div className="flex">
-        <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-          <h3 className="w-full font-bold text-primary text-large">{title}</h3>
+      <Card.Section className="pb-0 pt-2 px-4 flex-col items-start">
+        <h3 className="w-full font-bold text-primary text-large">{title}</h3>
 
-          <small className="text-default-500">{subtitle}</small>
-        </CardHeader>
-      </div>
+        <small className="text-default-500">{subtitle}</small>
+      </Card.Section>
 
-      <CardBody className="px-4 flex flex-col-reverse md:flex-row justify-between items-start gap-2">
+      <Card.Section className="px-4 flex flex-col-reverse md:flex-row justify-between items-start gap-2">
         {description}
         {image}
-      </CardBody>
+      </Card.Section>
 
       {(actions || footer) && (
         <>
           <Divider />
 
-          <CardFooter className="px-4 justify-between">
+          <Card.Section className="px-4 justify-between">
             {footer ? <div>{footer}</div> : <span />}
 
             {actions ? (
@@ -76,23 +72,23 @@ export function ProjectCard({
                   isProjectCardLink(action) ? (
                     <Button
                       key={action.label}
-                      as={Link}
+                      component="a"
                       href={action.url}
-                      variant="bordered"
-                      color="primary"
-                      startContent={action.icon}
-                      showAnchorIcon
-                      isExternal
+                      // variant="bordered"
+                      // color="primary"
+                      // startContent={action.icon}
+                      // showAnchorIcon
+                      // isExternal
                     >
                       {action.label}
                     </Button>
                   ) : (
                     <Button
                       key={action.label}
-                      onPress={action.onClick}
-                      variant="bordered"
-                      color="primary"
-                      startContent={action.icon}
+                      // variant="bordered"
+                      // color="primary"
+                      // startContent={action.icon}
+                      onClick={action.onClick}
                     >
                       {action.label}
                     </Button>
@@ -102,7 +98,7 @@ export function ProjectCard({
             ) : (
               <span />
             )}
-          </CardFooter>
+          </Card.Section>
         </>
       )}
     </Card>

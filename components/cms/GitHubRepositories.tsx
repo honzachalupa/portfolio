@@ -1,9 +1,7 @@
 import githubApi from "@/actions/github";
 import { GitHubRepositories as GitHubRepositoriesProps } from "@/actions/hygraph/_generated/graphql";
-import { Button } from "@heroui/button";
-import { Link } from "@heroui/link";
+import { Button } from "@mantine/core";
 import { cache } from "react";
-import { FaGithub } from "react-icons/fa";
 import "server-only";
 import { Container } from "../Container";
 import { GitHubRepositories_Client } from "./GitHubRepositories.client";
@@ -33,13 +31,13 @@ export async function GitHubRepositories({
 
       <div className="flex justify-center mt-10">
         <Button
-          as={Link}
+          component="a"
           variant="solid"
           color="primary"
           href="https://github.com/honzachalupa"
           target="_blank"
-          startContent={<FaGithub />}
-          showAnchorIcon
+          // startContent={<FaGithub />}
+          // showAnchorIcon
         >
           Show more
         </Button>

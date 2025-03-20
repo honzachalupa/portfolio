@@ -5,7 +5,7 @@ import { ContactForm as ContactFormProps } from "@/actions/hygraph/_generated/gr
 import { HygraphGetConfigData } from "@/actions/hygraph/config";
 import { SendEmailProps } from "@/app/api/send-email/route";
 import { post } from "@/utils/api";
-import { Button } from "@heroui/button";
+import { Button } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { Container } from "../Container";
 
@@ -46,7 +46,7 @@ export function ContactForm({ headline }: ContactFormProps): React.ReactNode {
     <Container headline={headline}>
       <p>{emailAddress}</p>
 
-      <Button disabled={!emailAddress} onPress={sendEmail}>
+      <Button disabled={!emailAddress} onClick={sendEmail}>
         Send
       </Button>
     </Container>

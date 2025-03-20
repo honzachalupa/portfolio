@@ -1,7 +1,6 @@
-import { ContentRenderer } from "@/components/ContentRenderer";
 import hygraph from "@/actions/hygraph";
-import { Button } from "@heroui/button";
-import { Link } from "@heroui/link";
+import { ContentRenderer } from "@/components/ContentRenderer";
+import { Button } from "@mantine/core";
 import type { Metadata } from "next";
 
 type Props = {
@@ -45,7 +44,7 @@ export default async function Page({
 
           <br />
 
-          <Button as={Link} color="primary" variant="solid" href="/">
+          <Button component="a" color="primary" variant="solid" href="/">
             Return home
           </Button>
         </div>

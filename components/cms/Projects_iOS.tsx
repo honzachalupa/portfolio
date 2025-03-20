@@ -1,7 +1,6 @@
 import appleAppStoreApi from "@/actions/appleAppStore";
 import { Projects_IOs as Projects_iOSProps } from "@/actions/hygraph/_generated/graphql";
-import { Button } from "@heroui/button";
-import { Link } from "@heroui/link";
+import { Button } from "@mantine/core";
 import { FaAppStoreIos } from "react-icons/fa";
 import "server-only";
 import { Container } from "../Container";
@@ -40,13 +39,13 @@ export async function Projects_iOS({
 
       <div className="flex justify-center mt-10">
         <Button
-          as={Link}
+          component="a"
           variant="solid"
           color="primary"
           href="https://apps.apple.com/cz/developer/jan-chalupa/id1557529575"
           target="_blank"
-          startContent={<FaAppStoreIos />}
-          showAnchorIcon
+          // startContent={<FaAppStoreIos />}
+          // showAnchorIcon
         >
           Show more
         </Button>

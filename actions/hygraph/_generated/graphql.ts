@@ -400,6 +400,7 @@ export type Asset = Entity & Node & {
   localizations: Array<Asset>;
   /** The mime type of the file */
   mimeType?: Maybe<Scalars['String']['output']>;
+  photoConfig: Array<Config>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   /** User that last published this document */
@@ -515,6 +516,20 @@ export type AssetLocalizationsArgs = {
 
 
 /** Asset system model */
+export type AssetPhotoConfigArgs = {
+  after?: InputMaybe<Scalars['String']['input']>;
+  before?: InputMaybe<Scalars['String']['input']>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  last?: InputMaybe<Scalars['Int']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  orderBy?: InputMaybe<ConfigOrderByInput>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ConfigWhereInput>;
+};
+
+
+/** Asset system model */
 export type AssetPublishedAtArgs = {
   variation?: SystemDateTimeFieldVariation;
 };
@@ -585,6 +600,7 @@ export type AssetCreateInput = {
   imageProject?: InputMaybe<ProjectCreateManyInlineInput>;
   /** Inline mutations for managing document localizations excluding the default locale */
   localizations?: InputMaybe<AssetCreateLocalizationsInput>;
+  photoConfig?: InputMaybe<ConfigCreateManyInlineInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** Optionally the system can upload a file for you, for that you need to provide a publicly accessible url */
   uploadUrl?: InputMaybe<Scalars['String']['input']>;
@@ -692,6 +708,9 @@ export type AssetManyWhereInput = {
   imageProject_every?: InputMaybe<ProjectWhereInput>;
   imageProject_none?: InputMaybe<ProjectWhereInput>;
   imageProject_some?: InputMaybe<ProjectWhereInput>;
+  photoConfig_every?: InputMaybe<ConfigWhereInput>;
+  photoConfig_none?: InputMaybe<ConfigWhereInput>;
+  photoConfig_some?: InputMaybe<ConfigWhereInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -781,6 +800,7 @@ export type AssetUpdateInput = {
   imageProject?: InputMaybe<ProjectUpdateManyInlineInput>;
   /** Manage document localizations */
   localizations?: InputMaybe<AssetUpdateLocalizationsInput>;
+  photoConfig?: InputMaybe<ConfigUpdateManyInlineInput>;
   /** Use this to define if its a reupload for the asset */
   reUpload?: InputMaybe<Scalars['Boolean']['input']>;
   /** Optionally the system can upload a file for you, for that you need to provide a publicly accessible url */
@@ -1132,6 +1152,9 @@ export type AssetWhereInput = {
   mimeType_not_starts_with?: InputMaybe<Scalars['String']['input']>;
   /** All values starting with the given string. */
   mimeType_starts_with?: InputMaybe<Scalars['String']['input']>;
+  photoConfig_every?: InputMaybe<ConfigWhereInput>;
+  photoConfig_none?: InputMaybe<ConfigWhereInput>;
+  photoConfig_some?: InputMaybe<ConfigWhereInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -2247,6 +2270,7 @@ export type Config = Entity & Node & {
   /** The unique identifier */
   id: Scalars['ID']['output'];
   phoneNumber?: Maybe<Scalars['String']['output']>;
+  photo?: Maybe<Asset>;
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
   /** User that last published this document */
@@ -2286,6 +2310,13 @@ export type ConfigHistoryArgs = {
   limit?: Scalars['Int']['input'];
   skip?: Scalars['Int']['input'];
   stageOverride?: InputMaybe<Stage>;
+};
+
+
+export type ConfigPhotoArgs = {
+  forceParentLocale?: InputMaybe<Scalars['Boolean']['input']>;
+  locales?: InputMaybe<Array<Locale>>;
+  where?: InputMaybe<AssetSingleRelationWhereInput>;
 };
 
 
@@ -2347,6 +2378,7 @@ export type ConfigCreateInput = {
   cvFile?: InputMaybe<AssetCreateOneInlineInput>;
   emailAddress: Scalars['String']['input'];
   phoneNumber?: InputMaybe<Scalars['String']['input']>;
+  photo?: InputMaybe<AssetCreateOneInlineInput>;
   socialNetworks?: InputMaybe<SocialNetworkCreateManyInlineInput>;
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
 };
@@ -2461,6 +2493,7 @@ export type ConfigManyWhereInput = {
   phoneNumber_not_starts_with?: InputMaybe<Scalars['String']['input']>;
   /** All values starting with the given string. */
   phoneNumber_starts_with?: InputMaybe<Scalars['String']['input']>;
+  photo?: InputMaybe<AssetWhereInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;
@@ -2520,6 +2553,7 @@ export type ConfigUpdateInput = {
   cvFile?: InputMaybe<AssetUpdateOneInlineInput>;
   emailAddress?: InputMaybe<Scalars['String']['input']>;
   phoneNumber?: InputMaybe<Scalars['String']['input']>;
+  photo?: InputMaybe<AssetUpdateOneInlineInput>;
   socialNetworks?: InputMaybe<SocialNetworkUpdateManyInlineInput>;
 };
 
@@ -2681,6 +2715,7 @@ export type ConfigWhereInput = {
   phoneNumber_not_starts_with?: InputMaybe<Scalars['String']['input']>;
   /** All values starting with the given string. */
   phoneNumber_starts_with?: InputMaybe<Scalars['String']['input']>;
+  photo?: InputMaybe<AssetWhereInput>;
   publishedAt?: InputMaybe<Scalars['DateTime']['input']>;
   /** All values greater than the given value. */
   publishedAt_gt?: InputMaybe<Scalars['DateTime']['input']>;

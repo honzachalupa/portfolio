@@ -1,8 +1,6 @@
 "use client";
 
 import githubApi, { GithubReadme, GithubRepository } from "@/actions/github";
-import { Button } from "@heroui/button";
-import { Link } from "@heroui/link";
 import {
   Modal,
   ModalBody,
@@ -13,6 +11,7 @@ import {
 } from "@heroui/modal";
 import { ScrollShadow } from "@heroui/scroll-shadow";
 import { Spinner } from "@heroui/spinner";
+import { Button } from "@mantine/core";
 import { useEffect, useState } from "react";
 import { FaGithub } from "react-icons/fa";
 import { MarkdownRenderer } from "../MarkdownRenderer";
@@ -114,13 +113,13 @@ export function GitHubRepositories_Client({
           {selectedRepositoryReadme?.content && (
             <ModalFooter>
               <Button
-                as={Link}
+                component="a"
                 href={selectedRepositoryReadme.url}
                 variant="bordered"
                 color="primary"
-                startContent={<FaGithub />}
-                showAnchorIcon
-                isExternal
+                // startContent={<FaGithub />}
+                // showAnchorIcon
+                // isExternal
               >
                 View on GitHub
               </Button>

@@ -2,8 +2,8 @@
 
 "use client";
 
-import { Button } from "@heroui/button";
 import { Modal, ModalContent, useDisclosure } from "@heroui/modal";
+import { Button } from "@mantine/core";
 
 interface ImagePreviewProps {
   src: string;
@@ -20,7 +20,7 @@ export function ImagePreview({
 
   return (
     <>
-      <Button className={className} onPress={onOpen}>
+      <Button className={className} onClick={onOpen}>
         <img src={src} alt={alt} />
       </Button>
 

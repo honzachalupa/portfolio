@@ -1,5 +1,7 @@
-import { Navigation, Providers } from "@/components";
+import { Providers } from "@/components";
+import { AppShell } from "@/components/AppShell";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { ColorSchemeScript, mantineHtmlProps } from "@mantine/core";
 import { Metadata, Viewport } from "next";
 import "./globals.css";
 
@@ -13,10 +15,6 @@ export const viewport: Viewport = {
   initialScale: 1,
   width: "device-width",
   userScalable: false,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
 };
 
 export default function RootLayout({
@@ -27,21 +25,21 @@ export default function RootLayout({
   const locale = "en";
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale} {...mantineHtmlProps}>
+      <head>
+        <ColorSchemeScript />
+      </head>
+
       <body>
         <Providers
           locale={locale}
           themeProps={{ attribute: "class", defaultTheme: "dark" }}
         >
-          <Navigation />
+          <AppShell>
+            <Breadcrumbs className="mt-2" />
 
-          <main className="flex w-full h-auto items-center justify-center">
-            <div className="flex px-6 gap-4 w-full flex-col flex-nowrap items-center justify-between max-w-[1280px]">
-              <Breadcrumbs className="mt-2" />
-
-              <div className="mt-5">{children}</div>
-            </div>
-          </main>
+            {children}
+          </AppShell>
         </Providers>
       </body>
     </html>

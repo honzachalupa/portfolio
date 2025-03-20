@@ -2,11 +2,9 @@ import appleAppStoreApi from "@/actions/appleAppStore";
 import githubApi from "@/actions/github";
 import hygraph from "@/actions/hygraph";
 import { Statistics as StatisticsProps } from "@/actions/hygraph/_generated/graphql";
-import { Button } from "@heroui/button";
-import { Card } from "@heroui/card";
-import { Link } from "@heroui/link";
-import { Tooltip } from "@heroui/tooltip";
+import { Button } from "@mantine/core";
 import { Container } from "../Container";
+import { StatisticsItem } from "./Statistics.item";
 
 export async function Statistics({
   headline,
@@ -33,7 +31,7 @@ export async function Statistics({
   const tooltipActions = {
     clients: (
       <Button
-        as={Link}
+        component="a"
         variant="light"
         color="primary"
         href="/clients"
@@ -44,7 +42,7 @@ export async function Statistics({
     ),
     projects: (
       <Button
-        as={Link}
+        component="a"
         variant="light"
         color="primary"
         href="/projects/commercial"
@@ -55,7 +53,7 @@ export async function Statistics({
     ),
     iOSapps: (
       <Button
-        as={Link}
+        component="a"
         variant="light"
         color="primary"
         href="/projects/personal"
@@ -66,7 +64,7 @@ export async function Statistics({
     ),
     githubRepositories: (
       <Button
-        as={Link}
+        component="a"
         variant="light"
         color="primary"
         href="/projects/personal"
@@ -83,52 +81,25 @@ export async function Statistics({
   ): string | undefined {
     return description?.replace(
       "{value}",
-      values[key as keyof typeof values]?.toString() || "0"
+      values[key as keyof typeof values]?.toString() || "-"
     );
   }
-
-  const itemsWithValue = items?.map(
-    ({ key, description, tooltipDescription, unit }) => ({
-      key,
-      value: values[key as keyof typeof values],
-      description: replaceValue(key, description),
-      tooltipDescription: replaceValue(key, tooltipDescription),
-      unit,
-      tooltipAction: tooltipActions[key as keyof typeof tooltipActions],
-    })
-  );
 
   return (
     <Container headline={headline}>
       <div className="grid grid-cols-3 grid-rows-2 md:grid-cols-6 md:grid-rows-1 gap-4">
-        {itemsWithValue.map(
-          ({ value, description, tooltipDescription, unit, tooltipAction }) => (
-            <Tooltip
-              key={description}
-              content={
-                <>
-                  <p>{tooltipDescription}</p>
-                  {tooltipAction}
-                </>
-              }
-              placement="bottom"
-              offset={-20}
-              className="max-w-[200px] text-center"
-              showArrow
-            >
-              <Card className="w-full h-full aspect-square gap-1 flex flex-col items-center justify-center text-center cursor-pointer">
-                <span className="text-4xl">
-                  <span className="font-bold">{value}</span>
-                  <span className="opacity-50">{unit}</span>
-                </span>
-
-                <span className="text-sm font-light opacity-50 text-center">
-                  {description}
-                </span>
-              </Card>
-            </Tooltip>
-          )
-        )}
+        {items?.map((item) => (
+          <StatisticsItem
+            key={item.description}
+            item={item}
+            value={values[item.key as keyof typeof values]}
+            description={replaceValue(item.key, item.description)}
+            tooltipDescription={replaceValue(item.key, item.tooltipDescription)}
+            tooltipAction={
+              tooltipActions[item.key as keyof typeof tooltipActions]
+            }
+          />
+        ))}
       </div>
     </Container>
   );

@@ -1,11 +1,7 @@
 "use client";
 
 import hygraph from "@/actions/hygraph";
-import {
-  BreadcrumbItem,
-  Breadcrumbs as HeroBreadcrumbs,
-} from "@heroui/breadcrumbs";
-import { Link } from "@heroui/link";
+import { Anchor, Breadcrumbs as MantineBreadcrumbs } from "@mantine/core";
 import clsx from "clsx";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -50,18 +46,12 @@ export function Breadcrumbs({ className }: BreadcrumbsProps): React.ReactNode {
   }, [currentSlug]);
 
   return breadcrumbs && breadcrumbs.length > 1 ? (
-    <HeroBreadcrumbs
-      itemClasses={{
-        separator: "px-2",
-      }}
-      separator="/"
-      className={clsx("self-start", className)}
-    >
+    <MantineBreadcrumbs separator="/" className={clsx("self-start", className)}>
       {breadcrumbs?.map(({ slug, title }) => (
-        <BreadcrumbItem key={slug}>
-          <Link href={slug}>{title}</Link>
-        </BreadcrumbItem>
+        <Anchor key={slug} href={slug}>
+          {title}
+        </Anchor>
       ))}
-    </HeroBreadcrumbs>
+    </MantineBreadcrumbs>
   ) : null;
 }
