@@ -1,14 +1,8 @@
 "use client";
 
-import hygraph from "@/actions/hygraph";
+import { HygraphGetConfigData } from "@/actions/hygraph/config";
 import { HygraphGetPagesData } from "@/actions/hygraph/pages";
 import { Button } from "@heroui/button";
-import {
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
-} from "@heroui/dropdown";
 import { Link } from "@heroui/link";
 import {
   Navbar,
@@ -16,101 +10,21 @@ import {
   NavbarContent,
   NavbarItem,
   NavbarMenu,
-  NavbarMenuItem,
   NavbarMenuToggle,
 } from "@heroui/navbar";
 import { Popover, PopoverContent, PopoverTrigger } from "@heroui/popover";
-import { ButtonVariantProps } from "@heroui/theme";
 import { User } from "@heroui/user";
-import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
-import { FaChevronDown } from "react-icons/fa6";
+import { useState } from "react";
+import { Items } from "./Navigation.Items";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 
-function Items({
-  variant = "desktop",
-  closeMenu,
+export function Navigation({
+  config,
+  pages,
 }: {
-  variant?: "desktop" | "mobile";
-  closeMenu?: () => void;
+  config: HygraphGetConfigData | null;
+  pages: HygraphGetPagesData | null;
 }): React.ReactNode {
-  const currentSlug = usePathname();
-  const [pages, setPages] = useState<HygraphGetPagesData | null>();
-
-  const getPages = async (): Promise<void> => {
-    const pages = await hygraph.getPages();
-
-    setPages(pages?.filter(({ isHidden }) => !isHidden));
-  };
-
-  const getActiveButtonStyle = (isActive: boolean): ButtonVariantProps => ({
-    color: isActive ? "primary" : "default",
-    variant: isActive ? "flat" : "light",
-  });
-
-  useEffect(() => {
-    getPages();
-  }, []);
-
-  const ItemComponent = variant === "desktop" ? NavbarItem : NavbarMenuItem;
-
-  return pages?.map(({ slug, title, nestedPages }) => {
-    const isActive = currentSlug === slug;
-
-    if (nestedPages?.length) {
-      return (
-        <Dropdown key={title}>
-          <ItemComponent isActive={isActive}>
-            <DropdownTrigger>
-              <Button
-                {...getActiveButtonStyle(isActive)}
-                as={Link}
-                endContent={<FaChevronDown />}
-                variant="light"
-              >
-                {title}
-              </Button>
-            </DropdownTrigger>
-          </ItemComponent>
-
-          <DropdownMenu>
-            {nestedPages.map(({ slug, title }) => {
-              const isActive = currentSlug === slug;
-
-              return (
-                <DropdownItem key={slug!}>
-                  <Link
-                    href={slug!}
-                    color={isActive ? "primary" : "foreground"}
-                    size="sm"
-                    onPress={closeMenu}
-                  >
-                    {title}
-                  </Link>
-                </DropdownItem>
-              );
-            })}
-          </DropdownMenu>
-        </Dropdown>
-      );
-    }
-
-    return (
-      <NavbarMenuItem key={title} isActive={isActive}>
-        <Button
-          {...getActiveButtonStyle(isActive)}
-          as={Link}
-          href={slug!}
-          onPress={closeMenu}
-        >
-          {title}
-        </Button>
-      </NavbarMenuItem>
-    );
-  });
-}
-
-export function Navigation(): React.ReactNode {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   return (
@@ -129,16 +43,16 @@ export function Navigation(): React.ReactNode {
         <NavbarBrand>
           <User
             avatarProps={{
-              src: "https://gravatar.com/avatar/a63559a63e80a9f5b311aa7e66aea50c",
+              src: config?.photo?.url,
             }}
-            description="Full-stack Developer"
+            description={config?.jobDescription}
             name="Jan Chalupa"
           />
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-1" justify="center">
-        <Items />
+        <Items pages={pages} />
       </NavbarContent>
 
       <NavbarContent justify="end">
@@ -158,18 +72,18 @@ export function Navigation(): React.ReactNode {
                   as={Button}
                   variant="flat"
                   size="sm"
-                  href="mailto:janchalupa@outlook.cz"
+                  href={`mailto:${config?.emailAddress}`}
                 >
-                  janchalupa@outlook.cz
+                  {config?.emailAddress}
                 </Link>
 
                 <Link
                   as={Button}
                   variant="flat"
                   size="sm"
-                  href="tel:+420606789910"
+                  href={`tel:${config?.phoneNumber?.replace(/\s/g, "")}`}
                 >
-                  +420 606 789 910
+                  {config?.phoneNumber}
                 </Link>
               </div>
             </PopoverContent>
@@ -182,7 +96,11 @@ export function Navigation(): React.ReactNode {
       </NavbarContent>
 
       <NavbarMenu>
-        <Items variant="mobile" closeMenu={() => setIsMenuOpen(false)} />
+        <Items
+          pages={pages}
+          variant="mobile"
+          closeMenu={() => setIsMenuOpen(false)}
+        />
       </NavbarMenu>
     </Navbar>
   );

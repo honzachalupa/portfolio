@@ -2,7 +2,6 @@ import { HygraphGetPageData } from "@/actions/hygraph/page";
 import { Fragment } from "react";
 import { About } from "./cms/About";
 import { ContactForm } from "./cms/ContactForm";
-import { Footer } from "./cms/Footer";
 import { GitHubRepositories } from "./cms/GitHubRepositories";
 import { Jobs } from "./cms/Jobs";
 import { Projects_iOS } from "./cms/Projects_iOS";
@@ -24,8 +23,6 @@ export function ContentRenderer({
         return <About {...props} />;
       case "ContactForm":
         return <ContactForm {...props} />;
-      case "Footer":
-        return <Footer {...props} />;
       case "Statistics":
         return <Statistics {...props} />;
       case "Jobs":
@@ -37,7 +34,7 @@ export function ContentRenderer({
       case "GitHubRepositories":
         return <GitHubRepositories {...props} />;
       default:
-        console.warn("Component not found:", JSON.stringify(props));
+        console.warn("Component not found:", props);
 
         return null;
     }

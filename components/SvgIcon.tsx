@@ -2,12 +2,11 @@
 
 import { ReactSVG } from "react-svg";
 
-export function SvgIcon({
-  icon,
-  className,
-}: {
+interface SvgIconProps {
   icon: { url: string };
   className?: string;
-}): React.ReactNode {
+}
+
+export function SvgIcon({ icon, className }: SvgIconProps): React.ReactNode {
   return <ReactSVG src={icon.url} className={className} />;
 }

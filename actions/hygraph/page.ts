@@ -93,10 +93,6 @@ export async function getPage(
               unit
             }
           }
-          ... on Footer {
-            __typename
-            text
-          }
         }
       }
     }
