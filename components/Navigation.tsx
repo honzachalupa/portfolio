@@ -14,6 +14,7 @@ import {
 } from "@heroui/navbar";
 import { User } from "@heroui/user";
 import { useState } from "react";
+import { FaRegEnvelope, FaRegFileLines } from "react-icons/fa6";
 import { Items } from "./Navigation.Items";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 
@@ -55,24 +56,34 @@ export function Navigation({
       </NavbarContent>
 
       <NavbarContent justify="end">
+        {config?.cvFile && (
+          <NavbarItem>
+            <Button
+              as={Link}
+              href={config.cvFile.url}
+              variant="bordered"
+              color="primary"
+              startContent={<FaRegFileLines />}
+            >
+              <span className="hidden lg:inline">Download my CV</span>
+              <span className="lg:hidden">CV</span>
+            </Button>
+          </NavbarItem>
+        )}
+
         <NavbarItem>
           <Button
             as={Link}
-            href={config?.cvFile?.url}
-            variant="bordered"
+            href="/contact-me"
             color="primary"
+            variant="solid"
+            startContent={<FaRegEnvelope />}
           >
-            Download my CV
+            <span className="hidden lg:inline">Contact me</span>
           </Button>
         </NavbarItem>
 
-        <NavbarItem>
-          <Button as={Link} href="/contact-me" color="primary" variant="solid">
-            Contact me
-          </Button>
-        </NavbarItem>
-
-        <NavbarItem>
+        <NavbarItem className="hidden lg:inline">
           <ThemeSwitcher />
         </NavbarItem>
       </NavbarContent>

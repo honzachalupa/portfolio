@@ -20,11 +20,14 @@ const getRepositories = cache(
     })
 );
 
-export const preload = (): void => {
-  void getProjects();
-  void getClients();
-  void getIosApps();
-  void getRepositories();
+export const preload = async (): Promise<void> => {
+  // Trigger all data fetching in parallel to warm up the cache
+  await Promise.all([
+    getProjects(),
+    getClients(),
+    getIosApps(),
+    getRepositories()
+  ]);
 };
 
 export async function Statistics({

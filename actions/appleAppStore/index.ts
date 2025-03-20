@@ -8,7 +8,12 @@ async function getApps(
       }
     | undefined = undefined
 ): Promise<AppleAppStoreApp[] | undefined> {
-  const { data, error } = await get<AppleAppStoreApp[]>("/api/apple-app-store");
+  const { data, error } = await get<AppleAppStoreApp[]>(
+    "/api/apple-app-store",
+    {
+      tags: ["apple-app-store"],
+    }
+  );
 
   if (error) {
     console.error("Failed to fetch apps:", error);
