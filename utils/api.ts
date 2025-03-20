@@ -22,7 +22,7 @@ type ApiResponse<TData> = {
 /**
  * A utility function for making API calls with proper error handling
  *
- * @param url The URL to fetch from. Can be a relative path (will be prefixed with NEXT_PUBLIC_API_URL) or a full URL
+ * @param url The URL to fetch from. Can be a relative path (will be prefixed with NEXT_PUBLIC_BASE_URL) or a full URL
  * @param options Request options including method, headers, body, and cache settings
  * @returns A structured response with data, error information, and status details
  *
@@ -50,7 +50,7 @@ export async function fetchApi<TData = any, TRequestBody = any>(
 ): Promise<ApiResponse<TData>> {
   // Determine if URL is relative or absolute
   const isRelativeUrl = !url.startsWith("http");
-  const baseUrl = process.env.NEXT_PUBLIC_API_URL || "";
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL!;
   const fullUrl = isRelativeUrl
     ? `${baseUrl}${url.startsWith("/") ? url : `/${url}`}`
     : url;
