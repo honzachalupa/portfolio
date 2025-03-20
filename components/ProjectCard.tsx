@@ -3,6 +3,12 @@
 import { Button, ButtonGroup } from "@heroui/button";
 import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
 import { Divider } from "@heroui/divider";
+import {
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
+} from "@heroui/dropdown";
 import { Link } from "@heroui/link";
 import {
   Modal,
@@ -14,6 +20,7 @@ import {
 } from "@heroui/modal";
 import clsx from "clsx";
 import { MarkdownRenderer } from "./MarkdownRenderer";
+import { cropDescription, isProjectCardLink } from "./ProjectCard.utils";
 
 export interface ProjectCardAction {
   label: string;
@@ -55,51 +62,75 @@ export function ProjectCard({
     | ProjectCardLink
   )[];
 
-  function isProjectCardLink(
-    action: ProjectCardAction | ProjectCardLink
-  ): action is ProjectCardLink {
-    return "url" in action;
-  }
-
-  const maxParagraphsCount = 1;
-  const descriptionParagraphsCount =
-    descriptionMarkdown?.split("\n").length ?? 0;
-  const descriptionCropped =
-    descriptionParagraphsCount > maxParagraphsCount
-      ? `${descriptionMarkdown
-          ?.split("\n")
-          .slice(0, maxParagraphsCount)
-          .join("\n")}`
-      : descriptionMarkdown ?? "";
+  const { descriptionCropped, isDescriptionCropped } =
+    cropDescription(descriptionMarkdown);
 
   function Actions(): React.ReactNode {
     return (
-      <ButtonGroup>
-        {actions?.map((action) =>
-          isProjectCardLink(action) ? (
-            <Button
-              key={action.label}
-              as={Link}
-              href={action.url}
-              variant={action.variant ?? "bordered"}
-              startContent={action.icon}
-              showAnchorIcon
-              isExternal
-            >
-              {action.label}
-            </Button>
-          ) : (
-            <Button
-              key={action.label}
-              onPress={action.onClick}
-              variant={action.variant ?? "bordered"}
-              startContent={action.icon}
-            >
-              {action.label}
-            </Button>
-          )
-        )}
-      </ButtonGroup>
+      <>
+        <ButtonGroup className="hidden sm:inline md:hidden lg:inline">
+          {actions?.map((action) => {
+            const { label, variant, icon } = action;
+
+            return isProjectCardLink(action) ? (
+              <Button
+                key={label}
+                as={Link}
+                href={action.url}
+                variant={variant ?? "bordered"}
+                startContent={icon}
+                showAnchorIcon
+                isExternal
+              >
+                {label}
+              </Button>
+            ) : (
+              <Button
+                key={label}
+                onPress={action.onClick}
+                variant={variant ?? "bordered"}
+                startContent={icon}
+              >
+                {label}
+              </Button>
+            );
+          })}
+        </ButtonGroup>
+
+        <div className="sm:hidden md:inline lg:hidden">
+          <Dropdown>
+            <DropdownTrigger>
+              <Button variant="bordered">More...</Button>
+            </DropdownTrigger>
+
+            <DropdownMenu>
+              {actions?.map((action) => {
+                const { label } = action;
+
+                return isProjectCardLink(action) ? (
+                  <DropdownItem key={label}>
+                    <Button
+                      as={Link}
+                      href={action.url}
+                      variant="light"
+                      showAnchorIcon
+                      isExternal
+                    >
+                      {label}
+                    </Button>
+                  </DropdownItem>
+                ) : (
+                  <DropdownItem key={label}>
+                    <Button onPress={action.onClick} variant="light">
+                      {label}
+                    </Button>
+                  </DropdownItem>
+                );
+              })}
+            </DropdownMenu>
+          </Dropdown>
+        </div>
+      </>
     );
   }
 
@@ -117,7 +148,7 @@ export function ProjectCard({
             <>
               <MarkdownRenderer>{descriptionCropped}</MarkdownRenderer>
 
-              {descriptionParagraphsCount > maxParagraphsCount && (
+              {isDescriptionCropped && (
                 <Link
                   as={Button}
                   variant="light"
