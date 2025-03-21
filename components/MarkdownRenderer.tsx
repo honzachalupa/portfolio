@@ -75,7 +75,13 @@ export function MarkdownRenderer({
             />
           ),
           p: (props) => (
-            <p className={clsx("leading-6 pb-5", classNames?.p)} {...props} />
+            <p
+              className={clsx(
+                "leading-6 [&:not(:last-of-type)]:pb-5",
+                classNames?.p
+              )}
+              {...props}
+            />
           ),
           li: ({ children, ...props }) => (
             <li

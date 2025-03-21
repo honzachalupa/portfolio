@@ -39,7 +39,7 @@ export function Items({
 
     if (nestedPages?.length) {
       return (
-        <Dropdown key={title}>
+        <Dropdown key={title} backdrop="blur">
           <ItemComponent isActive={isActive}>
             <DropdownTrigger>
               <Button

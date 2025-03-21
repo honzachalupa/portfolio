@@ -85,10 +85,11 @@ export async function Statistics({
     ),
     githubRepositories: (
       <Button
-        as={Link}
+        // Using "a" instead of Link. https://github.com/vercel/next.js/issues/44295
+        as="a"
         variant="light"
         color="primary"
-        href="/projects/personal"
+        href="/projects/personal#repositories"
         className="w-full"
       >
         View repositories

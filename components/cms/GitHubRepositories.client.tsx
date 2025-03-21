@@ -123,7 +123,6 @@ export function GitHubRepositories_Client({
                 variant="bordered"
                 color="primary"
                 startContent={<FaGithub />}
-                showAnchorIcon
                 isExternal
               >
                 View on GitHub

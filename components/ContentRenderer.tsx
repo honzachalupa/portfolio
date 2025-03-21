@@ -7,6 +7,7 @@ import { Jobs } from "./cms/Jobs";
 import { Projects_iOS } from "./cms/Projects_iOS";
 import { Projects_web } from "./cms/Projects_web";
 import { Statistics } from "./cms/Statistics";
+import { TechStack } from "./cms/TechStack";
 import { LoadingIndicator } from "./LoadingIndicator";
 
 interface ContentRendererProps {
@@ -26,6 +27,8 @@ export function ContentRenderer({
         return <ContactForm {...props} />;
       case "Statistics":
         return <Statistics {...props} />;
+      case "TechStack":
+        return <TechStack {...props} />;
       case "Jobs":
         return <Jobs {...props} />;
       case "Projects_web":

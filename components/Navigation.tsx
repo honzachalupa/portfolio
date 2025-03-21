@@ -41,13 +41,15 @@ export function Navigation({
         />
 
         <NavbarBrand>
-          <User
-            avatarProps={{
-              src: config?.photo?.url,
-            }}
-            description={config?.jobDescription}
-            name="Jan Chalupa"
-          />
+          <Link href="/" color="foreground">
+            <User
+              avatarProps={{
+                src: config?.photo?.url,
+              }}
+              description={config?.jobDescription}
+              name="Jan Chalupa"
+            />
+          </Link>
         </NavbarBrand>
       </NavbarContent>
 

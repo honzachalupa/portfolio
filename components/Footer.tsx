@@ -14,7 +14,7 @@ export async function Footer({
       <footer
         className={clsx(
           className,
-          "w-full flex flex-col items-center justify-center pb-5"
+          "w-full flex flex-col items-center justify-center pb-5 mt-[100px]"
         )}
       >
         <SocialNetworks />

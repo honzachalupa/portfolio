@@ -25,14 +25,14 @@ import { cropDescription, isProjectCardLink } from "./ProjectCard.utils";
 export interface ProjectCardAction {
   label: string;
   icon?: React.ReactNode;
-  variant?: "bordered" | "solid";
+  variant?: "bordered" | "solid" | "flat";
   onClick: () => void;
 }
 
 export interface ProjectCardLink {
   label: string;
   url: string;
-  variant?: "bordered" | "solid";
+  variant?: "bordered" | "solid" | "flat";
   icon?: React.ReactNode;
 }
 
@@ -77,9 +77,9 @@ export function ProjectCard({
                 key={label}
                 as={Link}
                 href={action.url}
-                variant={variant ?? "bordered"}
+                variant={variant ?? "flat"}
+                color="primary"
                 startContent={icon}
-                showAnchorIcon
                 isExternal
               >
                 {label}
@@ -88,7 +88,8 @@ export function ProjectCard({
               <Button
                 key={label}
                 onPress={action.onClick}
-                variant={variant ?? "bordered"}
+                variant={variant ?? "flat"}
+                color="primary"
                 startContent={icon}
               >
                 {label}
@@ -100,7 +101,9 @@ export function ProjectCard({
         <div className="sm:hidden md:inline lg:hidden">
           <Dropdown>
             <DropdownTrigger>
-              <Button variant="bordered">More...</Button>
+              <Button variant="flat" color="primary">
+                More...
+              </Button>
             </DropdownTrigger>
 
             <DropdownMenu>
@@ -113,7 +116,7 @@ export function ProjectCard({
                       as={Link}
                       href={action.url}
                       variant="light"
-                      showAnchorIcon
+                      size="sm"
                       isExternal
                     >
                       {label}
@@ -121,7 +124,7 @@ export function ProjectCard({
                   </DropdownItem>
                 ) : (
                   <DropdownItem key={label}>
-                    <Button onPress={action.onClick} variant="light">
+                    <Button onPress={action.onClick} variant="light" size="sm">
                       {label}
                     </Button>
                   </DropdownItem>
@@ -136,7 +139,7 @@ export function ProjectCard({
 
   return (
     <>
-      <Card className={clsx("w-full", className)}>
+      <Card className={clsx("w-full p-2", className)}>
         <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
           <h3 className="w-full font-bold text-primary text-large">{title}</h3>
 

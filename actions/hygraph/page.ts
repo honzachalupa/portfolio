@@ -32,7 +32,6 @@ export async function getPage(
           ... on GitHubRepositories {
             __typename
             headline
-            limit
           }
           ... on Jobs {
             __typename
@@ -66,7 +65,6 @@ export async function getPage(
               id
               name
               url
-              topics
               description {
                 text
                 markdown
@@ -76,6 +74,14 @@ export async function getPage(
                 url
                 logo {
                   url
+                }
+              }
+              technologies {
+                name
+                url
+                iconName
+                color {
+                  hex
                 }
               }
             }
@@ -89,6 +95,10 @@ export async function getPage(
               tooltipDescription
               unit
             }
+          }
+          ... on TechStack {
+            __typename
+            headline
           }
         }
       }

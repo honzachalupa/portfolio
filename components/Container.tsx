@@ -11,24 +11,26 @@ export const BlockHeadline: React.FC<BlockHeadlineProps> = ({
   children,
   className,
 }) => (
-  <h2 className={clsx("pb-10 text-4xl font-medium opacity-70", className)}>
+  <h2 className={clsx("pb-7 text-4xl font-medium opacity-70", className)}>
     {children}
   </h2>
 );
 
 interface ContainerProps {
+  htmlId?: string;
   headline?: Maybe<string>;
   className?: string;
   children: ReactNode;
 }
 
 export const Container: React.FC<ContainerProps> = ({
+  htmlId,
   headline,
   className,
   children,
 }) => {
   return (
-    <section className={clsx("my-5", className)}>
+    <section id={htmlId} className={clsx("mt-[50px] md:mt-[100px]", className)}>
       {headline && <BlockHeadline>{headline}</BlockHeadline>}
 
       {children}

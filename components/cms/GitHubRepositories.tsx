@@ -21,7 +21,7 @@ export async function GitHubRepositories({
   const repositories = await fetchData();
 
   return (
-    <Container headline={headline}>
+    <Container htmlId="repositories" headline={headline}>
       <ProjectCardGrid>
         <GitHubRepositories_Client repositories={repositories} />
       </ProjectCardGrid>
@@ -29,12 +29,10 @@ export async function GitHubRepositories({
       <div className="flex justify-center mt-10">
         <Button
           as={Link}
-          variant="solid"
-          color="primary"
+          variant="faded"
           href="https://github.com/honzachalupa"
           target="_blank"
           startContent={<FaGithub />}
-          showAnchorIcon
         >
           Show more
         </Button>
