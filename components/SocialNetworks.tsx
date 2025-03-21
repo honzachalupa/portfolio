@@ -30,17 +30,18 @@ export async function SocialNetworks(): Promise<React.ReactNode> {
   return (
     <div className="xl:fixed bottom-0 right-0 flex xl:flex-col justify-center gap-5 m-5">
       {config?.socialNetworks.map(({ name, url, iconName }) => (
-        <Link
-          as={Button}
+        <Button
+          as={Link}
           key={name}
           href={url}
           title={name}
           variant="light"
+          color="primary"
           className="w-[50px] h-[50px] p-2"
           isIconOnly
         >
           <SocialNetworkIcon name={iconName} />
-        </Link>
+        </Button>
       ))}
     </div>
   );

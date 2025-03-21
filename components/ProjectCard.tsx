@@ -152,15 +152,14 @@ export function ProjectCard({
               <MarkdownRenderer>{descriptionCropped}</MarkdownRenderer>
 
               {isDescriptionCropped && (
-                <Link
-                  as={Button}
+                <Button
                   variant="light"
                   color="primary"
                   className="-ml-3"
                   onPress={onOpen}
                 >
                   Read more...
-                </Link>
+                </Button>
               )}
             </>
           ) : (
@@ -168,14 +167,14 @@ export function ProjectCard({
           )}
         </CardBody>
 
-        {(actions || footer) && (
+        {(actions.length > 0 || footer) && (
           <>
             <Divider />
 
             <CardFooter className="px-4 justify-between">
               {footer ? <div>{footer}</div> : <span />}
 
-              {actions ? <Actions /> : <span />}
+              {actions.length > 0 ? <Actions /> : <span />}
             </CardFooter>
           </>
         )}
@@ -184,6 +183,7 @@ export function ProjectCard({
       <Modal
         size="3xl"
         backdrop="blur"
+        className="max-h-[90vh]"
         isOpen={isOpen}
         onOpenChange={onOpenChange}
       >
@@ -192,15 +192,19 @@ export function ProjectCard({
 
           <Divider />
 
-          <ModalBody>
+          <ModalBody className="overflow-y-auto">
             <MarkdownRenderer>{descriptionMarkdown ?? ""}</MarkdownRenderer>
           </ModalBody>
 
-          <Divider />
+          {actions.length > 0 && (
+            <>
+              <Divider />
 
-          <ModalFooter>
-            <Actions />
-          </ModalFooter>
+              <ModalFooter>
+                <Actions />
+              </ModalFooter>
+            </>
+          )}
         </ModalContent>
       </Modal>
     </>

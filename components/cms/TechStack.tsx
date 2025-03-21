@@ -16,11 +16,7 @@ export async function TechStack({
         {technologies
           ?.sort((a, b) => a.name.localeCompare(b.name))
           ?.map(({ name, url, color, iconName }) => (
-            <Card
-              key={name}
-              className="p-3"
-              style={{ boxShadow: `0 0 16px -8px ${color?.hex} inset` }}
-            >
+            <Card key={name} className="p-3">
               <Link
                 href={url}
                 className="w-full h-full flex justify-around"
@@ -29,8 +25,7 @@ export async function TechStack({
               >
                 <div className="flex items-center">
                   {iconName && <Icon name={iconName} className="!w-6 mr-3" />}
-
-                  <p>{name}</p>
+                  {name}
                 </div>
               </Link>
             </Card>
