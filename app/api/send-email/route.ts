@@ -1,4 +1,8 @@
-import { ContactMeEmailTemplate } from "@/emailTemplates/ContactMe";
+import {
+  ContactMeEmailConfirmationTemplate,
+  ContactMeEmailTemplate,
+  ContactMeEmailTemplateProps,
+} from "@/emailTemplates";
 import { CreateEmailOptions, Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -7,19 +11,22 @@ export interface SendEmailProps {
   from: string;
   to: string[];
   subject: string;
-  template: "ContactMeEmailTemplate";
+  headers?: Record<string, string>;
+  templateId: "ContactMeEmailTemplate" | "ContactMeEmailConfirmationTemplate";
 }
 
 export async function POST(request: Request): Promise<Response> {
-  const { from, to, subject, template } =
+  const { from, to, subject, templateId, headers, ...templateProps } =
     (await request.json()) as SendEmailProps;
 
-  const react: CreateEmailOptions["react"] =
-    template === "ContactMeEmailTemplate"
-      ? ContactMeEmailTemplate({ firstName: "John" })
+  const template: CreateEmailOptions["react"] =
+    templateId === "ContactMeEmailTemplate"
+      ? ContactMeEmailTemplate(templateProps as ContactMeEmailTemplateProps)
+      : templateId === "ContactMeEmailConfirmationTemplate"
+      ? ContactMeEmailConfirmationTemplate()
       : null;
 
-  if (!react) {
+  if (!template) {
     return Response.json({ error: "Invalid template" }, { status: 400 });
   }
 
@@ -28,7 +35,8 @@ export async function POST(request: Request): Promise<Response> {
       from,
       to,
       subject,
-      react: react!,
+      react: template,
+      headers,
     });
 
     if (error) {

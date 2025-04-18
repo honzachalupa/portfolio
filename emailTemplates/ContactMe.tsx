@@ -1,13 +1,25 @@
-interface ContactMeEmailTemplateProps {
-  firstName: string;
+import { SendEmailProps } from "@/app/api/send-email/route";
+
+export interface ContactMeEmailTemplateProps extends SendEmailProps {
+  sender: {
+    name?: string;
+    emailAddress: string;
+  };
+  content: string;
 }
 
 export function ContactMeEmailTemplate({
-  firstName,
+  sender,
+  content,
 }: ContactMeEmailTemplateProps): React.ReactNode {
   return (
     <div>
-      <h1>Welcome, {firstName}!</h1>
+      <p>{content}</p>
+
+      <hr />
+
+      <p>{sender.name}</p>
+      <p>{sender.emailAddress}</p>
     </div>
   );
 }
