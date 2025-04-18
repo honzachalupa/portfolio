@@ -1,18 +1,12 @@
 "use server";
 
-import { executeHygraphQuery } from "../../utils/hygraphQuery";
+import {
+  CommonHygraphFields,
+  executeHygraphQuery,
+} from "../../utils/hygraphQuery";
 import { Config as HygraphConfig } from "./_generated/graphql";
 
-export type HygraphGetConfigData = Pick<
-  HygraphConfig,
-  | "jobDescription"
-  | "emailAddress"
-  | "phoneNumber"
-  | "photo"
-  | "cvFile"
-  | "socialNetworks"
-  | "seo"
->;
+export type HygraphGetConfigData = Omit<HygraphConfig, CommonHygraphFields>;
 
 export async function getConfig(): Promise<HygraphGetConfigData | null> {
   const query = `query {

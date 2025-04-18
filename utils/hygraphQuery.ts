@@ -1,5 +1,18 @@
 "use server";
 
+export type CommonHygraphFields =
+  | "__typename"
+  | "createdAt"
+  | "createdBy"
+  | "documentInStages"
+  | "history"
+  | "publishedAt"
+  | "publishedBy"
+  | "scheduledIn"
+  | "stage"
+  | "updatedAt"
+  | "updatedBy";
+
 /**
  * Utility function for making GraphQL queries to Hygraph with proper error handling
  * @param query The GraphQL query string

@@ -1,12 +1,12 @@
 "use server";
 
-import { executeHygraphQuery } from "../../utils/hygraphQuery";
+import {
+  CommonHygraphFields,
+  executeHygraphQuery,
+} from "../../utils/hygraphQuery";
 import { Page as HygraphPage } from "./_generated/graphql";
 
-export type HygraphGetPagesData = Pick<
-  HygraphPage,
-  "slug" | "title" | "isHidden" | "nestedPages"
->[];
+export type HygraphGetPagesData = Omit<HygraphPage, CommonHygraphFields>[];
 
 export async function getPages(): Promise<HygraphGetPagesData | null> {
   const query = `query {

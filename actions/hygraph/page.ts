@@ -28,6 +28,7 @@ export async function getPage(
           ... on ContactForm {
             __typename
             headline
+            noreplyEmailAddress
           }
           ... on GitHubRepositories {
             __typename

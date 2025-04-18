@@ -1,9 +1,12 @@
 "use server";
 
-import { executeHygraphQuery } from "../../utils/hygraphQuery";
+import {
+  CommonHygraphFields,
+  executeHygraphQuery,
+} from "../../utils/hygraphQuery";
 import { Client as HygraphClient } from "./_generated/graphql";
 
-export type HygraphGetClientsData = Pick<HygraphClient, "name">[];
+export type HygraphGetClientsData = Omit<HygraphClient, CommonHygraphFields>[];
 
 export async function getClients(): Promise<HygraphGetClientsData | null> {
   const query = `query {

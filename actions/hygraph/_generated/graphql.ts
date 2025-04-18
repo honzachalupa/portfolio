@@ -2827,6 +2827,7 @@ export type ContactForm = Entity & {
   headline?: Maybe<Scalars['String']['output']>;
   /** The unique identifier */
   id: Scalars['ID']['output'];
+  noreplyEmailAddress: Scalars['String']['output'];
   /** System stage field */
   stage: Stage;
 };
@@ -2850,6 +2851,7 @@ export type ContactFormConnection = {
 
 export type ContactFormCreateInput = {
   headline?: InputMaybe<Scalars['String']['input']>;
+  noreplyEmailAddress: Scalars['String']['input'];
 };
 
 export type ContactFormCreateManyInlineInput = {
@@ -2926,13 +2928,34 @@ export type ContactFormManyWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  noreplyEmailAddress?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  noreplyEmailAddress_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  noreplyEmailAddress_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  noreplyEmailAddress_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  noreplyEmailAddress_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  noreplyEmailAddress_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  noreplyEmailAddress_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  noreplyEmailAddress_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  noreplyEmailAddress_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  noreplyEmailAddress_starts_with?: InputMaybe<Scalars['String']['input']>;
 };
 
 export enum ContactFormOrderByInput {
   HeadlineAsc = 'headline_ASC',
   HeadlineDesc = 'headline_DESC',
   IdAsc = 'id_ASC',
-  IdDesc = 'id_DESC'
+  IdDesc = 'id_DESC',
+  NoreplyEmailAddressAsc = 'noreplyEmailAddress_ASC',
+  NoreplyEmailAddressDesc = 'noreplyEmailAddress_DESC'
 }
 
 export type ContactFormParent = ComponentsContainer;
@@ -3015,6 +3038,7 @@ export type ContactFormParentWhereUniqueInput = {
 
 export type ContactFormUpdateInput = {
   headline?: InputMaybe<Scalars['String']['input']>;
+  noreplyEmailAddress?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ContactFormUpdateManyInlineInput = {
@@ -3030,6 +3054,7 @@ export type ContactFormUpdateManyInlineInput = {
 
 export type ContactFormUpdateManyInput = {
   headline?: InputMaybe<Scalars['String']['input']>;
+  noreplyEmailAddress?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type ContactFormUpdateManyWithNestedWhereInput = {
@@ -3137,6 +3162,25 @@ export type ContactFormWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  noreplyEmailAddress?: InputMaybe<Scalars['String']['input']>;
+  /** All values containing the given string. */
+  noreplyEmailAddress_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values ending with the given string. */
+  noreplyEmailAddress_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are contained in given list. */
+  noreplyEmailAddress_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** Any other value that exists and is not equal to the given value. */
+  noreplyEmailAddress_not?: InputMaybe<Scalars['String']['input']>;
+  /** All values not containing the given string. */
+  noreplyEmailAddress_not_contains?: InputMaybe<Scalars['String']['input']>;
+  /** All values not ending with the given string */
+  noreplyEmailAddress_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values that are not contained in given list. */
+  noreplyEmailAddress_not_in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** All values not starting with the given string. */
+  noreplyEmailAddress_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  /** All values starting with the given string. */
+  noreplyEmailAddress_starts_with?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** References ContactForm record uniquely */
