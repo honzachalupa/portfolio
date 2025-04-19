@@ -13,7 +13,7 @@ export type HygraphGetTechnologiesData = Omit<
 
 export async function getTechnologies(): Promise<HygraphGetTechnologiesData | null> {
   const query = `query {
-    technologyItems {
+    technologyItems(first:100) {
       name
       url
       iconName
