@@ -1,7 +1,9 @@
 "use client";
 
 import githubApi, { GithubReadme, GithubRepository } from "@/actions/github";
+import { HygraphGetTechnologiesData } from "@/actions/hygraph/technologies";
 import { Button } from "@heroui/button";
+import { Chip } from "@heroui/chip";
 import { Link } from "@heroui/link";
 import {
   Modal,
@@ -15,15 +17,18 @@ import { ScrollShadow } from "@heroui/scroll-shadow";
 import { Spinner } from "@heroui/spinner";
 import { useEffect, useState } from "react";
 import { FaGithub } from "react-icons/fa";
+import { Icon } from "../Icon";
 import { MarkdownRenderer } from "../MarkdownRenderer";
 import { ProjectCard } from "../ProjectCard";
 
 interface GitHubRepositories_Client {
   repositories: GithubRepository[];
+  technologies: HygraphGetTechnologiesData | null;
 }
 
 export function GitHubRepositories_Client({
   repositories,
+  technologies,
 }: GitHubRepositories_Client): React.ReactNode {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [selectedRepositoryName, setSelectedRepositoryName] =
@@ -45,16 +50,60 @@ export function GitHubRepositories_Client({
     }
   }, [selectedRepositoryName]);
 
+  const sanitizeTechnologyName = (value: string): string =>
+    value.toLowerCase().replace(/[\s\.]/g, "");
+
   return (
     <>
       {repositories?.map(
         ({ id, name, url, websiteUrl, description, topics }) => {
+          const topicsToTechnologies = topics?.map((topic) => {
+            const technology = technologies?.find(
+              (technology) =>
+                sanitizeTechnologyName(topic) ===
+                sanitizeTechnologyName(technology.name)
+            );
+
+            if (technology) {
+              return technology;
+            }
+
+            return {
+              name: topic,
+              url: null,
+              iconName: null,
+              color: null,
+            };
+          });
+
           return (
             <ProjectCard
               key={id}
               title={name}
-              subtitle={topics?.join(", ")}
               descriptionMarkdown={description}
+              footer={
+                <div className="flex flex-wrap gap-2 mt-2 mb-1">
+                  {topicsToTechnologies?.map(
+                    ({ name, url, iconName, color }) => (
+                      <Chip
+                        key={name}
+                        as={Link}
+                        href={url}
+                        isDisabled={!url}
+                        variant="flat"
+                        startContent={
+                          iconName ? (
+                            <Icon name={iconName} className="p-1" />
+                          ) : null
+                        }
+                        style={{ color: color?.hex }}
+                      >
+                        {name}
+                      </Chip>
+                    )
+                  )}
+                </div>
+              }
               actions={[
                 {
                   label: "View readme",
