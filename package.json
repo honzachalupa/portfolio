@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "lint": "next lint && tsc --noEmit",
     "codegen": "dotenv -e .env -- graphql-codegen --config codegen.config.ts",
     "prepare": "husky"
   },

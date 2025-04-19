@@ -18,8 +18,9 @@ export async function TechStack({
           ?.map(({ name, url, color, iconName }) => (
             <Card key={name} className="p-3">
               <Link
-                href={url}
+                href={url ?? ""}
                 className="w-full h-full flex justify-around"
+                isDisabled={!url}
                 isExternal
                 style={{ color: color?.hex }}
               >

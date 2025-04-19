@@ -12,6 +12,7 @@ interface IconProps {
   className?: string;
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 function getIconsGroup(namespace: string): Record<string, any> {
   switch (namespace) {
     case "fa6":
