@@ -66,7 +66,7 @@ export function ProjectCard({
     cropDescription(descriptionMarkdown);
 
   function Actions(): React.ReactNode {
-    return (
+    return actions ? (
       <>
         <ButtonGroup className="hidden sm:inline md:hidden lg:inline">
           {actions?.map((action) => {
@@ -134,7 +134,7 @@ export function ProjectCard({
           </Dropdown>
         </div>
       </>
-    );
+    ) : null;
   }
 
   return (
@@ -167,14 +167,14 @@ export function ProjectCard({
           )}
         </CardBody>
 
-        {(actions.length > 0 || footer) && (
+        {(actions || footer) && (
           <>
             <Divider />
 
-            <CardFooter className="px-4 justify-between">
-              {footer ? <div>{footer}</div> : <span />}
+            <CardFooter className="px-4 flex-col items-end gap-2">
+              {footer}
 
-              {actions.length > 0 ? <Actions /> : <span />}
+              <Actions />
             </CardFooter>
           </>
         )}
@@ -196,7 +196,7 @@ export function ProjectCard({
             <MarkdownRenderer>{descriptionMarkdown ?? ""}</MarkdownRenderer>
           </ModalBody>
 
-          {actions.length > 0 && (
+          {actions && (
             <>
               <Divider />
 
