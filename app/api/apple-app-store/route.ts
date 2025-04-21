@@ -45,10 +45,31 @@ export interface AppleAppStoreScreenshot {
   deviceType: DeviceType;
 }
 
+interface App {
+  id: string;
+  attributes: {
+    name: string;
+    iconAsset?: {
+      templateUrl: string;
+      width: number;
+      height: number;
+    };
+  };
+  relationships?: {
+    appStoreVersions?: {
+      data: Array<{
+        id: string;
+        type: string;
+      }>;
+    };
+  };
+}
+
 export interface AppleAppStoreApp extends AppleAppStoreAppInfo {
   id: string;
   name: string;
   url: string;
+  icon?: string;
   screenshots: AppleAppStoreScreenshot[];
   supportedDevices: string[];
 }
@@ -92,27 +113,52 @@ async function fetchApi<T>(endpoint: string): Promise<T> {
 
 async function getApps(): Promise<AppleAppStoreApp[]> {
   try {
-    const apps = await fetchApi<
-      {
-        id: string;
-        attributes: {
-          name: string;
-        };
-      }[]
-    >("/apps");
+    const apps = await fetchApi<App[]>("/apps?include=appStoreVersions");
 
-    return apps.map(({ id, attributes: { name } }) => ({
-      id,
-      name,
-      description: "",
-      keywords: [],
-      url: `https://apps.apple.com/app/id/${id}`,
-      screenshots: [],
-      supportedDevices: [],
-    }));
+    const appsWithIcons = await Promise.all(
+      apps.map(async ({ id, attributes: { name } }) => {
+        try {
+          // Use the iTunes Search API to get app details including the icon
+          const itunesResponse = await fetch(`https://itunes.apple.com/lookup?id=${id}`);
+          const itunesData = (await itunesResponse.json()) as {
+            results?: Array<{
+              artworkUrl512?: string;
+              artworkUrl100?: string;
+            }>;
+          };
+
+          const appData = itunesData?.results?.[0];
+          const iconUrl = appData?.artworkUrl512 || appData?.artworkUrl100 || undefined;
+
+          return {
+            id,
+            name,
+            description: "",
+            keywords: [],
+            url: `https://apps.apple.com/app/id/${id}`,
+            icon: iconUrl,
+            screenshots: [],
+            supportedDevices: [],
+          };
+        } catch (error) {
+          console.error(`Error fetching iTunes data for ${name}:`, error);
+
+          return {
+            id,
+            name,
+            description: "",
+            keywords: [],
+            url: `https://apps.apple.com/app/id/${id}`,
+            screenshots: [],
+            supportedDevices: [],
+          };
+        }
+      })
+    );
+
+    return appsWithIcons;
   } catch (error) {
     console.error("Error fetching apps:", error);
-
     return [];
   }
 }

@@ -3,22 +3,11 @@
 import { Button, ButtonGroup } from "@heroui/button";
 import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
 import { Divider } from "@heroui/divider";
-import {
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
-} from "@heroui/dropdown";
+import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/dropdown";
 import { Link } from "@heroui/link";
-import {
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalHeader,
-  useDisclosure,
-} from "@heroui/modal";
+import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@heroui/modal";
 import clsx from "clsx";
+import Image from "next/image";
 import { MarkdownRenderer } from "./MarkdownRenderer";
 import { cropDescription, isProjectCardLink } from "./ProjectCard.utils";
 
@@ -37,6 +26,7 @@ export interface ProjectCardLink {
 }
 
 interface ProjectCardProps {
+  logoUrl?: string;
   title: React.ReactNode | string;
   subtitle?: React.ReactNode | string;
   description?: React.ReactNode | string;
@@ -48,6 +38,7 @@ interface ProjectCardProps {
 }
 
 export function ProjectCard({
+  logoUrl,
   title,
   subtitle,
   description,
@@ -59,13 +50,9 @@ export function ProjectCard({
 }: ProjectCardProps): React.ReactNode {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  const actions = _actions?.filter(Boolean) as (
-    | ProjectCardAction
-    | ProjectCardLink
-  )[];
+  const actions = _actions?.filter(Boolean) as (ProjectCardAction | ProjectCardLink)[];
 
-  const { descriptionCropped, isDescriptionCropped } =
-    cropDescription(descriptionMarkdown);
+  const { descriptionCropped, isDescriptionCropped } = cropDescription(descriptionMarkdown);
 
   function Actions(): React.ReactNode {
     return actions ? (
@@ -114,13 +101,7 @@ export function ProjectCard({
 
                 return isProjectCardLink(action) ? (
                   <DropdownItem key={label}>
-                    <Button
-                      as={Link}
-                      href={action.url}
-                      variant="light"
-                      size="sm"
-                      isExternal
-                    >
+                    <Button as={Link} href={action.url} variant="light" size="sm" isExternal>
                       {label}
                     </Button>
                   </DropdownItem>
@@ -142,10 +123,16 @@ export function ProjectCard({
   return (
     <>
       <Card className={clsx("w-full p-2", className)}>
-        <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-          <h3 className="w-full font-bold text-primary text-large">{title}</h3>
+        <CardHeader className="flex items-center gap-5">
+          {logoUrl && (
+            <Image src={logoUrl} alt={title?.toString() ?? ""} width={50} height={50} className="rounded-full" />
+          )}
 
-          <small className="text-default-500">{subtitle}</small>
+          <div className="flex-col items-start">
+            <h3 className="w-full font-bold text-primary text-large">{title}</h3>
+
+            <small className="text-default-500">{subtitle}</small>
+          </div>
         </CardHeader>
 
         <CardBody className="px-4 flex flex-col items-start">
@@ -154,12 +141,7 @@ export function ProjectCard({
               <MarkdownRenderer>{descriptionCropped}</MarkdownRenderer>
 
               {isDescriptionCropped && (
-                <Button
-                  variant="light"
-                  color="primary"
-                  className="-ml-3"
-                  onPress={onOpen}
-                >
+                <Button variant="light" color="primary" className="-ml-3" onPress={onOpen}>
                   Read more...
                 </Button>
               )}
@@ -184,13 +166,7 @@ export function ProjectCard({
         )}
       </Card>
 
-      <Modal
-        size="3xl"
-        backdrop="blur"
-        className="max-h-[90vh]"
-        isOpen={isOpen}
-        onOpenChange={onOpenChange}
-      >
+      <Modal size="3xl" backdrop="blur" className="max-h-[90vh]" isOpen={isOpen} onOpenChange={onOpenChange}>
         <ModalContent>
           <ModalHeader className="flex flex-col gap-1">{title}</ModalHeader>
 
@@ -215,12 +191,6 @@ export function ProjectCard({
   );
 }
 
-export function ProjectCardGrid({
-  children,
-}: {
-  children: React.ReactNode;
-}): React.ReactNode {
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-5">{children}</div>
-  );
+export function ProjectCardGrid({ children }: { children: React.ReactNode }): React.ReactNode {
+  return <div className="grid grid-cols-1 md:grid-cols-2 gap-5">{children}</div>;
 }

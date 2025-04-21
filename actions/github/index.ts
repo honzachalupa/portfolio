@@ -20,13 +20,6 @@ export interface GithubRepository {
   pushedAt: string;
 }
 
-interface GithubReadmeOriginal {
-  html_url: string;
-  download_url: string;
-  content: string;
-  encoding: "base64";
-}
-
 export interface GithubReadme {
   url: string;
   rawUrl: string;
@@ -55,13 +48,9 @@ const search = (
       data
         .filter(
           ({ description, archived }) =>
-            (options?.includeWithoutDescription || description) &&
-            (options?.includeArchived || !archived)
+            (options?.includeWithoutDescription || description) && (options?.includeArchived || !archived)
         )
-        .sort(
-          (a, b) =>
-            new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime()
-        )
+        .sort((a, b) => new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime())
         .map(
           ({
             id,
@@ -91,12 +80,9 @@ const search = (
     );
 
 async function getReadme(repositoryName: string): Promise<GithubReadme> {
-  const response = await fetch(
-    `https://api.github.com/repos/honzachalupa/${repositoryName}/readme`,
-    {
-      method: "GET",
-    }
-  );
+  const response = await fetch(`https://api.github.com/repos/honzachalupa/${repositoryName}/readme`, {
+    method: "GET",
+  });
 
   const data = await response.json();
 

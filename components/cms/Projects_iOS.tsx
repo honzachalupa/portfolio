@@ -23,9 +23,10 @@ export async function Projects_iOS({ headline }: Projects_iOSProps): Promise<Rea
   return (
     <Container headline={headline}>
       <ProjectCardGrid>
-        {apps?.map(({ id, name, description, keywords, url, screenshots }) => (
+        {apps?.map(({ id, name, description, icon, keywords, url, screenshots }) => (
           <ProjectCard
             key={id}
+            logoUrl={icon}
             title={name}
             subtitle={keywords?.join(", ")}
             descriptionMarkdown={description}
