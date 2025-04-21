@@ -3,7 +3,7 @@ import { getConfig } from "./config";
 import { getPage } from "./page";
 import { getPages } from "./pages";
 import { getProjects } from "./projects";
-import { getTechnologies } from "./technologies";
+import { getFeaturedTechnologies, getTechnologies } from "./technologies";
 
 const hygraphApi = {
   getClients,
@@ -12,6 +12,7 @@ const hygraphApi = {
   getPages,
   getProjects,
   getTechnologies,
+  getFeaturedTechnologies,
 };
 
 export default hygraphApi;

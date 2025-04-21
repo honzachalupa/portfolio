@@ -2,13 +2,22 @@ import hygraphApi from "@/actions/hygraph";
 import { TechStack as TechStackProps } from "@/actions/hygraph/_generated/graphql";
 import { Card } from "@heroui/card";
 import { Link } from "@heroui/link";
+import { cache } from "react";
 import { Container } from "../Container";
 import { Icon } from "../Icon";
+
+const fetchTechnologies = cache(
+  async () => await hygraphApi.getFeaturedTechnologies()
+);
+
+export const preload = (): void => {
+  void fetchTechnologies();
+};
 
 export async function TechStack({
   headline,
 }: TechStackProps): Promise<React.ReactNode> {
-  const technologies = await hygraphApi.getTechnologies();
+  const technologies = await fetchTechnologies();
 
   return (
     <Container headline={headline}>

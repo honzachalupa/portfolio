@@ -12236,6 +12236,7 @@ export type TechnologyItem = Entity & Node & {
   iconName?: Maybe<Scalars['String']['output']>;
   /** The unique identifier */
   id: Scalars['ID']['output'];
+  isFeatured: Scalars['Boolean']['output'];
   name: Scalars['String']['output'];
   /** The time the document was published. Null on documents in draft stage. */
   publishedAt?: Maybe<Scalars['DateTime']['output']>;
@@ -12317,6 +12318,7 @@ export type TechnologyItemCreateInput = {
   color?: InputMaybe<ColorInput>;
   createdAt?: InputMaybe<Scalars['DateTime']['input']>;
   iconName?: InputMaybe<Scalars['String']['input']>;
+  isFeatured: Scalars['Boolean']['input'];
   name: Scalars['String']['input'];
   updatedAt?: InputMaybe<Scalars['DateTime']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;
@@ -12412,6 +12414,9 @@ export type TechnologyItemManyWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  isFeatured?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  isFeatured_not?: InputMaybe<Scalars['Boolean']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   /** All values containing the given string. */
   name_contains?: InputMaybe<Scalars['String']['input']>;
@@ -12494,6 +12499,8 @@ export enum TechnologyItemOrderByInput {
   IconNameDesc = 'iconName_DESC',
   IdAsc = 'id_ASC',
   IdDesc = 'id_DESC',
+  IsFeaturedAsc = 'isFeatured_ASC',
+  IsFeaturedDesc = 'isFeatured_DESC',
   NameAsc = 'name_ASC',
   NameDesc = 'name_DESC',
   PublishedAtAsc = 'publishedAt_ASC',
@@ -12508,6 +12515,7 @@ export type TechnologyItemUpdateInput = {
   cm8iqfh5401uj07uq7lcu7ze5?: InputMaybe<ProjectUpdateManyInlineInput>;
   color?: InputMaybe<ColorInput>;
   iconName?: InputMaybe<Scalars['String']['input']>;
+  isFeatured?: InputMaybe<Scalars['Boolean']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;
 };
@@ -12532,6 +12540,7 @@ export type TechnologyItemUpdateManyInlineInput = {
 export type TechnologyItemUpdateManyInput = {
   color?: InputMaybe<ColorInput>;
   iconName?: InputMaybe<Scalars['String']['input']>;
+  isFeatured?: InputMaybe<Scalars['Boolean']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   url?: InputMaybe<Scalars['String']['input']>;
 };
@@ -12652,6 +12661,9 @@ export type TechnologyItemWhereInput = {
   id_not_starts_with?: InputMaybe<Scalars['ID']['input']>;
   /** All values starting with the given string. */
   id_starts_with?: InputMaybe<Scalars['ID']['input']>;
+  isFeatured?: InputMaybe<Scalars['Boolean']['input']>;
+  /** Any other value that exists and is not equal to the given value. */
+  isFeatured_not?: InputMaybe<Scalars['Boolean']['input']>;
   name?: InputMaybe<Scalars['String']['input']>;
   /** All values containing the given string. */
   name_contains?: InputMaybe<Scalars['String']['input']>;
