@@ -51,9 +51,7 @@ export async function fetchApi<TData = any, TRequestBody = any>(
   // Determine if URL is relative or absolute
   const isRelativeUrl = !url.startsWith("http");
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL!;
-  const fullUrl = isRelativeUrl
-    ? `${baseUrl}${url.startsWith("/") ? url : `/${url}`}`
-    : url;
+  const fullUrl = isRelativeUrl ? `${baseUrl}${url.startsWith("/") ? url : `/${url}`}` : url;
 
   // Default response structure
   const response: ApiResponse<TData> = {
@@ -76,11 +74,7 @@ export async function fetchApi<TData = any, TRequestBody = any>(
         body: JSON.stringify(options.body),
       }),
       cache: options.cache,
-      next: options.revalidate
-        ? { revalidate: options.revalidate }
-        : options.tags
-        ? { tags: options.tags }
-        : undefined,
+      next: options.revalidate ? { revalidate: options.revalidate } : options.tags ? { tags: options.tags } : undefined,
     };
 
     // Execute fetch
@@ -112,23 +106,16 @@ export async function fetchApi<TData = any, TRequestBody = any>(
         // Try to parse error as JSON
         const errorData = await fetchResponse.json();
         response.error = new Error(
-          errorData.message ||
-            errorData.error ||
-            `API error: ${fetchResponse.status} ${fetchResponse.statusText}`
+          errorData.message || errorData.error || `API error: ${fetchResponse.status} ${fetchResponse.statusText}`
         );
       } catch {
         // If error can't be parsed as JSON, use status text
-        response.error = new Error(
-          `API error: ${fetchResponse.status} ${fetchResponse.statusText}`
-        );
+        response.error = new Error(`API error: ${fetchResponse.status} ${fetchResponse.statusText}`);
       }
     }
   } catch (error) {
     // Handle network or other errors
-    response.error =
-      error instanceof Error
-        ? error
-        : new Error("Unknown error occurred during API request");
+    response.error = error instanceof Error ? error : new Error("Unknown error occurred during API request");
 
     console.error("API request failed:", response.error);
   }

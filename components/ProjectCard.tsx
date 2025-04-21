@@ -43,6 +43,7 @@ interface ProjectCardProps {
   descriptionMarkdown?: string;
   footer?: React.ReactNode | string;
   actions?: (ProjectCardAction | ProjectCardLink | false)[];
+  children?: React.ReactNode;
   className?: string;
 }
 
@@ -53,6 +54,7 @@ export function ProjectCard({
   descriptionMarkdown,
   footer,
   actions: _actions,
+  children,
   className,
 }: ProjectCardProps): React.ReactNode {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
@@ -165,6 +167,8 @@ export function ProjectCard({
           ) : (
             description
           )}
+
+          {children}
         </CardBody>
 
         {(actions || footer) && (

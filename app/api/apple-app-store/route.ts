@@ -1,9 +1,10 @@
+import { DEVICE_TYPE_ORDER, DeviceType, sortByDeviceType } from "@/utils/deviceTypes";
 import jwt from "jsonwebtoken";
 import fetch from "node-fetch";
 
 export interface AppleAppStoreAppInfo {
   description: string;
-  keywords: string[];
+  keywords?: string[];
 }
 
 interface InternalAppInfo extends AppleAppStoreAppInfo {
@@ -37,16 +38,18 @@ interface Screenshot {
   };
 }
 
+export interface AppleAppStoreScreenshot {
+  url: string;
+  width: number;
+  height: number;
+  deviceType: DeviceType;
+}
+
 export interface AppleAppStoreApp extends AppleAppStoreAppInfo {
   id: string;
   name: string;
   url: string;
-  screenshots: Array<{
-    url: string;
-    width: number;
-    height: number;
-    deviceType: string;
-  }>;
+  screenshots: AppleAppStoreScreenshot[];
   supportedDevices: string[];
 }
 
@@ -74,16 +77,13 @@ const token = jwt.sign(
 );
 
 async function fetchApi<T>(endpoint: string): Promise<T> {
-  const response = await fetch(
-    `https://api.appstoreconnect.apple.com/v1${endpoint}`,
-    {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    }
-  );
+  const response = await fetch(`https://api.appstoreconnect.apple.com/v1${endpoint}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
 
   const { data } = (await response.json()) as { data: T };
 
@@ -131,8 +131,7 @@ async function getAppStoreVersions(appId: string): Promise<InternalAppInfo> {
       }[]
     >(`/apps/${appId}/appStoreVersions?include=appStoreVersionLocalizations`);
 
-    const appStoreVersionLocalizationsId =
-      data[0].relationships.appStoreVersionLocalizations.data[0].id;
+    const appStoreVersionLocalizationsId = data[0].relationships.appStoreVersionLocalizations.data[0].id;
 
     const response = await fetchApi<{
       attributes: {
@@ -157,15 +156,11 @@ async function getAppStoreVersions(appId: string): Promise<InternalAppInfo> {
   }
 }
 
-async function getAppScreenshots(
-  appStoreVersionLocalizationId: string
-): Promise<Screenshot[]> {
+async function getAppScreenshots(appStoreVersionLocalizationId: string): Promise<Screenshot[]> {
   try {
     const screenshotSetsResponse = await fetchApi<{
       data: ScreenshotSet[];
-    }>(
-      `/appStoreVersionLocalizations/${appStoreVersionLocalizationId}/appScreenshotSets`
-    );
+    }>(`/appStoreVersionLocalizations/${appStoreVersionLocalizationId}/appScreenshotSets`);
 
     const allScreenshots: Screenshot[] = [];
 
@@ -188,16 +183,9 @@ async function getAppScreenshots(
   }
 }
 
-function processImageUrl(
-  templateUrl: string,
-  width: number,
-  height: number
-): string {
+function processImageUrl(templateUrl: string, width: number, height: number): string {
   // Replace the placeholders with actual values
-  return templateUrl
-    .replace("{w}", width.toString())
-    .replace("{h}", height.toString())
-    .replace("{f}", "jpg"); // Using jpg as the default format
+  return templateUrl.replace("{w}", width.toString()).replace("{h}", height.toString()).replace("{f}", "jpg"); // Using jpg as the default format
 }
 
 function getDeviceType(width: number, height: number): string {
@@ -218,9 +206,10 @@ function getDeviceType(width: number, height: number): string {
     (width === 750 && height === 1334) || // iPhone 8 portrait
     (width === 1334 && height === 750) || // iPhone 8 landscape
     (width === 1242 && height === 2208) || // iPhone 8 Plus portrait
-    (width === 2208 && height === 1242)
+    (width === 2208 && height === 1242) || // iPhone 8 Plus landscape
+    (width === 1320 && height === 2868) || // iPhone 12/13/14 Pro Max portrait
+    (width === 2868 && height === 1320) // iPhone 12/13/14 Pro Max landscape
   ) {
-    // iPhone 8 Plus landscape
     return "iPhone";
   }
 
@@ -235,9 +224,8 @@ function getDeviceType(width: number, height: number): string {
     (width === 1620 && height === 2160) || // iPad portrait
     (width === 2160 && height === 1620) || // iPad landscape
     (width === 2064 && height === 2752) || // iPad Pro 13" portrait
-    (width === 2752 && height === 2064)
+    (width === 2752 && height === 2064) // iPad Pro 13" landscape
   ) {
-    // iPad Pro 13" landscape
     return "iPad";
   }
 
@@ -245,9 +233,8 @@ function getDeviceType(width: number, height: number): string {
   if (
     (width === 410 && height === 502) || // Apple Watch Ultra 2
     (width === 396 && height === 484) || // Apple Watch Series 8
-    (width === 394 && height === 484)
+    (width === 394 && height === 484) // Apple Watch SE
   ) {
-    // Apple Watch SE
     return "Apple Watch";
   }
 
@@ -260,9 +247,8 @@ function getDeviceType(width: number, height: number): string {
     (width === 2880 && height === 1800) || // MacBook Pro Retina 15"
     (width === 1800 && height === 2880) || // MacBook Pro Retina 15" (rotated)
     (width === 3024 && height === 1964) || // MacBook Pro 14" M1/M2
-    (width === 1964 && height === 3024)
+    (width === 1964 && height === 3024) // MacBook Pro 14" M1/M2 (rotated)
   ) {
-    // MacBook Pro 14" M1/M2 (rotated)
     return "Mac";
   }
 
@@ -270,7 +256,8 @@ function getDeviceType(width: number, height: number): string {
   const aspectRatio = width / height;
   if (aspectRatio >= 0.45 && aspectRatio <= 0.5) {
     return "Apple Watch";
-  } else if (aspectRatio >= 0.75 && aspectRatio <= 0.85) {
+  } else if (aspectRatio >= 0.45 && aspectRatio <= 0.55) {
+    // Updated iPhone range
     return "iPhone";
   } else if (aspectRatio >= 0.7 && aspectRatio <= 0.8) {
     return "iPad";
@@ -278,51 +265,67 @@ function getDeviceType(width: number, height: number): string {
     return "Mac";
   }
 
-  return "Unknown";
+  return "iPhone";
 }
 
 function getSupportedDevices(screenshots: Screenshot[]): string[] {
   const devices = new Set<string>();
 
   screenshots.forEach((screenshot) => {
-    const deviceType = getDeviceType(
-      screenshot.attributes.imageAsset.width,
-      screenshot.attributes.imageAsset.height
-    );
+    const deviceType = getDeviceType(screenshot.attributes.imageAsset.width, screenshot.attributes.imageAsset.height);
 
     if (deviceType !== "Unknown") {
       devices.add(deviceType);
     }
   });
 
-  return Array.from(devices);
+  // Sort devices according to the same order as screenshots
+  return Array.from(devices).sort((a, b) => {
+    const aIndex = DEVICE_TYPE_ORDER.indexOf(a as DeviceType);
+    const bIndex = DEVICE_TYPE_ORDER.indexOf(b as DeviceType);
+
+    // If both types are in our order list, sort by their index
+    if (aIndex !== -1 && bIndex !== -1) {
+      return aIndex - bIndex;
+    }
+    // If only a is in our order list, it comes first
+    if (aIndex !== -1) {
+      return -1;
+    }
+    // If only b is in our order list, it comes first
+    if (bIndex !== -1) {
+      return 1;
+    }
+    // If neither is in our order list, sort alphabetically
+    return a.localeCompare(b);
+  });
 }
 
 export async function GET(): Promise<Response> {
   try {
     const apps = await getApps();
+
     const appInfoPromises = apps.map(async (app) => {
       const versions = await getAppStoreVersions(app.id);
       const screenshots = await getAppScreenshots(versions.localizationId);
 
+      const processedScreenshots = screenshots.map((screenshot) => {
+        const width = screenshot.attributes.imageAsset.width;
+        const height = screenshot.attributes.imageAsset.height;
+        const deviceType = getDeviceType(width, height) as DeviceType;
+
+        return {
+          url: processImageUrl(screenshot.attributes.imageAsset.templateUrl, width, height),
+          width,
+          height,
+          deviceType,
+        };
+      });
+
       return {
         ...app,
         ...versions,
-        screenshots: screenshots.map((screenshot) => {
-          const width = screenshot.attributes.imageAsset.width;
-          const height = screenshot.attributes.imageAsset.height;
-
-          return {
-            url: processImageUrl(
-              screenshot.attributes.imageAsset.templateUrl,
-              width,
-              height
-            ),
-            width,
-            height,
-            deviceType: getDeviceType(width, height),
-          };
-        }),
+        screenshots: sortByDeviceType(processedScreenshots),
         supportedDevices: getSupportedDevices(screenshots),
       };
     });
@@ -333,9 +336,6 @@ export async function GET(): Promise<Response> {
   } catch (error) {
     console.error("[apple-app-store API]:", error);
 
-    return Response.json(
-      { error: "Failed to fetch app information" },
-      { status: 500 }
-    );
+    return Response.json({ error: "Failed to fetch app information" }, { status: 500 });
   }
 }
