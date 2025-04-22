@@ -4,6 +4,7 @@ import { AppleAppStoreScreenshot } from "@/app/api/apple-app-store/route";
 import { DeviceType, sortByDeviceType } from "@/utils/deviceTypes";
 import { Tab, Tabs } from "@heroui/tabs";
 import clsx from "clsx";
+import { ImageWithPreview } from "./ImageWithPreview";
 
 interface AppScreenshotsProps {
   screenshots: AppleAppStoreScreenshot[];
@@ -37,10 +38,9 @@ export function AppScreenshots({ screenshots, className }: AppScreenshotsProps):
     <Tab key={deviceType} title={deviceType}>
       <div className="flex flex-row gap-4 overflow-x-auto pb-5 -mb-5 snap-x">
         {groupedScreenshots[deviceType].map((screenshot, index) => (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
+          <ImageWithPreview
             key={index}
-            src={screenshot.url}
+            image={screenshot}
             alt={`${deviceType} screenshot ${index + 1}`}
             className={clsx(
               "h-80 snap-start flex-shrink-0",

@@ -125,7 +125,7 @@ export function ProjectCard({
       <Card className={clsx("w-full p-2", className)}>
         <CardHeader className="flex items-center gap-5">
           {logoUrl && (
-            <Image src={logoUrl} alt={title?.toString() ?? ""} width={50} height={50} className="rounded-full" />
+            <Image src={logoUrl} alt={title?.toString() ?? ""} width={50} height={50} className="rounded-xl" />
           )}
 
           <div className="flex-col items-start">
