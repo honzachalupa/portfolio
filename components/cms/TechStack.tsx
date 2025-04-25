@@ -6,17 +6,13 @@ import { cache } from "react";
 import { Container } from "../Container";
 import { Icon } from "../Icon";
 
-const fetchTechnologies = cache(
-  async () => await hygraphApi.getFeaturedTechnologies()
-);
+const fetchTechnologies = cache(hygraphApi.getFeaturedTechnologies);
 
 export const preload = (): void => {
   void fetchTechnologies();
 };
 
-export async function TechStack({
-  headline,
-}: TechStackProps): Promise<React.ReactNode> {
+export async function TechStack({ headline }: TechStackProps): Promise<React.ReactNode> {
   const technologies = await fetchTechnologies();
 
   return (
@@ -44,3 +40,5 @@ export async function TechStack({
     </Container>
   );
 }
+
+export default TechStack;

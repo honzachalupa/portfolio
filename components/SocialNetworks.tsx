@@ -4,9 +4,7 @@ import { Link } from "@heroui/link";
 import { cache, createElement } from "react";
 import * as FaIcons from "react-icons/fa6";
 
-const getConfig = cache(async () => {
-  return await hygraphApi.getConfig();
-});
+const getConfig = cache(hygraphApi.getConfig);
 
 export const preload = (): void => {
   void getConfig();

@@ -17,13 +17,8 @@ export const viewport: Viewport = {
   ],
 };
 
-const getConfig = cache(async () => {
-  return await hygraphApi.getConfig();
-});
-
-const getPages = cache(async () => {
-  return await hygraphApi.getPages();
-});
+const getConfig = cache(hygraphApi.getConfig);
+const getPages = cache(hygraphApi.getPages);
 
 export const preload = (): void => {
   void getConfig();
@@ -43,10 +38,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body>
-        <Providers
-          locale={locale}
-          themeProps={{ attribute: "class", defaultTheme: "dark" }}
-        >
+        <Providers locale={locale} themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="flex flex-col min-h-screen">
             <Navigation config={config} pages={pages} />
 

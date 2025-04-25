@@ -4,10 +4,7 @@ import hygraphApi from "@/actions/hygraph";
 import { ContactForm as ContactFormProps } from "@/actions/hygraph/_generated/graphql";
 import { HygraphGetConfigData } from "@/actions/hygraph/config";
 import { SendEmailProps } from "@/app/api/send-email/route";
-import {
-  ContactMeEmailConfirmationTemplateProps,
-  ContactMeEmailTemplateProps,
-} from "@/emailTemplates";
+import { ContactMeEmailConfirmationTemplateProps, ContactMeEmailTemplateProps } from "@/emailTemplates";
 import { post } from "@/utils/api";
 import { Alert } from "@heroui/alert";
 import { Button } from "@heroui/button";
@@ -25,17 +22,12 @@ interface FormValues {
   message: string;
 }
 
-export function ContactForm({
-  headline,
-  noreplyEmailAddress,
-}: ContactFormProps): React.ReactNode {
+export function ContactForm({ headline, noreplyEmailAddress }: ContactFormProps): React.ReactNode {
   const [config, setConfig] = useState<HygraphGetConfigData | null>(null);
 
   const myEmailAddress = config?.emailAddress ?? "";
 
-  const [sentStatus, setSentStatus] = useState<
-    "sending" | "success" | "failed"
-  >();
+  const [sentStatus, setSentStatus] = useState<"sending" | "success" | "failed">();
 
   const { register, handleSubmit } = useForm<FormValues>();
 
@@ -57,10 +49,7 @@ export function ContactForm({
       },
     };
 
-    const { error } = await post<never, ContactMeEmailTemplateProps>(
-      "/api/send-email",
-      payload
-    );
+    const { error } = await post<never, ContactMeEmailTemplateProps>("/api/send-email", payload);
 
     if (error) {
       console.error("[ContactForm] Failed to send email:", error);
@@ -81,10 +70,7 @@ export function ContactForm({
       templateId: "ContactMeEmailConfirmationTemplate",
     };
 
-    const { error } = await post<never, SendEmailProps>(
-      "/api/send-email",
-      payload
-    );
+    const { error } = await post<never, SendEmailProps>("/api/send-email", payload);
 
     if (error) {
       console.error("[ContactForm] Failed to send email:", error);
@@ -114,12 +100,7 @@ export function ContactForm({
       <Card className="w-full md:w-2/3">
         <CardBody>
           <Form onSubmit={handleSubmit(onSubmit)}>
-            <Input
-              type="name"
-              label="Your name"
-              labelPlacement="outside"
-              {...register("name")}
-            />
+            <Input type="name" label="Your name" labelPlacement="outside" {...register("name")} />
 
             <Input
               type="email"
@@ -150,10 +131,7 @@ export function ContactForm({
             </Button>
 
             {sentStatus === "failed" && (
-              <Alert
-                description="Failed to send your message. Please try again later."
-                color="danger"
-              />
+              <Alert description="Failed to send your message. Please try again later." color="danger" />
             )}
 
             {sentStatus === "success" && (
@@ -167,9 +145,10 @@ export function ContactForm({
       </Card>
 
       <p className="mt-4">
-        You can also contact me directly at{" "}
-        <Link href={`mailto:${myEmailAddress}`}>{myEmailAddress}</Link>
+        You can also contact me directly at <Link href={`mailto:${myEmailAddress}`}>{myEmailAddress}</Link>
       </p>
     </Container>
   );
 }
+
+export default ContactForm;

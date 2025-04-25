@@ -19,23 +19,14 @@ export function Jobs({ headline, jobs }: JobsProps): React.ReactNode {
               <div className="flex flex-row justify-between">
                 <div>
                   <span className="text-foreground">{title} @ </span>
-                  <a
-                    href={client!.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-primary"
-                  >
+                  <a href={client!.url} target="_blank" rel="noreferrer" className="text-primary">
                     {client!.name}
                   </a>
                 </div>
 
                 {client?.logo && (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={client.logo.url}
-                    alt={`${client.name} logo`}
-                    className="w-32 object-contain"
-                  />
+                  <img src={client.logo.url} alt={`${client.name} logo`} className="w-32 object-contain" />
                 )}
               </div>
             }
@@ -43,12 +34,12 @@ export function Jobs({ headline, jobs }: JobsProps): React.ReactNode {
               dayjs(dateFrom).format("MMMM YYYY"),
               dateTo ? dayjs(dateTo).format("MMMM YYYY") : "Present",
             ].join(" - ")}
-            description={
-              <MarkdownRenderer>{description.markdown}</MarkdownRenderer>
-            }
+            description={<MarkdownRenderer>{description.markdown}</MarkdownRenderer>}
           />
         ))}
       </div>
     </Container>
   );
 }
+
+export default Jobs;

@@ -11,7 +11,7 @@ import { AppScreenshots } from "../AppScreenshots";
 import { Container } from "../Container";
 import { ProjectCard, ProjectCardGrid } from "../ProjectCard";
 
-const getIosApps = cache(async () => await appleAppStoreApi.getApps({ limit: 6 }));
+const getIosApps = cache(appleAppStoreApi.getApps);
 
 export function preload(): void {
   void getIosApps();
@@ -92,3 +92,5 @@ export async function Projects_iOS({ headline }: Projects_iOSProps): Promise<Rea
     </Container>
   );
 }
+
+export default Projects_iOS;
