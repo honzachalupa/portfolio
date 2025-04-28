@@ -4,7 +4,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Footer } from "@/components/Footer";
 import { Viewport } from "next";
 import { cache } from "react";
-import "./globals.css";
+import "../globals.css";
 
 export const viewport: Viewport = {
   minimumScale: 1,
@@ -43,10 +43,7 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body>
-        <Providers
-          locale={locale}
-          themeProps={{ attribute: "class", defaultTheme: "dark" }}
-        >
+        <Providers locale={locale} themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="flex flex-col min-h-screen">
             <Navigation config={config} pages={pages} />
 

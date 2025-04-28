@@ -14,7 +14,7 @@ const parseSlug = (slug: string | string[]): string => {
     return slug;
   }
 
-  return "/" + slug.join("/");
+  return "/" + (slug?.join("/") ?? "");
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -28,11 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function Page({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}): Promise<React.ReactNode> {
+export default async function Page({ params }: { params: Promise<{ slug: string }> }): Promise<React.ReactNode> {
   const paramsList = await params;
   const slug = parseSlug(paramsList.slug);
   const page = await hygraphApi.getPage(slug);
