@@ -5,9 +5,7 @@ import { Page as HygraphPage } from "./_generated/graphql";
 
 export type HygraphGetPageData = HygraphPage;
 
-export async function getPage(
-  slug: string
-): Promise<HygraphGetPageData | null> {
+export async function getPage(slug: string): Promise<HygraphGetPageData | null> {
   const query = `query ($slug: String!) {
     page(where: { slug: $slug }) {
       slug
@@ -51,6 +49,8 @@ export async function getPage(
                 url
                 logo {
                   url
+                  width
+                  height
                 }
               }
             }
@@ -75,6 +75,8 @@ export async function getPage(
                 url
                 logo {
                   url
+                  width
+                  height
                 }
               }
               technologies {
@@ -110,10 +112,7 @@ export async function getPage(
     slug: decodeURIComponent(slug),
   };
 
-  const data = await executeHygraphQuery<{ page: HygraphGetPageData }>(
-    query,
-    variables
-  );
+  const data = await executeHygraphQuery<{ page: HygraphGetPageData }>(query, variables);
 
   return data?.page || null;
 }

@@ -5,7 +5,14 @@ import { Card, CardBody, CardFooter, CardHeader } from "@heroui/card";
 import { Divider } from "@heroui/divider";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/dropdown";
 import { Link } from "@heroui/link";
-import { Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, useDisclosure } from "@heroui/modal";
+import {
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
+  useDisclosure,
+} from "@heroui/modal";
 import clsx from "clsx";
 import Image from "next/image";
 import { MarkdownRenderer } from "./MarkdownRenderer";
@@ -125,10 +132,16 @@ export function ProjectCard({
       <Card className={clsx("w-full p-2", className)}>
         <CardHeader className="flex items-center gap-5">
           {logoUrl && (
-            <Image src={logoUrl} alt={title?.toString() ?? ""} width={50} height={50} className="rounded-xl" />
+            <Image
+              src={logoUrl}
+              alt={title?.toString() ?? ""}
+              width={50}
+              height={50}
+              className="rounded-xl"
+            />
           )}
 
-          <div className="flex-col items-start">
+          <div className="w-full flex-col items-start">
             <h3 className="w-full font-bold text-primary text-large">{title}</h3>
 
             <small className="text-default-500">{subtitle}</small>
@@ -166,7 +179,13 @@ export function ProjectCard({
         )}
       </Card>
 
-      <Modal size="3xl" backdrop="blur" className="max-h-[90vh]" isOpen={isOpen} onOpenChange={onOpenChange}>
+      <Modal
+        size="3xl"
+        backdrop="blur"
+        className="max-h-[90vh]"
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+      >
         <ModalContent>
           <ModalHeader className="flex flex-col gap-1">{title}</ModalHeader>
 

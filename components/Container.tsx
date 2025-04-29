@@ -7,13 +7,8 @@ interface BlockHeadlineProps {
   className?: string;
 }
 
-export const BlockHeadline: React.FC<BlockHeadlineProps> = ({
-  children,
-  className,
-}) => (
-  <h2 className={clsx("pb-7 text-4xl font-medium opacity-70", className)}>
-    {children}
-  </h2>
+export const BlockHeadline: React.FC<BlockHeadlineProps> = ({ children, className }) => (
+  <h2 className={clsx("pb-7 text-4xl font-medium", className)}>{children}</h2>
 );
 
 interface ContainerProps {
@@ -23,14 +18,9 @@ interface ContainerProps {
   children: ReactNode;
 }
 
-export const Container: React.FC<ContainerProps> = ({
-  htmlId,
-  headline,
-  className,
-  children,
-}) => {
+export const Container: React.FC<ContainerProps> = ({ htmlId, headline, className, children }) => {
   return (
-    <section id={htmlId} className={clsx("mt-[50px] md:mt-[100px]", className)}>
+    <section id={htmlId} className={clsx("mt-[30px] md:mt-[50px]", className)}>
       {headline && <BlockHeadline>{headline}</BlockHeadline>}
 
       {children}

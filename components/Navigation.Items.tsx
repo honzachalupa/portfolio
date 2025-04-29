@@ -1,13 +1,6 @@
-"use client";
-
 import { HygraphGetPagesData } from "@/actions/hygraph/pages";
 import { Button } from "@heroui/button";
-import {
-  Dropdown,
-  DropdownItem,
-  DropdownMenu,
-  DropdownTrigger,
-} from "@heroui/dropdown";
+import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/dropdown";
 import { Link } from "@heroui/link";
 import { NavbarItem, NavbarMenuItem } from "@heroui/navbar";
 import { ButtonVariantProps } from "@heroui/theme";
@@ -58,7 +51,7 @@ export function Items({
               const isActive = currentSlug === slug;
 
               return (
-                <DropdownItem key={slug!}>
+                <DropdownItem key={slug!} textValue={title!}>
                   <Link
                     href={slug!}
                     title={title!}

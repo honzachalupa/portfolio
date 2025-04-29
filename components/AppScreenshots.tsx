@@ -17,21 +17,24 @@ export function AppScreenshots({ screenshots, className }: AppScreenshotsProps):
   }
 
   // Group screenshots by device type
-  const groupedScreenshots = screenshots.reduce<Record<string, AppleAppStoreScreenshot[]>>((acc, screenshot) => {
-    const deviceType = screenshot.deviceType;
+  const groupedScreenshots = screenshots.reduce<Record<string, AppleAppStoreScreenshot[]>>(
+    (acc, screenshot) => {
+      const deviceType = screenshot.deviceType;
 
-    if (!acc[deviceType]) {
-      acc[deviceType] = [];
-    }
+      if (!acc[deviceType]) {
+        acc[deviceType] = [];
+      }
 
-    acc[deviceType].push(screenshot);
+      acc[deviceType].push(screenshot);
 
-    return acc;
-  }, {});
+      return acc;
+    },
+    {},
+  );
 
   // Sort device types using the shared function
   const sortedDeviceTypes = sortByDeviceType(
-    Object.keys(groupedScreenshots).map((deviceType) => ({ deviceType: deviceType as DeviceType }))
+    Object.keys(groupedScreenshots).map((deviceType) => ({ deviceType: deviceType as DeviceType })),
   ).map((item) => item.deviceType);
 
   const tabs = sortedDeviceTypes.map((deviceType) => (
@@ -44,7 +47,7 @@ export function AppScreenshots({ screenshots, className }: AppScreenshotsProps):
             alt={`${deviceType} screenshot ${index + 1}`}
             className={clsx(
               "h-80 snap-start flex-shrink-0",
-              deviceType === "Apple Watch" ? "rounded-[50px]" : "rounded-xl"
+              deviceType === "Apple Watch" ? "rounded-[50px]" : "rounded-xl",
             )}
           />
         ))}

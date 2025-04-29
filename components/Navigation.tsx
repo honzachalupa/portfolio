@@ -28,17 +28,9 @@ export function Navigation({
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
 
   return (
-    <Navbar
-      maxWidth="xl"
-      isBordered
-      isMenuOpen={isMenuOpen}
-      onMenuOpenChange={setIsMenuOpen}
-    >
+    <Navbar maxWidth="xl" isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
       <NavbarContent>
-        <NavbarMenuToggle
-          title={isMenuOpen ? "Close menu" : "Open menu"}
-          className="md:hidden"
-        />
+        <NavbarMenuToggle title="Toggle menu" className="md:hidden" />
 
         <NavbarBrand>
           <Link href="/" color="foreground">
@@ -105,11 +97,7 @@ export function Navigation({
       </NavbarContent>
 
       <NavbarMenu>
-        <Items
-          pages={pages}
-          variant="mobile"
-          closeMenu={() => setIsMenuOpen(false)}
-        />
+        <Items pages={pages} variant="mobile" closeMenu={() => setIsMenuOpen(false)} />
       </NavbarMenu>
     </Navbar>
   );
