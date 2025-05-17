@@ -6,7 +6,7 @@ async function getApps(
     | {
         limit?: number;
       }
-    | undefined = undefined
+    | undefined = undefined,
 ): Promise<AppleAppStoreApp[] | undefined> {
   const { data, error } = await get<AppleAppStoreApp[]>("/api/apple-app-store", {
     tags: ["apple-app-store"],
@@ -17,7 +17,11 @@ async function getApps(
     return [];
   }
 
-  return data ? data.slice(0, options?.limit ?? 100) : [];
+  return data
+    ? data
+        .filter(({ name, screenshots }) => !name.includes("remove") && screenshots.length > 0)
+        .slice(0, options?.limit ?? 100)
+    : [];
 }
 
 const appleAppStoreApi = {
