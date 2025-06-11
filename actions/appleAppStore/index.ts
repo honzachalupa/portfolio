@@ -18,9 +18,7 @@ async function getApps(
   }
 
   return data
-    ? data
-        .filter(({ name, screenshots }) => !name.includes("remove") && screenshots.length > 0)
-        .slice(0, options?.limit ?? 100)
+    ? data.filter(({ screenshots }) => screenshots.length > 0).slice(0, options?.limit ?? 100)
     : [];
 }
 
