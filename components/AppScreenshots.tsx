@@ -46,7 +46,7 @@ export function AppScreenshots({ screenshots, className }: AppScreenshotsProps):
             image={screenshot}
             alt={`${deviceType} screenshot ${index + 1}`}
             className={clsx(
-              "h-80 snap-start flex-shrink-0",
+              "h-[30vh] snap-start flex-shrink-0 border border-gray-200 dark:border-none",
               deviceType === "Apple Watch" ? "rounded-[50px]" : "rounded-xl",
             )}
           />

@@ -137,7 +137,7 @@ export function ProjectCard({
               alt={title?.toString() ?? ""}
               width={50}
               height={50}
-              className="rounded-xl"
+              className="rounded-xl border border-gray-200 dark:border-none"
             />
           )}
 
