@@ -1,5 +1,3 @@
-"use server";
-
 interface RateLimitEntry {
   count: number;
   resetTime: number;
