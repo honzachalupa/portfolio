@@ -23,6 +23,7 @@ interface FormValues {
   name?: string;
   emailAddress: string;
   message: string;
+  honeypot?: string; // Hidden field to catch bots
 }
 
 export function ContactForm({
@@ -42,7 +43,7 @@ export function ContactForm({
   async function sendEmail(formData: FormValues): Promise<void> {
     setSentStatus("sending");
 
-    const payload: ContactMeEmailTemplateProps = {
+    const payload: ContactMeEmailTemplateProps & { honeypot?: string } = {
       from: noreplyEmailAddress,
       to: [myEmailAddress],
       subject: "Message from contact form",
@@ -55,9 +56,10 @@ export function ContactForm({
       headers: {
         "reply-to": formData.emailAddress,
       },
+      honeypot: formData.honeypot || "", // Include honeypot field
     };
 
-    const { error } = await post<never, ContactMeEmailTemplateProps>(
+    const { error } = await post<never, ContactMeEmailTemplateProps & { honeypot?: string }>(
       "/api/send-email",
       payload
     );
@@ -114,6 +116,23 @@ export function ContactForm({
       <Card className="w-full md:w-2/3">
         <CardBody>
           <Form onSubmit={handleSubmit(onSubmit)}>
+            {/* Honeypot field - hidden from users but visible to bots */}
+            <input
+              type="text"
+              {...register("honeypot")}
+              style={{
+                position: "absolute",
+                left: "-9999px",
+                width: "1px",
+                height: "1px",
+                opacity: 0,
+                pointerEvents: "none",
+              }}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
+
             <Input
               type="name"
               label="Your name"
