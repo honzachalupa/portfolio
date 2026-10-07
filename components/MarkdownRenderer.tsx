@@ -31,63 +31,36 @@ export function MarkdownRenderer({
         components={{
           h1: (props) => (
             <h1
-              className={clsx(
-                "leading-6 pb-5 text-3xl font-medium text-primary",
-                classNames?.h1
-              )}
+              className={clsx("leading-6 pb-5 text-3xl font-medium text-primary", classNames?.h1)}
               {...props}
             />
           ),
           h2: (props) => (
             <h2
-              className={clsx(
-                "leading-6 pb-3 text-2xl font-medium",
-                classNames?.h2
-              )}
+              className={clsx("leading-6 pb-3 text-2xl font-medium", classNames?.h2)}
               {...props}
             />
           ),
           h3: (props) => (
-            <h3
-              className={clsx(
-                "leading-6 pb-3 text-lg font-medium",
-                classNames?.h3
-              )}
-              {...props}
-            />
+            <h3 className={clsx("leading-6 pb-3 text-lg font-medium", classNames?.h3)} {...props} />
           ),
           h4: (props) => (
-            <h4
-              className={clsx("leading-6 pb-3 font-medium", classNames?.h4)}
-              {...props}
-            />
+            <h4 className={clsx("leading-6 pb-3 font-medium", classNames?.h4)} {...props} />
           ),
           h5: (props) => (
-            <h5
-              className={clsx("leading-6 pb-3 font-medium", classNames?.h5)}
-              {...props}
-            />
+            <h5 className={clsx("leading-6 pb-3 font-medium", classNames?.h5)} {...props} />
           ),
           h6: (props) => (
-            <h6
-              className={clsx("leading-6 pb-3 font-medium", classNames?.h6)}
-              {...props}
-            />
+            <h6 className={clsx("leading-6 pb-3 font-medium", classNames?.h6)} {...props} />
           ),
           p: (props) => (
             <p
-              className={clsx(
-                "leading-6 [&:not(:last-of-type)]:pb-5",
-                classNames?.p
-              )}
+              className={clsx("leading-6 [&:not(:last-of-type)]:pb-5", classNames?.p)}
               {...props}
             />
           ),
           li: ({ children, ...props }) => (
-            <li
-              className={clsx("text-sm pb-5 list-none", classNames?.li)}
-              {...props}
-            >
+            <li className={clsx("text-sm pb-5 list-none", classNames?.li)} {...props}>
               <span className="text-primary font-bold mr-2">{`>`}</span>
               {children}
             </li>

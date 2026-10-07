@@ -1,9 +1,9 @@
 "use client";
 
-import { AppleAppStoreScreenshot } from "@/app/api/apple-app-store/route";
 import { Modal, ModalContent, useDisclosure } from "@heroui/modal";
 import clsx from "clsx";
 import Image from "next/image";
+import { AppleAppStoreScreenshot } from "@/app/api/apple-app-store/route";
 
 interface ImageWithPreviewProps {
   image: AppleAppStoreScreenshot;

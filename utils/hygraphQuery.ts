@@ -23,7 +23,7 @@ export type CommonHygraphFields =
 export async function executeHygraphQuery<T>(
   query: string,
   variables: Record<string, unknown> = {},
-  revalidationTime: number = 60
+  revalidationTime: number = 60,
 ): Promise<T | null> {
   const url = process.env.HYGRAPH_CONTENT_API_URL ?? "";
 
@@ -46,16 +46,10 @@ export async function executeHygraphQuery<T>(
     });
 
     if (!response.ok) {
-      console.error(
-        "GraphQL request failed:",
-        response.status,
-        response.statusText,
-        "payload:",
-        {
-          query,
-          variables,
-        }
-      );
+      console.error("GraphQL request failed:", response.status, response.statusText, "payload:", {
+        query,
+        variables,
+      });
       return null;
     }
 

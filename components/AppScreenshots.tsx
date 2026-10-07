@@ -1,9 +1,9 @@
 "use client";
 
-import { AppleAppStoreScreenshot } from "@/app/api/apple-app-store/route";
-import { DeviceType, sortByDeviceType } from "@/utils/deviceTypes";
 import { Tab, Tabs } from "@heroui/tabs";
 import clsx from "clsx";
+import { AppleAppStoreScreenshot } from "@/app/api/apple-app-store/route";
+import { DeviceType, sortByDeviceType } from "@/utils/deviceTypes";
 import { ImageWithPreview } from "./ImageWithPreview";
 
 interface AppScreenshotsProps {
@@ -46,7 +46,7 @@ export function AppScreenshots({ screenshots, className }: AppScreenshotsProps):
             image={screenshot}
             alt={`${deviceType} screenshot ${index + 1}`}
             className={clsx(
-              "h-[30vh] snap-start flex-shrink-0 border border-gray-200 dark:border-none",
+              "h-[30vh] snap-start shrink-0 border border-gray-200 dark:border-none",
               deviceType === "Apple Watch" ? "rounded-[50px]" : "rounded-xl",
             )}
           />

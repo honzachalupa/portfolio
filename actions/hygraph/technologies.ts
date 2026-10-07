@@ -1,15 +1,9 @@
 "use server";
 
-import {
-  CommonHygraphFields,
-  executeHygraphQuery,
-} from "../../utils/hygraphQuery";
+import { CommonHygraphFields, executeHygraphQuery } from "../../utils/hygraphQuery";
 import { TechnologyItem as HygraphTechnology } from "./_generated/graphql";
 
-export type HygraphGetTechnologiesData = Omit<
-  HygraphTechnology,
-  CommonHygraphFields
->[];
+export type HygraphGetTechnologiesData = Omit<HygraphTechnology, CommonHygraphFields>[];
 
 export async function getTechnologies(): Promise<HygraphGetTechnologiesData | null> {
   const query = `query {

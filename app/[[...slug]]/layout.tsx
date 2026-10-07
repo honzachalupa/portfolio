@@ -1,9 +1,9 @@
+import { Viewport } from "next";
+import { cache } from "react";
 import hygraphApi from "@/actions/hygraph";
 import { Navigation, Providers } from "@/components";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Footer } from "@/components/Footer";
-import { Viewport } from "next";
-import { cache } from "react";
 import "../globals.css";
 
 export const viewport: Viewport = {
@@ -47,9 +47,9 @@ export default async function RootLayout({
           <div className="flex flex-col min-h-screen">
             <Navigation config={config} pages={pages} />
 
-            <main className="flex-grow w-full py-4 flex flex-col">
+            <main className="grow w-full py-4 flex flex-col">
               <div className="w-full max-w-[1280px] mx-auto px-6 flex flex-col">
-                <Breadcrumbs className="mb-4" />
+                <Breadcrumbs className="mb-4" pages={pages} />
 
                 {children}
               </div>

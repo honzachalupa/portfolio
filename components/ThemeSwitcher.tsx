@@ -2,20 +2,20 @@
 
 import { Button } from "@heroui/button";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { CgDarkMode } from "react-icons/cg";
 
+const subscribe = (): (() => void) => () => {};
+const getClientSnapshot = (): boolean => true;
+const getServerSnapshot = (): boolean => false;
+
 export function ThemeSwitcher(): React.ReactNode {
-  const [isClient, setIsClient] = useState(false);
+  const isClient = useSyncExternalStore(subscribe, getClientSnapshot, getServerSnapshot);
   const { theme, setTheme } = useTheme();
 
   const toggle = (): void => {
     setTheme(theme === "light" ? "dark" : "light");
   };
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   if (!isClient) {
     return null;

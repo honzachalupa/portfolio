@@ -1,15 +1,9 @@
 "use server";
 
-import {
-  CommonHygraphFields,
-  executeHygraphQuery,
-} from "../../utils/hygraphQuery";
+import { CommonHygraphFields, executeHygraphQuery } from "../../utils/hygraphQuery";
 import { Project as HygraphProject } from "./_generated/graphql";
 
-export type HygraphGetProjectsData = Omit<
-  HygraphProject,
-  CommonHygraphFields
->[];
+export type HygraphGetProjectsData = Omit<HygraphProject, CommonHygraphFields>[];
 
 export async function getProjects(): Promise<HygraphGetProjectsData | null> {
   const query = `query {
@@ -18,9 +12,7 @@ export async function getProjects(): Promise<HygraphGetProjectsData | null> {
     }
   }`;
 
-  const data = await executeHygraphQuery<{ projects: HygraphGetProjectsData }>(
-    query
-  );
+  const data = await executeHygraphQuery<{ projects: HygraphGetProjectsData }>(query);
 
   return data?.projects || null;
 }

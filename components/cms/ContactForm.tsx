@@ -1,5 +1,13 @@
 "use client";
 
+import { Alert } from "@heroui/alert";
+import { Button } from "@heroui/button";
+import { Card, CardBody } from "@heroui/card";
+import { Form } from "@heroui/form";
+import { Input, Textarea } from "@heroui/input";
+import { Link } from "@heroui/link";
+import { useEffect, useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import hygraphApi from "@/actions/hygraph";
 import { ContactForm as ContactFormProps } from "@/actions/hygraph/_generated/graphql";
 import { HygraphGetConfigData } from "@/actions/hygraph/config";
@@ -9,14 +17,6 @@ import {
   ContactMeEmailTemplateProps,
 } from "@/emailTemplates";
 import { post } from "@/utils/api";
-import { Alert } from "@heroui/alert";
-import { Button } from "@heroui/button";
-import { Card, CardBody } from "@heroui/card";
-import { Form } from "@heroui/form";
-import { Input, Textarea } from "@heroui/input";
-import { Link } from "@heroui/link";
-import { useEffect, useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
 import { Container } from "../Container";
 
 interface FormValues {
@@ -26,17 +26,12 @@ interface FormValues {
   honeypot?: string; // Hidden field to catch bots
 }
 
-export function ContactForm({
-  headline,
-  noreplyEmailAddress,
-}: ContactFormProps): React.ReactNode {
+export function ContactForm({ headline, noreplyEmailAddress }: ContactFormProps): React.ReactNode {
   const [config, setConfig] = useState<HygraphGetConfigData | null>(null);
 
   const myEmailAddress = config?.emailAddress ?? "";
 
-  const [sentStatus, setSentStatus] = useState<
-    "sending" | "success" | "failed"
-  >();
+  const [sentStatus, setSentStatus] = useState<"sending" | "success" | "failed">();
 
   const { register, handleSubmit } = useForm<FormValues>();
 
@@ -61,7 +56,7 @@ export function ContactForm({
 
     const { error } = await post<never, ContactMeEmailTemplateProps & { honeypot?: string }>(
       "/api/send-email",
-      payload
+      payload,
     );
 
     if (error) {
@@ -83,10 +78,7 @@ export function ContactForm({
       templateId: "ContactMeEmailConfirmationTemplate",
     };
 
-    const { error } = await post<never, SendEmailProps>(
-      "/api/send-email",
-      payload
-    );
+    const { error } = await post<never, SendEmailProps>("/api/send-email", payload);
 
     if (error) {
       console.error("[ContactForm] Failed to send email:", error);
@@ -133,12 +125,7 @@ export function ContactForm({
               aria-hidden="true"
             />
 
-            <Input
-              type="name"
-              label="Your name"
-              labelPlacement="outside"
-              {...register("name")}
-            />
+            <Input type="name" label="Your name" labelPlacement="outside" {...register("name")} />
 
             <Input
               type="email"

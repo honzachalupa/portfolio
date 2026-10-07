@@ -1,7 +1,5 @@
 "use client";
 
-import { HygraphGetConfigData } from "@/actions/hygraph/config";
-import { HygraphGetPagesData } from "@/actions/hygraph/pages";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import {
@@ -15,6 +13,8 @@ import {
 import { User } from "@heroui/user";
 import { useState } from "react";
 import { FaRegEnvelope, FaRegFileLines } from "react-icons/fa6";
+import { HygraphGetConfigData } from "@/actions/hygraph/config";
+import { HygraphGetPagesData } from "@/actions/hygraph/pages";
 import { Items } from "./Navigation.Items";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 

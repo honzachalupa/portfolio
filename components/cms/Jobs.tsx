@@ -1,6 +1,6 @@
-import { Jobs as JobsProps } from "@/actions/hygraph/_generated/graphql";
 import dayjs from "dayjs";
 import Image from "next/image";
+import { Jobs as JobsProps } from "@/actions/hygraph/_generated/graphql";
 import { Container } from "../Container";
 import { MarkdownRenderer } from "../MarkdownRenderer";
 import { ProjectCard } from "../ProjectCard";

@@ -2,11 +2,8 @@
 
 import { HeroUIProvider } from "@heroui/system";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/react";
-import {
-  ThemeProvider as NextThemesProvider,
-  ThemeProviderProps,
-} from "next-themes";
 import { useRouter } from "next/navigation";
+import { ThemeProvider as NextThemesProvider, ThemeProviderProps } from "next-themes";
 
 interface ProvidersProps {
   children: React.ReactNode;
@@ -14,11 +11,7 @@ interface ProvidersProps {
   themeProps?: ThemeProviderProps;
 }
 
-export function Providers({
-  children,
-  locale,
-  themeProps,
-}: ProvidersProps): React.ReactNode {
+export function Providers({ children, locale, themeProps }: ProvidersProps): React.ReactNode {
   const router = useRouter();
 
   return (

@@ -1,3 +1,4 @@
+import { CreateEmailOptions, Resend } from "resend";
 import {
   ContactMeEmailConfirmationTemplate,
   ContactMeEmailTemplate,
@@ -5,7 +6,6 @@ import {
 } from "@/emailTemplates";
 import { checkRateLimit, getClientIp } from "@/utils/rateLimit";
 import { checkSpam } from "@/utils/spamDetection";
-import { CreateEmailOptions, Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -65,7 +65,6 @@ export async function POST(request: Request): Promise<Response> {
   }
 
   // Extract honeypot to exclude it from templateProps
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { from, to, subject, templateId, headers, honeypot, ...templateProps } = body;
 
   // Validate template

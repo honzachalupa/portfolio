@@ -1,9 +1,9 @@
-import hygraphApi from "@/actions/hygraph";
-import { ContentRenderer } from "@/components/ContentRenderer";
-import { SITE_URL } from "@/utils/site";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import type { Metadata } from "next";
+import hygraphApi from "@/actions/hygraph";
+import { ContentRenderer } from "@/components/ContentRenderer";
+import { SITE_URL } from "@/utils/site";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -32,7 +32,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function Page({ params }: { params: Promise<{ slug: string }> }): Promise<React.ReactNode> {
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<React.ReactNode> {
   const paramsList = await params;
   const slug = parseSlug(paramsList.slug);
   const page = await hygraphApi.getPage(slug);

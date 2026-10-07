@@ -1,6 +1,5 @@
-import { DEVICE_TYPE_ORDER, DeviceType, sortByDeviceType } from "@/utils/deviceTypes";
 import jwt from "jsonwebtoken";
-import fetch from "node-fetch";
+import { DEVICE_TYPE_ORDER, DeviceType, sortByDeviceType } from "@/utils/deviceTypes";
 
 export interface AppleAppStoreAppInfo {
   description: string;
@@ -94,7 +93,7 @@ const token = jwt.sign(
       kid: KEY_ID,
       typ: "JWT",
     },
-  }
+  },
 );
 
 async function fetchApi<T>(endpoint: string): Promise<T> {
@@ -153,7 +152,7 @@ async function getApps(): Promise<AppleAppStoreApp[]> {
             supportedDevices: [],
           };
         }
-      })
+      }),
     );
 
     return appsWithIcons;
@@ -177,7 +176,8 @@ async function getAppStoreVersions(appId: string): Promise<InternalAppInfo> {
       }[]
     >(`/apps/${appId}/appStoreVersions?include=appStoreVersionLocalizations`);
 
-    const appStoreVersionLocalizationsId = data[0].relationships.appStoreVersionLocalizations.data[0].id;
+    const appStoreVersionLocalizationsId =
+      data[0].relationships.appStoreVersionLocalizations.data[0].id;
 
     const response = await fetchApi<{
       attributes: {
@@ -231,7 +231,10 @@ async function getAppScreenshots(appStoreVersionLocalizationId: string): Promise
 
 function processImageUrl(templateUrl: string, width: number, height: number): string {
   // Replace the placeholders with actual values
-  return templateUrl.replace("{w}", width.toString()).replace("{h}", height.toString()).replace("{f}", "jpg"); // Using jpg as the default format
+  return templateUrl
+    .replace("{w}", width.toString())
+    .replace("{h}", height.toString())
+    .replace("{f}", "jpg"); // Using jpg as the default format
 }
 
 function getDeviceType(width: number, height: number): string {
@@ -318,7 +321,10 @@ function getSupportedDevices(screenshots: Screenshot[]): string[] {
   const devices = new Set<string>();
 
   screenshots.forEach((screenshot) => {
-    const deviceType = getDeviceType(screenshot.attributes.imageAsset.width, screenshot.attributes.imageAsset.height);
+    const deviceType = getDeviceType(
+      screenshot.attributes.imageAsset.width,
+      screenshot.attributes.imageAsset.height,
+    );
 
     if (deviceType !== "Unknown") {
       devices.add(deviceType);

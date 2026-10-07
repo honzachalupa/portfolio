@@ -1,10 +1,10 @@
-import githubApi from "@/actions/github";
-import hygraphApi from "@/actions/hygraph";
-import { GitHubRepositories as GitHubRepositoriesProps } from "@/actions/hygraph/_generated/graphql";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import { cache } from "react";
 import { FaGithub } from "react-icons/fa";
+import githubApi from "@/actions/github";
+import hygraphApi from "@/actions/hygraph";
+import { GitHubRepositories as GitHubRepositoriesProps } from "@/actions/hygraph/_generated/graphql";
 import "server-only";
 import { Container } from "../Container";
 import { ProjectCardGrid } from "../ProjectCard";
@@ -27,10 +27,7 @@ export async function GitHubRepositories({
   return (
     <Container htmlId="repositories" headline={headline}>
       <ProjectCardGrid>
-        <GitHubRepositories_Client
-          repositories={repositories}
-          technologies={technologies}
-        />
+        <GitHubRepositories_Client repositories={repositories} technologies={technologies} />
       </ProjectCardGrid>
 
       <div className="flex justify-center mt-10">

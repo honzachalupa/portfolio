@@ -1,5 +1,5 @@
-import { HygraphGetPageData } from "@/actions/hygraph/page";
 import { Fragment, Suspense } from "react";
+import { HygraphGetPageData } from "@/actions/hygraph/page";
 import { About } from "./cms/About";
 import { ContactForm } from "./cms/ContactForm";
 import { GitHubRepositories } from "./cms/GitHubRepositories";
@@ -14,11 +14,9 @@ interface ContentRendererProps {
   page: HygraphGetPageData;
 }
 
-export function ContentRenderer({
-  page,
-}: ContentRendererProps): React.ReactNode {
+export function ContentRenderer({ page }: ContentRendererProps): React.ReactNode {
   const renderComponent = (
-    props: HygraphGetPageData["components"]["content"][number]
+    props: HygraphGetPageData["components"]["content"][number],
   ): React.ReactNode | null => {
     switch (props.__typename) {
       case "About":
@@ -49,9 +47,7 @@ export function ContentRenderer({
   }: HygraphGetPageData): React.ReactNode => {
     const children = content.map((data, i) => (
       <Fragment key={i}>
-        <Suspense fallback={<LoadingIndicator />}>
-          {renderComponent(data)}
-        </Suspense>
+        <Suspense fallback={<LoadingIndicator />}>{renderComponent(data)}</Suspense>
       </Fragment>
     ));
 

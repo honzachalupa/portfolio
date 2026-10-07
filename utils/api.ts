@@ -44,9 +44,9 @@ type ApiResponse<TData> = {
  *   tags: ['products']
  * });
  */
-export async function fetchApi<TData = any, TRequestBody = any>(
+export async function fetchApi<TData = unknown, TRequestBody = unknown>(
   url: string,
-  options: ApiOptions<TRequestBody> = {}
+  options: ApiOptions<TRequestBody> = {},
 ): Promise<ApiResponse<TData>> {
   // Determine if URL is relative or absolute
   const isRelativeUrl = !url.startsWith("http");
@@ -74,7 +74,11 @@ export async function fetchApi<TData = any, TRequestBody = any>(
         body: JSON.stringify(options.body),
       }),
       cache: options.cache,
-      next: options.revalidate ? { revalidate: options.revalidate } : options.tags ? { tags: options.tags } : undefined,
+      next: options.revalidate
+        ? { revalidate: options.revalidate }
+        : options.tags
+          ? { tags: options.tags }
+          : undefined,
     };
 
     // Execute fetch
@@ -106,16 +110,21 @@ export async function fetchApi<TData = any, TRequestBody = any>(
         // Try to parse error as JSON
         const errorData = await fetchResponse.json();
         response.error = new Error(
-          errorData.message || errorData.error || `API error: ${fetchResponse.status} ${fetchResponse.statusText}`
+          errorData.message ||
+            errorData.error ||
+            `API error: ${fetchResponse.status} ${fetchResponse.statusText}`,
         );
       } catch {
         // If error can't be parsed as JSON, use status text
-        response.error = new Error(`API error: ${fetchResponse.status} ${fetchResponse.statusText}`);
+        response.error = new Error(
+          `API error: ${fetchResponse.status} ${fetchResponse.statusText}`,
+        );
       }
     }
   } catch (error) {
     // Handle network or other errors
-    response.error = error instanceof Error ? error : new Error("Unknown error occurred during API request");
+    response.error =
+      error instanceof Error ? error : new Error("Unknown error occurred during API request");
 
     console.error("API request failed:", response.error);
   }
@@ -129,9 +138,9 @@ export async function fetchApi<TData = any, TRequestBody = any>(
  * @param options Request options
  * @param options.disableCache Set to true to disable default caching
  */
-export async function get<TData = any>(
+export async function get<TData = unknown>(
   url: string,
-  options: Omit<ApiOptions, "method" | "body"> & { disableCache?: boolean } = {}
+  options: Omit<ApiOptions, "method" | "body"> & { disableCache?: boolean } = {},
 ): Promise<ApiResponse<TData>> {
   const { disableCache, ...restOptions } = options;
 
@@ -153,10 +162,10 @@ export async function get<TData = any>(
 /**
  * Utility function for making POST requests
  */
-export async function post<TData = any, TRequestBody = any>(
+export async function post<TData = unknown, TRequestBody = unknown>(
   url: string,
   body: TRequestBody,
-  options: Omit<ApiOptions<TRequestBody>, "method" | "body"> = {}
+  options: Omit<ApiOptions<TRequestBody>, "method" | "body"> = {},
 ): Promise<ApiResponse<TData>> {
   return fetchApi<TData, TRequestBody>(url, {
     ...options,
@@ -168,10 +177,10 @@ export async function post<TData = any, TRequestBody = any>(
 /**
  * Utility function for making PUT requests
  */
-export async function put<TData = any, TRequestBody = any>(
+export async function put<TData = unknown, TRequestBody = unknown>(
   url: string,
   body: TRequestBody,
-  options: Omit<ApiOptions<TRequestBody>, "method" | "body"> = {}
+  options: Omit<ApiOptions<TRequestBody>, "method" | "body"> = {},
 ): Promise<ApiResponse<TData>> {
   return fetchApi<TData, TRequestBody>(url, {
     ...options,
@@ -183,9 +192,9 @@ export async function put<TData = any, TRequestBody = any>(
 /**
  * Utility function for making DELETE requests
  */
-export async function del<TData = any>(
+export async function del<TData = unknown>(
   url: string,
-  options: Omit<ApiOptions, "method"> = {}
+  options: Omit<ApiOptions, "method"> = {},
 ): Promise<ApiResponse<TData>> {
   return fetchApi<TData>(url, { ...options, method: "DELETE" });
 }
@@ -193,10 +202,10 @@ export async function del<TData = any>(
 /**
  * Utility function for making PATCH requests
  */
-export async function patch<TData = any, TRequestBody = any>(
+export async function patch<TData = unknown, TRequestBody = unknown>(
   url: string,
   body: TRequestBody,
-  options: Omit<ApiOptions<TRequestBody>, "method" | "body"> = {}
+  options: Omit<ApiOptions<TRequestBody>, "method" | "body"> = {},
 ): Promise<ApiResponse<TData>> {
   return fetchApi<TData, TRequestBody>(url, {
     ...options,

@@ -1,4 +1,3 @@
-import { HygraphGetPagesData } from "@/actions/hygraph/pages";
 import { Button } from "@heroui/button";
 import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/dropdown";
 import { Link } from "@heroui/link";
@@ -6,6 +5,7 @@ import { NavbarItem, NavbarMenuItem } from "@heroui/navbar";
 import { ButtonVariantProps } from "@heroui/theme";
 import { usePathname } from "next/navigation";
 import { FaChevronDown } from "react-icons/fa6";
+import { HygraphGetPagesData } from "@/actions/hygraph/pages";
 
 export function Items({
   pages,

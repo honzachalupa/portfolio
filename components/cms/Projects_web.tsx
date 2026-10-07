@@ -1,7 +1,7 @@
-import { Projects_Web as Projects_webProps } from "@/actions/hygraph/_generated/graphql";
 import { Chip } from "@heroui/chip";
 import { Link } from "@heroui/link";
 import Image from "next/image";
+import { Projects_Web as Projects_webProps } from "@/actions/hygraph/_generated/graphql";
 import { Container } from "../Container";
 import { Icon } from "../Icon";
 import { ProjectCard, ProjectCardGrid } from "../ProjectCard";

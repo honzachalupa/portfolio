@@ -1,11 +1,11 @@
-import appleAppStoreApi from "@/actions/appleAppStore";
-import { Projects_IOs as Projects_iOSProps } from "@/actions/hygraph/_generated/graphql";
 import { Button } from "@heroui/button";
 import { Chip } from "@heroui/chip";
 import { Link } from "@heroui/link";
 import { cache } from "react";
 import { FaAppStoreIos } from "react-icons/fa";
 import { GrSwift } from "react-icons/gr";
+import appleAppStoreApi from "@/actions/appleAppStore";
+import { Projects_IOs as Projects_iOSProps } from "@/actions/hygraph/_generated/graphql";
 import "server-only";
 import { AppScreenshots } from "../AppScreenshots";
 import { Container } from "../Container";

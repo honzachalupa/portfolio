@@ -8,13 +8,13 @@ export function ContactMeEmailConfirmationTemplate(): React.ReactNode {
       <p>Thank you for reaching out!</p>
 
       <p>
-        I will get back to you as soon as possible. In the meantime, feel free
-        to check out my website or social media profiles.
+        I will get back to you as soon as possible. In the meantime, feel free to check out my
+        website or social media profiles.
       </p>
 
       <p>
-        If you have any questions or need further assistance, please don&apos;t
-        hesitate to reach out.
+        If you have any questions or need further assistance, please don&apos;t hesitate to reach
+        out.
       </p>
 
       <p>Sincerely, Jan Chalupa</p>

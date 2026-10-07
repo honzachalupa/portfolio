@@ -37,7 +37,7 @@ const search = (
         includeWithoutDescription?: boolean;
         includeArchived?: boolean;
       }
-    | undefined = undefined
+    | undefined = undefined,
 ): Promise<GithubRepository[]> =>
   fetch("https://api.github.com/users/honzachalupa/repos", {
     method: "GET",
@@ -48,7 +48,8 @@ const search = (
       data
         .filter(
           ({ description, archived }) =>
-            (options?.includeWithoutDescription || description) && (options?.includeArchived || !archived)
+            (options?.includeWithoutDescription || description) &&
+            (options?.includeArchived || !archived),
         )
         .sort((a, b) => new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime())
         .map(
@@ -74,15 +75,18 @@ const search = (
             };
 
             return data;
-          }
+          },
         )
-        .slice(0, options?.limit ?? 100)
+        .slice(0, options?.limit ?? 100),
     );
 
 async function getReadme(repositoryName: string): Promise<GithubReadme> {
-  const response = await fetch(`https://api.github.com/repos/honzachalupa/${repositoryName}/readme`, {
-    method: "GET",
-  });
+  const response = await fetch(
+    `https://api.github.com/repos/honzachalupa/${repositoryName}/readme`,
+    {
+      method: "GET",
+    },
+  );
 
   const data = await response.json();
 

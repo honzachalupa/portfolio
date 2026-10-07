@@ -1,9 +1,6 @@
 "use server";
 
-import {
-  CommonHygraphFields,
-  executeHygraphQuery,
-} from "../../utils/hygraphQuery";
+import { CommonHygraphFields, executeHygraphQuery } from "../../utils/hygraphQuery";
 import { Page as HygraphPage } from "./_generated/graphql";
 
 export type HygraphGetPagesData = Omit<HygraphPage, CommonHygraphFields>[];

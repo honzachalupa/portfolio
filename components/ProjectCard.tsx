@@ -44,6 +44,76 @@ interface ProjectCardProps {
   className?: string;
 }
 
+function ProjectCardActions({
+  actions,
+}: {
+  actions?: (ProjectCardAction | ProjectCardLink)[];
+}): React.ReactNode {
+  return actions ? (
+    <>
+      <ButtonGroup className="hidden sm:inline md:hidden lg:inline">
+        {actions?.map((action) => {
+          const { label, variant, icon } = action;
+
+          return isProjectCardLink(action) ? (
+            <Button
+              key={label}
+              as={Link}
+              href={action.url}
+              variant={variant ?? "flat"}
+              color="primary"
+              startContent={icon}
+              isExternal
+            >
+              {label}
+            </Button>
+          ) : (
+            <Button
+              key={label}
+              onPress={action.onClick}
+              variant={variant ?? "flat"}
+              color="primary"
+              startContent={icon}
+            >
+              {label}
+            </Button>
+          );
+        })}
+      </ButtonGroup>
+
+      <div className="sm:hidden md:inline lg:hidden">
+        <Dropdown>
+          <DropdownTrigger>
+            <Button variant="flat" color="primary">
+              More...
+            </Button>
+          </DropdownTrigger>
+
+          <DropdownMenu>
+            {actions?.map((action) => {
+              const { label } = action;
+
+              return isProjectCardLink(action) ? (
+                <DropdownItem key={label}>
+                  <Button as={Link} href={action.url} variant="light" size="sm" isExternal>
+                    {label}
+                  </Button>
+                </DropdownItem>
+              ) : (
+                <DropdownItem key={label}>
+                  <Button onPress={action.onClick} variant="light" size="sm">
+                    {label}
+                  </Button>
+                </DropdownItem>
+              );
+            })}
+          </DropdownMenu>
+        </Dropdown>
+      </div>
+    </>
+  ) : null;
+}
+
 export function ProjectCard({
   logoUrl,
   title,
@@ -60,72 +130,6 @@ export function ProjectCard({
   const actions = _actions?.filter(Boolean) as (ProjectCardAction | ProjectCardLink)[];
 
   const { descriptionCropped, isDescriptionCropped } = cropDescription(descriptionMarkdown);
-
-  function Actions(): React.ReactNode {
-    return actions ? (
-      <>
-        <ButtonGroup className="hidden sm:inline md:hidden lg:inline">
-          {actions?.map((action) => {
-            const { label, variant, icon } = action;
-
-            return isProjectCardLink(action) ? (
-              <Button
-                key={label}
-                as={Link}
-                href={action.url}
-                variant={variant ?? "flat"}
-                color="primary"
-                startContent={icon}
-                isExternal
-              >
-                {label}
-              </Button>
-            ) : (
-              <Button
-                key={label}
-                onPress={action.onClick}
-                variant={variant ?? "flat"}
-                color="primary"
-                startContent={icon}
-              >
-                {label}
-              </Button>
-            );
-          })}
-        </ButtonGroup>
-
-        <div className="sm:hidden md:inline lg:hidden">
-          <Dropdown>
-            <DropdownTrigger>
-              <Button variant="flat" color="primary">
-                More...
-              </Button>
-            </DropdownTrigger>
-
-            <DropdownMenu>
-              {actions?.map((action) => {
-                const { label } = action;
-
-                return isProjectCardLink(action) ? (
-                  <DropdownItem key={label}>
-                    <Button as={Link} href={action.url} variant="light" size="sm" isExternal>
-                      {label}
-                    </Button>
-                  </DropdownItem>
-                ) : (
-                  <DropdownItem key={label}>
-                    <Button onPress={action.onClick} variant="light" size="sm">
-                      {label}
-                    </Button>
-                  </DropdownItem>
-                );
-              })}
-            </DropdownMenu>
-          </Dropdown>
-        </div>
-      </>
-    ) : null;
-  }
 
   return (
     <>
@@ -173,7 +177,7 @@ export function ProjectCard({
             <CardFooter className="px-4 flex-col items-end gap-2">
               {footer}
 
-              <Actions />
+              <ProjectCardActions actions={actions} />
             </CardFooter>
           </>
         )}
@@ -200,7 +204,7 @@ export function ProjectCard({
               <Divider />
 
               <ModalFooter>
-                <Actions />
+                <ProjectCardActions actions={actions} />
               </ModalFooter>
             </>
           )}

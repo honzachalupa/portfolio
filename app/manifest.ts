@@ -1,5 +1,5 @@
-import hygraphApi from "@/actions/hygraph";
 import type { MetadataRoute } from "next";
+import hygraphApi from "@/actions/hygraph";
 
 export default async function manifest(): Promise<MetadataRoute.Manifest> {
   const config = await hygraphApi.getConfig();

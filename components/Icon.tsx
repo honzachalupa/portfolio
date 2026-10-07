@@ -1,5 +1,6 @@
 import clsx from "clsx";
 import { createElement } from "react";
+import type { IconType } from "react-icons";
 import * as FaIcons from "react-icons/fa";
 import * as Fa6Icons from "react-icons/fa6";
 import * as GrIcons from "react-icons/gr";
@@ -12,8 +13,7 @@ interface IconProps {
   className?: string;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function getIconsGroup(namespace: string): Record<string, any> {
+function getIconsGroup(namespace: string): Record<string, IconType> {
   switch (namespace) {
     case "fa6":
       return Fa6Icons;

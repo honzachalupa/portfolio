@@ -1,6 +1,6 @@
-import { Maybe } from "@/actions/hygraph/_generated/graphql";
 import clsx from "clsx";
 import { ReactNode } from "react";
+import { Maybe } from "@/actions/hygraph/_generated/graphql";
 
 interface BlockHeadlineProps {
   children: string;
