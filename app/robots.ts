@@ -1,7 +1,8 @@
 import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/utils/site";
 
 export default function robots(): MetadataRoute.Robots {
-  const sitemap = process.env.NEXT_PUBLIC_BASE_URL + "/sitemap.xml";
+  const sitemap = SITE_URL + "/sitemap.xml";
 
   return {
     rules: {

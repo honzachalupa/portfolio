@@ -4,6 +4,7 @@ import {
   ContactMeEmailTemplateProps,
 } from "@/emailTemplates";
 import { checkRateLimit, getClientIp } from "@/utils/rateLimit";
+import { checkSpam } from "@/utils/spamDetection";
 import { CreateEmailOptions, Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
@@ -15,17 +16,6 @@ export interface SendEmailProps {
   headers?: Record<string, string>;
   templateId: "ContactMeEmailTemplate" | "ContactMeEmailConfirmationTemplate";
   honeypot?: string;
-}
-
-// Suspicious patterns that indicate spam
-const SPAM_PATTERNS = [
-  /https?:\/\/[^\s]+/gi, // URLs
-  /[a-zA-Z0-9]{20,}/g, // Long random strings (like "uAnvFayvPHRbLKVtoW")
-  /(?:viagra|cialis|casino|poker|loan|debt|free\s+money)/gi, // Common spam keywords
-];
-
-function containsSpam(content: string): boolean {
-  return SPAM_PATTERNS.some((pattern) => pattern.test(content));
 }
 
 function sanitizeInput(input: string, maxLength: number = 5000): string {
@@ -56,7 +46,7 @@ export async function POST(request: Request): Promise<Response> {
         status: 429,
         headers: {
           "Retry-After": Math.ceil((rateLimit.resetTime - Date.now()) / 1000).toString(),
-          "X-RateLimit-Limit": "5",
+          "X-RateLimit-Limit": "3",
           "X-RateLimit-Remaining": "0",
           "X-RateLimit-Reset": new Date(rateLimit.resetTime).toISOString(),
         },
@@ -74,6 +64,8 @@ export async function POST(request: Request): Promise<Response> {
     return Response.json({ success: true }, { status: 200 });
   }
 
+  // Extract honeypot to exclude it from templateProps
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { from, to, subject, templateId, headers, honeypot, ...templateProps } = body;
 
   // Validate template
@@ -89,7 +81,9 @@ export async function POST(request: Request): Promise<Response> {
     const props = templateProps as ContactMeEmailTemplateProps;
 
     // Validate email address
-    if (!isValidEmail(props.sender?.emailAddress || "")) {
+    const senderEmail = props.sender?.emailAddress || "";
+
+    if (!isValidEmail(senderEmail)) {
       return Response.json({ error: "Invalid email address" }, { status: 400 });
     }
 
@@ -98,13 +92,32 @@ export async function POST(request: Request): Promise<Response> {
       return Response.json({ error: "Message cannot be empty" }, { status: 400 });
     }
 
+    // Require minimum meaningful message length (at least 10 characters)
+    if (props.content.trim().length < 10) {
+      return Response.json({ error: "Message is too short" }, { status: 400 });
+    }
+
     // Sanitize inputs
     const sanitizedContent = sanitizeInput(props.content || "", 5000);
     const sanitizedName = sanitizeInput(props.sender?.name || "", 100);
+    const sanitizedEmail = props.sender?.emailAddress?.trim().toLowerCase() || "";
 
-    // Check for spam patterns
-    if (containsSpam(sanitizedContent)) {
-      // Silently reject spam
+    // Check against spam detection APIs (Akismet, IPQualityScore, StopForumSpam)
+    const userAgent = request.headers.get("user-agent") || undefined;
+    const referrer = request.headers.get("referer") || undefined;
+
+    const spamCheckResult = await checkSpam(sanitizedContent, sanitizedEmail, clientIp, {
+      name: sanitizedName,
+      userAgent,
+      referrer,
+    });
+
+    if (spamCheckResult.isSpam) {
+      // Silently reject spam detected by API services
+      console.info(
+        `[SpamDetection] Spam detected by ${spamCheckResult.service} for ${sanitizedEmail}`,
+      );
+
       return Response.json({ success: true }, { status: 200 });
     }
 
@@ -121,8 +134,8 @@ export async function POST(request: Request): Promise<Response> {
     templateId === "ContactMeEmailTemplate"
       ? ContactMeEmailTemplate(templateProps as ContactMeEmailTemplateProps)
       : templateId === "ContactMeEmailConfirmationTemplate"
-      ? ContactMeEmailConfirmationTemplate()
-      : null;
+        ? ContactMeEmailConfirmationTemplate()
+        : null;
 
   if (!template) {
     return Response.json({ error: "Invalid template" }, { status: 400 });
@@ -143,7 +156,7 @@ export async function POST(request: Request): Promise<Response> {
 
     return Response.json(data, {
       headers: {
-        "X-RateLimit-Limit": "5",
+        "X-RateLimit-Limit": "3",
         "X-RateLimit-Remaining": rateLimit.remaining.toString(),
         "X-RateLimit-Reset": new Date(rateLimit.resetTime).toISOString(),
       },

@@ -1,14 +1,13 @@
 import hygraphApi from "@/actions/hygraph";
+import { SITE_URL } from "@/utils/site";
 import { MetadataRoute } from "next";
-
-const baseUrl = process.env.NEXT_PUBLIC_BASE_URL!;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const pages = await hygraphApi.getPages();
 
   return (
-    pages?.map((page) => ({
-      url: baseUrl + page.slug,
+    pages?.filter((page) => Boolean(page.slug)).map((page) => ({
+      url: new URL(page.slug!, SITE_URL).href,
       lastModified: new Date().toISOString(),
       changeFrequency: "monthly",
     })) ?? []

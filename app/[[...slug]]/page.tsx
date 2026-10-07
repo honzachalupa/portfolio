@@ -1,5 +1,6 @@
 import hygraphApi from "@/actions/hygraph";
 import { ContentRenderer } from "@/components/ContentRenderer";
+import { SITE_URL } from "@/utils/site";
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
 import type { Metadata } from "next";
@@ -25,6 +26,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: [config?.seo?.name, page?.title].filter(Boolean).join(" | "),
+    alternates: {
+      canonical: new URL(parseSlug(slug), SITE_URL).href,
+    },
   };
 }
 
