@@ -11,7 +11,8 @@
     "prepare": "husky",
     "typecheck": "tsc --noEmit",
     "lint:fix": "biome check --write .",
-    "format": "biome format --write ."
+    "format": "biome format --write .",
+    "test": "node --conditions=react-server --test tests/api.test.mjs tests/contact.test.mjs tests/rate-limit.test.mjs tests/hygraph.test.mjs && bun test tests/apple-app-store.test.mjs tests/github.test.mjs"
   },
   "dependencies": {
     "@graphql-typed-document-node/core": "^3.2.0",

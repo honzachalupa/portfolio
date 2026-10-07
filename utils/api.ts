@@ -1,4 +1,4 @@
-"use server";
+import "server-only";
 
 type HttpMethod = "GET" | "POST" | "PUT" | "DELETE" | "PATCH";
 
@@ -70,14 +70,13 @@ export async function fetchApi<TData = unknown, TRequestBody = unknown>(
         "Content-Type": "application/json",
         ...options.headers,
       },
-      ...(options.body && {
+      ...(options.body !== undefined && {
         body: JSON.stringify(options.body),
       }),
       cache: options.cache,
-      next: options.revalidate
-        ? { revalidate: options.revalidate }
-        : options.tags
-          ? { tags: options.tags }
+      next:
+        options.revalidate !== undefined || options.tags
+          ? { revalidate: options.revalidate, tags: options.tags }
           : undefined,
     };
 
@@ -148,8 +147,8 @@ export async function get<TData = unknown>(
   const cacheOptions = disableCache
     ? {}
     : {
-        cache: options.cache || "force-cache",
-        revalidate: options.revalidate || 3600, // Default to 1 hour cache
+        cache: options.cache ?? (options.revalidate === 0 ? "no-store" : "force-cache"),
+        revalidate: options.cache === "no-store" ? undefined : (options.revalidate ?? 3600), // Default to 1 hour cache
       };
 
   return fetchApi<TData>(url, {

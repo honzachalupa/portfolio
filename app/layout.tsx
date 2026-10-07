@@ -1,33 +1,18 @@
 import { Viewport } from "next";
-import { cache } from "react";
 import hygraphApi from "@/actions/hygraph";
 import { Navigation, Providers } from "@/components";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Footer } from "@/components/Footer";
-import "../globals.css";
+import "./globals.css";
 
 export const viewport: Viewport = {
   minimumScale: 1,
   initialScale: 1,
   width: "device-width",
-  userScalable: false,
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
     { media: "(prefers-color-scheme: dark)", color: "black" },
   ],
-};
-
-const getConfig = cache(async () => {
-  return await hygraphApi.getConfig();
-});
-
-const getPages = cache(async () => {
-  return await hygraphApi.getPages();
-});
-
-export const preload = (): void => {
-  void getConfig();
-  void getPages();
 };
 
 export default async function RootLayout({
@@ -37,15 +22,25 @@ export default async function RootLayout({
 }>): Promise<React.ReactNode> {
   const locale = "en";
 
-  const config = await getConfig();
-  const pages = await getPages();
+  const [config, pages] = await Promise.all([hygraphApi.getConfig(), hygraphApi.getPages()]);
 
   return (
     <html lang={locale} suppressHydrationWarning>
       <body>
         <Providers locale={locale} themeProps={{ attribute: "class", defaultTheme: "dark" }}>
           <div className="flex flex-col min-h-screen">
-            <Navigation config={config} pages={pages} />
+            <Navigation
+              config={
+                config
+                  ? {
+                      jobDescription: config.jobDescription,
+                      photo: config.photo,
+                      cvFile: config.cvFile,
+                    }
+                  : null
+              }
+              pages={pages}
+            />
 
             <main className="grow w-full py-4 flex flex-col">
               <div className="w-full max-w-[1280px] mx-auto px-6 flex flex-col">

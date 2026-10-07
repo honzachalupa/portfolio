@@ -1,25 +1,18 @@
 import { Card } from "@heroui/card";
 import { Link } from "@heroui/link";
-import { cache } from "react";
 import hygraphApi from "@/actions/hygraph";
-import { TechStack as TechStackProps } from "@/actions/hygraph/_generated/graphql";
+import { TechStack as TechStackProps } from "@/actions/hygraph/types";
 import { Container } from "../Container";
 import { Icon } from "../Icon";
 
-const fetchTechnologies = cache(async () => await hygraphApi.getFeaturedTechnologies());
-
-export const preload = (): void => {
-  void fetchTechnologies();
-};
-
 export async function TechStack({ headline }: TechStackProps): Promise<React.ReactNode> {
-  const technologies = await fetchTechnologies();
+  const technologies = await hygraphApi.getFeaturedTechnologies();
 
   return (
     <Container headline={headline}>
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4">
         {technologies
-          ?.sort((a, b) => a.name.localeCompare(b.name))
+          ?.toSorted((a, b) => a.name.localeCompare(b.name))
           ?.map(({ name, url, color, iconName }) => (
             <Card key={name} className="p-3">
               <Link

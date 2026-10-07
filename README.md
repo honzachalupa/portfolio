@@ -48,7 +48,7 @@ bun run format
 bun run build
 ```
 
-Local environment variables are loaded from the ignored `.env` file. Set `NEXT_PUBLIC_BASE_URL` to the local server origin (normally `http://localhost:3000`) so server-side App Store requests and contact form actions use the local app. Keep credentials out of Git. Public canonical URLs always use `https://www.janchalupa.dev`.
+Local environment variables are loaded from the ignored `.env` file. Apple widgets access their server data service directly, and the contact form uses a relative browser POST; neither calls a deployment through `NEXT_PUBLIC_BASE_URL`. Keep credentials out of Git. Public canonical URLs always use `https://www.janchalupa.dev`.
 
 ### Dependency update: 2026-10-07
 
@@ -76,10 +76,22 @@ Removed ESLint and its Next.js configuration package. There was no direct Pretti
 
 Migrated supported ESLint rules, including Next.js and React rules, and preserved the existing disabled exhaustive-dependencies rule. Biome does not implement every ESLint/React Compiler rule; TypeScript checking and the production build remain separate checks. Generated GraphQL files and build/dependency directories are excluded.
 
-An existing App Store integration limitation remains: its JWT is created once at module initialization and expires after 20 minutes. This update does not change that behavior.
+The architecture fixes below replace the former module-level Apple JWT with a fresh token for each uncached data operation.
 
 ### TypeScript 7 and security PR review: 2026-10-07
 
 Updated TypeScript to 7.0.2 and enabled Next.js `experimental.useTypeScriptCli`, so the production build uses the native compiler CLI instead of the legacy TypeScript JavaScript API.
 
 [Security PR #1](https://github.com/honzachalupa/portfolio/pull/1) changes only Next.js 15.3.1 to 15.3.8 to fix React Server Components vulnerabilities. The local Next.js 16.4.0 update supersedes that change. Keep the security PR open until the newer dependencies are published and deployed; a local update does not establish production remediation. See the [Next.js security advisory](https://nextjs.org/blog/CVE-2025-66478) for the affected versions and post-deployment secret rotation guidance.
+
+### Architecture fixes: 2026-10-07
+
+Server reads use `server-only` modules with shared React request memoization and explicit persistent caching. Hygraph operations live in `actions/hygraph/queries`; `bun run codegen` generates precise operation types. Known CMS routes are prerendered with one-minute revalidation; build concurrency is limited to protect the CMS quota. CMS failures propagate to error boundaries, while missing pages use `notFound()`. Metadata includes description and sharing fields; sitemap modification dates come from CMS.
+
+Apple data is fetched directly by server components. Published versions, locale selection, pagination, status checks and JWT refresh are handled in a shared service. GitHub fetches all repository pages, and the README dialog handles errors and retry. The icon registry contains only used CMS icons. Server card Markdown stays on the server; client Markdown is loaded on demand.
+
+The contact form posts only name, visitor email, message and honeypot in one request. The server chooses delivery addresses from CMS and sends confirmation after the main message. Invalid delivery parameters are rejected, and confirmation failure does not mark the already delivered message as failed. Generic HTTP utilities are no longer Server Actions.
+
+**Required before production deployment:** configure `UPSTASH_REDIS_REST_URL` and `UPSTASH_REDIS_REST_TOKEN` for the contact endpoint's shared atomic quota. No storage service was provisioned by this change. Production intentionally returns 503 when the shared limiter is absent or unavailable. Local development can use the in-memory fallback. Connect an existing Upstash Redis instance to the appropriate Vercel environment and verify the limiter before publishing these changes. Never commit credentials.
+
+Run `bun run test`, `bun run lint` and `bun run build`. Tests mock mail providers and upstream services; they do not deliver real mail. See `NEXT_ARCHITECTURE_REVIEW.md` for the original findings and remediation evidence.

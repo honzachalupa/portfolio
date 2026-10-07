@@ -22,7 +22,7 @@ export function Navigation({
   config,
   pages,
 }: {
-  config: HygraphGetConfigData | null;
+  config: Pick<HygraphGetConfigData, "jobDescription" | "photo" | "cvFile"> | null;
   pages: HygraphGetPagesData | null;
 }): React.ReactNode {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);

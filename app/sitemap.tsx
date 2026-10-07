@@ -10,7 +10,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       ?.filter((page) => Boolean(page.slug))
       .map((page) => ({
         url: new URL(page.slug!, SITE_URL).href,
-        lastModified: new Date().toISOString(),
+        lastModified: page.updatedAt,
         changeFrequency: "monthly",
       })) ?? []
   );

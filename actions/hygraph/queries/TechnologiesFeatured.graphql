@@ -1,0 +1,10 @@
+query TechnologiesFeatured {
+  technologyItems(first: 14, where: { isFeatured: true }) {
+    name
+    url
+    iconName
+    color {
+      hex
+    }
+  }
+}

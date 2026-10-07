@@ -1,24 +1,16 @@
-"use server";
+import { PagesDocument } from "./_generated/graphql";
+import "server-only";
+import { cache } from "react";
 
-import { CommonHygraphFields, executeHygraphQuery } from "../../utils/hygraphQuery";
-import { Page as HygraphPage } from "./_generated/graphql";
+import { executeHygraphQuery } from "../../utils/hygraphQuery";
+import type { PagesQuery } from "./_generated/graphql";
 
-export type HygraphGetPagesData = Omit<HygraphPage, CommonHygraphFields>[];
+export type HygraphGetPagesData = PagesQuery["pages"];
 
-export async function getPages(): Promise<HygraphGetPagesData | null> {
-  const query = `query {
-    pages {
-      title
-      slug
-      nestedPages {
-        title
-        slug
-      }
-      isHidden
-    }
-  }`;
+export const getPages = cache(async (): Promise<HygraphGetPagesData> => {
+  const query = PagesDocument;
 
-  const data = await executeHygraphQuery<{ pages: HygraphGetPagesData }>(query);
+  const data = await executeHygraphQuery(query);
 
-  return data?.pages || null;
-}
+  return data.pages;
+});

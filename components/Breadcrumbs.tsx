@@ -18,7 +18,9 @@ export function Breadcrumbs({ className, pages }: BreadcrumbsProps): React.React
       slug: slug!,
       title: title!,
     }))
-    .filter(({ slug }) => slug !== "/" && currentSlug.includes(slug))
+    .filter(
+      ({ slug }) => slug !== "/" && (currentSlug === slug || currentSlug.startsWith(`${slug}/`)),
+    )
     // Sort breadcrumbs by path depth (number of segments)
     .sort((a, b) => {
       // Count the number of segments in each path

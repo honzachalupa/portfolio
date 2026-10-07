@@ -1,6 +1,5 @@
 import clsx from "clsx";
 import { ReactNode } from "react";
-import { Maybe } from "@/actions/hygraph/_generated/graphql";
 
 interface BlockHeadlineProps {
   children: string;
@@ -13,7 +12,7 @@ export const BlockHeadline: React.FC<BlockHeadlineProps> = ({ children, classNam
 
 interface ContainerProps {
   htmlId?: string;
-  headline?: Maybe<string>;
+  headline?: string | null;
   className?: string;
   children: ReactNode;
 }

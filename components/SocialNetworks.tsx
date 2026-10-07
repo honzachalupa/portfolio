@@ -1,16 +1,8 @@
 import { Button } from "@heroui/button";
 import { Link } from "@heroui/link";
-import { cache, createElement } from "react";
+import { createElement } from "react";
 import * as FaIcons from "react-icons/fa6";
 import hygraphApi from "@/actions/hygraph";
-
-const getConfig = cache(async () => {
-  return await hygraphApi.getConfig();
-});
-
-export const preload = (): void => {
-  void getConfig();
-};
 
 function SocialNetworkIcon({ name }: { name: string }): React.ReactNode {
   const IconComponent = FaIcons[name as keyof typeof FaIcons];
@@ -25,7 +17,7 @@ function SocialNetworkIcon({ name }: { name: string }): React.ReactNode {
 }
 
 export async function SocialNetworks(): Promise<React.ReactNode> {
-  const config = await getConfig();
+  const config = await hygraphApi.getConfig();
 
   return (
     <div className="xl:fixed bottom-0 right-0 flex xl:flex-col justify-center gap-5 m-5">

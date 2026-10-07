@@ -1,4 +1,4 @@
-import { ProjectCardAction, ProjectCardLink } from "./ProjectCard";
+import type { ProjectCardAction, ProjectCardLink } from "./ProjectCard.client";
 
 export function isProjectCardLink(
   action: ProjectCardAction | ProjectCardLink,

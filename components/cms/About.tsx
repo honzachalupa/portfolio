@@ -1,4 +1,4 @@
-import { About as AboutProps } from "@/actions/hygraph/_generated/graphql";
+import { About as AboutProps } from "@/actions/hygraph/types";
 import { Container } from "../Container";
 import { MarkdownRenderer } from "../MarkdownRenderer";
 

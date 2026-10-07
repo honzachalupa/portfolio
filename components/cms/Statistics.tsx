@@ -6,7 +6,7 @@ import { cache } from "react";
 import appleAppStoreApi from "@/actions/appleAppStore";
 import githubApi from "@/actions/github";
 import hygraph from "@/actions/hygraph";
-import { Statistics as StatisticsProps } from "@/actions/hygraph/_generated/graphql";
+import { Statistics as StatisticsProps } from "@/actions/hygraph/types";
 import { Container } from "../Container";
 
 const getProjects = cache(async () => await hygraph.getProjects());
@@ -20,16 +20,13 @@ const getRepositories = cache(
     }),
 );
 
-export const preload = async (): Promise<void> => {
-  // Trigger all data fetching in parallel to warm up the cache
-  await Promise.all([getProjects(), getClients(), getIosApps(), getRepositories()]);
-};
-
 export async function Statistics({ headline, items }: StatisticsProps): Promise<React.ReactNode> {
-  const projects = await getProjects();
-  const clients = await getClients();
-  const iOSapps = await getIosApps();
-  const repositories = await getRepositories();
+  const [projects, clients, iOSapps, repositories] = await Promise.all([
+    getProjects(),
+    getClients(),
+    getIosApps(),
+    getRepositories(),
+  ]);
 
   const values = {
     yearsOfWeb: new Date().getFullYear() - 2008,
@@ -108,13 +105,15 @@ export async function Statistics({ headline, items }: StatisticsProps): Promise<
             className="max-w-[200px] text-center"
             showArrow
           >
-            <Card className="w-full h-full aspect-square gap-1 flex flex-col items-center justify-center text-center cursor-pointer">
+            <Card className="w-full min-w-0 h-full aspect-square px-4 gap-1 flex flex-col items-center justify-center text-center cursor-pointer">
               <span className="text-4xl">
                 <span className="font-bold">{value}</span>
                 <span className="opacity-50">{unit}</span>
               </span>
 
-              <span className="text-sm font-light opacity-50 text-center">{description}</span>
+              <span className="w-full text-sm leading-snug font-light opacity-50 text-center text-balance break-words">
+                {description}
+              </span>
 
               {action && (
                 <CardFooter className="py-1 absolute bottom-0 w-[calc(100%_-_8px)] z-10">

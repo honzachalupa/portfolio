@@ -1,0 +1,12 @@
+query Pages {
+  pages(first: 100) {
+    updatedAt
+    title
+    slug
+    nestedPages {
+      title
+      slug
+    }
+    isHidden
+  }
+}

@@ -13,13 +13,19 @@ import {
 } from "@heroui/modal";
 import { ScrollShadow } from "@heroui/scroll-shadow";
 import { Spinner } from "@heroui/spinner";
+import dynamic from "next/dynamic";
 import { useRef, useState } from "react";
 import { FaGithub } from "react-icons/fa";
-import githubApi, { GithubReadme, GithubRepository } from "@/actions/github";
+import { getReadme } from "@/actions/github/readme";
+import type { GithubReadme, GithubRepository } from "@/actions/github/types";
 import { HygraphGetTechnologiesData } from "@/actions/hygraph/technologies";
 import { Icon } from "../Icon";
-import { MarkdownRenderer } from "../MarkdownRenderer";
-import { ProjectCard } from "../ProjectCard";
+
+import { ProjectCard } from "../ProjectCard.client";
+
+const MarkdownRenderer = dynamic(() =>
+  import("../MarkdownRenderer").then((module) => module.MarkdownRenderer),
+);
 
 interface GitHubRepositories_Client {
   repositories: GithubRepository[];
@@ -34,17 +40,20 @@ export function GitHubRepositories_Client({
   const [selectedRepositoryName, setSelectedRepositoryName] = useState<string>();
   const [selectedRepositoryReadme, setSelectedRepositoryReadme] = useState<GithubReadme>();
   const readmeRequest = useRef(0);
+  const [readmeError, setReadmeError] = useState(false);
 
   async function openReadme(name: string): Promise<void> {
     const requestId = ++readmeRequest.current;
     setSelectedRepositoryName(name);
     setSelectedRepositoryReadme(undefined);
+    setReadmeError(false);
     onOpen();
 
-    const data = await githubApi.getReadme(name);
-
-    if (requestId === readmeRequest.current) {
-      setSelectedRepositoryReadme(data);
+    try {
+      const data = await getReadme(name);
+      if (requestId === readmeRequest.current) setSelectedRepositoryReadme(data);
+    } catch {
+      if (requestId === readmeRequest.current) setReadmeError(true);
     }
   }
 
@@ -134,7 +143,18 @@ export function GitHubRepositories_Client({
           )}
 
           <ModalBody className="overflow-scroll">
-            {selectedRepositoryReadme ? (
+            {readmeError ? (
+              <div role="alert">
+                <p>Unable to load the README. Please try again.</p>
+                <Button
+                  onPress={() => {
+                    if (selectedRepositoryName) void openReadme(selectedRepositoryName);
+                  }}
+                >
+                  Retry
+                </Button>
+              </div>
+            ) : selectedRepositoryReadme ? (
               selectedRepositoryReadme.content ? (
                 <ScrollShadow>
                   <MarkdownRenderer className="py-6">

@@ -2,7 +2,7 @@
 
 import { Tab, Tabs } from "@heroui/tabs";
 import clsx from "clsx";
-import { AppleAppStoreScreenshot } from "@/app/api/apple-app-store/route";
+import type { AppleAppStoreScreenshot } from "@/actions/appleAppStore/types";
 import { DeviceType, sortByDeviceType } from "@/utils/deviceTypes";
 import { ImageWithPreview } from "./ImageWithPreview";
 

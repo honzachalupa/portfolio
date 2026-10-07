@@ -1,3 +1,6 @@
+import { SITE_URL } from "@/utils/site";
+import "server-only";
+
 interface SpamCheckResult {
   isSpam: boolean;
   confidence?: number;
@@ -19,7 +22,7 @@ interface AkismetCheckParams {
  */
 async function checkAkismet(params: AkismetCheckParams): Promise<SpamCheckResult | null> {
   const apiKey = process.env.AKISMET_API_KEY;
-  const siteUrl = process.env.NEXT_PUBLIC_BASE_URL || process.env.VERCEL_URL || "";
+  const siteUrl = SITE_URL;
 
   if (!apiKey || !siteUrl) {
     return null; // Service not configured
@@ -38,8 +41,7 @@ async function checkAkismet(params: AkismetCheckParams): Promise<SpamCheckResult
     });
 
     // Add timeout to prevent hanging (5 seconds)
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 5000);
+    const signal = AbortSignal.timeout(5000);
 
     const response = await fetch(`https://${apiKey}.rest.akismet.com/1.1/comment-check`, {
       method: "POST",
@@ -47,10 +49,8 @@ async function checkAkismet(params: AkismetCheckParams): Promise<SpamCheckResult
         "Content-Type": "application/x-www-form-urlencoded",
       },
       body: formData.toString(),
-      signal: controller.signal,
+      signal,
     });
-
-    clearTimeout(timeoutId);
 
     if (!response.ok) {
       console.error("[SpamDetection] Akismet API error:", response.statusText);
@@ -106,15 +106,12 @@ async function checkIPQualityScore(params: IPQualityScoreParams): Promise<SpamCh
     url.searchParams.set("fast", "true"); // Faster response
 
     // Add timeout to prevent hanging (5 seconds)
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 5000);
+    const signal = AbortSignal.timeout(5000);
 
     const response = await fetch(url.toString(), {
       method: "GET",
-      signal: controller.signal,
+      signal,
     });
-
-    clearTimeout(timeoutId);
 
     if (!response.ok) {
       console.error("[SpamDetection] IPQualityScore API error:", response.statusText);
@@ -163,19 +160,16 @@ interface StopForumSpamParams {
 async function checkStopForumSpam(params: StopForumSpamParams): Promise<SpamCheckResult | null> {
   try {
     // Add timeout to prevent hanging (3 seconds - faster since it's free)
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 3000);
+    const signal = AbortSignal.timeout(3000);
 
     // Check email
     const emailUrl = `https://api.stopforumspam.com/api?email=${encodeURIComponent(params.email)}&json`;
-    const emailResponse = await fetch(emailUrl, { signal: controller.signal });
+    const emailResponse = await fetch(emailUrl, { signal });
 
     if (emailResponse.ok) {
       const emailData = await emailResponse.json();
 
       if (emailData.email?.appears === 1) {
-        clearTimeout(timeoutId);
-
         return {
           isSpam: true,
           confidence: emailData.email?.confidence || 0,
@@ -186,9 +180,7 @@ async function checkStopForumSpam(params: StopForumSpamParams): Promise<SpamChec
 
     // Check IP
     const ipUrl = `https://api.stopforumspam.com/api?ip=${encodeURIComponent(params.ip)}&json`;
-    const ipResponse = await fetch(ipUrl, { signal: controller.signal });
-
-    clearTimeout(timeoutId);
+    const ipResponse = await fetch(ipUrl, { signal });
 
     if (ipResponse.ok) {
       const ipData = await ipResponse.json();

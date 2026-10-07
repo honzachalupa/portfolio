@@ -1,6 +1,19 @@
-export type DeviceType = "iPhone" | "iPad" | "Mac" | "Apple Watch";
+export type DeviceType =
+  | "iPhone"
+  | "iPad"
+  | "Mac"
+  | "Apple Watch"
+  | "Apple TV"
+  | "Apple Vision Pro";
 
-export const DEVICE_TYPE_ORDER: DeviceType[] = ["iPhone", "iPad", "Mac", "Apple Watch"];
+export const DEVICE_TYPE_ORDER: DeviceType[] = [
+  "iPhone",
+  "iPad",
+  "Mac",
+  "Apple Watch",
+  "Apple TV",
+  "Apple Vision Pro",
+];
 
 export function sortByDeviceType<T extends { deviceType: DeviceType }>(items: T[]): T[] {
   return [...items].sort((a, b) => {

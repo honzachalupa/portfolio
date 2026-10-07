@@ -5,17 +5,13 @@ import { cache } from "react";
 import { FaAppStoreIos } from "react-icons/fa";
 import { GrSwift } from "react-icons/gr";
 import appleAppStoreApi from "@/actions/appleAppStore";
-import { Projects_IOs as Projects_iOSProps } from "@/actions/hygraph/_generated/graphql";
+import { Projects_IOs as Projects_iOSProps } from "@/actions/hygraph/types";
 import "server-only";
 import { AppScreenshots } from "../AppScreenshots";
 import { Container } from "../Container";
 import { ProjectCard, ProjectCardGrid } from "../ProjectCard";
 
 const getIosApps = cache(async () => await appleAppStoreApi.getApps({ limit: 6 }));
-
-export function preload(): void {
-  void getIosApps();
-}
 
 export async function Projects_iOS({ headline }: Projects_iOSProps): Promise<React.ReactNode> {
   const apps = await getIosApps();

@@ -4,6 +4,8 @@ const nextConfig: NextConfig = {
   reactCompiler: true,
   experimental: {
     useTypeScriptCli: true,
+    staticGenerationMaxConcurrency: 1,
+    staticGenerationMinPagesPerWorker: 100,
   },
   images: {
     remotePatterns: [

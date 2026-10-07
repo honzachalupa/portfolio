@@ -1,29 +1,22 @@
-import { AppleAppStoreApp } from "@/app/api/apple-app-store/route";
-import { get } from "@/utils/api";
+import "server-only";
+import { unstable_cache } from "next/cache";
+import { cache } from "react";
+import { fetchAppleApps } from "./service";
+import type { AppleAppStoreApp } from "./types";
 
-async function getApps(
-  options:
-    | {
-        limit?: number;
-      }
-    | undefined = undefined,
-): Promise<AppleAppStoreApp[] | undefined> {
-  const { data, error } = await get<AppleAppStoreApp[]>("/api/apple-app-store", {
+const getCachedApps = cache(
+  unstable_cache(fetchAppleApps, ["published-apple-apps-v1"], {
+    revalidate: 3600,
     tags: ["apple-app-store"],
-  });
+  }),
+);
 
-  if (error) {
-    console.error("Failed to fetch apps:", error);
-    return [];
-  }
-
-  return data
-    ? data.filter(({ screenshots }) => screenshots.length > 0).slice(0, options?.limit ?? 100)
-    : [];
+async function getApps(options?: { limit?: number }): Promise<AppleAppStoreApp[]> {
+  const apps = await getCachedApps();
+  return apps
+    .filter(({ screenshots }) => screenshots.length > 0)
+    .slice(0, options?.limit ?? apps.length);
 }
 
-const appleAppStoreApi = {
-  getApps,
-};
-
-export default appleAppStoreApi;
+export { getCachedApps };
+export default { getApps };

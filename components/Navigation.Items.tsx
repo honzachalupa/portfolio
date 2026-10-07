@@ -3,6 +3,7 @@ import { Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from "@heroui/d
 import { Link } from "@heroui/link";
 import { NavbarItem, NavbarMenuItem } from "@heroui/navbar";
 import { ButtonVariantProps } from "@heroui/theme";
+import NextLink from "next/link";
 import { usePathname } from "next/navigation";
 import { FaChevronDown } from "react-icons/fa6";
 import { HygraphGetPagesData } from "@/actions/hygraph/pages";
@@ -46,21 +47,19 @@ export function Items({
             </DropdownTrigger>
           </ItemComponent>
 
-          <DropdownMenu>
+          <DropdownMenu aria-label={`${title} navigation`} onAction={closeMenu}>
             {nestedPages.map(({ slug, title }) => {
               const isActive = currentSlug === slug;
 
               return (
-                <DropdownItem key={slug!} textValue={title!}>
-                  <Link
-                    href={slug!}
-                    title={title!}
-                    color={isActive ? "primary" : "foreground"}
-                    size="sm"
-                    onPress={closeMenu}
-                  >
-                    {title}
-                  </Link>
+                <DropdownItem
+                  key={slug!}
+                  as={NextLink}
+                  href={slug!}
+                  className={isActive ? "text-primary" : "text-foreground"}
+                  aria-current={isActive ? "page" : undefined}
+                >
+                  {title}
                 </DropdownItem>
               );
             })}

@@ -1,0 +1,22 @@
+query SiteConfig {
+  configs {
+    jobDescription
+    emailAddress
+    phoneNumber
+    photo {
+      url
+    }
+    cvFile {
+      url
+    }
+    socialNetworks {
+      name
+      iconName
+      url
+    }
+    seo {
+      name
+      description
+    }
+  }
+}

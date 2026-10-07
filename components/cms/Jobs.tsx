@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import Image from "next/image";
-import { Jobs as JobsProps } from "@/actions/hygraph/_generated/graphql";
+import { Jobs as JobsProps } from "@/actions/hygraph/types";
 import { Container } from "../Container";
 import { MarkdownRenderer } from "../MarkdownRenderer";
 import { ProjectCard } from "../ProjectCard";
@@ -13,7 +13,7 @@ function formatDates(dateFrom: string, dateTo: string | null): string {
 }
 
 export function Jobs({ headline, jobs }: JobsProps): React.ReactNode {
-  jobs = jobs.sort((a, b) => dayjs(b.dateFrom).diff(a.dateFrom));
+  jobs = jobs.toSorted((a, b) => dayjs(b.dateFrom).diff(a.dateFrom));
 
   return (
     <Container headline={headline}>

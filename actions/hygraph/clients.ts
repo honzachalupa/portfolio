@@ -1,18 +1,16 @@
-"use server";
+import { ClientsDocument } from "./_generated/graphql";
+import "server-only";
+import { cache } from "react";
 
-import { CommonHygraphFields, executeHygraphQuery } from "../../utils/hygraphQuery";
-import { Client as HygraphClient } from "./_generated/graphql";
+import { executeHygraphQuery } from "../../utils/hygraphQuery";
+import type { ClientsQuery } from "./_generated/graphql";
 
-export type HygraphGetClientsData = Omit<HygraphClient, CommonHygraphFields>[];
+export type HygraphGetClientsData = ClientsQuery["clients"];
 
-export async function getClients(): Promise<HygraphGetClientsData | null> {
-  const query = `query {
-    clients {
-      name
-    }
-  }`;
+export const getClients = cache(async (): Promise<HygraphGetClientsData> => {
+  const query = ClientsDocument;
 
-  const data = await executeHygraphQuery<{ clients: HygraphGetClientsData }>(query);
+  const data = await executeHygraphQuery(query);
 
-  return data?.clients || null;
-}
+  return data.clients;
+});

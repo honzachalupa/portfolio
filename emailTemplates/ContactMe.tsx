@@ -1,6 +1,4 @@
-import { SendEmailProps } from "@/app/api/send-email/route";
-
-export interface ContactMeEmailTemplateProps extends SendEmailProps {
+export interface ContactMeEmailTemplateProps {
   sender: {
     name?: string;
     emailAddress: string;

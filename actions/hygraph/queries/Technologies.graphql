@@ -1,0 +1,10 @@
+query Technologies {
+  technologyItems(first: 20) {
+    name
+    url
+    iconName
+    color {
+      hex
+    }
+  }
+}

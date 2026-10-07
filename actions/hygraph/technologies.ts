@@ -1,44 +1,16 @@
-"use server";
+import "server-only";
+import { cache } from "react";
+import { executeHygraphQuery } from "@/utils/hygraphQuery";
+import {
+  TechnologiesDocument,
+  TechnologiesFeaturedDocument,
+  type TechnologiesQuery,
+} from "./_generated/graphql";
 
-import { CommonHygraphFields, executeHygraphQuery } from "../../utils/hygraphQuery";
-import { TechnologyItem as HygraphTechnology } from "./_generated/graphql";
-
-export type HygraphGetTechnologiesData = Omit<HygraphTechnology, CommonHygraphFields>[];
-
-export async function getTechnologies(): Promise<HygraphGetTechnologiesData | null> {
-  const query = `query {
-    technologyItems(first: 20) {
-      name
-      url
-      iconName
-      color {
-        hex
-      }
-    }
-  }`;
-
-  const data = await executeHygraphQuery<{
-    technologyItems: HygraphGetTechnologiesData;
-  }>(query);
-
-  return data?.technologyItems || null;
-}
-
-export async function getFeaturedTechnologies(): Promise<HygraphGetTechnologiesData | null> {
-  const query = `query {
-    technologyItems(first: 14, where: { isFeatured: true }) {
-      name
-      url
-      iconName
-      color {
-        hex
-      }
-    }
-  }`;
-
-  const data = await executeHygraphQuery<{
-    technologyItems: HygraphGetTechnologiesData;
-  }>(query);
-
-  return data?.technologyItems || null;
-}
+export type HygraphGetTechnologiesData = TechnologiesQuery["technologyItems"];
+export const getTechnologies = cache(async (): Promise<HygraphGetTechnologiesData> => {
+  return (await executeHygraphQuery(TechnologiesDocument)).technologyItems;
+});
+export const getFeaturedTechnologies = cache(async (): Promise<HygraphGetTechnologiesData> => {
+  return (await executeHygraphQuery(TechnologiesFeaturedDocument)).technologyItems;
+});

@@ -1,7 +1,3 @@
-import { SendEmailProps } from "@/app/api/send-email/route";
-
-export type ContactMeEmailConfirmationTemplateProps = SendEmailProps;
-
 export function ContactMeEmailConfirmationTemplate(): React.ReactNode {
   return (
     <div>

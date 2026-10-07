@@ -6,7 +6,7 @@ export default async function manifest(): Promise<MetadataRoute.Manifest> {
 
   return {
     name: config?.seo?.name,
-    short_name: config?.seo?.name.replace("portfolio", "").trim(),
+    short_name: config?.seo?.name?.replace("portfolio", "").trim(),
     description: config?.seo?.description,
     start_url: "/",
     display: "standalone",

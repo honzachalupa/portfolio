@@ -1,35 +1,16 @@
-"use server";
+import { SiteConfigDocument } from "./_generated/graphql";
+import "server-only";
+import { cache } from "react";
 
-import { CommonHygraphFields, executeHygraphQuery } from "../../utils/hygraphQuery";
-import { Config as HygraphConfig } from "./_generated/graphql";
+import { executeHygraphQuery } from "../../utils/hygraphQuery";
+import type { SiteConfigQuery } from "./_generated/graphql";
 
-export type HygraphGetConfigData = Omit<HygraphConfig, CommonHygraphFields>;
+export type HygraphGetConfigData = SiteConfigQuery["configs"][number];
 
-export async function getConfig(): Promise<HygraphGetConfigData | null> {
-  const query = `query {
-    configs {
-      jobDescription
-      emailAddress
-      phoneNumber
-      photo {
-        url
-      }
-      cvFile {
-        url
-      }
-      socialNetworks {
-        name
-        iconName
-        url
-      }
-      seo {
-        name
-        description
-      }
-    }
-  }`;
+export const getConfig = cache(async (): Promise<HygraphGetConfigData | null> => {
+  const query = SiteConfigDocument;
 
-  const data = await executeHygraphQuery<{ configs: HygraphConfig[] }>(query);
+  const data = await executeHygraphQuery(query);
 
   return data?.configs?.[0] || null;
-}
+});
